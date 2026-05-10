@@ -24,5 +24,12 @@ export default function usePremium() {
 
   useEffect(() => { fetchPremium(); }, [fetchPremium]);
 
-  return { ...premium, loading, refetch: fetchPremium };
+  return {
+    messagesCount: premium?.messagesCount ?? 0,
+    limit: premium?.limit ?? 20,
+    isPremium: premium?.isPremium ?? false,
+    premiumUntil: premium?.premiumUntil ?? null,
+    loading,
+    refetch: fetchPremium,
+  };
 }
