@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 
@@ -9,8 +8,7 @@ const WELCOME_MSG = {
 };
 
 export default function Chat() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const [messages, setMessages] = useState([WELCOME_MSG]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
@@ -34,7 +32,8 @@ export default function Chat() {
   const fetchUsage = async () => {
     try {
       const token = await getToken();
-      const res = await fetch('http://localhost:3001/api/user/usage', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const res = await fetch(`${apiUrl}/api/user/usage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -66,7 +65,8 @@ export default function Chat() {
           parts: [{ text: m.content }],
         }));
 
-      const res = await fetch('http://localhost:3001/api/chat', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const res = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -106,15 +106,12 @@ export default function Chat() {
   const remaining = usage ? usage.limit - usage.messagesCount : 20;
 
   return (
-    <div className="h-screen flex flex-col bg-cream">
+    <div className="h-full flex flex-col bg-cream">
       {/* Header */}
       <header className="bg-white border-b border-gold/10 px-6 py-3 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
-          <button onClick={() => navigate('/')} className="text-xl">🕊️</button>
-          <div>
-            <h1 className="font-serif text-lg font-bold leading-tight">Rafael</h1>
-            <p className="text-xs text-dark-blue/50">Tu acompañante espiritual</p>
-          </div>
+        <div>
+          <h1 className="font-serif text-lg font-bold leading-tight">Rafael</h1>
+          <p className="text-xs text-dark-blue/50">Tu acompañante espiritual</p>
         </div>
         <div className="flex items-center gap-4">
           {!loadingUsage && !usage?.isPremium && (
@@ -125,12 +122,6 @@ export default function Chat() {
           {usage?.isPremium && (
             <span className="text-xs text-gold bg-gold/10 px-3 py-1 rounded-full font-semibold">Premium</span>
           )}
-          <button
-            onClick={logout}
-            className="text-sm text-dark-blue/50 hover:text-red-500 transition-colors"
-          >
-            Salir
-          </button>
         </div>
       </header>
 

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import AppLayout from './components/AppLayout';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
@@ -14,6 +15,9 @@ import RevealOnScroll from './components/RevealOnScroll';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Chat from './pages/Chat';
+import Music from './pages/Music';
+import Games from './pages/Games';
+import Prayer from './pages/Prayer';
 
 function HomePage() {
   return (
@@ -31,6 +35,14 @@ function HomePage() {
   );
 }
 
+function ProtectedLayout({ children }) {
+  return (
+    <ProtectedRoute>
+      <AppLayout>{children}</AppLayout>
+    </ProtectedRoute>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -39,14 +51,10 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<><Navbar /><Login /></>} />
           <Route path="/register" element={<><Navbar /><Register /></>} />
-          <Route
-            path="/chat"
-            element={
-              <ProtectedRoute>
-                <Chat />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/chat" element={<ProtectedLayout><Chat /></ProtectedLayout>} />
+          <Route path="/music" element={<ProtectedLayout><Music /></ProtectedLayout>} />
+          <Route path="/games" element={<ProtectedLayout><Games /></ProtectedLayout>} />
+          <Route path="/prayer" element={<ProtectedLayout><Prayer /></ProtectedLayout>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

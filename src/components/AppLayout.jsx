@@ -1,0 +1,141 @@
+import { useState } from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import usePremium from '../hooks/usePremium';
+import PremiumModal from '../components/PremiumModal';
+
+const navItems = [
+  { to: '/chat', icon: '💬', label: 'Chat con Rafael', locked: false },
+  { to: '/music', icon: '🎵', label: 'Música de Alabanza', locked: true },
+  { to: '/games', icon: '🎮', label: 'Juegos Bíblicos', locked: true },
+  { to: '/prayer', icon: '🙏', label: 'Oración Guiada', locked: true },
+];
+
+export default function AppLayout({ children }) {
+  const { user, logout } = useAuth();
+  const premium = usePremium();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [modalItem, setModalItem] = useState(null);
+
+  const isPremium = premium?.isPremium || false;
+  const remaining = premium ? premium.limit - premium.messagesCount : 20;
+
+  const handleNavClick = (item) => {
+    setSidebarOpen(false);
+    if (item.locked && !isPremium) {
+      setModalItem(item);
+      return;
+    }
+    navigate(item.to);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
+
+  return (
+    <div className="h-screen flex overflow-hidden bg-cream">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-30 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-gold/10 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {/* Logo */}
+        <div className="px-6 pt-6 pb-4 border-b border-gold/10">
+          <NavLink to="/" className="font-serif text-xl font-bold text-dark-blue flex items-center gap-2">
+            <span>🕊️</span> Selah Vida
+          </NavLink>
+        </div>
+
+        {/* Nav */}
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.to;
+            return (
+              <button
+                key={item.to}
+                onClick={() => handleNavClick(item)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors ${
+                  isActive
+                    ? 'bg-gold/10 text-gold'
+                    : 'text-dark-blue/70 hover:bg-cream'
+                }`}
+              >
+                <span className="text-lg">{item.icon}</span>
+                <span className="flex-1">{item.label}</span>
+                {item.locked && !isPremium && (
+                  <span className="text-xs text-dark-blue/30" title="Premium">🔒</span>
+                )}
+                {item.locked && isPremium && (
+                  <span className="text-xs text-gold">✓</span>
+                )}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* User section */}
+        <div className="px-4 py-4 border-t border-gold/10 space-y-2">
+          <div className="px-2 text-xs text-dark-blue/50 truncate">
+            {user?.email}
+          </div>
+          {!premium?.loading && (
+            <div className="px-2">
+              {isPremium ? (
+                <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
+                  Premium
+                </span>
+              ) : (
+                <span className="text-xs text-dark-blue/50 bg-cream px-2.5 py-1 rounded-full inline-block">
+                  {remaining}/20 mensajes
+                </span>
+              )}
+            </div>
+          )}
+          <button
+            onClick={handleLogout}
+            className="w-full text-left px-2 py-2 text-sm text-dark-blue/40 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
+          >
+            Cerrar sesión
+          </button>
+        </div>
+      </aside>
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top bar (mobile) */}
+        <header className="lg:hidden bg-white border-b border-gold/10 px-4 py-3 flex items-center gap-3 shrink-0">
+          <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú">
+            ☰
+          </button>
+          <NavLink to="/" className="font-serif text-base font-bold text-dark-blue flex items-center gap-2">
+            <span>🕊️</span> Selah Vida
+          </NavLink>
+        </header>
+
+        {/* Page content */}
+        <div className="flex-1 min-h-0">
+          {children}
+        </div>
+      </div>
+
+      {/* Premium modal */}
+      <PremiumModal
+        open={!!modalItem}
+        onClose={() => setModalItem(null)}
+      />
+    </div>
+  );
+}
