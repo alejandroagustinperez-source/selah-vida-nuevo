@@ -7,6 +7,19 @@ const WELCOME_MSG = {
   content: '🕊️ ¡Bienvenido a Selah Vida! Soy Rafael, tu acompañante espiritual. Comparte conmigo lo que hay en tu corazón — tus alegrías, tus cargas, tus dudas — y juntos buscaremos la sabiduría de Dios en las Escrituras. ¿En qué puedo ayudarte hoy?',
 };
 
+const EMOTIONS = [
+  { emoji: '😔', label: 'Triste' },
+  { emoji: '😰', label: 'Ansioso' },
+  { emoji: '😤', label: 'Enojado' },
+  { emoji: '😔', label: 'Solo' },
+  { emoji: '😕', label: 'Confundido' },
+  { emoji: '🙏', label: 'Quiero orar' },
+  { emoji: '💪', label: 'Necesito aliento' },
+  { emoji: '💑', label: 'Problemas de pareja' },
+  { emoji: '💰', label: 'Preocupación económica' },
+  { emoji: '😴', label: 'Sin esperanza' },
+];
+
 export default function Chat() {
   const { user } = useAuth();
   const [messages, setMessages] = useState([WELCOME_MSG]);
@@ -15,6 +28,8 @@ export default function Chat() {
   const [usage, setUsage] = useState(null);
   const [loadingUsage, setLoadingUsage] = useState(true);
   const bottomRef = useRef(null);
+
+  const hasInteracted = messages.length > 1;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -45,9 +60,7 @@ export default function Chat() {
     }
   };
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
-    const text = input.trim();
+  const sendText = async (text) => {
     if (!text || sending) return;
 
     const userMsg = { role: 'user', content: text };
@@ -103,6 +116,15 @@ export default function Chat() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendText(input.trim());
+  };
+
+  const handleEmotion = (emoji, label) => {
+    sendText(`Me siento ${label} ${emoji}`);
+  };
+
   const remaining = usage ? usage.limit - usage.messagesCount : 20;
 
   return (
@@ -155,6 +177,26 @@ export default function Chat() {
             </div>
           </div>
         ))}
+
+        {/* Emotion quick-select buttons */}
+        {!hasInteracted && !sending && (
+          <div className="py-2">
+            <p className="text-xs text-dark-blue/40 text-center mb-3">¿Cómo te sentís hoy?</p>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+              {EMOTIONS.map((e) => (
+                <button
+                  key={e.label}
+                  onClick={() => handleEmotion(e.emoji, e.label)}
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gold/10 text-sm text-dark-blue/70 hover:bg-gold/10 hover:border-gold/30 hover:text-dark-blue transition-all text-left"
+                >
+                  <span className="text-base">{e.emoji}</span>
+                  <span className="text-xs font-medium">{e.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {sending && (
           <div className="flex justify-start">
             <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md px-5 py-3 text-sm text-dark-blue/50">
@@ -170,12 +212,12 @@ export default function Chat() {
 
       {/* Input */}
       <div className="border-t border-gold/10 bg-white px-4 py-4 shrink-0">
-        <form onSubmit={sendMessage} className="max-w-3xl mx-auto flex gap-3">
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-3">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Escribí tu mensaje..."
+            placeholder={hasInteracted ? "Escribí tu mensaje..." : "O escribí lo que sientes..."}
             disabled={sending || (!usage?.isPremium && remaining <= 0)}
             className="flex-1 px-5 py-3 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm disabled:opacity-40"
           />
