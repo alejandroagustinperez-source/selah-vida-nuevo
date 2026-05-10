@@ -31,9 +31,10 @@ export function AuthProvider({ children }) {
   };
 
   const loginWithGoogle = async () => {
+    const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin;
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/chat` },
+      options: { redirectTo: `${siteUrl}/chat` },
     });
     if (error) throw error;
   };
