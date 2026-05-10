@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
   const doveRef = useRef(null);
@@ -34,12 +35,12 @@ export default function Hero() {
         <p className="text-lg md:text-xl text-dark-blue/75 font-light mb-10">
           Tu refugio espiritual disponible 24/7
         </p>
-        <a
-          href="https://selah-vida.lovable.app/registro"
+        <Link
+          to="/register"
           className="inline-block bg-gold text-white px-11 py-4 rounded-full text-base font-semibold shadow-lg shadow-gold/35 hover:bg-gold-dark hover:-translate-y-0.5 transition-all"
         >
           Empezar gratis
-        </a>
+        </Link>
       </div>
     </section>
   );

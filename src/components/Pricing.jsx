@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Pricing() {
   return (
     <section id="precios" className="bg-cream py-24">
@@ -16,18 +18,23 @@ export default function Pricing() {
               $0 <small className="text-sm font-sans font-normal text-dark-blue/50">/mes</small>
             </div>
             <ul className="text-left my-6 space-y-2">
-              {['Chat con Rafael (20 mensajes/día)', 'Versículos personalizados', 'Oración guiada', 'Música de alabanza'].map((item) => (
+              {[
+                'Chat con Rafael (20 mensajes/día)',
+                'Versículos personalizados',
+                'Oración guiada',
+                'Música de alabanza',
+              ].map((item) => (
                 <li key={item} className="flex items-center gap-2.5 text-sm text-dark-blue/75 py-1.5 border-b border-dark-blue/5 last:border-0">
                   <span className="text-gold font-bold">&#10003;</span> {item}
                 </li>
               ))}
             </ul>
-            <a
-              href="https://selah-vida.lovable.app/registro"
+            <Link
+              to="/register"
               className="inline-block border-2 border-gold text-dark-blue px-10 py-3.5 rounded-full font-semibold text-sm hover:bg-gold hover:text-white transition-all"
             >
               Empezar gratis
-            </a>
+            </Link>
           </div>
 
           {/* Premium */}

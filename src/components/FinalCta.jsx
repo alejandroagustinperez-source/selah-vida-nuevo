@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function FinalCta() {
   return (
     <section
@@ -13,12 +15,12 @@ export default function FinalCta() {
         <p className="text-cream/65 text-base mb-9 max-w-lg mx-auto">
           No esperes a que el peso sea demasiado. Dios te espera con brazos abiertos.
         </p>
-        <a
-          href="https://selah-vida.lovable.app/registro"
+        <Link
+          to="/register"
           className="inline-block bg-gold text-white px-12 py-4 rounded-full text-base font-semibold shadow-lg shadow-gold/35 hover:bg-gold-dark hover:-translate-y-0.5 transition-all"
         >
           Quiero empezar gratis
-        </a>
+        </Link>
       </div>
     </section>
   );
