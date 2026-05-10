@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
@@ -6,7 +7,12 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:4173'] }));
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:4173',
+  'https://selah-vida.netlify.app',
+];
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 const supabase = createClient(
@@ -151,8 +157,13 @@ app.post('/api/chat', verifyToken, async (req, res) => {
       },
     });
   } catch (err) {
-    console.error('Chat error:', err);
-    res.status(500).json({ error: 'Error al procesar el mensaje' });
+    console.error('Chat error:', err.message || err);
+    if (err.status) console.error('Status:', err.status);
+    if (err.stack) console.error('Stack:', err.stack.split('\n').slice(0, 3).join('\n'));
+    res.status(500).json({
+      error: 'Error al procesar el mensaje',
+      detail: process.env.NODE_ENV !== 'production' ? err.message : undefined,
+    });
   }
 });
 
