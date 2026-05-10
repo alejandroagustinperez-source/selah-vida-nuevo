@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 
+const API_BASE = import.meta.env.VITE_API_URL || '/.netlify/functions';
+
 const WELCOME_MSG = {
   role: 'model',
   content: '🕊️ ¡Bienvenido a Selah Vida! Soy Rafael, tu acompañante espiritual. Comparte conmigo lo que hay en tu corazón — tus alegrías, tus cargas, tus dudas — y juntos buscaremos la sabiduría de Dios en las Escrituras. ¿En qué puedo ayudarte hoy?',
@@ -47,8 +49,7 @@ export default function Chat() {
   const fetchUsage = async () => {
     try {
       const token = await getToken();
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const res = await fetch(`${apiUrl}/api/user/usage`, {
+      const res = await fetch(`${API_BASE}/usage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -78,8 +79,7 @@ export default function Chat() {
           parts: [{ text: m.content }],
         }));
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const res = await fetch(`${apiUrl}/api/chat`, {
+      const res = await fetch(`${API_BASE}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

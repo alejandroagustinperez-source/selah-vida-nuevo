@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../supabase';
 
+const API_BASE = import.meta.env.VITE_API_URL || '/.netlify/functions';
+
 export default function usePremium() {
   const [premium, setPremium] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -9,10 +11,9 @@ export default function usePremium() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { setLoading(false); return; }
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/user/usage`,
-        { headers: { Authorization: `Bearer ${session.access_token}` } }
-      );
+      const res = await fetch(`${API_BASE}/usage`, {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
       const data = await res.json();
       setPremium(data);
     } catch {
