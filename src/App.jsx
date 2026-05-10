@@ -18,6 +18,8 @@ import Chat from './pages/Chat';
 import Music from './pages/Music';
 import Games from './pages/Games';
 import Prayer from './pages/Prayer';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 function HomePage() {
   return (
@@ -55,6 +57,8 @@ export default function App() {
           <Route path="/music" element={<ProtectedLayout><Music /></ProtectedLayout>} />
           <Route path="/games" element={<ProtectedLayout><Games /></ProtectedLayout>} />
           <Route path="/prayer" element={<ProtectedLayout><Prayer /></ProtectedLayout>} />
+          <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
+          <Route path="/terms" element={<><Navbar /><Terms /></>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -88,9 +88,6 @@ export default function AppLayout({ children }) {
 
         {/* User section */}
         <div className="px-4 py-4 border-t border-gold/10 space-y-2">
-          <div className="px-2 text-xs text-dark-blue/50 truncate">
-            {user?.email}
-          </div>
           {!premium?.loading && (
             <div className="px-2">
               {isPremium ? (
