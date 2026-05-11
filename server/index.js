@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:4173',
-  'https://selah-vida.netlify.app',
+  'https://selah-vida.vercel.app',
 ];
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
