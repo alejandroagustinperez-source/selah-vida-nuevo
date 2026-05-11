@@ -1,6 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.GEMINI_API_KEY) {
+  console.error('Missing required env vars');
+}
+
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY,
@@ -55,19 +59,28 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Usuario no válido' });
     }
 
-    const { data: existingProfile } = await supabase
+    const { data: existingProfile, error: profileError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', user.id)
-      .single();
+      .maybeSingle();
+
+    if (profileError && profileError.code !== 'PGRST116') {
+      console.error('Profile fetch error:', profileError);
+      return res.status(500).json({ error: 'Error al obtener perfil' });
+    }
 
     let profile = existingProfile;
     if (!profile) {
-      const { data: newProfile } = await supabase
+      const { data: newProfile, error: insertError } = await supabase
         .from('profiles')
         .insert({ id: user.id, email: user.email, messages_count: 0, is_premium: false })
         .select()
-        .single();
+        .maybeSingle();
+      if (insertError) {
+        console.error('Profile insert error:', insertError);
+        return res.status(500).json({ error: 'Error al crear perfil' });
+      }
       profile = newProfile;
     }
 
@@ -119,7 +132,7 @@ export default async function handler(req, res) {
       },
     });
   } catch (err) {
-    console.error('Chat API error:', err.message || err);
-    return res.status(500).json({ error: 'Error al procesar el mensaje' });
+    console.error('Chat API error:', err?.message || err, err?.stack);
+    return res.status(500).json({ error: 'Error al procesar el mensaje', detail: err?.message || String(err) });
   }
 }

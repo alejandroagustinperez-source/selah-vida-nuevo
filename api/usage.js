@@ -1,5 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  console.error('Missing required env vars');
+}
+
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY,
@@ -24,11 +28,15 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Usuario no válido' });
     }
 
-    const { data: profile } = await supabase
+    const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', user.id)
-      .single();
+      .maybeSingle();
+
+    if (profileError && profileError.code !== 'PGRST116') {
+      console.error('Profile fetch error:', profileError);
+    }
 
     let messagesCount = profile?.messages_count ?? 0;
     let isPremium = profile?.is_premium ?? false;
@@ -50,7 +58,7 @@ export default async function handler(req, res) {
 
     return res.json({ messagesCount, limit: 20, isPremium, premiumUntil });
   } catch (err) {
-    console.error('Usage API error:', err.message || err);
-    return res.status(500).json({ error: 'Error al obtener uso' });
+    console.error('Usage API error:', err?.message || err, err?.stack);
+    return res.status(500).json({ error: 'Error al obtener uso', detail: err?.message || String(err) });
   }
 }
