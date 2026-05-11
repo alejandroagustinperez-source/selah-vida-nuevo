@@ -85,7 +85,11 @@ export default function Chat() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ message: text, history }),
+        body: JSON.stringify({
+          message: text,
+          history,
+          userName: user?.user_metadata?.full_name || user?.email?.split('@')[0] || '',
+        }),
       });
 
       const data = await res.json();
