@@ -20,6 +20,7 @@ import Games from './pages/Games';
 import Prayer from './pages/Prayer';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import AuthCallback from './pages/AuthCallback';
 
 function HomePage() {
   return (
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<><Navbar /><Login /></>} />
           <Route path="/register" element={<><Navbar /><Register /></>} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/chat" element={<ProtectedLayout><Chat /></ProtectedLayout>} />
           <Route path="/music" element={<ProtectedLayout><Music /></ProtectedLayout>} />
           <Route path="/games" element={<ProtectedLayout><Games /></ProtectedLayout>} />
