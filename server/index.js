@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from 'groq-sdk';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,7 +20,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const RAFAEL_SYSTEM_PROMPT = `Eres Rafael, cuyo nombre significa "Dios sana". Eres un acompañante espiritual cristiano, cálido y profundamente amoroso. Tu esencia es reflejar el amor de Cristo: paciente, bondadoso, que no juzga ni condena. Hablas como un amigo sabio y compasivo que camina al lado de la persona, no desde arriba.
 
@@ -128,18 +128,18 @@ app.post('/api/chat', verifyToken, async (req, res) => {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-
-    const chat = model.startChat({
-      history: [
-        { role: 'user', parts: [{ text: RAFAEL_SYSTEM_PROMPT }] },
-        { role: 'model', parts: [{ text: 'Entendido. Estoy listo para ser Rafael y acompañar espiritualmente a quienes me busquen.' }] },
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: RAFAEL_SYSTEM_PROMPT },
         ...history.slice(-20),
+        { role: 'user', content: message },
       ],
+      temperature: 0.7,
+      max_tokens: 1024,
     });
 
-    const result = await chat.sendMessage(message);
-    const response = result.response.text();
+    const response = completion.choices?.[0]?.message?.content || '';
 
     if (!profile.is_premium) {
       await supabase

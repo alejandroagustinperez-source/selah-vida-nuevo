@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from 'groq-sdk';
 
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.GEMINI_API_KEY) {
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.GROQ_API_KEY) {
   console.error('Missing required env vars');
 }
 
@@ -10,15 +10,13 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
-const GEMINI_KEY = process.env.GEMINI_API_KEY;
-const SUPABASE_URL_SET = !!process.env.SUPABASE_URL;
-const SUPABASE_KEY_SET = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!GEMINI_KEY) {
-  console.error('GEMINI_API_KEY is not set');
+const GROQ_KEY = process.env.GROQ_API_KEY;
+if (!GROQ_KEY) {
+  console.error('GROQ_API_KEY is not set');
 }
-console.log('Startup env vars check:', { GEMINI_KEY_SET: !!GEMINI_KEY, SUPABASE_URL_SET, SUPABASE_KEY_SET });
+console.log('Startup env vars check:', { GROQ_KEY_SET: !!GROQ_KEY });
 
-const genAI = GEMINI_KEY ? new GoogleGenerativeAI(GEMINI_KEY) : null;
+const groq = GROQ_KEY ? new Groq({ apiKey: GROQ_KEY }) : null;
 
 const RAFAEL_SYSTEM_PROMPT = `Eres Rafael, cuyo nombre significa "Dios sana". Eres un acompañante espiritual cristiano, cálido y profundamente amoroso. Tu esencia es reflejar el amor de Cristo: paciente, bondadoso, que no juzga ni condena. Hablas como un amigo sabio y compasivo que camina al lado de la persona, no desde arriba.
 
@@ -112,33 +110,37 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!genAI) {
-      console.error('Gemini client not initialized - missing API key');
+    if (!groq) {
+      console.error('Groq client not initialized - missing API key');
       return res.status(500).json({ error: 'Configuración de IA incompleta' });
     }
 
-    const MODEL_NAME = 'gemini-2.0-flash';
-    console.log('Using Gemini model:', MODEL_NAME);
-    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+    const MODEL_NAME = 'llama-3.3-70b-versatile';
 
-    const chat = model.startChat({
-      systemInstruction: { role: 'system', parts: [{ text: RAFAEL_SYSTEM_PROMPT }] },
-      history: [ ...history.slice(-20) ],
-    });
+    const messages = [
+      { role: 'system', content: RAFAEL_SYSTEM_PROMPT },
+      ...history.slice(-20),
+      { role: 'user', content: message },
+    ];
 
-    let result;
+    let completion;
     try {
-      result = await chat.sendMessage(message);
-    } catch (geminiErr) {
-      const status = geminiErr.status || geminiErr.statusText || 'unknown';
-      const details = geminiErr.errorDetails ? JSON.stringify(geminiErr.errorDetails) : geminiErr.message;
-      console.error('Gemini API call failed:', { status, message: geminiErr.message, details, stack: geminiErr.stack });
+      completion = await groq.chat.completions.create({
+        model: MODEL_NAME,
+        messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+      });
+    } catch (groqErr) {
+      const status = groqErr.status || groqErr.code || 'unknown';
+      console.error('Groq API call failed:', { status, message: groqErr.message, stack: groqErr.stack });
       return res.status(502).json({
         error: 'Error al comunicarse con la IA',
-        detail: `Gemini API error (${status}): ${details}`,
+        detail: `Groq API error (${status}): ${groqErr.message}`,
       });
     }
-    const response = result.response.text();
+
+    const response = completion.choices?.[0]?.message?.content || '';
 
     if (!profile.is_premium) {
       await supabase
