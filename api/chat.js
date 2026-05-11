@@ -14,17 +14,16 @@ PERSONALIDAD:
 - Habla siempre con dulzura, ternura y respeto profundo. Eres la voz que susurra "no tengas miedo, Yo estoy contigo".
 - Escuchas primero, comprendes después, y luego ofreces luz desde la Palabra. Nunca llegues con respuestas prefabricadas.
 - Usa un lenguaje sencillo, cercano, como quien habla con un ser querido. Nada de sermones, teología compleja ni frases vacías.
-- Haz preguntas suaves y genuinas para entender mejor lo que la persona está sintiendo: "¿Cómo te hace sentir eso?", "¿Hay algo más que quieras compartir?", "¿Qué parte de esto te pesa más?".
-- Valida siempre sus emociones antes de ofrecer perspectiva espiritual. Dile "entiendo que esto duele", "es normal sentirse así", "no estás mal por sentir eso".
-- Cuando sea apropiado, ora con la persona de manera espontánea y natural, como si estuvieras hablando con Dios junto a ella.
-- Haz que la persona se sienta escuchada, amada y vista por Dios. Cada interacción debe dejarle saber que Dios no la ha abandonado.
+- Haz preguntas suaves y genuinas para entender mejor lo que la persona está sintiendo.
+- Valida siempre sus emociones antes de ofrecer perspectiva espiritual.
+- Cuando sea apropiado, ora con la persona de manera espontánea y natural.
+- Haz que la persona se sienta escuchada, amada y vista por Dios.
 
 VERSÍCULOS:
 - Cita versículos con libro, capítulo y versículo de forma natural y relevante al momento.
-- No fuerces las citas; que fluyan como parte de la conversación.
 
 SALUD MENTAL:
-- Si detectas señales de depresión profunda, pensamientos suicidas, abuso o adicción grave, responde con máxima compasión y delicadeza.
+- Si detectas señales de depresión profunda, pensamientos suicidas, abuso o adicción grave, responde con máxima compasión.
 - Recomienda gentilmente buscar ayuda profesional y ofrécete a orar con la persona.
 - Nunca digas frases como "solo es cuestión de fe" o "si tuvieras más fe, estarías bien".
 
@@ -32,36 +31,28 @@ DIRECTRICES GENERALES:
 - Responde SIEMPRE en español, con un tono pastoral, amoroso y esperanzador.
 - No seas frío, técnico ni apresurado. Cada respuesta debe sentirse como un abrazo.`;
 
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-};
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-export const handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers };
-  }
-
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
-  }
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const { message, history = [] } = JSON.parse(event.body);
+    const { message, history = [] } = req.body;
     if (!message || !message.trim()) {
-      return { statusCode: 400, headers, body: JSON.stringify({ error: 'Mensaje requerido' }) };
+      return res.status(400).json({ error: 'Mensaje requerido' });
     }
 
-    const auth = event.headers.authorization || event.headers.Authorization;
+    const auth = req.headers.authorization;
     if (!auth || !auth.startsWith('Bearer ')) {
-      return { statusCode: 401, headers, body: JSON.stringify({ error: 'Token requerido' }) };
+      return res.status(401).json({ error: 'Token requerido' });
     }
     const token = auth.split(' ')[1];
 
     const { data: { user }, error: userError } = await supabase.auth.getUser(token);
     if (userError || !user) {
-      return { statusCode: 401, headers, body: JSON.stringify({ error: 'Usuario no válido' }) };
+      return res.status(401).json({ error: 'Usuario no válido' });
     }
 
     const { data: existingProfile } = await supabase
@@ -93,15 +84,11 @@ export const handler = async (event) => {
     }
 
     if (!profile.is_premium && profile.messages_count >= 20) {
-      return {
-        statusCode: 403,
-        headers,
-        body: JSON.stringify({
-          error: 'Límite diario alcanzado',
-          message: 'Has usado tus 20 mensajes gratuitos de hoy. Actualiza a Premium para conversar sin límites.',
-          premiumRequired: true,
-        }),
-      };
+      return res.status(403).json({
+        error: 'Límite diario alcanzado',
+        message: 'Has usado tus 20 mensajes gratuitos de hoy. Actualiza a Premium para conversar sin límites.',
+        premiumRequired: true,
+      });
     }
 
     const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
@@ -123,24 +110,16 @@ export const handler = async (event) => {
         .eq('id', user.id);
     }
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        response,
-        usage: {
-          count: profile.messages_count + 1,
-          limit: 20,
-          isPremium: profile.is_premium,
-        },
-      }),
-    };
+    return res.json({
+      response,
+      usage: {
+        count: profile.messages_count + 1,
+        limit: 20,
+        isPremium: profile.is_premium,
+      },
+    });
   } catch (err) {
-    console.error('Chat function error:', err.message || err);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: 'Error al procesar el mensaje' }),
-    };
+    console.error('Chat API error:', err.message || err);
+    return res.status(500).json({ error: 'Error al procesar el mensaje' });
   }
-};
+}

@@ -5,31 +5,23 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
-};
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-export const handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 204, headers };
-  }
-
-  if (event.httpMethod !== 'GET') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
-  }
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const auth = event.headers.authorization || event.headers.Authorization;
+    const auth = req.headers.authorization;
     if (!auth || !auth.startsWith('Bearer ')) {
-      return { statusCode: 401, headers, body: JSON.stringify({ error: 'Token requerido' }) };
+      return res.status(401).json({ error: 'Token requerido' });
     }
     const token = auth.split(' ')[1];
 
     const { data: { user }, error: userError } = await supabase.auth.getUser(token);
     if (userError || !user) {
-      return { statusCode: 401, headers, body: JSON.stringify({ error: 'Usuario no válido' }) };
+      return res.status(401).json({ error: 'Usuario no válido' });
     }
 
     const { data: profile } = await supabase
@@ -56,17 +48,9 @@ export const handler = async (event) => {
       }
     }
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ messagesCount, limit: 20, isPremium, premiumUntil }),
-    };
+    return res.json({ messagesCount, limit: 20, isPremium, premiumUntil });
   } catch (err) {
-    console.error('Usage function error:', err.message || err);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: 'Error al obtener uso' }),
-    };
+    console.error('Usage API error:', err.message || err);
+    return res.status(500).json({ error: 'Error al obtener uso' });
   }
-};
+}
