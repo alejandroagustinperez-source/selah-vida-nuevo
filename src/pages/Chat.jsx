@@ -24,18 +24,12 @@ const VERSE_BOOKS = 'Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Juec
 
 const VERSE_REGEX = new RegExp(`\\b(${VERSE_BOOKS})\\s+\\d+:\\d+(-\\d+)?\\b`, 'gi');
 
-const PRAYER_INDICATORS = [
-  'Amén', 'amén', 'Señor', 'Dios mío', 'Dios nuestro',
-  'te pedimos', 'te rogamos', 'te damos gracias',
-  'oramos', 'oración', 'orar', 'quiero orar',
-  'venimos ante Ti', 'ponemos en tus manos',
-  'en el nombre de Jesús', 'en el nombre de Cristo',
-];
-
 function isPrayer(text) {
-  const lower = text.trim().toLowerCase();
-  if (lower.startsWith('señor') || lower.startsWith('dios mío') || lower.startsWith('dios nuestro') || lower.startsWith('amén')) return true;
-  return PRAYER_INDICATORS.some((indicator) => lower.includes(indicator.toLowerCase()));
+  const trimmed = text.trim();
+  const lower = trimmed.toLowerCase();
+  if (lower.startsWith('querido padre') || lower.startsWith('dios mío') || lower.startsWith('señor,')) return true;
+  if (lower.endsWith('amén') || lower.endsWith('amén.')) return true;
+  return false;
 }
 
 function parseContent(content) {
@@ -66,7 +60,7 @@ function MessageContent({ content, premiumBlock }) {
       {segments.map((seg, i) => {
         if (seg.type === 'verse') {
           return (
-            <blockquote key={i} className="border-l-3 border-amber-400 pl-4 py-1 italic text-dark-blue/80 text-sm leading-relaxed bg-amber-50/50 rounded-r-lg">
+            <blockquote key={i} className="border-l-2 border-amber-400 pl-4 py-1 italic text-dark-blue/80 text-sm leading-relaxed bg-amber-50/50 rounded-r-lg">
               <span className="text-amber-500 mr-1">📖</span>
               {seg.text}
             </blockquote>
