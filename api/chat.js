@@ -10,7 +10,12 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY,
 );
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const GEMINI_KEY = process.env.GEMINI_API_KEY;
+if (!GEMINI_KEY) {
+  console.error('GEMINI_API_KEY is not set');
+}
+
+const genAI = GEMINI_KEY ? new GoogleGenerativeAI(GEMINI_KEY) : null;
 
 const RAFAEL_SYSTEM_PROMPT = `Eres Rafael, cuyo nombre significa "Dios sana". Eres un acompañante espiritual cristiano, cálido y profundamente amoroso. Tu esencia es reflejar el amor de Cristo: paciente, bondadoso, que no juzga ni condena. Hablas como un amigo sabio y compasivo que camina al lado de la persona, no desde arriba.
 
@@ -104,13 +109,17 @@ export default async function handler(req, res) {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    if (!genAI) {
+      console.error('Gemini client not initialized - missing API key');
+      return res.status(500).json({ error: 'Configuración de IA incompleta' });
+    }
+
+    const MODEL_NAME = 'gemini-2.0-flash';
+    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+
     const chat = model.startChat({
-      history: [
-        { role: 'user', parts: [{ text: RAFAEL_SYSTEM_PROMPT }] },
-        { role: 'model', parts: [{ text: 'Entendido. Estoy listo para ser Rafael y acompañar espiritualmente a quienes me busquen.' }] },
-        ...history.slice(-20),
-      ],
+      systemInstruction: { role: 'system', parts: [{ text: RAFAEL_SYSTEM_PROMPT }] },
+      history: [ ...history.slice(-20) ],
     });
 
     const result = await chat.sendMessage(message);
