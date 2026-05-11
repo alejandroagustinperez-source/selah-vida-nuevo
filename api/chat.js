@@ -11,9 +11,12 @@ const supabase = createClient(
 );
 
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
+const SUPABASE_URL_SET = !!process.env.SUPABASE_URL;
+const SUPABASE_KEY_SET = !!process.env.SUPABASE_SERVICE_ROLE_KEY;
 if (!GEMINI_KEY) {
   console.error('GEMINI_API_KEY is not set');
 }
+console.log('Startup env vars check:', { GEMINI_KEY_SET: !!GEMINI_KEY, SUPABASE_URL_SET, SUPABASE_KEY_SET });
 
 const genAI = GEMINI_KEY ? new GoogleGenerativeAI(GEMINI_KEY) : null;
 
@@ -115,6 +118,7 @@ export default async function handler(req, res) {
     }
 
     const MODEL_NAME = 'gemini-2.0-flash';
+    console.log('Using Gemini model:', MODEL_NAME);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
     const chat = model.startChat({
@@ -122,7 +126,18 @@ export default async function handler(req, res) {
       history: [ ...history.slice(-20) ],
     });
 
-    const result = await chat.sendMessage(message);
+    let result;
+    try {
+      result = await chat.sendMessage(message);
+    } catch (geminiErr) {
+      const status = geminiErr.status || geminiErr.statusText || 'unknown';
+      const details = geminiErr.errorDetails ? JSON.stringify(geminiErr.errorDetails) : geminiErr.message;
+      console.error('Gemini API call failed:', { status, message: geminiErr.message, details, stack: geminiErr.stack });
+      return res.status(502).json({
+        error: 'Error al comunicarse con la IA',
+        detail: `Gemini API error (${status}): ${details}`,
+      });
+    }
     const response = result.response.text();
 
     if (!profile.is_premium) {
