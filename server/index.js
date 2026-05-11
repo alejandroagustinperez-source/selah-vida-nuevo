@@ -128,11 +128,16 @@ app.post('/api/chat', verifyToken, async (req, res) => {
       });
     }
 
+    const mappedHistory = (history || []).slice(-20).map((msg) => ({
+      role: msg.role === 'model' ? 'assistant' : msg.role,
+      content: msg.parts?.[0]?.text || msg.content || '',
+    })).filter((msg) => msg.content);
+
     const completion = await groq.chat.completions.create({
       model: 'llama-3.3-70b-versatile',
       messages: [
         { role: 'system', content: RAFAEL_SYSTEM_PROMPT },
-        ...history.slice(-20),
+        ...mappedHistory,
         { role: 'user', content: message },
       ],
       temperature: 0.7,

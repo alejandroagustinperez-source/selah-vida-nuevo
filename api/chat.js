@@ -117,9 +117,14 @@ export default async function handler(req, res) {
 
     const MODEL_NAME = 'llama-3.3-70b-versatile';
 
+    const mappedHistory = (history || []).slice(-20).map((msg) => ({
+      role: msg.role === 'model' ? 'assistant' : msg.role,
+      content: msg.parts?.[0]?.text || msg.content || '',
+    })).filter((msg) => msg.content);
+
     const messages = [
       { role: 'system', content: RAFAEL_SYSTEM_PROMPT },
-      ...history.slice(-20),
+      ...mappedHistory,
       { role: 'user', content: message },
     ];
 
