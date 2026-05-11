@@ -20,7 +20,8 @@ export default function AppLayout({ children }) {
   const [modalItem, setModalItem] = useState(null);
 
   const isPremium = premium?.isPremium || false;
-  const remaining = premium ? premium.limit - premium.messagesCount : 20;
+  const used = premium?.messagesCount ?? 0;
+  const limit = premium?.limit ?? 20;
 
   const handleNavClick = (item) => {
     setSidebarOpen(false);
@@ -96,7 +97,7 @@ export default function AppLayout({ children }) {
                 </span>
               ) : (
                 <span className="text-xs text-dark-blue/50 bg-cream px-2.5 py-1 rounded-full inline-block">
-                  {remaining}/20 mensajes
+                  {used}/{limit} mensajes
                 </span>
               )}
             </div>

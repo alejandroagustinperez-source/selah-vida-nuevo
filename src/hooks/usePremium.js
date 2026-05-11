@@ -14,8 +14,11 @@ export default function usePremium() {
       const res = await fetch(`${API_BASE}/usage`, {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
+      if (!res.ok) { setLoading(false); return; }
       const data = await res.json();
-      setPremium(data);
+      if (data && typeof data.messagesCount === 'number') {
+        setPremium(data);
+      }
     } catch {
       setPremium(null);
     } finally {
