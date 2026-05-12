@@ -13,31 +13,69 @@ const WELCOME_MSG = {
 
 const VERSE_BOOKS = 'Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Jueces|Rut|Samuel|Reyes|Crónicas|Esdras|Nehemías|Ester|Job|Salmo|Salmos|Proverbios|Eclesiastés|Cantares|Isaías|Jeremías|Lamentaciones|Ezequiel|Daniel|Oseas|Joel|Amós|Abdías|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|Corintios|Gálatas|Efesios|Filipenses|Colosenses|Tesalonicenses|Timoteo|Tito|Filemón|Hebreos|Santiago|Pedro|Juan|Judas|Apocalipsis';
 
-function isPrayer(text) {
-  const trimmed = text.trim();
-  const lower = trimmed.toLowerCase();
-  if (lower.endsWith('amén') || lower.endsWith('amén.')) return true;
-  const paragraphs = trimmed.split('\n');
-  return paragraphs.some((p) => {
-    const pl = p.trim().toLowerCase();
-    return pl.startsWith('querido padre') || pl.startsWith('dios mío') || pl.startsWith('señor,');
-  });
-}
-
 function hasVerse(text) {
   const re = new RegExp(`\\b(${VERSE_BOOKS})\\s+\\d+:\\d+(-\\d+)?\\b`, 'i');
   return re.test(text);
 }
 
+function findPrayerRange(text) {
+  const lines = text.split('\n');
+  const trimmed = lines.map((l) => l.trim());
+  let start = -1;
+  let end = -1;
+
+  for (let i = 0; i < trimmed.length; i++) {
+    const lower = trimmed[i].toLowerCase();
+
+    if (start === -1) {
+      const isStart = lower.startsWith('querido padre') || lower.startsWith('señor,') || lower.startsWith('dios mío,');
+      if (isStart) {
+        start = i;
+        continue;
+      }
+      const isInvite = lower.includes('vamos a orar') || lower.includes('oremos') || lower.includes('te invito a orar');
+      if (isInvite) {
+        for (let j = i + 1; j < trimmed.length; j++) {
+          const nl = trimmed[j].toLowerCase();
+          if (nl.startsWith('querido padre') || nl.startsWith('señor,') || nl.startsWith('dios mío,') || nl === 'amén' || nl === 'amén.') {
+            start = j;
+            i = j - 1;
+            break;
+          }
+        }
+        continue;
+      }
+    }
+
+    if (start !== -1 && end === -1) {
+      if (lower === 'amén' || lower === 'amén.' || trimmed[i] === 'Amén') {
+        end = i;
+      }
+    }
+  }
+
+  return { start, end };
+}
+
 function MessageContent({ content }) {
   const trimmed = content?.trim() || '';
+  const { start, end } = findPrayerRange(trimmed);
 
-  if (isPrayer(trimmed)) {
+  if (start !== -1 && end !== -1) {
+    const lines = trimmed.split('\n');
+    const before = lines.slice(0, start).join('\n');
+    const prayer = lines.slice(start, end + 1).join('\n');
+    const after = lines.slice(end + 1).join('\n');
+
     return (
-      <div className="bg-purple-50/80 border border-purple-200/50 rounded-2xl px-5 py-5 text-center italic text-sm leading-relaxed text-dark-blue/85 shadow-sm">
-        <div className="text-2xl mb-3">🙏</div>
-        <p className="whitespace-pre-wrap">{trimmed}</p>
-        <div className="text-2xl mt-3">🙏</div>
+      <div className="space-y-2">
+        {before && <p className="whitespace-pre-wrap">{before}</p>}
+        <div className="bg-purple-50/80 border border-purple-200/50 rounded-2xl px-5 py-5 text-center italic text-sm leading-relaxed text-dark-blue/85 shadow-sm">
+          <div className="text-2xl mb-3">🙏</div>
+          <p className="whitespace-pre-wrap">{prayer}</p>
+          <div className="text-2xl mt-3">🙏</div>
+        </div>
+        {after && <p className="whitespace-pre-wrap">{after}</p>}
       </div>
     );
   }
