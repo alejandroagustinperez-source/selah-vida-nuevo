@@ -13,8 +13,6 @@ const WELCOME_MSG = {
 
 const VERSE_BOOKS = 'Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Jueces|Rut|Samuel|Reyes|Crónicas|Esdras|Nehemías|Ester|Job|Salmo|Salmos|Proverbios|Eclesiastés|Cantares|Isaías|Jeremías|Lamentaciones|Ezequiel|Daniel|Oseas|Joel|Amós|Abdías|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|Corintios|Gálatas|Efesios|Filipenses|Colosenses|Tesalonicenses|Timoteo|Tito|Filemón|Hebreos|Santiago|Pedro|Juan|Judas|Apocalipsis';
 
-const VERSE_REGEX = new RegExp(`\\b(${VERSE_BOOKS})\\s+\\d+:\\d+(-\\d+)?\\b`, 'gi');
-
 function isPrayer(text) {
   const trimmed = text.trim();
   const lower = trimmed.toLowerCase();
@@ -23,51 +21,43 @@ function isPrayer(text) {
   return false;
 }
 
-function parseContent(content) {
-  const lines = content.split('\n').filter(Boolean);
-  return lines.map((line) => {
-    const hasVerse = VERSE_REGEX.test(line);
-    const hasPrayer = isPrayer(line);
-    return { text: line, type: hasPrayer ? 'prayer' : hasVerse ? 'verse' : 'text' };
-  });
+function hasVerse(text) {
+  const re = new RegExp(`\\b(${VERSE_BOOKS})\\s+\\d+:\\d+(-\\d+)?\\b`, 'i');
+  return re.test(text);
 }
 
-function MessageContent({ content, premiumBlock }) {
-  if (premiumBlock) {
+function MessageContent({ content }) {
+  const trimmed = content?.trim() || '';
+
+  if (isPrayer(trimmed)) {
     return (
-      <>
-        <p className="whitespace-pre-wrap mb-3">{content}</p>
-      </>
+      <p className="whitespace-pre-wrap text-center italic text-sm leading-relaxed bg-purple-50/70 rounded-xl px-4 py-3 text-dark-blue/80">
+        🙏 {trimmed} 🙏
+      </p>
     );
   }
 
-  const segments = parseContent(content);
-  if (segments.length <= 1 && segments[0]?.type === 'text') {
-    return <p className="whitespace-pre-wrap">{content}</p>;
+  if (hasVerse(trimmed)) {
+    const parts = [];
+    let lastIdx = 0;
+    const re = new RegExp(`\\b(${VERSE_BOOKS})\\s+\\d+:\\d+(-\\d+)?\\b`, 'gi');
+    let match;
+    while ((match = re.exec(trimmed)) !== null) {
+      if (match.index > lastIdx) {
+        parts.push(trimmed.slice(lastIdx, match.index));
+      }
+      parts.push(
+        <span key={lastIdx} className="text-gold font-semibold">📖 {match[0]}</span>
+      );
+      lastIdx = match.index + match[0].length;
+    }
+    if (lastIdx < trimmed.length) {
+      parts.push(trimmed.slice(lastIdx));
+    }
+    return <p className="whitespace-pre-wrap">{parts}</p>;
   }
 
-  return (
-    <div className="space-y-2">
-      {segments.map((seg, i) => {
-        if (seg.type === 'verse') {
-          return (
-            <blockquote key={i} className="border-l-2 border-amber-400 pl-4 py-1 italic text-dark-blue/80 text-sm leading-relaxed bg-amber-50/50 rounded-r-lg">
-              <span className="text-amber-500 mr-1">📖</span>
-              {seg.text}
-            </blockquote>
-          );
-        }
-        if (seg.type === 'prayer') {
-          return (
-            <p key={i} className="text-center italic text-sm leading-relaxed bg-purple-50/70 rounded-xl px-4 py-3 text-dark-blue/80">
-              🙏 {seg.text} 🙏
-            </p>
-          );
-        }
-        return <p key={i} className="whitespace-pre-wrap text-sm">{seg.text}</p>;
-      })}
-    </div>
-  );
+  return <p className="whitespace-pre-wrap">{content}</p>;
 }
 
 const EMOTIONS = [
