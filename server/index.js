@@ -235,14 +235,11 @@ app.get('/api/user/usage', verifyToken, async (req, res) => {
 app.post('/api/webhook/hotmart', async (req, res) => {
   try {
     const event = req.body?.event;
-    if (event && event !== 'PURCHASE_APPROVED') {
-      return res.status(200).json({ message: 'Evento ignorado', event });
-    }
 
     const payload = req.body.data || req.body;
-    const email = payload.email?.toLowerCase().trim();
+    const email = (payload.buyer?.email || payload.email)?.toLowerCase().trim();
 
-    if (!email) return res.status(400).json({ error: 'Email requerido' });
+    if (!email) return res.status(200).json({ error: 'Email requerido' });
 
     const { data: profiles } = await supabase
       .from('profiles')
@@ -250,23 +247,34 @@ app.post('/api/webhook/hotmart', async (req, res) => {
       .eq('email', email);
 
     if (!profiles || profiles.length === 0) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
+      return res.status(200).json({ error: 'Usuario no encontrado' });
     }
 
-    const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+    const profileId = profiles[0].id;
 
-    await supabase
-      .from('profiles')
-      .update({
-        is_premium: true,
-        premium_until: expiresAt,
-      })
-      .eq('id', profiles[0].id);
+    if (event === 'PURCHASE_APPROVED') {
+      const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+      await supabase
+        .from('profiles')
+        .update({ is_premium: true, premium_until: expiresAt })
+        .eq('id', profileId);
+      console.log('Premium activado para:', email, 'hasta:', expiresAt);
+      return res.json({ success: true, action: 'premium_activated' });
+    }
 
-    res.json({ success: true });
+    if (event === 'SUBSCRIPTION_CANCELLATION') {
+      await supabase
+        .from('profiles')
+        .update({ is_premium: false, premium_until: null })
+        .eq('id', profileId);
+      console.log('Premium desactivado para:', email);
+      return res.json({ success: true, action: 'premium_cancelled' });
+    }
+
+    return res.status(200).json({ message: 'Evento ignorado', event });
   } catch (err) {
     console.error('Webhook error:', err);
-    res.status(500).json({ error: 'Error al procesar webhook' });
+    res.status(200).json({ error: 'Error al procesar webhook' });
   }
 });
 
