@@ -325,7 +325,7 @@ export default function Chat() {
         </form>
         {atLimit && (
           <p className="text-center text-xs text-amber-600 mt-2">
-            Límite alcanzado. Se reinicia en {remainingTime()}.
+            Límite alcanzado. Se reinicia en {Math.floor(resetIn / 3600000)}h {Math.floor((resetIn % 3600000) / 60000)}m.
           </p>
         )}
       </div>
