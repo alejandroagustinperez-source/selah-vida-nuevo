@@ -8,6 +8,7 @@ import Problem from './components/Problem';
 import Solution from './components/Solution';
 import Features from './components/Features';
 import Verse from './components/Verse';
+import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
@@ -31,6 +32,7 @@ function HomePage() {
       <RevealOnScroll><Solution /></RevealOnScroll>
       <RevealOnScroll><Features /></RevealOnScroll>
       <RevealOnScroll><Verse /></RevealOnScroll>
+      <RevealOnScroll><Testimonials /></RevealOnScroll>
       <RevealOnScroll><Pricing /></RevealOnScroll>
       <RevealOnScroll><FinalCta /></RevealOnScroll>
       <Footer />
