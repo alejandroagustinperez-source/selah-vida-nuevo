@@ -94,6 +94,11 @@ export default function Chat() {
   const bottomRef = useRef(null);
 
   const hasInteracted = messages.length > 1;
+  const used = usage?.messagesCount ?? 0;
+  const limit = usage?.limit ?? 20;
+  const isPremium = usage?.isPremium ?? false;
+  const resetIn = usage?.resetIn ?? 0;
+  const atLimit = !isPremium && used >= limit;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -208,12 +213,6 @@ export default function Chat() {
   const handleEmotion = (emoji, label) => {
     sendText(`Me siento ${label} ${emoji}`);
   };
-
-  const used = usage?.messagesCount ?? 0;
-  const limit = usage?.limit ?? 20;
-  const isPremium = usage?.isPremium ?? false;
-  const resetIn = usage?.resetIn ?? 0;
-  const atLimit = !isPremium && used >= limit;
 
   return (
     <div className="h-full flex flex-col bg-cream">
