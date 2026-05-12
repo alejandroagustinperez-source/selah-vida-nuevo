@@ -234,8 +234,13 @@ app.get('/api/user/usage', verifyToken, async (req, res) => {
 
 app.post('/api/webhook/hotmart', async (req, res) => {
   try {
-    const { body } = req;
-    const { email, transaction, status, product } = body.data || body;
+    const event = req.body?.event;
+    if (event && event !== 'PURCHASE_APPROVED') {
+      return res.status(200).json({ message: 'Evento ignorado', event });
+    }
+
+    const payload = req.body.data || req.body;
+    const email = payload.email?.toLowerCase().trim();
 
     if (!email) return res.status(400).json({ error: 'Email requerido' });
 
@@ -248,15 +253,13 @@ app.post('/api/webhook/hotmart', async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    const isActive = ['approved', 'active', 'completed'].includes(status);
+    const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
 
     await supabase
       .from('profiles')
       .update({
-        is_premium: isActive,
-        premium_until: isActive
-          ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
-          : null,
+        is_premium: true,
+        premium_until: expiresAt,
       })
       .eq('id', profiles[0].id);
 

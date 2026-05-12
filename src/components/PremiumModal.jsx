@@ -23,7 +23,7 @@ export default function PremiumModal({ open, onClose }) {
           Esta función es exclusiva para usuarios Premium.
         </p>
         <button
-          onClick={() => window.open('https://selah-vida.hotmart.com/premium', '_blank')}
+          onClick={() => window.open('https://pay.hotmart.com/Q105734847S', '_blank')}
           className="w-full bg-gold text-white py-3.5 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors"
         >
           Quiero ser Premium

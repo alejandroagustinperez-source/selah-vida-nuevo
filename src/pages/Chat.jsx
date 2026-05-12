@@ -291,7 +291,7 @@ export default function Chat() {
                   <p className="whitespace-pre-wrap mb-3">{msg.content}</p>
                   <a
                     href="#"
-                    onClick={(e) => { e.preventDefault(); window.open('https://selah-vida.hotmart.com/premium', '_blank'); }}
+                    onClick={(e) => { e.preventDefault(); window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }}
                     className="inline-block bg-gold text-white text-sm px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
                   >
                     Obtener Premium — $4.99/mes

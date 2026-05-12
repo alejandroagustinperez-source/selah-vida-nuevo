@@ -29,7 +29,7 @@ export default function LimitModal({ resetIn, onClose }) {
           </p>
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="https://selah-vida.hotmart.com/premium"
+              href="https://pay.hotmart.com/Q105734847S"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs sm:text-sm bg-gold text-white px-4 py-1.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
@@ -57,7 +57,7 @@ export default function LimitModal({ resetIn, onClose }) {
 
         <div className="space-y-3">
           <a
-            href="https://selah-vida.hotmart.com/premium"
+            href="https://pay.hotmart.com/Q105734847S"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-gold text-white text-sm px-6 py-3.5 rounded-xl font-semibold hover:bg-gold-dark transition-colors shadow-md shadow-gold/20"
