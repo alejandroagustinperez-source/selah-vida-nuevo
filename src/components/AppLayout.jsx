@@ -1,36 +1,35 @@
 import { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import usePremium from '../hooks/usePremium';
 import PremiumModal from '../components/PremiumModal';
 
 const navItems = [
-  { to: '/chat', icon: '💬', label: 'Chat con Rafael', locked: false },
-  { to: '/music', icon: '🎵', label: 'Música de Alabanza', locked: true },
-  { to: '/games', icon: '🎮', label: 'Juegos Bíblicos', locked: true },
-  { to: '/prayer', icon: '🙏', label: 'Oración Guiada', locked: true },
+  { to: '/chat', icon: '💬', label: 'Chat con Rafael' },
+  { to: '/music', icon: '🎵', label: 'Música de Alabanza' },
+  { to: '/games', icon: '🎮', label: 'Juegos Bíblicos' },
+  { to: '/prayer', icon: '🙏', label: 'Oración Guiada' },
 ];
 
 export default function AppLayout({ children }) {
-  const { user, logout } = useAuth();
-  const premium = usePremium();
+  const { user, logout, isPremium } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [modalItem, setModalItem] = useState(null);
 
-  const isPremium = premium?.isPremium || false;
-  const used = premium?.messagesCount ?? 0;
-  const limit = premium?.limit ?? 20;
-
   const handleNavClick = (item) => {
     setSidebarOpen(false);
-    if (item.locked && !isPremium) {
+    if (item.isLocked && !isPremium) {
       setModalItem(item);
       return;
     }
     navigate(item.to);
   };
+
+  const itemsWithLock = navItems.map((item) => ({
+    ...item,
+    isLocked: item.to !== '/chat' && !isPremium,
+  }));
 
   const handleLogout = async () => {
     await logout();
@@ -62,7 +61,7 @@ export default function AppLayout({ children }) {
 
         {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-          {navItems.map((item) => {
+          {itemsWithLock.map((item) => {
             const isActive = location.pathname === item.to;
             return (
               <button
@@ -71,16 +70,15 @@ export default function AppLayout({ children }) {
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors ${
                   isActive
                     ? 'bg-gold/10 text-gold'
-                    : 'text-dark-blue/70 hover:bg-cream'
+                    : isPremium && item.to !== '/chat'
+                      ? 'text-dark-blue hover:bg-cream'
+                      : 'text-dark-blue/70 hover:bg-cream'
                 }`}
               >
                 <span className="text-lg">{item.icon}</span>
                 <span className="flex-1">{item.label}</span>
-                {item.locked && !isPremium && (
+                {item.isLocked && (
                   <span className="text-xs text-dark-blue/30" title="Premium">🔒</span>
-                )}
-                {item.locked && isPremium && (
-                  <span className="text-xs text-gold">✓</span>
                 )}
               </button>
             );
@@ -89,19 +87,13 @@ export default function AppLayout({ children }) {
 
         {/* User section */}
         <div className="px-4 py-4 border-t border-gold/10 space-y-2">
-          {!premium?.loading && (
+          {isPremium ? (
             <div className="px-2">
-              {isPremium ? (
-                <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
-                  Premium
-                </span>
-              ) : (
-                <span className="text-xs text-dark-blue/50 bg-cream px-2.5 py-1 rounded-full inline-block">
-                  {used}/{limit} mensajes
-                </span>
-              )}
+              <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
+                Premium
+              </span>
             </div>
-          )}
+          ) : null}
           <button
             onClick={handleLogout}
             className="w-full text-left px-2 py-2 text-sm text-dark-blue/40 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
