@@ -16,9 +16,12 @@ const VERSE_BOOKS = 'Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Juec
 function isPrayer(text) {
   const trimmed = text.trim();
   const lower = trimmed.toLowerCase();
-  if (lower.startsWith('querido padre') || lower.startsWith('dios mío') || lower.startsWith('señor,')) return true;
   if (lower.endsWith('amén') || lower.endsWith('amén.')) return true;
-  return false;
+  const paragraphs = trimmed.split('\n');
+  return paragraphs.some((p) => {
+    const pl = p.trim().toLowerCase();
+    return pl.startsWith('querido padre') || pl.startsWith('dios mío') || pl.startsWith('señor,');
+  });
 }
 
 function hasVerse(text) {
@@ -31,9 +34,11 @@ function MessageContent({ content }) {
 
   if (isPrayer(trimmed)) {
     return (
-      <p className="whitespace-pre-wrap text-center italic text-sm leading-relaxed bg-purple-50/70 rounded-xl px-4 py-3 text-dark-blue/80">
-        🙏 {trimmed} 🙏
-      </p>
+      <div className="bg-purple-50/80 border border-purple-200/50 rounded-2xl px-5 py-5 text-center italic text-sm leading-relaxed text-dark-blue/85 shadow-sm">
+        <div className="text-2xl mb-3">🙏</div>
+        <p className="whitespace-pre-wrap">{trimmed}</p>
+        <div className="text-2xl mt-3">🙏</div>
+      </div>
     );
   }
 
