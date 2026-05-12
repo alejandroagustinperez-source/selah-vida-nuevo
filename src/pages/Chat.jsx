@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import DailyVerse from '../components/DailyVerse';
+import LimitModal from '../components/LimitModal';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -9,17 +10,6 @@ const WELCOME_MSG = {
   role: 'model',
   content: '🕊️ ¡Bienvenido a Selah Vida! Soy Rafael, tu acompañante espiritual. Comparte conmigo lo que hay en tu corazón — tus alegrías, tus cargas, tus dudas — y juntos buscaremos la sabiduría de Dios en las Escrituras. ¿En qué puedo ayudarte hoy?',
 };
-
-function remainingTime() {
-  const now = new Date();
-  const tomorrow = new Date(now);
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
-  const diff = tomorrow - now;
-  const hours = Math.floor(diff / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  return `${hours}h ${mins}m`;
-}
 
 const VERSE_BOOKS = 'Génesis|Éxodo|Levítico|Números|Deuteronomio|Josué|Jueces|Rut|Samuel|Reyes|Crónicas|Esdras|Nehemías|Ester|Job|Salmo|Salmos|Proverbios|Eclesiastés|Cantares|Isaías|Jeremías|Lamentaciones|Ezequiel|Daniel|Oseas|Joel|Amós|Abdías|Jonás|Miqueas|Nahúm|Habacuc|Sofonías|Hageo|Zacarías|Malaquías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|Corintios|Gálatas|Efesios|Filipenses|Colosenses|Tesalonicenses|Timoteo|Tito|Filemón|Hebreos|Santiago|Pedro|Juan|Judas|Apocalipsis';
 
@@ -100,6 +90,7 @@ export default function Chat() {
   const [sending, setSending] = useState(false);
   const [usage, setUsage] = useState(null);
   const [loadingUsage, setLoadingUsage] = useState(true);
+  const [hideLimit, setHideLimit] = useState(false);
   const bottomRef = useRef(null);
 
   const hasInteracted = messages.length > 1;
@@ -111,6 +102,10 @@ export default function Chat() {
   useEffect(() => {
     fetchUsage();
   }, []);
+
+  useEffect(() => {
+    if (!atLimit) setHideLimit(false);
+  }, [atLimit]);
 
   const getToken = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -217,6 +212,7 @@ export default function Chat() {
   const used = usage?.messagesCount ?? 0;
   const limit = usage?.limit ?? 20;
   const isPremium = usage?.isPremium ?? false;
+  const resetIn = usage?.resetIn ?? 0;
   const atLimit = !isPremium && used >= limit;
 
   return (
@@ -239,23 +235,9 @@ export default function Chat() {
         </div>
       </header>
 
-      {/* Limit reached banner */}
-      {atLimit && (
-        <div className="bg-amber-50 border-b border-amber-200 px-6 py-4 shrink-0">
-          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4">
-            <p className="text-sm text-amber-800 text-center sm:text-left">
-              Alcanzaste el límite de {limit} mensajes gratuitos de hoy. Los mensajes se reinician en {remainingTime()}.
-            </p>
-            <a
-              href="https://selah-vida.hotmart.com/premium"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 bg-gold text-white text-sm px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
-            >
-              Upgrade a Premium
-            </a>
-          </div>
-        </div>
+      {/* Limit reached modal/banner */}
+      {atLimit && !hideLimit && (
+        <LimitModal resetIn={resetIn} onClose={() => setHideLimit(true)} />
       )}
 
       {/* Messages */}

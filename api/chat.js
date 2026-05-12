@@ -109,23 +109,26 @@ export default async function handler(req, res) {
       profile = newProfile;
     }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+    const now = new Date();
     const lastReset = profile.last_message_reset ? new Date(profile.last_message_reset) : null;
 
-    if (!lastReset || lastReset < today) {
+    if (!lastReset || (now - lastReset) >= TWENTY_FOUR_HOURS) {
       profile.messages_count = 0;
+      profile.last_message_reset = now.toISOString();
       await supabase
         .from('profiles')
-        .update({ messages_count: 0, last_message_reset: today.toISOString() })
+        .update({ messages_count: 0, last_message_reset: now.toISOString() })
         .eq('id', user.id);
     }
 
     if (!profile.is_premium && profile.messages_count >= 20) {
+      const resetIn = lastReset ? Math.max(0, TWENTY_FOUR_HOURS - (now - lastReset)) : 0;
       return res.status(403).json({
         error: 'Límite diario alcanzado',
         message: 'Has usado tus 20 mensajes gratuitos de hoy. Actualiza a Premium para conversar sin límites.',
         premiumRequired: true,
+        resetIn,
       });
     }
 
@@ -171,9 +174,13 @@ export default async function handler(req, res) {
     const response = completion.choices?.[0]?.message?.content || '';
 
     if (!profile.is_premium) {
+      const updateData = { messages_count: profile.messages_count + 1 };
+      if (!profile.last_message_reset) {
+        updateData.last_message_reset = new Date().toISOString();
+      }
       await supabase
         .from('profiles')
-        .update({ messages_count: profile.messages_count + 1 })
+        .update(updateData)
         .eq('id', user.id);
     }
 

@@ -42,21 +42,23 @@ export default async function handler(req, res) {
     let isPremium = profile?.is_premium ?? false;
     const premiumUntil = profile?.premium_until ?? null;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+    const now = new Date();
     const lastReset = profile?.last_message_reset ? new Date(profile.last_message_reset) : null;
 
-    if (!lastReset || lastReset < today) {
+    if (!lastReset || (now - lastReset) >= TWENTY_FOUR_HOURS) {
       messagesCount = 0;
       if (profile) {
         await supabase
           .from('profiles')
-          .update({ messages_count: 0, last_message_reset: today.toISOString() })
+          .update({ messages_count: 0, last_message_reset: now.toISOString() })
           .eq('id', user.id);
       }
     }
 
-    return res.json({ messagesCount, limit: 20, isPremium, premiumUntil });
+    const resetIn = lastReset ? Math.max(0, TWENTY_FOUR_HOURS - (now - lastReset)) : 0;
+
+    return res.json({ messagesCount, limit: 20, isPremium, premiumUntil, resetIn });
   } catch (err) {
     console.error('Usage API error:', err?.message || err, err?.stack);
     return res.status(500).json({ error: 'Error al obtener uso', detail: err?.message || String(err) });
