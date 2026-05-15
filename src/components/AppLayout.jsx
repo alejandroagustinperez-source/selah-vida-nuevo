@@ -96,7 +96,7 @@ export default function AppLayout({ children }) {
               </span>
               <button
                 onClick={() => setCancelOpen(true)}
-                className="block w-full text-left text-xs text-red-400 hover:text-red-600 transition-colors px-0.5"
+                className="block w-full text-left text-sm text-red-500 hover:text-red-700 hover:underline transition-colors"
               >
                 Cancelar suscripción
               </button>

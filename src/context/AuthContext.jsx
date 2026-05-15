@@ -33,6 +33,7 @@ export function AuthProvider({ children }) {
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      if (session) checkPremium();
     });
 
     return () => subscription?.unsubscribe();
