@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import PremiumModal from '../components/PremiumModal';
+import CancelModal from '../components/CancelModal';
 
 const navItems = [
   { to: '/chat', icon: '💬', label: 'Chat con Rafael' },
@@ -16,6 +17,7 @@ export default function AppLayout({ children }) {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [modalItem, setModalItem] = useState(null);
+  const [cancelOpen, setCancelOpen] = useState(false);
 
   const handleNavClick = (item) => {
     setSidebarOpen(false);
@@ -88,10 +90,16 @@ export default function AppLayout({ children }) {
         {/* User section */}
         <div className="px-4 py-4 border-t border-gold/10 space-y-2">
           {isPremium ? (
-            <div className="px-2">
+            <div className="px-2 space-y-2">
               <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
                 Premium
               </span>
+              <button
+                onClick={() => setCancelOpen(true)}
+                className="block w-full text-left text-xs text-red-400 hover:text-red-600 transition-colors px-0.5"
+              >
+                Cancelar suscripción
+              </button>
             </div>
           ) : null}
           <button
@@ -125,6 +133,11 @@ export default function AppLayout({ children }) {
       <PremiumModal
         open={!!modalItem}
         onClose={() => setModalItem(null)}
+      />
+
+      <CancelModal
+        open={cancelOpen}
+        onClose={() => setCancelOpen(false)}
       />
     </div>
   );

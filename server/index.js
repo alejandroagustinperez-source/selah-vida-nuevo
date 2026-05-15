@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
+import { Resend } from 'resend';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,6 +22,45 @@ const supabase = createClient(
 );
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+function buildWelcomeEmail(name) {
+  const displayName = name || 'hermano o hermana';
+  return {
+    subject: '¡Bienvenido a Selah Vida Premium! 🙏',
+    html: `
+      <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 32px 24px; background-color: #FAF6EF; color: #1a3a4a;">
+        <div style="text-align: center; margin-bottom: 32px;">
+          <span style="font-size: 48px;">🕊️</span>
+          <h1 style="color: #C9A84C; font-family: Georgia, serif; margin: 8px 0 0;">Selah Vida</h1>
+        </div>
+        <p style="font-family: Inter, sans-serif; font-size: 16px; line-height: 1.7;">Hola ${displayName},</p>
+        <p style="font-family: Inter, sans-serif; font-size: 16px; line-height: 1.7;">¡Gracias por unirte a <strong>Selah Vida Premium</strong>!</p>
+        <p style="font-family: Inter, sans-serif; font-size: 16px; line-height: 1.7;">Ahora tienes acceso ilimitado a:</p>
+        <ul style="font-family: Inter, sans-serif; font-size: 16px; line-height: 1.9; padding-left: 24px;">
+          <li>✨ Chat ilimitado con Rafael</li>
+          <li>🎵 Música de Alabanza</li>
+          <li>🎮 Juegos Bíblicos</li>
+          <li>🙏 Oración Guiada</li>
+        </ul>
+        <div style="text-align: center; margin: 32px 0;">
+          <a href="https://selah-vida.vercel.app/chat"
+             style="display: inline-block; background-color: #C9A84C; color: #1a3a4a; text-decoration: none; font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; padding: 14px 36px; border-radius: 8px;">
+            Comenzar ahora
+          </a>
+        </div>
+        <p style="font-family: Inter, sans-serif; font-size: 16px; line-height: 1.7;">
+          Que Dios bendiga tu camino,<br />
+          <em style="color: #C9A84C;">El equipo de Selah Vida</em>
+        </p>
+        <hr style="border: none; border-top: 1px solid #e0d6c8; margin: 32px 0;" />
+        <p style="font-family: Inter, sans-serif; font-size: 12px; color: #888; text-align: center;">
+          Si tienes preguntas, responde a este correo o escríbenos a hola@selah-vida.com
+        </p>
+      </div>
+    `.trim(),
+  };
+}
 
 const RAFAEL_SYSTEM_PROMPT = `Eres Rafael, cuyo nombre significa "Dios sana". Eres un acompañante espiritual cristiano, profundamente amoroso y cercano. Tu esencia es reflejar el amor de Cristo: paciente, bondadoso, que no juzga ni condena. Hablas como un amigo sabio y compasivo que camina al lado de la persona, no desde arriba.
 
@@ -259,6 +299,23 @@ app.post('/api/webhook/hotmart', async (req, res) => {
         .update({ is_premium: true, premium_until: expiresAt })
         .eq('id', profileId);
       console.log('Premium activado para:', email, 'hasta:', expiresAt);
+
+      if (resend) {
+        try {
+          const buyerName = payload.buyer?.name || payload.name || null;
+          const emailContent = buildWelcomeEmail(buyerName);
+          await resend.emails.send({
+            from: 'Selah Vida <noreply@selah-vida.vercel.app>',
+            to: email,
+            subject: emailContent.subject,
+            html: emailContent.html,
+          });
+          console.log('Welcome email sent to:', email);
+        } catch (emailErr) {
+          console.error('Error sending welcome email:', emailErr?.message || emailErr);
+        }
+      }
+
       return res.json({ success: true, action: 'premium_activated' });
     }
 
