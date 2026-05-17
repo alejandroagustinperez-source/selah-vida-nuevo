@@ -3,17 +3,33 @@ import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
-
 const MAX_ATTEMPTS = 3;
+
+const HINTS = [
+  { label: 'Testamento', icon: '📜' },
+  { label: 'Libro', icon: '📖' },
+  { label: 'Capítulo', icon: '🔢' },
+];
+
+function normalizeAnswer(input) {
+  let s = input.trim().replace(/^San\s+/i, '');
+  s = s.replace(/^(Primera|Primer|1era)\s+/i, '1 ');
+  s = s.replace(/^(Segunda|2da)\s+/i, '2 ');
+  s = s.replace(/^(Tercera|3ra)\s+/i, '3 ');
+  s = s.replace(/^Salmo\s+/i, 'Salmos ');
+  return s.toLowerCase().replace(/\s+/g, ' ');
+}
 
 export default function VerseGame({ onBack }) {
   const [screen, setScreen] = useState('start');
-  const [verseData, setVerseData] = useState(null);
+  const [verse, setVerse] = useState(null);
   const [input, setInput] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const [feedback, setFeedback] = useState(null);
-  const [revealed, setRevealed] = useState(false);
+  const [hintLevel, setHintLevel] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [won, setWon] = useState(false);
   const [error, setError] = useState('');
+
   const { isPremium } = useAuth();
 
   const getToken = async () => {
@@ -33,14 +49,15 @@ export default function VerseGame({ onBack }) {
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Error al generar versículo');
+        throw new Error(data.error || 'Error al obtener versículo');
       }
       const data = await res.json();
-      setVerseData(data);
+      setVerse(data);
       setAttempts(0);
+      setHintLevel(0);
       setInput('');
-      setFeedback(null);
-      setRevealed(false);
+      setGameOver(false);
+      setWon(false);
       setScreen('playing');
     } catch (err) {
       setError(err.message);
@@ -48,33 +65,55 @@ export default function VerseGame({ onBack }) {
     }
   };
 
+  const getExpectedAnswers = (v) => {
+    const main = `${v.book} ${v.chapter}`;
+    const aliases = (v.aliases || []).map((a) => {
+      if (a.includes(' ')) return a;
+      return `${a} ${v.chapter}`;
+    });
+    return [main, ...aliases];
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || gameOver) return;
 
-    const answer = input.trim().toLowerCase();
-    const correct = verseData.missing_word.toLowerCase();
+    const answer = normalizeAnswer(input);
+    const expected = getExpectedAnswers(verse).map(normalizeAnswer);
 
-    if (answer === correct) {
-      setFeedback({ type: 'correct', message: '¡Correcto! 🎉' });
-      setRevealed(true);
+    if (expected.includes(answer)) {
+      setWon(true);
+      setGameOver(true);
     } else {
       const newAttempts = attempts + 1;
       setAttempts(newAttempts);
+      const newHintLevel = Math.min(hintLevel + 1, MAX_ATTEMPTS);
+      setHintLevel(newHintLevel);
+
       if (newAttempts >= MAX_ATTEMPTS) {
-        setFeedback({ type: 'fail', message: `Respuesta: "${verseData.missing_word}"` });
-        setRevealed(true);
-      } else {
-        setFeedback({ type: 'wrong', message: `Incorrecto. Te quedan ${MAX_ATTEMPTS - newAttempts} intento(s).` });
+        setGameOver(true);
       }
     }
     setInput('');
   };
 
   const handleSkip = () => {
-    setFeedback({ type: 'fail', message: `Respuesta: "${verseData.missing_word}"` });
-    setRevealed(true);
+    setGameOver(true);
+    setInput('');
   };
+
+  const displayedHints = [];
+  if (hintLevel >= 1) displayedHints.push({ icon: '📜', text: `Es del ${verse.testament} Testamento` });
+  if (hintLevel >= 2) displayedHints.push({ icon: '📖', text: `Es del libro de ${verse.book}` });
+  if (hintLevel >= 3) displayedHints.push({ icon: '🔢', text: `Es del capítulo ${verse.chapter}` });
+
+  const refParts = [];
+  refParts.push(`${verse?.book} ${verse?.chapter}`);
+  if (verse?.verse) refParts.push(`:${verse.verse}`);
+  if (verse?.verses) refParts.push(`:${verse.verses}`);
+  const fullRef = refParts.join('');
+
+  const verseRef = verse ? (verse.verses ? `${verse.book} ${verse.chapter}:${verse.verses}` : `${verse.book} ${verse.chapter}:${verse.verse}`) : '';
 
   if (!isPremium) {
     return (
@@ -92,11 +131,11 @@ export default function VerseGame({ onBack }) {
       <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
         <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
         <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <div className="text-5xl mb-3">📖</div>
+          <div className="text-5xl mb-3">🔍</div>
           <h2 className="font-serif text-2xl font-bold mb-2">Adivina el Versículo</h2>
           <p className="text-dark-blue/60 text-sm max-w-sm mb-6">
-            Te mostramos un versículo bíblico con una palabra faltante.
-            Tenés 3 intentos para adivinar la palabra correcta.
+            Te mostramos un versículo completo de la Biblia RVR1960.
+            Adiviná de qué libro y capítulo es. Tenés 3 pistas si no sabés.
           </p>
           <button
             onClick={fetchVerse}
@@ -129,18 +168,15 @@ export default function VerseGame({ onBack }) {
     );
   }
 
-  if (!verseData) return null;
-
-  const displayVerse = revealed
-    ? verseData.verse.replace('___', `**${verseData.missing_word}**`)
-    : verseData.verse;
+  if (!verse) return null;
 
   return (
     <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
       <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
-      <div className="flex-1 flex flex-col items-center justify-center max-w-lg mx-auto w-full">
-        {!revealed && (
-          <div className="flex items-center gap-2 mb-4">
+      <div className="flex-1 flex flex-col max-w-lg mx-auto w-full">
+        {/* Attempt dots */}
+        {!gameOver && (
+          <div className="flex items-center justify-center gap-2 mb-4">
             {Array.from({ length: MAX_ATTEMPTS }).map((_, i) => (
               <div key={i} className={`w-3 h-3 rounded-full ${i < attempts ? 'bg-red-400' : 'bg-cream-dark border border-gold/20'}`} />
             ))}
@@ -148,45 +184,63 @@ export default function VerseGame({ onBack }) {
           </div>
         )}
 
-        <div className="bg-white rounded-2xl border border-gold/10 p-6 mb-5 w-full">
+        {/* Verse card */}
+        <div className="bg-white rounded-2xl border border-gold/10 p-6 mb-5">
           <div className="text-3xl text-center mb-4">📖</div>
           <p className="font-serif text-lg text-dark-blue leading-relaxed text-center italic">
-            {displayVerse.split(/(\*\*[^*]+\*\*)/).map((part, i) =>
-              part.startsWith('**') && part.endsWith('**')
-                ? <span key={i} className="text-gold font-bold not-italic">{part.slice(2, -2)}</span>
-                : <span key={i}>{part}</span>
-            )}
+            &ldquo;{verse.text}&rdquo;
           </p>
         </div>
 
-        {revealed && (
-          <div className="text-center mb-5">
-            <p className="text-sm text-dark-blue/60">
-              <span className="font-semibold text-dark-blue">{verseData.reference}</span>
-            </p>
-            {verseData.hint && (
-              <p className="text-xs text-dark-blue/40 mt-1">Pista: {verseData.hint}</p>
-            )}
+        {/* Hints */}
+        {displayedHints.length > 0 && (
+          <div className="space-y-2 mb-4">
+            {displayedHints.map((h, i) => (
+              <div key={i} className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-2.5 text-sm text-amber-800 flex items-center gap-2">
+                <span>{h.icon}</span>
+                <span className="font-medium">{h.text}</span>
+              </div>
+            ))}
           </div>
         )}
 
-        {feedback && (
-          <div className={`w-full text-center mb-4 px-4 py-3 rounded-2xl text-sm ${
-            feedback.type === 'correct' ? 'bg-green-50 text-green-700 border border-green-200' :
-            feedback.type === 'fail' ? 'bg-amber-50 text-amber-700 border border-amber-200' :
-            'bg-red-50 text-red-600 border border-red-200'
-          }`}>
-            {feedback.message}
+        {/* Result */}
+        {gameOver && (
+          <div className="mb-5 space-y-3">
+            <div className={`rounded-2xl p-4 text-center ${
+              won
+                ? 'bg-green-50 border border-green-200'
+                : 'bg-red-50 border border-red-200'
+            }`}>
+              <p className={`font-semibold text-sm ${won ? 'text-green-700' : 'text-red-600'}`}>
+                {won ? '✅ ¡Correcto! 🎉' : '❌ Se acabaron los intentos'}
+              </p>
+              <p className="text-sm text-dark-blue/70 mt-1.5">
+                <span className="font-bold text-gold">{verseRef}</span>
+              </p>
+            </div>
+
+            <div className="bg-cream rounded-2xl p-4 border border-gold/10">
+              <p className="text-xs text-gold font-semibold mb-1">📖 Explicación</p>
+              <p className="text-sm text-dark-blue/70 leading-relaxed">{verse.explanation}</p>
+            </div>
+
+            <div className="flex gap-3">
+              <button onClick={fetchVerse} className="flex-1 bg-gold text-white py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Jugar de nuevo</button>
+              <button onClick={onBack} className="flex-1 bg-white border border-gold/10 text-dark-blue py-2.5 rounded-full text-sm font-medium hover:border-gold/30 transition-colors">Volver a juegos</button>
+            </div>
           </div>
         )}
 
-        {!revealed ? (
+        {/* Input */}
+        {!gameOver && (
           <form onSubmit={handleSubmit} className="w-full flex flex-col gap-3">
+            <p className="text-xs text-dark-blue/50 text-center">Escribí el libro y capítulo (ej: Juan 3)</p>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Escribí la palabra que falta..."
+              placeholder="Ej: Juan 3, Salmos 23..."
               className="w-full px-5 py-3 rounded-full border border-gold/20 bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm text-center"
               autoFocus
             />
@@ -198,20 +252,11 @@ export default function VerseGame({ onBack }) {
               >
                 Responder
               </button>
-              <button
-                type="button"
-                onClick={handleSkip}
-                className="text-dark-blue/40 hover:text-dark-blue text-sm underline"
-              >
-                Saltar
+              <button type="button" onClick={handleSkip} className="text-dark-blue/40 hover:text-dark-blue text-sm underline">
+                No sé
               </button>
             </div>
           </form>
-        ) : (
-          <div className="flex gap-3">
-            <button onClick={fetchVerse} className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Jugar de nuevo</button>
-            <button onClick={onBack} className="bg-white border border-gold/10 text-dark-blue px-6 py-2.5 rounded-full text-sm font-medium hover:border-gold/30 transition-colors">Volver a juegos</button>
-          </div>
         )}
       </div>
     </div>

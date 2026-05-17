@@ -5,6 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import { Resend } from 'resend';
 import { getRandomQuestions } from '../api/_trivia.js';
+import { getRandomVerse } from '../api/_verses.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -342,8 +343,6 @@ const GROQ_MODEL = 'llama-3.1-8b-instant';
 
 function buildPrompt(type, params = {}) {
   switch (type) {
-    case 'verse':
-      return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
     case 'wordsearch': {
       const theme = params.theme || 'profetas';
       return `Genera 8 palabras bíblicas relacionadas al tema ${theme} (ej: profetas, discípulos, lugares). Solo las palabras, SOLO en JSON: {theme, words: []}`;
@@ -409,6 +408,11 @@ app.post('/api/games', verifyToken, async (req, res) => {
       const level = params?.level || 'fácil';
       const questions = getRandomQuestions(level, 5);
       return res.json({ questions });
+    }
+
+    if (type === 'verse') {
+      const verse = getRandomVerse();
+      return res.json(verse);
     }
 
     const prompt = buildPrompt(type, params);
