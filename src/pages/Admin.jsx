@@ -72,7 +72,7 @@ export default function Admin() {
     );
   }
 
-  const { summary, messagesPerDay, premiumVsFree, topCountries, topCities, topGames, lastUsers } = data;
+  const { summary, messagesPerDay, premiumVsFree, topCountries, topCities, topGames, genderBreakdown, lastUsers } = data;
   const maxMsgs = Math.max(...messagesPerDay.map((d) => d.count), 1);
 
   const CustomTooltip = ({ active, payload, label }) => {
@@ -218,10 +218,26 @@ export default function Admin() {
           {/* Gender */}
           <div className="rounded-xl bg-[#16213e] border border-[#1e2d4a] p-5">
             <h3 className="text-sm font-semibold text-white mb-3">⚧️ Por género</h3>
-            <div className="text-xs text-gray-500">
-              <p className="mb-3">Los usuarios pueden especificar su género en el perfil.</p>
-              <p className="text-gray-400">Dato disponible próximamente</p>
-            </div>
+            {genderBreakdown && genderBreakdown.some((g) => g.value > 0) ? (
+              <div className="space-y-2">
+                {genderBreakdown.map((g) => (
+                  <div key={g.name} className="flex items-center gap-2 text-xs">
+                    <span className="w-2.5 h-2.5 rounded-full" style={{
+                      background: g.name === 'Hombre' ? '#60a5fa' : g.name === 'Mujer' ? '#f472b6' : '#6b7280'
+                    }} />
+                    <span className="flex-1 text-gray-300">{g.name}</span>
+                    <span className="text-gold font-semibold">{g.value}</span>
+                    <span className="text-gray-500 text-[10px]">
+                      ({summary.totalUsers ? Math.round(g.value / summary.totalUsers * 100) : 0}%)
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-xs text-gray-500">
+                <p>Los usuarios pueden especificar su género en el perfil.</p>
+              </div>
+            )}
           </div>
         </div>
 

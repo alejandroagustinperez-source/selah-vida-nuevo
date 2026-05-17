@@ -118,6 +118,11 @@ export default async function handler(req, res) {
 
       console.log('Premium activado para:', email, 'hasta:', expiresAt);
 
+      // Track premium_upgrade
+      await supabase
+        .from('analytics')
+        .insert({ user_id: profileId, event_type: 'premium_upgrade', metadata: {} });
+
       // Send welcome email via Resend
       if (resend) {
         try {
@@ -155,6 +160,12 @@ export default async function handler(req, res) {
       }
 
       console.log('Premium desactivado para:', email);
+
+      // Track premium_cancel
+      await supabase
+        .from('analytics')
+        .insert({ user_id: profileId, event_type: 'premium_cancel', metadata: {} });
+
       return res.status(200).json({ success: true, email, action: 'premium_cancelled' });
     }
 

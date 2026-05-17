@@ -399,6 +399,10 @@ app.post('/api/webhook/hotmart', async (req, res) => {
         .eq('id', profileId);
       console.log('Premium activado para:', email, 'hasta:', expiresAt);
 
+      await supabase
+        .from('analytics')
+        .insert({ user_id: profileId, event_type: 'premium_upgrade', metadata: {} });
+
       if (resend) {
         try {
           const buyerName = payload.buyer?.name || payload.name || null;
@@ -424,6 +428,11 @@ app.post('/api/webhook/hotmart', async (req, res) => {
         .update({ is_premium: false, premium_until: null })
         .eq('id', profileId);
       console.log('Premium desactivado para:', email);
+
+      await supabase
+        .from('analytics')
+        .insert({ user_id: profileId, event_type: 'premium_cancel', metadata: {} });
+
       return res.json({ success: true, action: 'premium_cancelled' });
     }
 
@@ -754,6 +763,20 @@ app.get('/api/admin/stats', verifyToken, async (req, res) => {
     (gameEvents || []).forEach((ev) => { const g = ev.metadata?.game || 'unknown'; gCounts[g] = (gCounts[g] || 0) + 1; });
     const topGames = Object.entries(gCounts).sort((a, b) => b[1] - a[1]).map(([n, c]) => ({ name: n, count: c }));
 
+    const { data: genderData } = await supabase.from('profiles').select('gender');
+    const genderCounts = { hombre: 0, mujer: 0, no_especificado: 0 };
+    (genderData || []).forEach((p) => {
+      const g = (p.gender || '').toLowerCase();
+      if (g === 'hombre' || g === 'masculino' || g === 'male') genderCounts.hombre++;
+      else if (g === 'mujer' || g === 'femenino' || g === 'female') genderCounts.mujer++;
+      else genderCounts.no_especificado++;
+    });
+    const genderBreakdown = [
+      { name: 'Hombre', value: genderCounts.hombre },
+      { name: 'Mujer', value: genderCounts.mujer },
+      { name: 'No especificado', value: genderCounts.no_especificado },
+    ];
+
     const { data: lastUsers } = await supabase
       .from('profiles').select('id, email, country, city, is_premium, created_at, gender')
       .order('created_at', { ascending: false }).limit(10);
@@ -765,6 +788,7 @@ app.get('/api/admin/stats', verifyToken, async (req, res) => {
       topCountries,
       topCities,
       topGames,
+      genderBreakdown,
       lastUsers: (lastUsers || []).map((u) => ({
         email: u.email, country: u.country || '—', city: u.city || '—',
         isPremium: u.is_premium, createdAt: u.created_at, gender: u.gender || 'no especificado',

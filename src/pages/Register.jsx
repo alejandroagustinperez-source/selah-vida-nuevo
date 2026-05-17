@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { trackEvent } from '../utils/tracking';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -27,6 +28,7 @@ export default function Register() {
 
     try {
       await register(email, password);
+      trackEvent('user_signup');
       setSuccess(true);
     } catch (err) {
       setError(err.message === 'User already registered'

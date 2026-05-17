@@ -118,14 +118,31 @@ export default async function handler(req, res) {
       .sort((a, b) => b[1] - a[1])
       .map(([name, count]) => ({ name, count }));
 
-    // ── 6. Last 10 users ──
+    // ── 6. Gender breakdown ──
+    const { data: genderData } = await supabase
+      .from('profiles')
+      .select('gender');
+
+    const genderCounts = { hombre: 0, mujer: 0, no_especificado: 0 };
+    (genderData || []).forEach((p) => {
+      const g = (p.gender || '').toLowerCase();
+      if (g === 'hombre' || g === 'masculino' || g === 'male') genderCounts.hombre++;
+      else if (g === 'mujer' || g === 'femenino' || g === 'female') genderCounts.mujer++;
+      else genderCounts.no_especificado++;
+    });
+    const genderBreakdown = [
+      { name: 'Hombre', value: genderCounts.hombre },
+      { name: 'Mujer', value: genderCounts.mujer },
+      { name: 'No especificado', value: genderCounts.no_especificado },
+    ];
+
+    // ── 7. Last 10 users ──
     const { data: lastUsers } = await supabase
       .from('profiles')
       .select('id, email, country, city, is_premium, created_at, gender')
       .order('created_at', { ascending: false })
       .limit(10);
 
-    // ── 7. Premium vs Free ──
     const premiumVsFree = [
       { name: 'Premium', value: premiumUsers },
       { name: 'Free', value: freeUsers },
@@ -138,6 +155,7 @@ export default async function handler(req, res) {
       topCountries,
       topCities,
       topGames,
+      genderBreakdown,
       lastUsers: (lastUsers || []).map((u) => ({
         email: u.email,
         country: u.country || '—',

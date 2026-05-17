@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
+import { trackEvent } from '../utils/tracking';
 
 export default function AuthCallback() {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ export default function AuthCallback() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       console.log('AuthCallback onAuthStateChange:', event, session);
       if (event === 'SIGNED_IN') {
+        trackEvent('user_signup');
         navigate('/chat', { replace: true });
       }
     });
