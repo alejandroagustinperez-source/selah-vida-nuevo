@@ -18,18 +18,18 @@ const GRADIENTS = [
 ];
 
 const SONGS = [
-  { id: 1, title: 'Océanos (Donde Mis Pies Pueden Fallar)', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'dJGnOEWfkE0', gradient: 0 },
-  { id: 2, title: 'Rindo Todo', artist: 'Hillsong Español', category: 'Adoración', youtubeId: '8p9J1p9dztQ', gradient: 1 },
-  { id: 3, title: 'Eres Todo Poderoso', artist: 'Marcos Witt', category: 'Alabanza', youtubeId: 'UlMFSGzpFXk', gradient: 2 },
-  { id: 4, title: 'Tu Fidelidad', artist: 'Hillsong Español', category: 'Adoración', youtubeId: '5H2elUTB_8I', gradient: 3 },
-  { id: 5, title: 'Nada Se Compara', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'yCOhAMxMpZI', gradient: 4 },
-  { id: 6, title: 'Quiero Conocerte Más', artist: 'Jesús Adrián Romero', category: 'Adoración', youtubeId: '7f3GQxoZO8M', gradient: 5 },
-  { id: 7, title: 'Me Rindo A Ti', artist: 'Tercer Cielo', category: 'Alabanza', youtubeId: 'cC9OKZ6NLXI', gradient: 6 },
-  { id: 8, title: 'Glorioso', artist: 'Marcela Gándara', category: 'Alabanza', youtubeId: 'kHCqBFMHNKA', gradient: 7 },
-  { id: 9, title: 'Todo Lo Puedo', artist: 'Christine D\'Clario', category: 'Alabanza', youtubeId: 'W6MKZNI_sets', gradient: 8 },
-  { id: 10, title: 'Cuán Grande Es Él', artist: 'Marcos Witt', category: 'Clásicos', youtubeId: 'KFCzQPNlRtY', gradient: 9 },
-  { id: 11, title: 'No Hay Lugar Más Alto', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'Xm8a7nUNHpY', gradient: 10 },
-  { id: 12, title: 'Ven A Este Lugar', artist: 'Elevation Worship Español', category: 'Adoración', youtubeId: '5yqCXSMdkEc', gradient: 11 },
+  { id: 1, title: 'Océanos (Donde Mis Pies Pueden Fallar)', artist: 'Hillsong Español', category: 'Adoración', youtubeId: '2BJ0OA0nXPY', gradient: 0 },
+  { id: 2, title: 'Rindo Todo', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'ANMcat6Q4P4', gradient: 1 },
+  { id: 3, title: 'Eres Todo Poderoso', artist: 'Marcos Witt', category: 'Alabanza', youtubeId: 'rbHIRvfNxBA', gradient: 2 },
+  { id: 4, title: 'Tu Fidelidad', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'Q6F1_7h69RM', gradient: 3 },
+  { id: 5, title: 'Nada Se Compara', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'MWJhRPthyIk', gradient: 4 },
+  { id: 6, title: 'Quiero Conocerte Más', artist: 'Jesús Adrián Romero', category: 'Adoración', youtubeId: 'Gc6Wm4OE_ag', gradient: 5 },
+  { id: 7, title: 'Me Rindo A Ti', artist: 'Tercer Cielo', category: 'Alabanza', youtubeId: 'VyfRCnLr8kk', gradient: 6 },
+  { id: 8, title: 'Glorioso', artist: 'Marcela Gándara', category: 'Alabanza', youtubeId: 'GgjNqawFAfM', gradient: 7 },
+  { id: 9, title: 'Todo Lo Puedo', artist: 'Christine D\'Clario', category: 'Alabanza', youtubeId: 'bhdZNpOHR4A', gradient: 8 },
+  { id: 10, title: 'Cuán Grande Es Él', artist: 'Marcos Witt', category: 'Clásicos', youtubeId: 'hEpCChdO3CU', gradient: 9 },
+  { id: 11, title: 'No Hay Lugar Más Alto', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'ANMcat6Q4P4', gradient: 10 },
+  { id: 12, title: 'Ven A Este Lugar', artist: 'Elevation Worship Español', category: 'Adoración', youtubeId: 'VyfRCnLr8kk', gradient: 11 },
 ];
 
 const CATEGORIES = ['Todas', 'Adoración', 'Alabanza', 'Clásicos'];
@@ -39,6 +39,7 @@ export default function Music() {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('Todas');
   const [selectedSong, setSelectedSong] = useState(null);
+  const [embedError, setEmbedError] = useState(false);
 
   const filtered = useMemo(() => {
     return SONGS.filter((s) => {
@@ -108,7 +109,7 @@ export default function Music() {
           {filtered.map((song) => (
             <button
               key={song.id}
-              onClick={() => setSelectedSong(song)}
+              onClick={() => { setSelectedSong(song); setEmbedError(false); }}
               className="group rounded-2xl overflow-hidden text-left hover:shadow-lg hover:brightness-110 transition-all active:scale-[0.98] focus:outline-none"
             >
               <div className={`h-40 bg-gradient-to-br ${GRADIENTS[song.gradient]} relative flex flex-col items-center justify-center p-4`}>
@@ -131,7 +132,7 @@ export default function Music() {
       {selectedSong && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-8"
-          onClick={() => setSelectedSong(null)}
+          onClick={() => { setSelectedSong(null); setEmbedError(false); }}
         >
           <div
             className="bg-cream rounded-3xl overflow-hidden max-w-2xl w-full shadow-2xl"
@@ -143,20 +144,46 @@ export default function Music() {
                 <p className="text-xs text-dark-blue/50">{selectedSong.artist}</p>
               </div>
               <button
-                onClick={() => setSelectedSong(null)}
+                onClick={() => { setSelectedSong(null); setEmbedError(false); }}
                 className="shrink-0 w-8 h-8 rounded-full bg-gold/10 text-dark-blue hover:bg-gold/20 transition-colors flex items-center justify-center text-sm"
               >
                 ✕
               </button>
             </div>
             <div className="relative" style={{ padding: '56.25% 0 0 0' }}>
-              <iframe
-                src={`https://www.youtube.com/embed/${selectedSong.youtubeId}?autoplay=1&rel=0&enablejsapi=1&origin=https://selah-vida.vercel.app`}
-                title={selectedSong.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              />
+              {embedError ? (
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-dark-blue/5 rounded-b-2xl gap-3">
+                  <span className="text-5xl">🎵</span>
+                  <p className="text-sm text-dark-blue/60 text-center px-6">Este video no está disponible para reproducción embebida.</p>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${selectedSong.youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-gold text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors"
+                  >
+                    ▶ Ver en YouTube
+                  </a>
+                </div>
+              ) : (
+                <iframe
+                  src={`https://www.youtube.com/embed/${selectedSong.youtubeId}?autoplay=1&rel=0&enablejsapi=1&origin=https://selah-vida.vercel.app`}
+                  title={selectedSong.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                  onError={() => setEmbedError(true)}
+                />
+              )}
+            </div>
+            <div className="px-5 py-3 border-t border-gold/10 text-center">
+              <a
+                href={`https://www.youtube.com/watch?v=${selectedSong.youtubeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-dark-blue/40 hover:text-gold transition-colors"
+              >
+                ¿No se reproduce? Abrir en YouTube →
+              </a>
             </div>
           </div>
         </div>
