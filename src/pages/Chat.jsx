@@ -130,7 +130,8 @@ export default function Chat() {
   const [loadingChat, setLoadingChat] = useState(true);
   const bottomRef = useRef(null);
   const chatIdRef = useRef(null);
-  const initializedRef = useRef(false);
+  const premiumRef = useRef(isPremium);
+  premiumRef.current = isPremium;
 
   const hasInteracted = messages.length > 1;
   const used = usage?.messagesCount ?? 0;
@@ -151,63 +152,6 @@ export default function Chat() {
     return session?.access_token;
   };
 
-  const apiCall = useCallback(async (method, body) => {
-    const token = await getToken();
-    const opts = {
-      method,
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    };
-    if (body) opts.body = JSON.stringify(body);
-    const res = await fetch(`${API_BASE}/chats`, opts);
-    return { res, data: await res.json() };
-  }, []);
-
-  // Create a new chat in Supabase
-  const createNewChat = useCallback(async () => {
-    try {
-      const { data } = await apiCall('POST', { title: 'Nueva conversación', messages: [WELCOME_MSG] });
-      if (data?.id) {
-        setChatId(data.id);
-        chatIdRef.current = data.id;
-      }
-    } catch (err) {
-      console.error('Error creating chat:', err);
-    }
-  }, [apiCall]);
-
-  // Save current messages to Supabase
-  const saveMessages = useCallback(async (msgs, id) => {
-    const cid = id || chatIdRef.current;
-    if (!cid) return;
-    try {
-      const firstUserMsg = msgs.find((m) => m.role === 'user');
-      let title = 'Nueva conversación';
-      if (firstUserMsg) {
-        title = firstUserMsg.content.slice(0, 50);
-        if (firstUserMsg.content.length > 50) title += '…';
-      }
-      await apiCall('PUT', { id: cid, messages: msgs, title });
-    } catch (err) {
-      console.error('Error saving chat:', err);
-    }
-  }, [apiCall]);
-
-  // Save ref to latest messages for auto-save
-  const messagesRef = useRef(messages);
-  messagesRef.current = messages;
-
-  // Auto-save after messages change (for premium users)
-  useEffect(() => {
-    if (!isPremium || !chatIdRef.current) return;
-    if (messages.length <= 1) return; // Don't save welcome message alone
-    // Debounce save to avoid rapid saves
-    const timer = setTimeout(() => {
-      saveMessages(messagesRef.current);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [messages, isPremium, saveMessages]);
-
-  // Load chat list for context
   const fetchUsage = async () => {
     try {
       const token = await getToken();
@@ -229,19 +173,16 @@ export default function Chat() {
     }
   };
 
-  // Initialize: fetch usage + create/load chat for premium
+  // Initialize: fetch usage + load specific chat if coming from sidebar
   useEffect(() => {
-    if (initializedRef.current) return;
-    initializedRef.current = true;
-
     const init = async () => {
       await fetchUsage();
 
-      // Check if we need to load a specific chat from sidebar
       const state = location.state;
       const loadChatId = state?.loadChatId;
 
-      if (loadChatId && isPremium) {
+      if (loadChatId) {
+        console.log('[Chat Debug] Loading chat:', loadChatId);
         try {
           const token = await getToken();
           const res = await fetch(`${API_BASE}/chats?id=${loadChatId}`, {
@@ -252,19 +193,84 @@ export default function Chat() {
             setMessages(data.messages || [WELCOME_MSG]);
             setChatId(data.id);
             chatIdRef.current = data.id;
+            console.log('[Chat Debug] Chat loaded:', data.id, 'messages:', data.messages?.length);
           }
         } catch (err) {
-          console.error('Error loading chat:', err);
-          if (isPremium) await createNewChat();
+          console.error('[Chat Debug] Error loading chat:', err);
         }
-      } else if (isPremium) {
-        await createNewChat();
       }
 
       setLoadingChat(false);
     };
     init();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Auto-save effect: creates chat + saves messages for premium users
+  const messagesRef = useRef(messages);
+  messagesRef.current = messages;
+
+  useEffect(() => {
+    if (!isPremium || loadingChat) return;
+    if (messages.length <= 1) return;
+
+    const msgs = messagesRef.current;
+    console.log('[Chat Debug] Auto-save queued, messages:', msgs.length, 'chatId:', chatIdRef.current);
+
+    const doSave = async () => {
+      const currentMsgs = messagesRef.current;
+
+      // Create chat if needed
+      if (!chatIdRef.current) {
+        console.log('[Chat Debug] Creating new chat...');
+        try {
+          const token = await getToken();
+          const res = await fetch(`${API_BASE}/chats`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ title: 'Nueva conversación', messages: currentMsgs }),
+          });
+          const data = await res.json();
+          if (data?.id) {
+            chatIdRef.current = data.id;
+            setChatId(data.id);
+            console.log('[Chat Debug] Chat CREATED:', data.id);
+          } else {
+            console.error('[Chat Debug] Chat creation FAILED:', data);
+            return;
+          }
+        } catch (err) {
+          console.error('[Chat Debug] Error creating chat:', err);
+          return;
+        }
+      }
+
+      // Update title from first user message
+      const firstUserMsg = currentMsgs.find((m) => m.role === 'user');
+      let title = 'Nueva conversación';
+      if (firstUserMsg) {
+        title = firstUserMsg.content.slice(0, 50);
+        if (firstUserMsg.content.length > 50) title += '…';
+      }
+
+      // Save messages
+      console.log('[Chat Debug] Saving chat:', chatIdRef.current, 'title:', title);
+      try {
+        const token = await getToken();
+        const res = await fetch(`${API_BASE}/chats`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ id: chatIdRef.current, messages: currentMsgs, title }),
+        });
+        const data = await res.json();
+        console.log('[Chat Debug] Chat saved:', data?.id ? 'OK' : 'FAIL', data?.error || '');
+      } catch (err) {
+        console.error('[Chat Debug] Error saving chat:', err);
+      }
+    };
+
+    const timer = setTimeout(doSave, 800);
+    return () => clearTimeout(timer);
+  }, [messages, isPremium, loadingChat]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const sendText = async (text) => {
     if (!text || sending) return;
@@ -275,7 +281,6 @@ export default function Chat() {
     setInput('');
     setSending(true);
 
-    // Optimistic update: increment usage count immediately
     setUsage((prev) => prev ? { ...prev, messagesCount: (prev.messagesCount || 0) + 1 } : prev);
 
     try {
@@ -328,7 +333,6 @@ export default function Chat() {
         ...prev,
         { role: 'model', content: 'Lo siento, hubo un error al procesar tu mensaje. Por favor intentá de nuevo.' },
       ]);
-      // Revert optimistic update on error
       setUsage((prev) => prev ? { ...prev, messagesCount: Math.max((prev.messagesCount || 0) - 1, 0) } : prev);
     } finally {
       setSending(false);

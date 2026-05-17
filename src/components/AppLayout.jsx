@@ -41,31 +41,38 @@ export default function AppLayout({ children }) {
   }, []);
 
   const fetchChats = useCallback(async () => {
-    if (!isPremium) { setChats([]); return; }
+    if (!isPremium) { console.log('[Chats Debug] Not premium, skipping'); setChats([]); return; }
     try {
       setLoadingChats(true);
       const token = await getToken();
+      console.log('[Chats Debug] Fetching chats...');
       const res = await fetch(`${API_BASE}/chats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log('[Chats Debug] Response status:', res.status);
       if (res.ok) {
         const data = await res.json();
+        console.log('[Chats Debug] Chats fetched:', data?.length || 0);
         setChats(data || []);
+      } else {
+        const errData = await res.json();
+        console.error('[Chats Debug] Fetch error:', errData);
       }
     } catch (err) {
-      console.error('Error fetching chats:', err);
+      console.error('[Chats Debug] Error fetching chats:', err);
     } finally {
       setLoadingChats(false);
     }
   }, [isPremium, getToken]);
 
-  // Fetch chats when sidebar opens or user becomes premium
+  // Fetch chats when sidebar opens
   useEffect(() => {
     if (sidebarOpen && isPremium) fetchChats();
   }, [sidebarOpen, isPremium, fetchChats]);
 
-  // Re-fetch when chat page is visited
+  // Re-fetch when chat page is visited or premium status changes
   useEffect(() => {
+    console.log('[Chats Debug] Pathname or premium changed:', location.pathname, isPremium);
     if (location.pathname === '/chat' && isPremium) fetchChats();
   }, [location.pathname, isPremium, fetchChats]);
 
