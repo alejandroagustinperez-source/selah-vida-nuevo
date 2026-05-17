@@ -336,7 +336,8 @@ app.post('/api/webhook/hotmart', async (req, res) => {
 });
 
 // ── Games API ──
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_MODEL = 'llama-3.1-8b-instant';
 
 function buildPrompt(type, params = {}) {
   switch (type) {
@@ -367,29 +368,30 @@ function extractJSON(text) {
   throw new Error('No se pudo extraer JSON');
 }
 
-async function callClaude(prompt) {
-  if (!ANTHROPIC_API_KEY) throw new Error('ANTHROPIC_API_KEY no configurada');
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+async function callGroq(prompt) {
+  if (!GROQ_API_KEY) throw new Error('GROQ_API_KEY no configurada');
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
+      Authorization: `Bearer ${GROQ_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2048,
-      system: 'Eres un asistente que genera contenido para juegos bíblicos. Siempre respondes SOLO con JSON válido, sin texto adicional.',
-      messages: [{ role: 'user', content: prompt }],
+      model: GROQ_MODEL,
+      messages: [
+        { role: 'system', content: 'Eres un asistente que genera contenido para juegos bíblicos. Siempre respondes SOLO con JSON válido, sin texto adicional.' },
+        { role: 'user', content: prompt },
+      ],
+      temperature: 0.7,
     }),
   });
   if (!res.ok) {
     const errText = await res.text();
-    console.error('Claude API error:', res.status, errText);
-    throw new Error(`Error de Claude API: ${res.status}`);
+    console.error('Groq API error:', res.status, errText);
+    throw new Error(`Error de Groq API: ${res.status}`);
   }
   const data = await res.json();
-  const text = data.content?.[0]?.text || '';
+  const text = data.choices?.[0]?.message?.content || '';
   return extractJSON(text);
 }
 
@@ -407,7 +409,7 @@ app.post('/api/games', verifyToken, async (req, res) => {
     }
 
     const prompt = buildPrompt(type, params);
-    const result = await callClaude(prompt);
+    const result = await callGroq(prompt);
     res.json(result);
   } catch (err) {
     console.error('Games error:', err?.message || err);
