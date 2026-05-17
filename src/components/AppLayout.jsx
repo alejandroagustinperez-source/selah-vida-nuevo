@@ -260,7 +260,7 @@ export default function AppLayout({ children }) {
           })}
 
           {/* Admin link - only for admin email */}
-          {user?.email?.toLowerCase() === 'origenvitalsl@gmail.com' && (
+          {user?.email?.toLowerCase() === 'alejandro.agustin.perez@gmail.com' && (
             <div className="pt-4 mt-4 border-t border-gold/10">
               <button
                 onClick={() => { setSidebarOpen(false); navigate('/admin'); }}

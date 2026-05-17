@@ -5,7 +5,7 @@ import { supabase } from '../supabase';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
-const ADMIN_EMAIL = 'origenvitalsl@gmail.com';
+const ADMIN_EMAIL = 'alejandro.agustin.perez@gmail.com';
 
 const COLORS = { gold: '#C9A84C', cream: '#FAF6EF', blue: '#1a3a4a' };
 const PIE_COLORS = ['#C9A84C', '#3a3a5c'];

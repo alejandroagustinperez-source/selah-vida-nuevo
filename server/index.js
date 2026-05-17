@@ -716,7 +716,7 @@ app.post('/api/analytics', verifyToken, async (req, res) => {
 });
 
 // ── Admin Stats API ──
-const ADMIN_EMAIL = 'origenvitalsl@gmail.com';
+const ADMIN_EMAIL = 'alejandro.agustin.perez@gmail.com';
 
 app.get('/api/admin/stats', verifyToken, async (req, res) => {
   try {
