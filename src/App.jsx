@@ -20,6 +20,7 @@ import Music from './pages/Music';
 import Games from './pages/Games';
 import Canvas from './pages/Canvas';
 import Prayer from './pages/Prayer';
+import Admin from './pages/Admin';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import AuthCallback from './pages/AuthCallback';
@@ -63,6 +64,7 @@ export default function App() {
           <Route path="/games" element={<ProtectedLayout><Games /></ProtectedLayout>} />
           <Route path="/canvas" element={<ProtectedLayout><Canvas /></ProtectedLayout>} />
           <Route path="/prayer" element={<ProtectedLayout><Prayer /></ProtectedLayout>} />
+          <Route path="/admin" element={<ProtectedLayout><Admin /></ProtectedLayout>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
         </Routes>

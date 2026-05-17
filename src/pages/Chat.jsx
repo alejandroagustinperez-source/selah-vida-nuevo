@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import DailyVerse from '../components/DailyVerse';
 import LimitModal from '../components/LimitModal';
+import { trackEvent } from '../utils/tracking';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -330,6 +331,7 @@ export default function Chat() {
       const modelMsg = { role: 'model', content: data.response };
       const finalMessages = [...updatedMessages, modelMsg];
       setMessages(finalMessages);
+      trackEvent('message_sent');
       if (data.usage && typeof data.usage.messagesCount === 'number') {
         setUsage(data.usage);
       }

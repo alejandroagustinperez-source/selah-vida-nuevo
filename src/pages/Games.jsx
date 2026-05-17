@@ -6,6 +6,7 @@ import QuoteGame from '../components/Games/QuoteGame';
 import PremiumModal from '../components/PremiumModal';
 import { useState } from 'react';
 import { supabase } from '../supabase';
+import { trackEvent } from '../utils/tracking';
 
 const GAMES = [
   {
@@ -58,6 +59,7 @@ export default function Games() {
       setShowPremium(true);
       return;
     }
+    trackEvent('game_played', { game: gameId });
     setActiveGame(gameId);
   };
 

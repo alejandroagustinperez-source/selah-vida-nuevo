@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import PremiumModal from '../components/PremiumModal';
 import CancelModal from '../components/CancelModal';
+import { trackEvent, updateLocation } from '../utils/tracking';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -72,6 +73,27 @@ export default function AppLayout({ children }) {
   useEffect(() => {
     if (location.pathname === '/chat' && isPremium) fetchChats();
   }, [location.pathname, location.search, isPremium, fetchChats]);
+
+  // Track page views + update location on first load
+  const locationTrackedRef = useRef(false);
+  useEffect(() => {
+    if (!user) return;
+    trackEvent('page_view', { path: location.pathname });
+  }, [location.pathname, user]);
+
+  useEffect(() => {
+    if (locationTrackedRef.current || !user) return;
+    locationTrackedRef.current = true;
+    // Get location from IP on first load
+    fetch('https://ipapi.co/json/')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.country_name || data.city) {
+          updateLocation(data.country_name || '', data.city || '');
+        }
+      })
+      .catch(() => {});
+  }, [user]);
 
   // Click outside to close menu
   useEffect(() => {
@@ -236,6 +258,21 @@ export default function AppLayout({ children }) {
               </button>
             );
           })}
+
+          {/* Admin link - only for admin email */}
+          {user?.email?.toLowerCase() === 'origenvitalsl@gmail.com' && (
+            <div className="pt-4 mt-4 border-t border-gold/10">
+              <button
+                onClick={() => { setSidebarOpen(false); navigate('/admin'); }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors ${
+                  location.pathname === '/admin' ? 'bg-gold/10 text-gold' : 'text-dark-blue/70 hover:bg-cream'
+                }`}
+              >
+                <span className="text-lg">📊</span>
+                <span>Dashboard</span>
+              </button>
+            </div>
+          )}
 
           {/* Chat history for Premium users */}
           {isPremium && location.pathname === '/chat' && (

@@ -678,6 +678,104 @@ REGLAS:
   }
 });
 
+// ── Analytics API ──
+app.post('/api/analytics', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const { event_type, metadata, country, city } = req.body || {};
+    if (!event_type) return res.status(400).json({ error: 'event_type requerido' });
+
+    await supabase
+      .from('analytics')
+      .insert({ user_id: user.id, event_type, metadata: metadata || {} });
+
+    if (country || city) {
+      const updates = {};
+      if (country) updates.country = country;
+      if (city) updates.city = city;
+      updates.last_location_update = new Date().toISOString();
+      await supabase.from('profiles').update(updates).eq('id', user.id);
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Analytics error:', err?.message || err);
+    res.status(500).json({ error: 'Error al registrar evento' });
+  }
+});
+
+// ── Admin Stats API ──
+const ADMIN_EMAIL = 'origenvitalsl@gmail.com';
+
+app.get('/api/admin/stats', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+    if (user.email?.toLowerCase() !== ADMIN_EMAIL) {
+      return res.status(403).json({ error: 'Acceso denegado' });
+    }
+
+    const { count: totalUsers } = await supabase
+      .from('profiles').select('*', { count: 'exact', head: true });
+
+    const { count: premiumUsers } = await supabase
+      .from('profiles').select('*', { count: 'exact', head: true }).eq('is_premium', true);
+
+    const { count: freeUsers } = await supabase
+      .from('profiles').select('*', { count: 'exact', head: true }).eq('is_premium', false);
+
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const { count: newToday } = await supabase
+      .from('profiles').select('*', { count: 'exact', head: true }).gte('created_at', today.toISOString());
+
+    const sevenDaysAgo = new Date(); sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    const { data: msgsByDay } = await supabase
+      .from('analytics').select('created_at').eq('event_type', 'message_sent')
+      .gte('created_at', sevenDaysAgo.toISOString()).order('created_at', { ascending: true });
+
+    const messagesPerDay = {};
+    for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - (6 - i)); messagesPerDay[d.toISOString().slice(0, 10)] = 0; }
+    (msgsByDay || []).forEach((ev) => { const k = ev.created_at?.slice(0, 10); if (k && k in messagesPerDay) messagesPerDay[k]++; });
+
+    const { data: countries } = await supabase.from('profiles').select('country').not('country', 'is', null);
+    const cCounts = {};
+    (countries || []).forEach((p) => { if (p.country) cCounts[p.country] = (cCounts[p.country] || 0) + 1; });
+    const topCountries = Object.entries(cCounts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([n, c]) => ({ name: n, count: c }));
+
+    const { data: cities } = await supabase.from('profiles').select('city').not('city', 'is', null);
+    const ctCounts = {};
+    (cities || []).forEach((p) => { if (p.city) ctCounts[p.city] = (ctCounts[p.city] || 0) + 1; });
+    const topCities = Object.entries(ctCounts).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([n, c]) => ({ name: n, count: c }));
+
+    const { data: gameEvents } = await supabase.from('analytics').select('metadata').eq('event_type', 'game_played');
+    const gCounts = {};
+    (gameEvents || []).forEach((ev) => { const g = ev.metadata?.game || 'unknown'; gCounts[g] = (gCounts[g] || 0) + 1; });
+    const topGames = Object.entries(gCounts).sort((a, b) => b[1] - a[1]).map(([n, c]) => ({ name: n, count: c }));
+
+    const { data: lastUsers } = await supabase
+      .from('profiles').select('id, email, country, city, is_premium, created_at, gender')
+      .order('created_at', { ascending: false }).limit(10);
+
+    res.json({
+      summary: { totalUsers, premiumUsers, freeUsers, newToday },
+      messagesPerDay: Object.entries(messagesPerDay).map(([d, c]) => ({ date: d, count: c })),
+      premiumVsFree: [{ name: 'Premium', value: premiumUsers }, { name: 'Free', value: freeUsers }],
+      topCountries,
+      topCities,
+      topGames,
+      lastUsers: (lastUsers || []).map((u) => ({
+        email: u.email, country: u.country || '—', city: u.city || '—',
+        isPremium: u.is_premium, createdAt: u.created_at, gender: u.gender || 'no especificado',
+      })),
+    });
+  } catch (err) {
+    console.error('Admin stats error:', err?.message || err);
+    res.status(500).json({ error: 'Error al obtener estadísticas' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Selah Vida API running on port ${PORT}`);
 });
