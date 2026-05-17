@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import DailyVerse from '../components/DailyVerse';
@@ -117,29 +118,29 @@ const EMOTIONS = [
 ];
 
 export default function Chat() {
-  const { user } = useAuth();
+  const { user, isPremium } = useAuth();
+  const location = useLocation();
   const [messages, setMessages] = useState([WELCOME_MSG]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [usage, setUsage] = useState(null);
   const [loadingUsage, setLoadingUsage] = useState(true);
   const [hideLimit, setHideLimit] = useState(false);
+  const [chatId, setChatId] = useState(null);
+  const [loadingChat, setLoadingChat] = useState(true);
   const bottomRef = useRef(null);
+  const chatIdRef = useRef(null);
+  const initializedRef = useRef(false);
 
   const hasInteracted = messages.length > 1;
   const used = usage?.messagesCount ?? 0;
   const limit = usage?.limit ?? 20;
-  const isPremium = usage?.isPremium ?? false;
   const resetIn = usage?.resetIn ?? 0;
   const atLimit = !isPremium && used >= limit;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  useEffect(() => {
-    fetchUsage();
-  }, []);
 
   useEffect(() => {
     if (!atLimit) setHideLimit(false);
@@ -150,6 +151,63 @@ export default function Chat() {
     return session?.access_token;
   };
 
+  const apiCall = useCallback(async (method, body) => {
+    const token = await getToken();
+    const opts = {
+      method,
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(`${API_BASE}/chats`, opts);
+    return { res, data: await res.json() };
+  }, []);
+
+  // Create a new chat in Supabase
+  const createNewChat = useCallback(async () => {
+    try {
+      const { data } = await apiCall('POST', { title: 'Nueva conversación', messages: [WELCOME_MSG] });
+      if (data?.id) {
+        setChatId(data.id);
+        chatIdRef.current = data.id;
+      }
+    } catch (err) {
+      console.error('Error creating chat:', err);
+    }
+  }, [apiCall]);
+
+  // Save current messages to Supabase
+  const saveMessages = useCallback(async (msgs, id) => {
+    const cid = id || chatIdRef.current;
+    if (!cid) return;
+    try {
+      const firstUserMsg = msgs.find((m) => m.role === 'user');
+      let title = 'Nueva conversación';
+      if (firstUserMsg) {
+        title = firstUserMsg.content.slice(0, 50);
+        if (firstUserMsg.content.length > 50) title += '…';
+      }
+      await apiCall('PUT', { id: cid, messages: msgs, title });
+    } catch (err) {
+      console.error('Error saving chat:', err);
+    }
+  }, [apiCall]);
+
+  // Save ref to latest messages for auto-save
+  const messagesRef = useRef(messages);
+  messagesRef.current = messages;
+
+  // Auto-save after messages change (for premium users)
+  useEffect(() => {
+    if (!isPremium || !chatIdRef.current) return;
+    if (messages.length <= 1) return; // Don't save welcome message alone
+    // Debounce save to avoid rapid saves
+    const timer = setTimeout(() => {
+      saveMessages(messagesRef.current);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [messages, isPremium, saveMessages]);
+
+  // Load chat list for context
   const fetchUsage = async () => {
     try {
       const token = await getToken();
@@ -171,11 +229,49 @@ export default function Chat() {
     }
   };
 
+  // Initialize: fetch usage + create/load chat for premium
+  useEffect(() => {
+    if (initializedRef.current) return;
+    initializedRef.current = true;
+
+    const init = async () => {
+      await fetchUsage();
+
+      // Check if we need to load a specific chat from sidebar
+      const state = location.state;
+      const loadChatId = state?.loadChatId;
+
+      if (loadChatId && isPremium) {
+        try {
+          const token = await getToken();
+          const res = await fetch(`${API_BASE}/chats?id=${loadChatId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (res.ok) {
+            const data = await res.json();
+            setMessages(data.messages || [WELCOME_MSG]);
+            setChatId(data.id);
+            chatIdRef.current = data.id;
+          }
+        } catch (err) {
+          console.error('Error loading chat:', err);
+          if (isPremium) await createNewChat();
+        }
+      } else if (isPremium) {
+        await createNewChat();
+      }
+
+      setLoadingChat(false);
+    };
+    init();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const sendText = async (text) => {
     if (!text || sending) return;
 
     const userMsg = { role: 'user', content: text };
-    setMessages((prev) => [...prev, userMsg]);
+    const updatedMessages = [...messages, userMsg];
+    setMessages(updatedMessages);
     setInput('');
     setSending(true);
 
@@ -208,21 +304,22 @@ export default function Chat() {
       const data = await res.json();
 
       if (res.status === 403 && data.premiumRequired) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            role: 'model',
-            content: `🙏 Has alcanzado el límite de 20 mensajes gratuitos de hoy.\n\nActualizá a **Premium** por solo **$4.99/mes** para seguir conversando sin límites y acceder a todas las funcionalidades.`,
-            premiumBlock: true,
-          },
-        ]);
+        const limitMsg = {
+          role: 'model',
+          content: `🙏 Has alcanzado el límite de 20 mensajes gratuitos de hoy.\n\nActualizá a **Premium** por solo **$4.99/mes** para seguir conversando sin límites y acceder a todas las funcionalidades.`,
+          premiumBlock: true,
+        };
+        const finalMessages = [...updatedMessages, limitMsg];
+        setMessages(finalMessages);
         setUsage((prev) => prev ? { ...prev, messagesCount: Math.min(prev.messagesCount || 0, 20) } : prev);
         return;
       }
 
       if (!res.ok) throw new Error(data.error);
 
-      setMessages((prev) => [...prev, { role: 'model', content: data.response }]);
+      const modelMsg = { role: 'model', content: data.response };
+      const finalMessages = [...updatedMessages, modelMsg];
+      setMessages(finalMessages);
       if (data.usage && typeof data.usage.messagesCount === 'number') {
         setUsage(data.usage);
       }
@@ -246,6 +343,14 @@ export default function Chat() {
   const handleEmotion = (emoji, label) => {
     sendText(`Me siento ${label} ${emoji}`);
   };
+
+  if (loadingChat) {
+    return (
+      <div className="flex items-center justify-center h-full bg-cream">
+        <div className="text-gold text-lg animate-pulse">Cargando…</div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full bg-cream">

@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../supabase';
 import PremiumModal from '../components/PremiumModal';
 import CancelModal from '../components/CancelModal';
+
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const navItems = [
   { to: '/chat', icon: '💬', label: 'Chat con Rafael' },
@@ -12,6 +15,16 @@ const navItems = [
   { to: '/prayer', icon: '🙏', label: 'Oración Guiada' },
 ];
 
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const now = new Date();
+  const diff = now - d;
+  const day = 86400000; // 24h in ms
+  if (diff < day) return 'Hoy';
+  if (diff < 2 * day) return 'Ayer';
+  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+}
+
 export default function AppLayout({ children }) {
   const { user, logout, isPremium } = useAuth();
   const navigate = useNavigate();
@@ -19,6 +32,42 @@ export default function AppLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [modalItem, setModalItem] = useState(null);
   const [cancelOpen, setCancelOpen] = useState(false);
+  const [chats, setChats] = useState([]);
+  const [loadingChats, setLoadingChats] = useState(false);
+
+  const getToken = useCallback(async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    return session?.access_token;
+  }, []);
+
+  const fetchChats = useCallback(async () => {
+    if (!isPremium) { setChats([]); return; }
+    try {
+      setLoadingChats(true);
+      const token = await getToken();
+      const res = await fetch(`${API_BASE}/chats`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setChats(data || []);
+      }
+    } catch (err) {
+      console.error('Error fetching chats:', err);
+    } finally {
+      setLoadingChats(false);
+    }
+  }, [isPremium, getToken]);
+
+  // Fetch chats when sidebar opens or user becomes premium
+  useEffect(() => {
+    if (sidebarOpen && isPremium) fetchChats();
+  }, [sidebarOpen, isPremium, fetchChats]);
+
+  // Re-fetch when chat page is visited
+  useEffect(() => {
+    if (location.pathname === '/chat' && isPremium) fetchChats();
+  }, [location.pathname, isPremium, fetchChats]);
 
   const handleNavClick = (item) => {
     setSidebarOpen(false);
@@ -27,6 +76,17 @@ export default function AppLayout({ children }) {
       return;
     }
     navigate(item.to);
+  };
+
+  const handleChatClick = async (chat) => {
+    setSidebarOpen(false);
+    // Navigate to chat page - we use a state to pass chat ID
+    navigate('/chat', { state: { loadChatId: chat.id } });
+  };
+
+  const handleNewChat = () => {
+    setSidebarOpen(false);
+    navigate('/chat');
   };
 
   const itemsWithLock = navItems.map((item) => ({
@@ -96,6 +156,43 @@ export default function AppLayout({ children }) {
               </button>
             );
           })}
+
+          {/* Chat history for Premium users */}
+          {isPremium && location.pathname === '/chat' && (
+            <div className="mt-4 pt-4 border-t border-gold/10">
+              <div className="flex items-center justify-between px-4 mb-2">
+                <span className="text-xs font-semibold text-dark-blue/40 uppercase tracking-wider">
+                  Conversaciones
+                </span>
+                <button
+                  onClick={handleNewChat}
+                  className="text-gold hover:text-gold-dark text-lg leading-none p-1"
+                  title="Nuevo chat"
+                >
+                  +
+                </button>
+              </div>
+              {loadingChats ? (
+                <div className="px-4 py-2 text-xs text-dark-blue/30 animate-pulse">Cargando…</div>
+              ) : chats.length === 0 ? (
+                <div className="px-4 py-2 text-xs text-dark-blue/30">Sin conversaciones guardadas</div>
+              ) : (
+                <div className="space-y-0.5">
+                  {chats.map((chat) => (
+                    <button
+                      key={chat.id}
+                      onClick={() => handleChatClick(chat)}
+                      className="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-xs text-left hover:bg-cream transition-colors"
+                    >
+                      <span className="text-dark-blue/40 shrink-0">💬</span>
+                      <span className="flex-1 truncate text-dark-blue/70">{chat.title}</span>
+                      <span className="text-dark-blue/30 shrink-0 text-[10px]">{formatDate(chat.updated_at)}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </nav>
 
         {/* User section */}

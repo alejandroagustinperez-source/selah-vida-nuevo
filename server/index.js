@@ -239,6 +239,102 @@ app.post('/api/chat', verifyToken, async (req, res) => {
   }
 });
 
+// ── Chats API ──
+app.get('/api/chats', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    if (req.query.id) {
+      const { data, error } = await supabase
+        .from('chats')
+        .select('*')
+        .eq('id', req.query.id)
+        .eq('user_id', user.id)
+        .single();
+      if (error) return res.status(404).json({ error: 'Chat no encontrado' });
+      return res.json(data);
+    }
+
+    const { data, error } = await supabase
+      .from('chats')
+      .select('id, title, created_at, updated_at')
+      .eq('user_id', user.id)
+      .order('updated_at', { ascending: false })
+      .limit(10);
+    if (error) return res.status(500).json({ error: 'Error al obtener chats' });
+    return res.json(data || []);
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || 'Error al obtener chats' });
+  }
+});
+
+app.post('/api/chats', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const { title, messages } = req.body || {};
+    const { data, error } = await supabase
+      .from('chats')
+      .insert({
+        user_id: user.id,
+        title: title || 'Nueva conversación',
+        messages: messages || [],
+      })
+      .select()
+      .single();
+    if (error) return res.status(500).json({ error: 'Error al crear chat' });
+    return res.json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || 'Error al crear chat' });
+  }
+});
+
+app.put('/api/chats', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const { id, title, messages } = req.body || {};
+    if (!id) return res.status(400).json({ error: 'ID de chat requerido' });
+
+    const updates = { updated_at: new Date().toISOString() };
+    if (title !== undefined) updates.title = title;
+    if (messages !== undefined) updates.messages = messages;
+
+    const { data, error } = await supabase
+      .from('chats')
+      .update(updates)
+      .eq('id', id)
+      .eq('user_id', user.id)
+      .select()
+      .single();
+    if (error) return res.status(500).json({ error: 'Error al actualizar chat' });
+    return res.json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || 'Error al actualizar chat' });
+  }
+});
+
+app.delete('/api/chats', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    if (!req.query.id) return res.status(400).json({ error: 'ID de chat requerido' });
+    const { error } = await supabase
+      .from('chats')
+      .delete()
+      .eq('id', req.query.id)
+      .eq('user_id', user.id);
+    if (error) return res.status(500).json({ error: 'Error al eliminar chat' });
+    return res.json({ success: true });
+  } catch (err) {
+    return res.status(500).json({ error: err?.message || 'Error al eliminar chat' });
+  }
+});
+
 app.get('/api/user/usage', verifyToken, async (req, res) => {
   try {
     const user = await getUserFromToken(req.userToken);
