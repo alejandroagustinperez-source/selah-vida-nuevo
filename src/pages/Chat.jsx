@@ -339,7 +339,7 @@ export default function Chat() {
       </div>
 
       {/* Input - fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white px-3 sm:px-4 py-3">
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white px-3 sm:px-4 py-3" style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom, 0px))' }}>
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-2 sm:gap-3">
           <input
             type="text"
@@ -352,9 +352,10 @@ export default function Chat() {
           <button
             type="submit"
             disabled={sending || !input.trim() || atLimit}
-            className="bg-gold text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
+            className="bg-gold text-white px-3 sm:px-5 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
           >
-            Enviar
+            <span className="sm:hidden">➤</span>
+            <span className="hidden sm:inline">Enviar</span>
           </button>
         </form>
         {atLimit && (
