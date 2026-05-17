@@ -4,6 +4,7 @@ import cors from 'cors';
 import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import { Resend } from 'resend';
+import { getRandomQuestions } from '../api/_trivia.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -341,10 +342,6 @@ const GROQ_MODEL = 'llama-3.1-8b-instant';
 
 function buildPrompt(type, params = {}) {
   switch (type) {
-    case 'trivia': {
-      const level = params.level || 'fácil';
-      return `Genera 5 preguntas de trivia bíblica de nivel ${level}. Responde SOLO en JSON con este formato: {questions: [{question, options: ["a","b","c","d"], correct: "a"}]}`;
-    }
     case 'verse':
       return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
     case 'wordsearch': {
@@ -406,6 +403,12 @@ app.post('/api/games', verifyToken, async (req, res) => {
     const profile = await getOrCreateProfile(user.id, user.email);
     if (!profile.is_premium) {
       return res.status(403).json({ error: 'Se requiere Premium', premiumRequired: true });
+    }
+
+    if (type === 'trivia') {
+      const level = params?.level || 'fácil';
+      const questions = getRandomQuestions(level, 5);
+      return res.json({ questions });
     }
 
     const prompt = buildPrompt(type, params);

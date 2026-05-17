@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { getRandomQuestions } from './_trivia.js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -10,19 +11,6 @@ const MODEL = 'llama-3.1-8b-instant';
 
 function buildPrompt(type, params = {}) {
   switch (type) {
-    case 'trivia': {
-      const level = params.level || 'fácil';
-      return `Genera 5 preguntas de trivia bíblica de nivel ${level}.
-REGLAS IMPORTANTES:
-- Cada pregunta debe estar COMPLETA y ser clara
-- Las respuestas deben ser 100% correctas según la Biblia RVR1960
-- Las opciones deben ser cortas (1-4 palabras)
-- Nivel fácil: personajes y eventos conocidos (Noé, Moisés, David)
-- Nivel medio: detalles específicos de historias bíblicas
-- Nivel difícil: preguntas detalladas pero con preguntas COMPLETAS
-IMPORTANTE: Solo incluye preguntas donde conozcas con certeza el versículo exacto. Incluye siempre la referencia bíblica precisa en formato Libro Cap:Ver
-SOLO JSON: {questions: [{question, options: ['','','',''], correct: 'opcion correcta', reference: 'Libro Cap:Ver', explanation: 'explicación breve'}]}`;
-    }
     case 'verse':
       return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Usa SIEMPRE la versión Reina Valera 1960 (RVR1960) en español para todos los versículos bíblicos. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
     case 'wordsearch': {
@@ -115,6 +103,12 @@ export default async function handler(req, res) {
 
     if (!profile?.is_premium) {
       return res.status(403).json({ error: 'Se requiere Premium', premiumRequired: true });
+    }
+
+    if (type === 'trivia') {
+      const level = params?.level || 'fácil';
+      const questions = getRandomQuestions(level, 5);
+      return res.json({ questions });
     }
 
     const prompt = buildPrompt(type, params);
