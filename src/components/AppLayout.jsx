@@ -41,17 +41,27 @@ export default function AppLayout({ children }) {
 
   return (
     <div className="h-screen flex overflow-hidden bg-cream">
+      {/* Mobile header - fixed */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gold/10 px-4 py-3 flex items-center gap-3">
+        <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú">
+          ☰
+        </button>
+        <NavLink to="/" className="font-serif text-base font-bold text-dark-blue flex items-center gap-2">
+          <span>🕊️</span> Selah Vida
+        </NavLink>
+      </header>
+
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-gold/10 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-gold/10 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -114,18 +124,8 @@ export default function AppLayout({ children }) {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top bar (mobile) */}
-        <header className="lg:hidden bg-white border-b border-gold/10 px-4 py-3 flex items-center gap-3 shrink-0">
-          <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú">
-            ☰
-          </button>
-          <NavLink to="/" className="font-serif text-base font-bold text-dark-blue flex items-center gap-2">
-            <span>🕊️</span> Selah Vida
-          </NavLink>
-        </header>
-
-        {/* Page content */}
-        <div className="flex-1 min-h-0">
+        {/* Page content with padding for fixed mobile header */}
+        <div className="flex-1 min-h-0 lg:pt-0 pt-[52px]">
           {children}
         </div>
       </div>
