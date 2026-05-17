@@ -49,6 +49,7 @@ export default function TriviaGame({ onBack }) {
         throw new Error(data.error || 'Error al generar preguntas');
       }
       const data = await res.json();
+      console.log('Trivia - Respuesta de Groq:', data);
       setQuestions(data.questions || []);
       setCurrentQ(0);
       setCorrectCount(0);
@@ -61,11 +62,11 @@ export default function TriviaGame({ onBack }) {
     }
   };
 
-  const handleAnswer = (optionKey) => {
+  const handleAnswer = (idx) => {
     if (showFeedback) return;
-    setSelected(optionKey);
+    setSelected(idx);
     setShowFeedback(true);
-    if (optionKey === questions[currentQ].correct) {
+    if (questions[currentQ].options[idx] === questions[currentQ].correct) {
       setCorrectCount((c) => c + 1);
     }
     feedbackTimeout.current = setTimeout(() => {
@@ -185,8 +186,8 @@ export default function TriviaGame({ onBack }) {
         </div>
         <div className="grid gap-2.5">
           {OPTION_LABELS.map((key, idx) => {
-            const isCorrect = key === q.correct;
-            const isSelected = key === selected;
+            const isCorrect = q.options[idx] === q.correct;
+            const isSelected = idx === selected;
             let bg = 'bg-white border-gold/10 hover:border-gold/30 hover:shadow-sm';
             if (showFeedback && isCorrect) bg = 'bg-green-50 border-green-400';
             else if (showFeedback && isSelected && !isCorrect) bg = 'bg-red-50 border-red-300';
@@ -195,7 +196,7 @@ export default function TriviaGame({ onBack }) {
             return (
               <button
                 key={key}
-                onClick={() => handleAnswer(key)}
+                onClick={() => handleAnswer(idx)}
                 disabled={showFeedback}
                 className={`border rounded-2xl p-4 text-left transition-all active:scale-[0.98] disabled:active:scale-100 ${bg}`}
               >
@@ -210,7 +211,7 @@ export default function TriviaGame({ onBack }) {
                      showFeedback && isSelected && !isCorrect ? '✗' :
                      key.toUpperCase()}
                   </span>
-                  <span className="text-sm text-dark-blue leading-relaxed">{q.options[key]}</span>
+                  <span className="text-sm text-dark-blue leading-relaxed">{q.options[idx]}</span>
                 </div>
               </button>
             );
