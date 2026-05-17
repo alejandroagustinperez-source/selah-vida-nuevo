@@ -510,6 +510,78 @@ app.get('/api/canvas', verifyToken, async (req, res) => {
   }
 });
 
+// ── Prayer API ──
+const PRAYER_CATEGORIES = {
+  ansiedad: 'Ansiedad y Paz',
+  sanidad: 'Sanidad',
+  familia: 'Familia',
+  trabajo: 'Trabajo y Finanzas',
+  gratitud: 'Gratitud',
+  arrepentimiento: 'Arrepentimiento',
+  fe: 'Fe y Propósito',
+};
+
+app.post('/api/prayer', verifyToken, async (req, res) => {
+  try {
+    const { category, message, history = [] } = req.body;
+    if (!category || !PRAYER_CATEGORIES[category]) {
+      return res.status(400).json({ error: 'Categoría no válida' });
+    }
+
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const profile = await getOrCreateProfile(user.id, user.email);
+    if (!profile.is_premium) {
+      return res.status(403).json({ error: 'Se requiere Premium', premiumRequired: true });
+    }
+
+    const categoryName = PRAYER_CATEGORIES[category];
+    const PRAYER_SYSTEM = `Eres Rafael, cuyo nombre significa "Dios sana". Eres un guía espiritual cristiano que ora junto al usuario.
+
+Estás guiando una oración sobre: "${categoryName}".
+
+REGLAS:
+- Hablá SIEMPRE en español latinoamericano
+- Usá primera persona del plural: oremos, pidamos, agradezcamos, caminemos
+- Incorporá versículos bíblicos RVR1960 relevantes al tema
+- Sé cálido, empático y espiritual
+- Estructurá la oración en etapas: Alabanza a Dios → Petición específica → Agradecimiento → Cierre con Amén
+- Máximo 4 intercambios en total, luego cerrá con un "Amén" natural
+- Si el usuario comparte una petición personal, incorporala a la oración
+- No uses respuestas genéricas — personalizá según lo que el usuario escriba
+- Cada mensaje tuyo debe incluir partes de la oración misma
+- Cuando sea el momento de cerrar, decí "Amén, que así sea" y preguntá "¿Hay algo más en tu corazón?" solo si llevan menos de 3 intercambios`;
+
+    const mappedHistory = (history || []).slice(-8).map((msg) => ({
+      role: msg.role === 'model' ? 'assistant' : msg.role,
+      content: msg.content || '',
+    })).filter((msg) => msg.content);
+
+    const messages = [
+      { role: 'system', content: PRAYER_SYSTEM },
+      ...mappedHistory,
+    ];
+
+    if (message) messages.push({ role: 'user', content: message });
+
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.1-8b-instant',
+      messages,
+      temperature: 0.7,
+      max_tokens: 500,
+    });
+
+    const response = completion.choices?.[0]?.message?.content || '';
+    const isFinal = response.toLowerCase().includes('amén');
+
+    res.json({ response, isFinal });
+  } catch (err) {
+    console.error('Prayer error:', err?.message || err);
+    res.status(500).json({ error: 'Error al procesar la oración' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Selah Vida API running on port ${PORT}`);
 });
