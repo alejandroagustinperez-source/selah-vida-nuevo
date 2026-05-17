@@ -6,6 +6,7 @@ import Groq from 'groq-sdk';
 import { Resend } from 'resend';
 import { getRandomQuestions } from '../api/_trivia.js';
 import { getRandomVerse } from '../api/_verses.js';
+import { getRandomQuotes } from '../api/_quotes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -347,8 +348,6 @@ function buildPrompt(type, params = {}) {
       const theme = params.theme || 'profetas';
       return `Genera 8 palabras bíblicas relacionadas al tema ${theme} (ej: profetas, discípulos, lugares). Solo las palabras, SOLO en JSON: {theme, words: []}`;
     }
-    case 'quote':
-      return `Genera 5 citas bíblicas famosas con 4 opciones de personajes cada una. SOLO en JSON: {quotes: [{quote, reference, options: ["a","b","c","d"], correct: "a", explanation}]}`;
     default:
       throw new Error('Tipo de juego no válido');
   }
@@ -413,6 +412,24 @@ app.post('/api/games', verifyToken, async (req, res) => {
     if (type === 'verse') {
       const verse = getRandomVerse();
       return res.json(verse);
+    }
+
+    if (type === 'quote') {
+      const LABELS = ['a', 'b', 'c', 'd'];
+      const raw = getRandomQuotes(5);
+      const quotes = raw.map((q) => {
+        const correctIdx = q.options.indexOf(q.correct);
+        const options = {};
+        LABELS.forEach((label, i) => { options[label] = q.options[i] || ''; });
+        return {
+          quote: q.quote,
+          reference: q.reference,
+          options,
+          correct: LABELS[correctIdx] || 'a',
+          explanation: q.passage,
+        };
+      });
+      return res.json({ quotes });
     }
 
     const prompt = buildPrompt(type, params);
