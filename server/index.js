@@ -335,6 +335,86 @@ app.post('/api/webhook/hotmart', async (req, res) => {
   }
 });
 
+// ── Games API ──
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+
+function buildPrompt(type, params = {}) {
+  switch (type) {
+    case 'trivia': {
+      const level = params.level || 'fácil';
+      return `Genera 5 preguntas de trivia bíblica de nivel ${level}. Responde SOLO en JSON con este formato: {questions: [{question, options: ["a","b","c","d"], correct: "a"}]}`;
+    }
+    case 'verse':
+      return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
+    case 'wordsearch': {
+      const theme = params.theme || 'profetas';
+      return `Genera 8 palabras bíblicas relacionadas al tema ${theme} (ej: profetas, discípulos, lugares). Solo las palabras, SOLO en JSON: {theme, words: []}`;
+    }
+    case 'quote':
+      return `Genera 5 citas bíblicas famosas con 4 opciones de personajes cada una. SOLO en JSON: {quotes: [{quote, reference, options: ["a","b","c","d"], correct: "a", explanation}]}`;
+    default:
+      throw new Error('Tipo de juego no válido');
+  }
+}
+
+function extractJSON(text) {
+  const trimmed = text.trim();
+  try { return JSON.parse(trimmed); } catch {}
+  const blockMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/);
+  if (blockMatch) { try { return JSON.parse(blockMatch[1].trim()); } catch {} }
+  const braceMatch = trimmed.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+  if (braceMatch) { try { return JSON.parse(braceMatch[0]); } catch {} }
+  throw new Error('No se pudo extraer JSON');
+}
+
+async function callClaude(prompt) {
+  if (!ANTHROPIC_API_KEY) throw new Error('ANTHROPIC_API_KEY no configurada');
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2048,
+      system: 'Eres un asistente que genera contenido para juegos bíblicos. Siempre respondes SOLO con JSON válido, sin texto adicional.',
+      messages: [{ role: 'user', content: prompt }],
+    }),
+  });
+  if (!res.ok) {
+    const errText = await res.text();
+    console.error('Claude API error:', res.status, errText);
+    throw new Error(`Error de Claude API: ${res.status}`);
+  }
+  const data = await res.json();
+  const text = data.content?.[0]?.text || '';
+  return extractJSON(text);
+}
+
+app.post('/api/games', verifyToken, async (req, res) => {
+  try {
+    const { type, params } = req.body;
+    if (!type) return res.status(400).json({ error: 'Tipo de juego requerido' });
+
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const profile = await getOrCreateProfile(user.id, user.email);
+    if (!profile.is_premium) {
+      return res.status(403).json({ error: 'Se requiere Premium', premiumRequired: true });
+    }
+
+    const prompt = buildPrompt(type, params);
+    const result = await callClaude(prompt);
+    res.json(result);
+  } catch (err) {
+    console.error('Games error:', err?.message || err);
+    res.status(500).json({ error: err?.message || 'Error al generar contenido' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Selah Vida API running on port ${PORT}`);
 });
