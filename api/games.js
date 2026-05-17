@@ -12,7 +12,7 @@ function buildPrompt(type, params = {}) {
   switch (type) {
     case 'trivia': {
       const level = params.level || 'fácil';
-      return `Genera 5 preguntas de trivia bíblica de nivel ${level}. Cada opción debe ser el texto completo de la respuesta, no solo letras. Responde SOLO en JSON con este formato exacto: {questions: [{question, options: ["texto opción 1","texto opción 2","texto opción 3","texto opción 4"], correct: "texto exacto de la opción correcta"}]}`;
+      return `Genera 5 preguntas de trivia bíblica de nivel ${level}. Las opciones deben ser MUY CORTAS (máximo 4 palabras). Solo nombres, lugares o conceptos concretos, nunca frases largas. SOLO JSON: {questions: [{question, options: ["","","",""], correct: "opcion correcta"}]}`;
     }
     case 'verse':
       return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Usa SIEMPRE la versión Reina Valera 1960 (RVR1960) en español para todos los versículos bíblicos. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
 
@@ -21,12 +21,7 @@ export default function TriviaGame({ onBack }) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [error, setError] = useState('');
-  const feedbackTimeout = useRef(null);
   const { isPremium } = useAuth();
-
-  useEffect(() => {
-    return () => { if (feedbackTimeout.current) clearTimeout(feedbackTimeout.current); };
-  }, []);
 
   const getToken = async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -69,15 +64,16 @@ export default function TriviaGame({ onBack }) {
     if (questions[currentQ].options[idx] === questions[currentQ].correct) {
       setCorrectCount((c) => c + 1);
     }
-    feedbackTimeout.current = setTimeout(() => {
-      setSelected(null);
-      setShowFeedback(false);
-      if (currentQ + 1 < questions.length) {
-        setCurrentQ((c) => c + 1);
-      } else {
-        setScreen('result');
-      }
-    }, 1500);
+  };
+
+  const nextQuestion = () => {
+    setSelected(null);
+    setShowFeedback(false);
+    if (currentQ + 1 < questions.length) {
+      setCurrentQ((c) => c + 1);
+    } else {
+      setScreen('result');
+    }
   };
 
   if (!isPremium) {
@@ -169,6 +165,8 @@ export default function TriviaGame({ onBack }) {
   const q = questions[currentQ];
   if (!q) return null;
 
+  const isCorrectAnswer = selected !== null && q.options[selected] === q.correct;
+
   return (
     <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
       <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
@@ -188,7 +186,8 @@ export default function TriviaGame({ onBack }) {
           {OPTION_LABELS.map((key, idx) => {
             const isCorrect = q.options[idx] === q.correct;
             const isSelected = idx === selected;
-            let bg = 'bg-white border-gold/10 hover:border-gold/30 hover:shadow-sm';
+            let bg = 'bg-white border-gold/10';
+            if (!showFeedback) bg += ' hover:border-gold/30 hover:shadow-sm';
             if (showFeedback && isCorrect) bg = 'bg-green-50 border-green-400';
             else if (showFeedback && isSelected && !isCorrect) bg = 'bg-red-50 border-red-300';
             else if (isSelected) bg = 'bg-gold/10 border-gold';
@@ -217,6 +216,28 @@ export default function TriviaGame({ onBack }) {
             );
           })}
         </div>
+
+        {showFeedback && (
+          <div className="mt-5 space-y-3">
+            <div className={`rounded-2xl p-4 text-sm text-center font-medium ${
+              isCorrectAnswer
+                ? 'bg-green-50 border border-green-200 text-green-700'
+                : 'bg-red-50 border border-red-200 text-red-600'
+            }`}>
+              {isCorrectAnswer ? (
+                <>✅ ¡Correcto!</>
+              ) : (
+                <>❌ La respuesta correcta era: <span className="font-bold">{q.correct}</span></>
+              )}
+            </div>
+            <button
+              onClick={nextQuestion}
+              className="w-full bg-gold text-white py-3 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors"
+            >
+              {currentQ + 1 < questions.length ? 'Siguiente pregunta →' : 'Ver resultado'}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
