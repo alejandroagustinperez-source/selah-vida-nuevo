@@ -131,69 +131,71 @@ export default function Prayer() {
   }
 
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className={`bg-gradient-to-r ${CATEGORIES.find((c) => c.id === category?.id)?.gradient || 'from-gold to-gold-dark'} px-4 sm:px-6 py-5 shrink-0 relative overflow-hidden`}>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-2 left-4 text-6xl">✝️</div>
-          <div className="absolute bottom-1 right-8 text-4xl">🕯️</div>
-        </div>
-        <div className="relative z-10">
-          <div className="flex items-center justify-between mb-1">
-            <button
-              onClick={() => { setScreen('categories'); setPrayerEnded(false); }}
-              className="text-white/80 hover:text-white text-sm flex items-center gap-1"
-            >
-              &larr; Temas
-            </button>
-            <span className="text-white/60 text-xs bg-white/20 px-3 py-1 rounded-full">
-              {category?.icon} {category?.label}
-            </span>
+    <div className="relative h-full">
+      <div className="h-full overflow-y-auto pb-[72px]">
+        {/* Header */}
+        <div className={`bg-gradient-to-r ${CATEGORIES.find((c) => c.id === category?.id)?.gradient || 'from-gold to-gold-dark'} px-4 sm:px-6 py-5 relative overflow-hidden`}>
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-2 left-4 text-6xl">✝️</div>
+            <div className="absolute bottom-1 right-8 text-4xl">🕯️</div>
           </div>
-          <h2 className="font-serif text-lg font-bold text-white">Orando por {category?.label?.toLowerCase()}</h2>
-          <p className="text-white/70 text-xs mt-0.5">Rafael te guía en oración</p>
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-1">
+              <button
+                onClick={() => { setScreen('categories'); setPrayerEnded(false); }}
+                className="text-white/80 hover:text-white text-sm flex items-center gap-1"
+              >
+                &larr; Temas
+              </button>
+              <span className="text-white/60 text-xs bg-white/20 px-3 py-1 rounded-full">
+                {category?.icon} {category?.label}
+              </span>
+            </div>
+            <h2 className="font-serif text-lg font-bold text-white">Orando por {category?.label?.toLowerCase()}</h2>
+            <p className="text-white/70 text-xs mt-0.5">Rafael te guía en oración</p>
+          </div>
+        </div>
+
+        {/* Messages */}
+        <div className="px-4 sm:px-6 py-4 space-y-4">
+          {messages.map((msg, i) => (
+            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`max-w-[85%] sm:max-w-[75%] rounded-2xl p-4 text-sm leading-relaxed ${
+                msg.role === 'user'
+                  ? 'bg-gold/10 text-dark-blue rounded-br-md'
+                  : 'bg-white border border-gold/10 text-dark-blue shadow-sm rounded-bl-md'
+              }`}>
+                {msg.content}
+              </div>
+            </div>
+          ))}
+
+          {loading && (
+            <div className="flex justify-start">
+              <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md p-4 text-sm text-dark-blue/60">
+                <span className="animate-pulse">Escribiendo...</span>
+              </div>
+            </div>
+          )}
+
+          {prayerEnded && (
+            <div className="text-center pt-2">
+              <button
+                onClick={() => setScreen('categories')}
+                className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors"
+              >
+                🙏 Nueva oración
+              </button>
+            </div>
+          )}
+
+          <div ref={chatEnd} />
         </div>
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-4">
-        {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[85%] sm:max-w-[75%] rounded-2xl p-4 text-sm leading-relaxed ${
-              msg.role === 'user'
-                ? 'bg-gold/10 text-dark-blue rounded-br-md'
-                : 'bg-white border border-gold/10 text-dark-blue shadow-sm rounded-bl-md'
-            }`}>
-              {msg.content}
-            </div>
-          </div>
-        ))}
-
-        {loading && (
-          <div className="flex justify-start">
-            <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md p-4 text-sm text-dark-blue/60">
-              <span className="animate-pulse">Escribiendo...</span>
-            </div>
-          </div>
-        )}
-
-        {prayerEnded && (
-          <div className="text-center pt-2">
-            <button
-              onClick={() => setScreen('categories')}
-              className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors"
-            >
-              🙏 Nueva oración
-            </button>
-          </div>
-        )}
-
-        <div ref={chatEnd} />
-      </div>
-
-      {/* Input */}
+      {/* Input - fixed at bottom */}
       {!prayerEnded && (
-        <div className="shrink-0 border-t border-gold/10 bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-3">
+        <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-3">
           <div className="flex gap-3 max-w-2xl mx-auto">
             <input
               type="text"
@@ -201,7 +203,7 @@ export default function Prayer() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={messages.length === 0 ? 'Escribí tu petición...' : 'Compartí lo que está en tu corazón...'}
-              className="flex-1 px-5 py-3 rounded-full border border-gold/20 bg-cream focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm"
+              className="w-full px-5 py-3 rounded-full border border-gold/20 bg-cream focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm"
               disabled={loading}
             />
             <button

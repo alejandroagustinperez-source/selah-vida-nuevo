@@ -248,96 +248,98 @@ export default function Chat() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-cream">
-      {/* Header */}
-      <header className="bg-white border-b border-gold/10 px-6 py-3 flex items-center justify-between shrink-0">
-        <div>
-          <h1 className="font-serif text-lg font-bold leading-tight">Rafael</h1>
-          <p className="text-xs text-dark-blue/50">Tu acompañante espiritual</p>
-        </div>
-        <div className="flex items-center gap-4">
-          {!loadingUsage && !isPremium && (
-            <span className={`text-xs px-3 py-1 rounded-full ${atLimit ? 'bg-amber-50 text-amber-700 font-medium' : 'text-dark-blue/50 bg-cream'}`}>
-              {used}/{limit} mensajes
-            </span>
-          )}
-          {isPremium && (
-            <span className="text-xs text-gold bg-gold/10 px-3 py-1 rounded-full font-semibold">Premium</span>
-          )}
-        </div>
-      </header>
+    <div className="relative h-full bg-cream">
+      <div className="h-full overflow-y-auto pb-[80px] lg:pb-0">
+        {/* Header */}
+        <header className="bg-white border-b border-gold/10 px-6 py-3 flex items-center justify-between">
+          <div>
+            <h1 className="font-serif text-lg font-bold leading-tight">Rafael</h1>
+            <p className="text-xs text-dark-blue/50">Tu acompañante espiritual</p>
+          </div>
+          <div className="flex items-center gap-4">
+            {!loadingUsage && !isPremium && (
+              <span className={`text-xs px-3 py-1 rounded-full ${atLimit ? 'bg-amber-50 text-amber-700 font-medium' : 'text-dark-blue/50 bg-cream'}`}>
+                {used}/{limit} mensajes
+              </span>
+            )}
+            {isPremium && (
+              <span className="text-xs text-gold bg-gold/10 px-3 py-1 rounded-full font-semibold">Premium</span>
+            )}
+          </div>
+        </header>
 
-      {/* Limit reached modal/banner */}
-      {atLimit && !hideLimit && (
-        <LimitModal resetIn={resetIn} onClose={() => setHideLimit(true)} />
-      )}
+        {/* Limit reached modal/banner */}
+        {atLimit && !hideLimit && (
+          <LimitModal resetIn={resetIn} onClose={() => setHideLimit(true)} />
+        )}
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-3xl mx-auto w-full">
-        <DailyVerse />
-        {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div
-              className={`max-w-[80%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
-                msg.role === 'user'
-                  ? 'bg-gold text-white rounded-br-md'
-                  : msg.premiumBlock
-                    ? 'bg-amber-50 border border-amber-200 text-dark-blue rounded-bl-md'
-                    : 'bg-white border border-gold/10 text-dark-blue rounded-bl-md shadow-sm'
-              }`}
-            >
-              {msg.premiumBlock ? (
-                <>
-                  <p className="whitespace-pre-wrap mb-3">{msg.content}</p>
-                  <a
-                    href="#"
-                    onClick={(e) => { e.preventDefault(); window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }}
-                    className="inline-block bg-gold text-white text-sm px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
+        {/* Messages */}
+        <div className="px-4 py-6 space-y-4 max-w-3xl mx-auto">
+          <DailyVerse />
+          {messages.map((msg, i) => (
+            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div
+                className={`max-w-[80%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
+                  msg.role === 'user'
+                    ? 'bg-gold text-white rounded-br-md'
+                    : msg.premiumBlock
+                      ? 'bg-amber-50 border border-amber-200 text-dark-blue rounded-bl-md'
+                      : 'bg-white border border-gold/10 text-dark-blue rounded-bl-md shadow-sm'
+                }`}
+              >
+                {msg.premiumBlock ? (
+                  <>
+                    <p className="whitespace-pre-wrap mb-3">{msg.content}</p>
+                    <a
+                      href="#"
+                      onClick={(e) => { e.preventDefault(); window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }}
+                      className="inline-block bg-gold text-white text-sm px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
+                    >
+                      Obtener Premium — $4.99/mes
+                    </a>
+                  </>
+                ) : (
+                  <MessageContent content={msg.content} />
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* Emotion quick-select buttons */}
+          {!hasInteracted && !sending && (
+            <div className="py-2">
+              <p className="text-xs text-dark-blue/40 text-center mb-3">¿Cómo te sentís hoy?</p>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                {EMOTIONS.map((e) => (
+                  <button
+                    key={e.label}
+                    onClick={() => handleEmotion(e.emoji, e.label)}
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gold/10 text-sm text-dark-blue/70 hover:bg-gold/10 hover:border-gold/30 hover:text-dark-blue transition-all text-left"
                   >
-                    Obtener Premium — $4.99/mes
-                  </a>
-                </>
-              ) : (
-                <MessageContent content={msg.content} />
-              )}
+                    <span className="text-base">{e.emoji}</span>
+                    <span className="text-xs font-medium">{e.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          )}
 
-        {/* Emotion quick-select buttons */}
-        {!hasInteracted && !sending && (
-          <div className="py-2">
-            <p className="text-xs text-dark-blue/40 text-center mb-3">¿Cómo te sentís hoy?</p>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-              {EMOTIONS.map((e) => (
-                <button
-                  key={e.label}
-                  onClick={() => handleEmotion(e.emoji, e.label)}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gold/10 text-sm text-dark-blue/70 hover:bg-gold/10 hover:border-gold/30 hover:text-dark-blue transition-all text-left"
-                >
-                  <span className="text-base">{e.emoji}</span>
-                  <span className="text-xs font-medium">{e.label}</span>
-                </button>
-              ))}
+          {sending && (
+            <div className="flex justify-start">
+              <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md px-5 py-3 text-sm text-dark-blue/50">
+                <span className="animate-pulse">Escribiendo</span>
+                <span className="animate-pulse">.</span>
+                <span className="animate-pulse" style={{ animationDelay: '0.2s' }}>.</span>
+                <span className="animate-pulse" style={{ animationDelay: '0.4s' }}>.</span>
+              </div>
             </div>
-          </div>
-        )}
-
-        {sending && (
-          <div className="flex justify-start">
-            <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md px-5 py-3 text-sm text-dark-blue/50">
-              <span className="animate-pulse">Escribiendo</span>
-              <span className="animate-pulse">.</span>
-              <span className="animate-pulse" style={{ animationDelay: '0.2s' }}>.</span>
-              <span className="animate-pulse" style={{ animationDelay: '0.4s' }}>.</span>
-            </div>
-          </div>
-        )}
-        <div ref={bottomRef} />
+          )}
+          <div ref={bottomRef} />
+        </div>
       </div>
 
-      {/* Input */}
-      <div className="border-t border-gold/10 bg-white px-4 py-4 shrink-0">
+      {/* Input - fixed at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white px-4 py-4">
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-3">
           <input
             type="text"
@@ -345,7 +347,7 @@ export default function Chat() {
             onChange={(e) => setInput(e.target.value)}
             placeholder={hasInteracted ? "Escribí tu mensaje..." : "O escribí lo que sientes..."}
             disabled={sending || atLimit}
-            className="flex-1 px-5 py-3 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm disabled:opacity-40"
+            className="w-full px-5 py-3 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm disabled:opacity-40"
           />
           <button
             type="submit"
