@@ -70,11 +70,11 @@ export default function AppLayout({ children }) {
     if (sidebarOpen && isPremium) fetchChats();
   }, [sidebarOpen, isPremium, fetchChats]);
 
-  // Re-fetch when chat page is visited or premium status changes
+  // Re-fetch when chat page is visited, URL changes, or premium status changes
   useEffect(() => {
-    console.log('[Chats Debug] Pathname or premium changed:', location.pathname, isPremium);
+    console.log('[Chats Debug] Pathname/search/premium changed:', location.pathname, location.search, isPremium);
     if (location.pathname === '/chat' && isPremium) fetchChats();
-  }, [location.pathname, isPremium, fetchChats]);
+  }, [location.pathname, location.search, isPremium, fetchChats]);
 
   const handleNavClick = (item) => {
     setSidebarOpen(false);
@@ -87,13 +87,12 @@ export default function AppLayout({ children }) {
 
   const handleChatClick = async (chat) => {
     setSidebarOpen(false);
-    // Navigate to chat page - we use a state to pass chat ID
-    navigate('/chat', { state: { loadChatId: chat.id } });
+    navigate('/chat?id=' + chat.id);
   };
 
   const handleNewChat = () => {
     setSidebarOpen(false);
-    navigate('/chat');
+    navigate('/chat?t=' + Date.now());
   };
 
   const itemsWithLock = navItems.map((item) => ({

@@ -173,13 +173,18 @@ export default function Chat() {
     }
   };
 
-  // Initialize: fetch usage + load specific chat if coming from sidebar
+  // Initialize / respond to URL search changes (load chat or new chat)
   useEffect(() => {
     const init = async () => {
+      setLoadingChat(true);
+      setMessages([WELCOME_MSG]);
+      setChatId(null);
+      chatIdRef.current = null;
+
       await fetchUsage();
 
-      const state = location.state;
-      const loadChatId = state?.loadChatId;
+      const params = new URLSearchParams(location.search);
+      const loadChatId = params.get('id');
 
       if (loadChatId) {
         console.log('[Chat Debug] Loading chat:', loadChatId);
@@ -193,7 +198,7 @@ export default function Chat() {
             setMessages(data.messages || [WELCOME_MSG]);
             setChatId(data.id);
             chatIdRef.current = data.id;
-            console.log('[Chat Debug] Chat loaded:', data.id, 'messages:', data.messages?.length);
+            console.log('[Chat Debug] Chat loaded:', data.id, 'msgs:', data.messages?.length);
           }
         } catch (err) {
           console.error('[Chat Debug] Error loading chat:', err);
@@ -203,7 +208,7 @@ export default function Chat() {
       setLoadingChat(false);
     };
     init();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [location.search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-save effect: creates chat + saves messages for premium users
   const messagesRef = useRef(messages);
