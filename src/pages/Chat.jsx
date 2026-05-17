@@ -339,20 +339,20 @@ export default function Chat() {
       </div>
 
       {/* Input - fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white px-4 py-4">
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-3">
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white px-3 sm:px-4 py-3">
+        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto flex gap-2 sm:gap-3">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={hasInteracted ? "Escribí tu mensaje..." : "O escribí lo que sientes..."}
+            placeholder="Escribe tu mensaje..."
             disabled={sending || atLimit}
-            className="w-full px-5 py-3 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm disabled:opacity-40"
+            className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm placeholder:text-xs sm:placeholder:text-sm disabled:opacity-40 min-w-0"
           />
           <button
             type="submit"
             disabled={sending || !input.trim() || atLimit}
-            className="bg-gold text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
+            className="bg-gold text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
           >
             Enviar
           </button>

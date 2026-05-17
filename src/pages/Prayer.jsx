@@ -195,21 +195,21 @@ export default function Prayer() {
 
       {/* Input - fixed at bottom */}
       {!prayerEnded && (
-        <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-3">
-          <div className="flex gap-3 max-w-2xl mx-auto">
+        <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-gold/10 bg-white/80 backdrop-blur-sm px-3 sm:px-4 py-3">
+          <div className="flex gap-2 sm:gap-3 max-w-2xl mx-auto">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={messages.length === 0 ? 'Escribí tu petición...' : 'Compartí lo que está en tu corazón...'}
-              className="w-full px-5 py-3 rounded-full border border-gold/20 bg-cream focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm"
+              placeholder="Escribe tu petición..."
+              className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-gold/20 bg-cream focus:outline-none focus:ring-2 focus:ring-gold/40 text-sm placeholder:text-xs sm:placeholder:text-sm min-w-0"
               disabled={loading}
             />
             <button
               onClick={sendMessage}
               disabled={!input.trim() || loading}
-              className="shrink-0 bg-gold text-white px-5 py-3 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors disabled:opacity-40"
+              className="shrink-0 bg-gold text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold hover:bg-gold-dark transition-colors disabled:opacity-40"
             >
               Enviar
             </button>
