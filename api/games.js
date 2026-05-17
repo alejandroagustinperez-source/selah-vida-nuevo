@@ -15,7 +15,7 @@ function buildPrompt(type, params = {}) {
       return `Genera 5 preguntas de trivia bíblica de nivel ${level}. Responde SOLO en JSON con este formato: {questions: [{question, options: ["a","b","c","d"], correct: "a"}]}`;
     }
     case 'verse':
-      return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
+      return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Usa SIEMPRE la versión Reina Valera 1960 (RVR1960) en español para todos los versículos bíblicos. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
     case 'wordsearch': {
       const theme = params.theme || 'profetas';
       return `Genera 8 palabras bíblicas relacionadas al tema ${theme} (ej: profetas, discípulos, lugares). Solo las palabras, SOLO en JSON: {theme, words: []}`;
