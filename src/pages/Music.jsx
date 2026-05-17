@@ -18,18 +18,18 @@ const GRADIENTS = [
 ];
 
 const SONGS = [
-  { id: 1, title: 'Océanos (Donde Mis Pies Pueden Fallar)', artist: 'Hillsong en Español', category: 'Adoración', youtubeId: 'Fo_b1VJkdAU', gradient: 0 },
-  { id: 2, title: 'Rindo Todo', artist: 'Hillsong en Español', category: 'Adoración', youtubeId: '8p9J1p9dztQ', gradient: 1 },
+  { id: 1, title: 'Océanos (Donde Mis Pies Pueden Fallar)', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'dJGnOEWfkE0', gradient: 0 },
+  { id: 2, title: 'Rindo Todo', artist: 'Hillsong Español', category: 'Adoración', youtubeId: '8p9J1p9dztQ', gradient: 1 },
   { id: 3, title: 'Eres Todo Poderoso', artist: 'Marcos Witt', category: 'Alabanza', youtubeId: 'UlMFSGzpFXk', gradient: 2 },
-  { id: 4, title: 'Tu Fidelidad', artist: 'New Wine en Español', category: 'Adoración', youtubeId: '5H2elUTB_8I', gradient: 3 },
-  { id: 5, title: 'Nada Se Compara', artist: 'Hillsong en Español', category: 'Adoración', youtubeId: '4YZQwkBpDck', gradient: 4 },
+  { id: 4, title: 'Tu Fidelidad', artist: 'Hillsong Español', category: 'Adoración', youtubeId: '5H2elUTB_8I', gradient: 3 },
+  { id: 5, title: 'Nada Se Compara', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'yCOhAMxMpZI', gradient: 4 },
   { id: 6, title: 'Quiero Conocerte Más', artist: 'Jesús Adrián Romero', category: 'Adoración', youtubeId: '7f3GQxoZO8M', gradient: 5 },
   { id: 7, title: 'Me Rindo A Ti', artist: 'Tercer Cielo', category: 'Alabanza', youtubeId: 'cC9OKZ6NLXI', gradient: 6 },
   { id: 8, title: 'Glorioso', artist: 'Marcela Gándara', category: 'Alabanza', youtubeId: 'kHCqBFMHNKA', gradient: 7 },
-  { id: 9, title: 'Todo Lo Puedo', artist: 'Christine D\'Clario', category: 'Alabanza', youtubeId: 'xZCjPHCkDKs', gradient: 8 },
+  { id: 9, title: 'Todo Lo Puedo', artist: 'Christine D\'Clario', category: 'Alabanza', youtubeId: 'W6MKZNI_sets', gradient: 8 },
   { id: 10, title: 'Cuán Grande Es Él', artist: 'Marcos Witt', category: 'Clásicos', youtubeId: 'KFCzQPNlRtY', gradient: 9 },
-  { id: 11, title: 'No Hay Lugar Más Alto', artist: 'Hillsong en Español', category: 'Adoración', youtubeId: 'Xm8a7nUNHpY', gradient: 10 },
-  { id: 12, title: 'Ven A Este Lugar', artist: 'Elevation Worship en Español', category: 'Adoración', youtubeId: '5yqCXSMdkEc', gradient: 11 },
+  { id: 11, title: 'No Hay Lugar Más Alto', artist: 'Hillsong Español', category: 'Adoración', youtubeId: 'Xm8a7nUNHpY', gradient: 10 },
+  { id: 12, title: 'Ven A Este Lugar', artist: 'Elevation Worship Español', category: 'Adoración', youtubeId: '5yqCXSMdkEc', gradient: 11 },
 ];
 
 const CATEGORIES = ['Todas', 'Adoración', 'Alabanza', 'Clásicos'];
@@ -151,7 +151,7 @@ export default function Music() {
             </div>
             <div className="relative" style={{ padding: '56.25% 0 0 0' }}>
               <iframe
-                src={`https://www.youtube.com/embed/${selectedSong.youtubeId}?autoplay=1&rel=0`}
+                src={`https://www.youtube.com/embed/${selectedSong.youtubeId}?autoplay=1&rel=0&enablejsapi=1&origin=https://selah-vida.vercel.app`}
                 title={selectedSong.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
