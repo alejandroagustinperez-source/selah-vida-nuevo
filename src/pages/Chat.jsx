@@ -352,10 +352,9 @@ export default function Chat() {
           <button
             type="submit"
             disabled={sending || !input.trim() || atLimit}
-            className="bg-gold text-white px-3 sm:px-5 py-2.5 sm:py-3 rounded-full font-semibold text-xs sm:text-sm hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
+            className="bg-gold text-white px-3 py-2 rounded-full font-semibold text-xs hover:bg-gold-dark transition-colors disabled:opacity-40 shrink-0"
           >
-            <span className="sm:hidden">➤</span>
-            <span className="hidden sm:inline">Enviar</span>
+            Enviar
           </button>
         </form>
         {atLimit && (

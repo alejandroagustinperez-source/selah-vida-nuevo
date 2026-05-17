@@ -209,10 +209,9 @@ export default function Prayer() {
             <button
               onClick={sendMessage}
               disabled={!input.trim() || loading}
-              className="shrink-0 bg-gold text-white px-3 sm:px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold hover:bg-gold-dark transition-colors disabled:opacity-40"
+              className="shrink-0 bg-gold text-white px-3 py-2 rounded-full text-xs font-semibold hover:bg-gold-dark transition-colors disabled:opacity-40"
             >
-              <span className="sm:hidden">➤</span>
-              <span className="hidden sm:inline">Enviar</span>
+              Enviar
             </button>
           </div>
         </div>
