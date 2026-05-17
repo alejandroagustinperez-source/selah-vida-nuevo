@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
 
@@ -20,7 +20,7 @@ function normalizeAnswer(input) {
   return s.toLowerCase().replace(/\s+/g, ' ');
 }
 
-export default function VerseGame({ onBack }) {
+export default function VerseGame({ onBack, onComplete }) {
   const [screen, setScreen] = useState('start');
   const [verse, setVerse] = useState(null);
   const [input, setInput] = useState('');
@@ -101,6 +101,10 @@ export default function VerseGame({ onBack }) {
     setGameOver(true);
     setInput('');
   };
+
+  useEffect(() => {
+    if (gameOver) onComplete?.('verse_game');
+  }, [gameOver]);
 
   const displayedHints = [];
   if (hintLevel >= 1) displayedHints.push({ icon: '📜', text: `Es del ${verse.testament} Testamento` });

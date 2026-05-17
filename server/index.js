@@ -441,6 +441,75 @@ app.post('/api/games', verifyToken, async (req, res) => {
   }
 });
 
+// ── Canvas API ──
+const PIECE_TYPES = ['trivia_hard', 'verse_game', 'word_search', 'quote_game'];
+const BOOLEAN_TYPES = ['trivia_hard'];
+const COUNTER_LIMITS = { verse_game: 4, word_search: 10, quote_game: 5 };
+
+function getDefaultProgress() {
+  return { trivia_hard: false, verse_game: 0, word_search: 0, quote_game: 0 };
+}
+
+function getPieces(progress) {
+  return {
+    trivia_hard: !!progress.trivia_hard,
+    verse_game: (progress.verse_game || 0) >= COUNTER_LIMITS.verse_game,
+    word_search: (progress.word_search || 0) >= COUNTER_LIMITS.word_search,
+    quote_game: (progress.quote_game || 0) >= COUNTER_LIMITS.quote_game,
+  };
+}
+
+app.post('/api/canvas', verifyToken, async (req, res) => {
+  try {
+    const { type } = req.body;
+    if (!type || !PIECE_TYPES.includes(type)) {
+      return res.status(400).json({ error: 'Tipo de pieza no válido' });
+    }
+
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const profile = await getOrCreateProfile(user.id, user.email);
+    const current = profile.canvas_progress || getDefaultProgress();
+    const updated = { ...current };
+
+    if (BOOLEAN_TYPES.includes(type)) {
+      if (!updated[type]) updated[type] = true;
+    } else {
+      const count = (updated[type] || 0) + 1;
+      updated[type] = Math.min(count, COUNTER_LIMITS[type]);
+    }
+
+    await supabase
+      .from('profiles')
+      .update({ canvas_progress: updated })
+      .eq('id', user.id);
+
+    res.json({ progress: updated, pieces: getPieces(updated) });
+  } catch (err) {
+    console.error('Canvas error:', err?.message || err);
+    res.status(500).json({ error: err?.message || 'Error al procesar' });
+  }
+});
+
+app.get('/api/canvas', verifyToken, async (req, res) => {
+  try {
+    const user = await getUserFromToken(req.userToken);
+    if (!user) return res.status(401).json({ error: 'Usuario no válido' });
+
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('canvas_progress')
+      .eq('id', user.id);
+
+    const progress = profiles?.[0]?.canvas_progress || getDefaultProgress();
+    res.json({ progress, pieces: getPieces(progress) });
+  } catch (err) {
+    console.error('Canvas error:', err?.message || err);
+    res.status(500).json({ error: err?.message || 'Error al procesar' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Selah Vida API running on port ${PORT}`);
 });

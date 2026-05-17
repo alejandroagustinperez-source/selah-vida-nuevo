@@ -6,7 +6,7 @@ const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const OPTION_LABELS = ['a', 'b', 'c', 'd'];
 
-export default function QuoteGame({ onBack }) {
+export default function QuoteGame({ onBack, onComplete }) {
   const [screen, setScreen] = useState('start');
   const [quotes, setQuotes] = useState([]);
   const [currentQ, setCurrentQ] = useState(0);
@@ -68,6 +68,7 @@ export default function QuoteGame({ onBack }) {
     if (currentQ + 1 < quotes.length) {
       setCurrentQ((c) => c + 1);
     } else {
+      onComplete?.('quote_game');
       setScreen('result');
     }
   };

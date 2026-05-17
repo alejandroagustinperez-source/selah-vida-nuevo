@@ -18,6 +18,7 @@ import Register from './pages/Register';
 import Chat from './pages/Chat';
 import Music from './pages/Music';
 import Games from './pages/Games';
+import Canvas from './pages/Canvas';
 import Prayer from './pages/Prayer';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="/chat" element={<ProtectedLayout><Chat /></ProtectedLayout>} />
           <Route path="/music" element={<ProtectedLayout><Music /></ProtectedLayout>} />
           <Route path="/games" element={<ProtectedLayout><Games /></ProtectedLayout>} />
+          <Route path="/canvas" element={<ProtectedLayout><Canvas /></ProtectedLayout>} />
           <Route path="/prayer" element={<ProtectedLayout><Prayer /></ProtectedLayout>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />

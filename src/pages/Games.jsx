@@ -5,6 +5,7 @@ import WordSearchGame from '../components/Games/WordSearchGame';
 import QuoteGame from '../components/Games/QuoteGame';
 import PremiumModal from '../components/PremiumModal';
 import { useState } from 'react';
+import { supabase } from '../supabase';
 
 const GAMES = [
   {
@@ -45,6 +46,8 @@ const GAMES = [
   },
 ];
 
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
+
 export default function Games() {
   const { isPremium } = useAuth();
   const [activeGame, setActiveGame] = useState(null);
@@ -58,10 +61,24 @@ export default function Games() {
     setActiveGame(gameId);
   };
 
-  if (activeGame === 'trivia') return <TriviaGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'verse') return <VerseGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'wordsearch') return <WordSearchGame onBack={() => setActiveGame(null)} />;
-  if (activeGame === 'quote') return <QuoteGame onBack={() => setActiveGame(null)} />;
+  const handleGameComplete = async (type) => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session?.access_token) return;
+      await fetch(`${API_BASE}/canvas`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ type }),
+      });
+    } catch (err) {
+      console.error('Error updating canvas progress:', err);
+    }
+  };
+
+  if (activeGame === 'trivia') return <TriviaGame onBack={() => setActiveGame(null)} onComplete={handleGameComplete} />;
+  if (activeGame === 'verse') return <VerseGame onBack={() => setActiveGame(null)} onComplete={handleGameComplete} />;
+  if (activeGame === 'wordsearch') return <WordSearchGame onBack={() => setActiveGame(null)} onComplete={handleGameComplete} />;
+  if (activeGame === 'quote') return <QuoteGame onBack={() => setActiveGame(null)} onComplete={handleGameComplete} />;
 
   return (
     <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto">

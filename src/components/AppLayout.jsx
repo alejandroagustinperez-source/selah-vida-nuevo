@@ -8,6 +8,7 @@ const navItems = [
   { to: '/chat', icon: '💬', label: 'Chat con Rafael' },
   { to: '/music', icon: '🎵', label: 'Música de Alabanza' },
   { to: '/games', icon: '🎮', label: 'Juegos Bíblicos' },
+  { to: '/canvas', icon: '🖼️', label: 'El Lienzo Sagrado' },
   { to: '/prayer', icon: '🙏', label: 'Oración Guiada' },
 ];
 

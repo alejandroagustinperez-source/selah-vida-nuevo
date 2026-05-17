@@ -12,7 +12,7 @@ const LEVELS = [
 
 const OPTION_LABELS = ['a', 'b', 'c', 'd'];
 
-export default function TriviaGame({ onBack }) {
+export default function TriviaGame({ onBack, onComplete }) {
   const [screen, setScreen] = useState('start');
   const [level, setLevel] = useState('fácil');
   const [questions, setQuestions] = useState([]);
@@ -72,6 +72,7 @@ export default function TriviaGame({ onBack }) {
     if (currentQ + 1 < questions.length) {
       setCurrentQ((c) => c + 1);
     } else {
+      if (level === 'difícil') onComplete?.('trivia_hard');
       setScreen('result');
     }
   };

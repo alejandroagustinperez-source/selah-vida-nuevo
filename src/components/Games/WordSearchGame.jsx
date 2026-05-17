@@ -94,7 +94,7 @@ function getWordAtPosition(pos, wordPositions) {
   return null;
 }
 
-export default function WordSearchGame({ onBack }) {
+export default function WordSearchGame({ onBack, onComplete }) {
   const [screen, setScreen] = useState('start');
   const [theme, setTheme] = useState('profetas');
   const [words, setWords] = useState([]);
@@ -144,6 +144,7 @@ export default function WordSearchGame({ onBack }) {
   useEffect(() => {
     if (screen !== 'playing') return;
     if (foundWords.length === words.length && words.length > 0) {
+      onComplete?.('word_search');
       const timer = setTimeout(() => setScreen('result'), 800);
       return () => clearTimeout(timer);
     }
