@@ -230,6 +230,17 @@ export default function TriviaGame({ onBack }) {
                 <>❌ La respuesta correcta era: <span className="font-bold">{q.correct}</span></>
               )}
             </div>
+
+            {q.reference && (
+              <div className="bg-cream rounded-2xl p-4 border border-gold/10 text-sm">
+                <p className="text-gold font-semibold text-xs mb-1">📖 Referencia bíblica</p>
+                <p className="text-dark-blue font-medium">{q.reference}</p>
+                {q.explanation && (
+                  <p className="text-dark-blue/60 text-xs mt-1.5 leading-relaxed">{q.explanation}</p>
+                )}
+              </div>
+            )}
+
             <button
               onClick={nextQuestion}
               className="w-full bg-gold text-white py-3 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors"

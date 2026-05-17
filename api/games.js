@@ -16,12 +16,12 @@ function buildPrompt(type, params = {}) {
 REGLAS IMPORTANTES:
 - Cada pregunta debe estar COMPLETA y ser clara
 - Las respuestas deben ser 100% correctas según la Biblia RVR1960
-- Solo incluye preguntas de las que estés completamente seguro
 - Las opciones deben ser cortas (1-4 palabras)
 - Nivel fácil: personajes y eventos conocidos (Noé, Moisés, David)
 - Nivel medio: detalles específicos de historias bíblicas
 - Nivel difícil: preguntas detalladas pero con preguntas COMPLETAS
-SOLO JSON: {questions: [{question, options: ['','','',''], correct: 'opcion correcta'}]}`;
+IMPORTANTE: Solo incluye preguntas donde conozcas con certeza el versículo exacto. Incluye siempre la referencia bíblica precisa en formato Libro Cap:Ver
+SOLO JSON: {questions: [{question, options: ['','','',''], correct: 'opcion correcta', reference: 'Libro Cap:Ver', explanation: 'explicación breve'}]}`;
     }
     case 'verse':
       return `Genera un versículo bíblico conocido con una palabra clave reemplazada por ___. Usa SIEMPRE la versión Reina Valera 1960 (RVR1960) en español para todos los versículos bíblicos. Responde SOLO en JSON: {verse, reference, missing_word, hint}`;
