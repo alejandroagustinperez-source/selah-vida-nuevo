@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
@@ -19,7 +19,7 @@ function formatDate(dateStr) {
   const d = new Date(dateStr);
   const now = new Date();
   const diff = now - d;
-  const day = 86400000; // 24h in ms
+  const day = 86400000;
   if (diff < day) return 'Hoy';
   if (diff < 2 * day) return 'Ayer';
   return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
@@ -34,6 +34,12 @@ export default function AppLayout({ children }) {
   const [cancelOpen, setCancelOpen] = useState(false);
   const [chats, setChats] = useState([]);
   const [loadingChats, setLoadingChats] = useState(false);
+  const [menuChatId, setMenuChatId] = useState(null);
+  const [editingChatId, setEditingChatId] = useState(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [deleteConfirmId, setDeleteConfirmId] = useState(null);
+  const editInputRef = useRef(null);
+  const menuRef = useRef(null);
 
   const getToken = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
@@ -41,40 +47,42 @@ export default function AppLayout({ children }) {
   }, []);
 
   const fetchChats = useCallback(async () => {
-    if (!isPremium) { console.log('[Chats Debug] Not premium, skipping'); setChats([]); return; }
+    if (!isPremium) { setChats([]); return; }
     try {
       setLoadingChats(true);
       const token = await getToken();
-      console.log('[Chats Debug] Fetching chats...');
       const res = await fetch(`${API_BASE}/chats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log('[Chats Debug] Response status:', res.status);
       if (res.ok) {
         const data = await res.json();
-        console.log('[Chats Debug] Chats fetched:', data?.length || 0);
         setChats(data || []);
-      } else {
-        const errData = await res.json();
-        console.error('[Chats Debug] Fetch error:', errData);
       }
     } catch (err) {
-      console.error('[Chats Debug] Error fetching chats:', err);
+      console.error('Error fetching chats:', err);
     } finally {
       setLoadingChats(false);
     }
   }, [isPremium, getToken]);
 
-  // Fetch chats when sidebar opens
   useEffect(() => {
     if (sidebarOpen && isPremium) fetchChats();
   }, [sidebarOpen, isPremium, fetchChats]);
 
-  // Re-fetch when chat page is visited, URL changes, or premium status changes
   useEffect(() => {
-    console.log('[Chats Debug] Pathname/search/premium changed:', location.pathname, location.search, isPremium);
     if (location.pathname === '/chat' && isPremium) fetchChats();
   }, [location.pathname, location.search, isPremium, fetchChats]);
+
+  // Click outside to close menu
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuChatId(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   const handleNavClick = (item) => {
     setSidebarOpen(false);
@@ -85,7 +93,8 @@ export default function AppLayout({ children }) {
     navigate(item.to);
   };
 
-  const handleChatClick = async (chat) => {
+  const handleChatClick = (chat) => {
+    if (menuChatId || editingChatId) return;
     setSidebarOpen(false);
     navigate('/chat?id=' + chat.id);
   };
@@ -93,6 +102,71 @@ export default function AppLayout({ children }) {
   const handleNewChat = () => {
     setSidebarOpen(false);
     navigate('/chat?t=' + Date.now());
+  };
+
+  const toggleMenu = (e, chatId) => {
+    e.stopPropagation();
+    setMenuChatId(menuChatId === chatId ? null : chatId);
+    setEditingChatId(null);
+    setDeleteConfirmId(null);
+  };
+
+  const startRename = (e, chat) => {
+    e.stopPropagation();
+    setEditingChatId(chat.id);
+    setEditTitle(chat.title);
+    setMenuChatId(null);
+    setTimeout(() => editInputRef.current?.focus(), 50);
+  };
+
+  const saveRename = async (chatId) => {
+    const title = editTitle.trim();
+    if (!title) { setEditingChatId(null); return; }
+    try {
+      const token = await getToken();
+      const res = await fetch(`${API_BASE}/chats`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ id: chatId, title }),
+      });
+      if (res.ok) {
+        setChats((prev) => prev.map((c) => c.id === chatId ? { ...c, title } : c));
+      }
+    } catch (err) {
+      console.error('Error renaming chat:', err);
+    }
+    setEditingChatId(null);
+  };
+
+  const handleRenameKeyDown = (e, chatId) => {
+    if (e.key === 'Enter') saveRename(chatId);
+    if (e.key === 'Escape') setEditingChatId(null);
+  };
+
+  const confirmDelete = (e, chatId) => {
+    e.stopPropagation();
+    setDeleteConfirmId(chatId);
+    setMenuChatId(null);
+  };
+
+  const executeDelete = async (chatId) => {
+    try {
+      const token = await getToken();
+      const res = await fetch(`${API_BASE}/chats?id=${chatId}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        setChats((prev) => prev.filter((c) => c.id !== chatId));
+        const params = new URLSearchParams(location.search);
+        if (params.get('id') === chatId) {
+          navigate('/chat?t=' + Date.now(), { replace: true });
+        }
+      }
+    } catch (err) {
+      console.error('Error deleting chat:', err);
+    }
+    setDeleteConfirmId(null);
   };
 
   const itemsWithLock = navItems.map((item) => ({
@@ -185,15 +259,73 @@ export default function AppLayout({ children }) {
               ) : (
                 <div className="space-y-0.5">
                   {chats.map((chat) => (
-                    <button
-                      key={chat.id}
-                      onClick={() => handleChatClick(chat)}
-                      className="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-xs text-left hover:bg-cream transition-colors"
-                    >
-                      <span className="text-dark-blue/40 shrink-0">💬</span>
-                      <span className="flex-1 truncate text-dark-blue/70">{chat.title}</span>
-                      <span className="text-dark-blue/30 shrink-0 text-[10px]">{formatDate(chat.updated_at)}</span>
-                    </button>
+                    <div key={chat.id} className="group relative">
+                      {deleteConfirmId === chat.id ? (
+                        <div className="flex items-center gap-1 px-3 py-2 rounded-lg bg-red-50">
+                          <span className="text-xs text-red-700 flex-1">¿Eliminar?</span>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); executeDelete(chat.id); }}
+                            className="text-xs text-white bg-red-500 px-2 py-1 rounded hover:bg-red-600"
+                          >
+                            Eliminar
+                          </button>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(null); }}
+                            className="text-xs text-dark-blue/50 px-2 py-1 rounded hover:bg-white/50"
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      ) : editingChatId === chat.id ? (
+                        <input
+                          ref={editInputRef}
+                          type="text"
+                          value={editTitle}
+                          onChange={(e) => setEditTitle(e.target.value)}
+                          onBlur={() => saveRename(chat.id)}
+                          onKeyDown={(e) => handleRenameKeyDown(e, chat.id)}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-full px-4 py-2 rounded-lg text-xs bg-cream border border-gold/30 focus:outline-none focus:ring-1 focus:ring-gold/50 text-dark-blue"
+                        />
+                      ) : (
+                        <button
+                          onClick={() => handleChatClick(chat)}
+                          className="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-xs text-left hover:bg-cream transition-colors"
+                        >
+                          <span className="text-dark-blue/40 shrink-0">💬</span>
+                          <span className="flex-1 truncate text-dark-blue/70">{chat.title}</span>
+                          <span className="text-dark-blue/30 shrink-0 text-[10px]">{formatDate(chat.updated_at)}</span>
+                          <button
+                            onClick={(e) => toggleMenu(e, chat.id)}
+                            className="opacity-0 group-hover:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 text-dark-blue/30 hover:text-dark-blue transition-opacity shrink-0 px-0.5"
+                          >
+                            ⋯
+                          </button>
+                        </button>
+                      )}
+
+                      {/* Mini menu */}
+                      {menuChatId === chat.id && (
+                        <div
+                          ref={menuRef}
+                          className="absolute right-2 top-full mt-0.5 z-50 bg-white border border-gold/10 rounded-lg shadow-lg py-1 min-w-[140px]"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button
+                            onClick={(e) => startRename(e, chat)}
+                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left text-dark-blue/70 hover:bg-cream transition-colors"
+                          >
+                            ✏️ Renombrar
+                          </button>
+                          <button
+                            onClick={(e) => confirmDelete(e, chat.id)}
+                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left text-red-500 hover:bg-red-50 transition-colors"
+                          >
+                            🗑️ Eliminar
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
@@ -227,18 +359,15 @@ export default function AppLayout({ children }) {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Page content with padding for fixed mobile header */}
         <div className="flex-1 min-h-0 lg:pt-0 pt-[52px]">
           {children}
         </div>
       </div>
 
-      {/* Premium modal */}
       <PremiumModal
         open={!!modalItem}
         onClose={() => setModalItem(null)}
       />
-
       <CancelModal
         open={cancelOpen}
         onClose={() => setCancelOpen(false)}
