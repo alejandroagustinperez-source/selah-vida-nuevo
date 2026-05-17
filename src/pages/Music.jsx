@@ -32,7 +32,7 @@ export default function Music() {
     });
   }, [search, category]);
 
-  const getThumbnail = (youtubeId) => `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
+  const getThumbnail = (youtubeId) => `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
 
   if (!isPremium) {
     return (
@@ -101,6 +101,7 @@ export default function Music() {
                   alt={song.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
+                  onError={(e) => { e.target.onerror = null; e.target.src = '/placeholder-music.png'; }}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity w-14 h-14 rounded-full bg-white/90 flex items-center justify-center">
