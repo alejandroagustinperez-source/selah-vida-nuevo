@@ -57,6 +57,111 @@ export default function Terms() {
           <p>
             Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán notificados a través de la plataforma. El uso continuado del servicio después de los cambios constituye la aceptación de los nuevos términos.
           </p>
+
+          <hr className="border-gold/20 my-6" />
+
+          <h2 className="font-serif text-lg font-bold text-dark-blue">🆘 Recursos de Ayuda</h2>
+          <p className="mb-3">
+            Si estás pasando por una situación difícil, no estás solo/a. Estos son recursos gratuitos disponibles en tu país:
+          </p>
+
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇦🇷 Argentina</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: Centro de Asistencia al Suicida - <strong>135</strong> (gratuito)</li>
+                <li>🏥 Salud Mental: SAME - <strong>107</strong></li>
+                <li>🛡️ Violencia doméstica: Línea <strong>144</strong> (gratuita, 24hs)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇲🇽 México</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: SAPTEL - <strong>55 5259-8121</strong> (24hs)</li>
+                <li>🏥 Salud Mental: CONADIC - <strong>800 911 2000</strong></li>
+                <li>🛡️ Violencia doméstica: Línea VIDA - <strong>800 911 2000</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇨🇱 Chile</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: Teléfono de la Esperanza - <strong>717</strong></li>
+                <li>🏥 Salud Mental: SALUD RESPONDE - <strong>600 360 7777</strong></li>
+                <li>🛡️ Violencia doméstica: Fono Familia - <strong>149</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇨🇴 Colombia</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: Línea <strong>106</strong> (gratuita)</li>
+                <li>🏥 Salud Mental: Línea <strong>106</strong></li>
+                <li>🛡️ Violencia doméstica: Línea <strong>155</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇪🇸 España</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: Teléfono de la Esperanza - <strong>717 003 717</strong></li>
+                <li>🏥 Salud Mental: Línea de Atención - <strong>024</strong></li>
+                <li>🛡️ Violencia doméstica: Línea <strong>016</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇵🇪 Perú</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: MINSA - <strong>113</strong></li>
+                <li>🏥 Salud Mental: Línea <strong>113</strong></li>
+                <li>🛡️ Violencia doméstica: Línea <strong>100</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇻🇪 Venezuela</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: IPSM - <strong>0800-477-6484</strong></li>
+                <li>🛡️ Violencia doméstica: <strong>0800-MUJERES</strong> (0800-685-3737)</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇺🇾 Uruguay</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: Línea de Crisis - <strong>0800 0767</strong></li>
+                <li>🛡️ Violencia doméstica: Línea <strong>0800 4141</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇧🇴 Bolivia</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🛡️ Violencia doméstica: Línea <strong>800 10 0200</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇪🇨 Ecuador</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🧠 Crisis/Suicidio: MSP - <strong>171</strong></li>
+                <li>🛡️ Violencia doméstica: ECU <strong>911</strong></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-dark-blue text-xs uppercase tracking-wider mb-2">🇵🇾 Paraguay</h3>
+              <ul className="space-y-1 text-xs">
+                <li>🛡️ Violencia doméstica: SOS Mujer - <strong>137</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="text-xs text-dark-blue/50 mt-4">
+            Si no encuentras tu país, por favor contacta a los servicios de emergencia locales o acude al centro de salud más cercano.
+          </p>
         </div>
 
         <div className="text-center mt-8">
