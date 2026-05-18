@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { getRandomQuestions } from './_trivia.js';
-import { getRandomVerse } from './_verses.js';
+import { getRandomVerses } from './_verses.js';
 import { getRandomQuotes } from './_quotes.js';
 
 const supabase = createClient(
@@ -110,8 +110,8 @@ export default async function handler(req, res) {
     }
 
     if (type === 'verse') {
-      const verse = getRandomVerse();
-      return res.json(verse);
+      const verses = getRandomVerses(5);
+      return res.json({ verses });
     }
 
     if (type === 'quote') {

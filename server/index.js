@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import Groq from 'groq-sdk';
 import { Resend } from 'resend';
 import { getRandomQuestions } from '../api/_trivia.js';
-import { getRandomVerse } from '../api/_verses.js';
+import { getRandomVerses } from '../api/_verses.js';
 import { getRandomQuotes } from '../api/_quotes.js';
 
 const app = express();
@@ -519,8 +519,8 @@ app.post('/api/games', verifyToken, async (req, res) => {
     }
 
     if (type === 'verse') {
-      const verse = getRandomVerse();
-      return res.json(verse);
+      const verses = getRandomVerses(5);
+      return res.json({ verses });
     }
 
     if (type === 'quote') {

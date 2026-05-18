@@ -144,3 +144,33 @@ const verses = [
 export function getRandomVerse() {
   return verses[Math.floor(Math.random() * verses.length)];
 }
+
+function getReference(v) {
+  if (v.verses) return `${v.book} ${v.chapter}:${v.verses}`;
+  return `${v.book} ${v.chapter}:${v.verse}`;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export function getRandomVerses(count = 5) {
+  const picked = shuffle(verses).slice(0, count);
+  return picked.map((v) => {
+    const correct = getReference(v);
+    const others = verses.filter((x) => x !== v);
+    const distractors = shuffle(others).slice(0, 3).map(getReference);
+    const options = shuffle([correct, ...distractors]);
+    return {
+      text: v.text,
+      correct,
+      options,
+      explanation: v.explanation,
+    };
+  });
+}
