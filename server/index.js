@@ -688,7 +688,7 @@ REGLAS:
 });
 
 // ── Contact API ──
-const CONTACT_EMAIL = 'alejandro.agustin.perez@gmail.com';
+const CONTACT_EMAIL = 'origenvitalsl@gmail.com';
 
 app.post('/api/contact', async (req, res) => {
   try {
