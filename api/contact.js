@@ -23,8 +23,9 @@ export default async function handler(req, res) {
       return res.json({ success: true });
     }
 
-    await resend.emails.send({
-      from: 'Selah Vida <noreply@selah-vida.vercel.app>',
+    console.log('Enviando email...');
+    const { data, error } = await resend.emails.send({
+      from: 'Selah Vida <onboarding@resend.dev>',
       to: TO_EMAIL,
       subject: `[Selah Vida] [${subject}] - de ${name}`,
       html: `
@@ -48,9 +49,15 @@ export default async function handler(req, res) {
       `.trim(),
     });
 
+    console.log('Respuesta Resend:', JSON.stringify(data));
+    if (error) {
+      console.log('Error Resend:', JSON.stringify(error));
+      return res.status(500).json({ error: error.message, details: error });
+    }
+
     return res.json({ success: true });
   } catch (err) {
-    console.error('Contact error:', err?.message || err);
-    return res.status(500).json({ error: 'Error al enviar mensaje' });
+    console.log('Error Resend:', JSON.stringify(err));
+    return res.status(500).json({ error: err.message, details: err });
   }
 }
