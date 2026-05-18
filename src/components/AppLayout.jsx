@@ -371,15 +371,15 @@ export default function AppLayout({ children }) {
         </nav>
 
         {/* User section */}
-        <div className="px-4 py-4 border-t border-gold/10 space-y-2">
+        <div className="px-4 py-4 border-t border-gold/10 space-y-1">
           {isPremium ? (
-            <div className="px-2 space-y-2">
+            <div className="space-y-1">
               <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
                 Premium
               </span>
               <button
                 onClick={() => setCancelOpen(true)}
-                className="block w-full text-left text-sm text-red-500 hover:text-red-700 hover:underline transition-colors"
+                className="block w-full text-left text-sm text-red-500 py-3 px-4 cursor-pointer touch-action-manipulation rounded-lg active:text-red-700 active:underline transition-colors"
               >
                 Cancelar suscripción
               </button>
@@ -387,7 +387,7 @@ export default function AppLayout({ children }) {
           ) : null}
           <button
             onClick={handleLogout}
-            className="w-full text-left px-2 py-2 text-sm text-dark-blue/40 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
+            className="w-full text-left py-3 px-4 text-sm text-dark-blue/40 cursor-pointer touch-action-manipulation rounded-lg active:text-red-500 active:bg-red-50 transition-colors"
           >
             Cerrar sesión
           </button>
