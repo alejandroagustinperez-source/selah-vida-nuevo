@@ -23,6 +23,7 @@ import Prayer from './pages/Prayer';
 import Admin from './pages/Admin';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
 
 function HomePage() {
@@ -67,6 +68,7 @@ export default function App() {
           <Route path="/admin" element={<ProtectedLayout><Admin /></ProtectedLayout>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
+          <Route path="/contacto" element={<><Navbar /><Contact /></>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

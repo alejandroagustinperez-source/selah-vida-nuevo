@@ -7,6 +7,8 @@ export default function Footer() {
         🕊️ <span className="text-gold">Selah Vida</span> — Acompañamiento espiritual con inteligencia bíblica
       </p>
       <div className="flex justify-center gap-4 text-xs">
+        <Link to="/contacto" className="hover:text-gold transition-colors">Contacto</Link>
+        <span className="text-cream/20">|</span>
         <Link to="/privacy" className="hover:text-gold transition-colors">Política de Privacidad</Link>
         <span className="text-cream/20">|</span>
         <Link to="/terms" className="hover:text-gold transition-colors">Términos de Uso</Link>

@@ -65,6 +65,14 @@ export default function Navbar() {
             </a>
           ))}
 
+          <Link
+            to="/contacto"
+            onClick={close}
+            className="text-dark-blue font-medium hover:text-gold transition-colors"
+          >
+            Contacto
+          </Link>
+
           {user ? (
             <Link
               to="/chat"
