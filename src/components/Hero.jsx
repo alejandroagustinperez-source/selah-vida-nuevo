@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center text-center px-6 pt-28 pb-20 relative overflow-hidden"
+    <section className="min-h-[85vh] flex items-center justify-center text-center px-6 pt-20 pb-12 relative overflow-hidden"
       style={{
         background: 'linear-gradient(165deg, #FAF6EF 0%, #f0e8d8 40%, #e8dcc8 100%)',
       }}
@@ -32,7 +32,7 @@ export default function Hero() {
         <h1 className="font-serif text-[clamp(2.5rem,7vw,4.2rem)] font-bold text-dark-blue mb-2 tracking-tight">
           Selah <span className="text-gold">Vida</span>
         </h1>
-        <p className="text-lg md:text-xl text-dark-blue/75 font-light mb-10">
+        <p className="text-lg md:text-xl text-dark-blue/75 font-light mb-8">
           Tu refugio espiritual disponible 24/7
         </p>
         <Link
