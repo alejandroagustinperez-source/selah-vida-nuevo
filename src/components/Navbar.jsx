@@ -46,7 +46,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
         <Link to="/" className="font-serif text-xl font-bold text-dark-blue flex items-center gap-2">
-          <span role="img" aria-label="paloma">🕊️</span> Selah Vida
+          <img src="/logo.png" alt="Selah Vida" style={{ height: '38px', width: 'auto', objectFit: 'contain' }} /> Selah Vida
         </Link>
 
         <div

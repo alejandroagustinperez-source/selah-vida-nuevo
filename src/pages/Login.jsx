@@ -27,7 +27,7 @@ export default function Login() {
     <div className="min-h-screen bg-cream flex items-center justify-center px-6 py-20">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link to="/" className="text-4xl inline-block mb-3">🕊️</Link>
+          <Link to="/" className="inline-block mb-3"><img src="/logo.png" alt="Selah Vida" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} /></Link>
           <h1 className="font-serif text-3xl font-bold">Selah Vida</h1>
           <p className="text-dark-blue/60 mt-1">Iniciar sesión</p>
         </div>

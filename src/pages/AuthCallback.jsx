@@ -87,7 +87,7 @@ export default function AuthCallback() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-cream">
       <div className="text-center">
-        <div className="text-5xl mb-4">🕊️</div>
+        <img src="/logo.png" alt="Selah Vida" className="mb-4" style={{ height: '56px', width: 'auto', objectFit: 'contain' }} />
         <p className="text-dark-blue/60">{status}</p>
       </div>
     </div>

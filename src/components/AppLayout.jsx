@@ -209,7 +209,7 @@ export default function AppLayout({ children }) {
           ☰
         </button>
         <NavLink to="/" className="font-serif text-base font-bold text-dark-blue flex items-center gap-2">
-          <span>🕊️</span> Selah Vida
+          <img src="/logo.png" alt="Selah Vida" style={{ height: '28px', width: 'auto', objectFit: 'contain' }} /> Selah Vida
         </NavLink>
       </header>
 
@@ -230,7 +230,7 @@ export default function AppLayout({ children }) {
         {/* Logo */}
         <div className="px-6 pt-6 pb-4 border-b border-gold/10">
           <NavLink to="/" className="font-serif text-xl font-bold text-dark-blue flex items-center gap-2">
-            <span>🕊️</span> Selah Vida
+            <img src="/logo.png" alt="Selah Vida" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} /> Selah Vida
           </NavLink>
         </div>
 

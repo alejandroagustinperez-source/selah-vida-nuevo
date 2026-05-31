@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-cream">
       <div className="max-w-3xl mx-auto px-6 py-20">
-        <Link to="/" className="text-3xl inline-block mb-6">🕊️</Link>
+        <Link to="/" className="inline-block mb-6"><img src="/logo.png" alt="Selah Vida" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} /></Link>
         <h1 className="font-serif text-3xl font-bold mb-8">Política de Privacidad</h1>
 
         <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gold/10 space-y-5 text-sm text-dark-blue/80 leading-relaxed">
