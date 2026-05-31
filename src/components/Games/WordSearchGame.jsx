@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
 
@@ -103,6 +103,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
   const [selection, setSelection] = useState([]);
   const [foundWords, setFoundWords] = useState([]);
   const [error, setError] = useState('');
+  const completedRef = useRef(false);
   const { isPremium } = useAuth();
 
   const getToken = async () => {
@@ -116,6 +117,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
     setError('');
     setSelection([]);
     setFoundWords([]);
+    completedRef.current = false;
     try {
       const token = await getToken();
       const res = await fetch(`${API_BASE}/games`, {
@@ -143,7 +145,8 @@ export default function WordSearchGame({ onBack, onComplete }) {
 
   useEffect(() => {
     if (screen !== 'playing') return;
-    if (foundWords.length === words.length && words.length > 0) {
+    if (foundWords.length === words.length && words.length > 0 && !completedRef.current) {
+      completedRef.current = true;
       onComplete?.('word_search');
       const timer = setTimeout(() => setScreen('result'), 800);
       return () => clearTimeout(timer);

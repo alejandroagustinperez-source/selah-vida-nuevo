@@ -6,10 +6,10 @@ import confetti from 'canvas-confetti';
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const PIECES = [
-  { key: 'trivia_hard', label: 'Pieza 1', challenge: 'Gana la Trivia en nivel Difícil', emoji: '🏆', pieces: 'Pieza 1 (izquierda)' },
-  { key: 'verse_game', label: 'Pieza 2', challenge: 'Completa Adivina el Versículo 4 veces', emoji: '📖', pieces: 'Pieza 2' },
-  { key: 'word_search', label: 'Pieza 3', challenge: 'Completa la Sopa de Letras 10 veces', emoji: '🔤', pieces: 'Pieza 3' },
-  { key: 'quote_game', label: 'Pieza 4', challenge: 'Completa ¿Quién dijo esto? 5 veces', emoji: '👤', pieces: 'Pieza 4 (derecha)' },
+  { key: 'trivia_hard', label: 'Pieza 1', challenge: 'Gana la Trivia en nivel Difícil', emoji: '🏆', pieces: 'Pieza 1 (izquierda)', threshold: 1 },
+  { key: 'verse_game', label: 'Pieza 2', challenge: 'Completa Adivina el Versículo 4 veces', emoji: '📖', pieces: 'Pieza 2', threshold: 4 },
+  { key: 'word_search', label: 'Pieza 3', challenge: 'Completa la Sopa de Letras 10 veces', emoji: '🔤', pieces: 'Pieza 3', threshold: 10 },
+  { key: 'quote_game', label: 'Pieza 4', challenge: 'Completa ¿Quién dijo esto? 5 veces', emoji: '👤', pieces: 'Pieza 4 (derecha)', threshold: 5 },
 ];
 
 export default function Canvas() {
@@ -209,7 +209,7 @@ export default function Canvas() {
                   <p className="text-xs text-dark-blue/40 mt-0.5">
                     {piece.pieces}
                     {!unlocked && count !== undefined && typeof count === 'number' && (
-                      <span className="ml-2 text-gold font-medium">{count}/{count >= 4 ? 4 : count >= 10 ? 10 : 5}</span>
+                      <span className="ml-2 text-gold font-medium">{count}/{piece.threshold}</span>
                     )}
                   </p>
                 </div>
