@@ -28,7 +28,7 @@ export default function Hero() {
       <div className="absolute bottom-[-30%] right-[-15%] w-[60%] h-[80%] bg-[radial-gradient(ellipse_at_center,rgba(26,58,74,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl">
-        <img ref={doveRef} src="/logo.png" alt="Selah Vida" className="mb-4 inline-block" style={{ height: '72px', width: 'auto', objectFit: 'contain' }} />
+        <img ref={doveRef} src="/logo.png" alt="Selah Vida" className="mb-4 inline-block" style={{ height: '120px', width: 'auto', objectFit: 'contain' }} />
         <h1 className="font-serif text-[clamp(2.5rem,7vw,4.2rem)] font-bold text-dark-blue mb-2 tracking-tight">
           Selah <span className="text-gold">Vida</span>
         </h1>
