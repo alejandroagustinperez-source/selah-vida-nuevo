@@ -9,6 +9,7 @@ import Solution from './components/Solution';
 import Verse from './components/Verse';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
+import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
 import RevealOnScroll from './components/RevealOnScroll';
 import Divider from './components/Divider';
@@ -40,6 +41,8 @@ function HomePage() {
       <RevealOnScroll><Testimonials /></RevealOnScroll>
       <Divider />
       <RevealOnScroll><Pricing /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><FinalCta /></RevealOnScroll>
       <Footer />
     </>
   );

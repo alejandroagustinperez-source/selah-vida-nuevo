@@ -44,15 +44,17 @@ export default function Footer() {
               Pr&oacute;ximamente disponible en iOS y Android.
             </p>
             <div className="flex flex-col gap-2">
+              {/*
               <span className="inline-block px-4 py-2 rounded-lg text-xs text-center border transition-opacity" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.4)' }}>
                 App Store
               </span>
               <span className="inline-block px-4 py-2 rounded-lg text-xs text-center border transition-opacity" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.4)' }}>
                 Google Play
               </span>
-            </div>
+              */}
           </div>
         </div>
+      </div>
       </div>
 
       <div className="border-t py-6 px-6" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
