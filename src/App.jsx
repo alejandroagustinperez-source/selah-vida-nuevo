@@ -74,7 +74,7 @@ export default function App() {
           <Route path="/admin" element={<ProtectedLayout><Admin /></ProtectedLayout>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
-          <Route path="/contacto" element={<><Navbar /><Contact /></>} />
+          <Route path="/contacto" element={<><Navbar /><Contact /><Divider /><Footer /></>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -3,15 +3,8 @@ import { Link } from 'react-router-dom';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
-const SUBJECTS = [
-  'Soporte técnico',
-  'Consulta sobre Premium',
-  'Sugerencia',
-  'Otro',
-];
-
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState(null);
 
@@ -31,7 +24,7 @@ export default function Contact() {
       });
       if (!res.ok) throw new Error('Error');
       setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
+      setForm({ name: '', email: '', message: '' });
     } catch {
       setStatus('error');
     } finally {
@@ -40,84 +33,90 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
-      <div className="max-w-3xl mx-auto px-6 py-20">
-        <div className="text-center mb-10">
-          <Link to="/" className="text-4xl inline-block mb-4">✉️</Link>
-          <h1 className="font-serif text-3xl font-bold text-dark-blue">Contáctanos</h1>
-          <p className="text-dark-blue/50 text-sm mt-2">Estamos aquí para ayudarte</p>
+    <section className="py-16 md:py-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+      <div className="max-w-lg mx-auto">
+        <div className="text-center mb-4">
+          <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>I</span>
+          <h1 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
+            Contáctanos
+          </h1>
         </div>
 
-        <div className="max-w-[600px] mx-auto">
-          {status === 'success' ? (
-            <div className="bg-white rounded-3xl p-10 shadow-sm border border-gold/10 text-center">
-              <div className="text-5xl mb-4">🙏</div>
-              <h2 className="font-serif text-xl font-bold text-dark-blue mb-2">¡Mensaje enviado!</h2>
-              <p className="text-dark-blue/60 text-sm mb-6">Te responderemos pronto</p>
-              <Link to="/" className="inline-block bg-gold text-white px-8 py-3 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors">
-                Volver al inicio
-              </Link>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gold/10 space-y-5">
-              {status === 'error' && (
-                <div className="bg-red-50 text-red-600 text-sm rounded-xl p-3 text-center">Hubo un error, intenta de nuevo</div>
-              )}
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
+          <span className="text-sm select-none" style={{ color: '#C9922A' }}>◆</span>
+          <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
+        </div>
 
-              <div>
-                <label className="block text-sm font-medium text-dark-blue/70 mb-1">Nombre completo</label>
-                <input
-                  type="text" name="name" required value={form.name} onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-dark-blue"
-                  placeholder="Tu nombre"
-                />
-              </div>
+        <p className="text-sm md:text-base text-center mb-10 leading-relaxed" style={{ color: 'rgba(15,61,61,0.7)' }}>
+          Estamos aquí para escucharte. Escribinos y te responderemos a la brevedad.
+        </p>
 
-              <div>
-                <label className="block text-sm font-medium text-dark-blue/70 mb-1">Email</label>
-                <input
-                  type="email" name="email" required value={form.email} onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-dark-blue"
-                  placeholder="tu@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-dark-blue/70 mb-1">Asunto</label>
-                <select
-                  name="subject" required value={form.subject} onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-dark-blue appearance-none"
-                >
-                  <option value="" disabled>Seleccioná un asunto</option>
-                  {SUBJECTS.map((s) => (
-                    <option key={s} value={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-dark-blue/70 mb-1">Mensaje</label>
-                <textarea
-                  name="message" required value={form.message} onChange={handleChange} rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 text-dark-blue resize-y"
-                  placeholder="Escribí tu mensaje aquí..."
-                />
-              </div>
-
-              <button
-                type="submit" disabled={sending}
-                className="w-full bg-gold text-white py-3.5 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {sending ? 'Enviando...' : 'Enviar mensaje'}
-              </button>
-            </form>
-          )}
-
-          <div className="text-center mt-8">
-            <Link to="/" className="text-gold font-medium hover:underline text-sm">← Volver al inicio</Link>
+        {status === 'success' ? (
+          <div className="text-center py-10">
+            <p className="font-serif text-xl font-bold mb-2" style={{ color: '#0F3D3D' }}>¡Mensaje enviado!</p>
+            <p className="text-sm mb-6" style={{ color: 'rgba(15,61,61,0.6)' }}>Te responderemos pronto</p>
+            <Link
+              to="/"
+              className="inline-block border-2 border-[#C9922A] text-[#0F3D3D] px-8 py-3 rounded-full text-xs tracking-[0.15em] font-semibold uppercase hover:bg-[#C9922A] hover:text-white transition-all"
+            >
+              Volver al inicio
+            </Link>
           </div>
-        </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            {status === 'error' && (
+              <div className="text-red-600 text-sm text-center mb-4">Hubo un error, intentá de nuevo</div>
+            )}
+
+            <div className="mb-6">
+              <label className="block text-xs tracking-[0.15em] font-semibold uppercase mb-1" style={{ color: '#C9922A' }}>
+                Nombre
+              </label>
+              <input
+                type="text" name="name" required value={form.name} onChange={handleChange}
+                className="w-full py-2.5 bg-transparent outline-none text-sm transition-colors"
+                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A' }}
+                onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
+                onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-xs tracking-[0.15em] font-semibold uppercase mb-1" style={{ color: '#C9922A' }}>
+                Email
+              </label>
+              <input
+                type="email" name="email" required value={form.email} onChange={handleChange}
+                className="w-full py-2.5 bg-transparent outline-none text-sm transition-colors"
+                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A' }}
+                onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
+                onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
+              />
+            </div>
+
+            <div className="mb-8">
+              <label className="block text-xs tracking-[0.15em] font-semibold uppercase mb-1" style={{ color: '#C9922A' }}>
+                Mensaje
+              </label>
+              <textarea
+                name="message" required value={form.message} onChange={handleChange} rows={4}
+                className="w-full py-2.5 bg-transparent outline-none text-sm resize-y transition-colors"
+                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A' }}
+                onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
+                onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
+              />
+            </div>
+
+            <button
+              type="submit" disabled={sending}
+              className="w-full border-2 border-[#C9922A] text-[#0F3D3D] px-10 py-3.5 rounded-full text-xs tracking-[0.15em] font-semibold uppercase hover:bg-[#C9922A] hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {sending ? 'Enviando...' : 'Enviar mensaje'}
+            </button>
+          </form>
+        )}
       </div>
-    </div>
+    </section>
   );
 }

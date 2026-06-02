@@ -13,6 +13,7 @@ export default function Navbar() {
     { href: '#problema', label: 'Problema' },
     { href: '#solucion', label: 'Solución' },
     { href: '#testimonios', label: 'Testimonios' },
+    { href: '/contacto', label: 'Contacto' },
     { href: '#precios', label: 'Precios' },
   ];
 
@@ -45,14 +46,25 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-0">
           {navLinks.map((l, i) => (
             <span key={l.href} className="flex items-center">
-              <a
-                href={l.href}
-                onClick={(e) => handleAnchorClick(e, l.href)}
-                className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
-                style={{ color: '#0F3D3D' }}
-              >
-                {l.label}
-              </a>
+              {l.href.startsWith('/') ? (
+                <Link
+                  to={l.href}
+                  onClick={close}
+                  className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
+                  style={{ color: '#0F3D3D' }}
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  href={l.href}
+                  onClick={(e) => handleAnchorClick(e, l.href)}
+                  className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
+                  style={{ color: '#0F3D3D' }}
+                >
+                  {l.label}
+                </a>
+              )}
               {i < navLinks.length - 1 && (
                 <span className="text-xs select-none" style={{ color: 'rgba(201,146,42,0.5)' }}>|</span>
               )}
@@ -103,15 +115,27 @@ export default function Navbar() {
         style={{ backgroundColor: '#FAF7F2', zIndex: 60 }}
       >
         {navLinks.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            onClick={(e) => handleAnchorClick(e, l.href)}
-            className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
-            style={{ color: '#0F3D3D' }}
-          >
-            {l.label}
-          </a>
+          l.href.startsWith('/') ? (
+            <Link
+              key={l.href}
+              to={l.href}
+              onClick={close}
+              className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
+              style={{ color: '#0F3D3D' }}
+            >
+              {l.label}
+            </Link>
+          ) : (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={(e) => handleAnchorClick(e, l.href)}
+              className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
+              style={{ color: '#0F3D3D' }}
+            >
+              {l.label}
+            </a>
+          )
         ))}
         {isHome && navLinks.length > 0 && (
           <div className="h-px w-full my-2" style={{ backgroundColor: 'rgba(201,146,42,0.2)' }} />
@@ -123,14 +147,6 @@ export default function Navbar() {
           style={{ color: '#0F3D3D' }}
         >
           Iniciar sesión
-        </Link>
-        <Link
-          to="/contacto"
-          onClick={close}
-          className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
-          style={{ color: 'rgba(15,61,61,0.5)' }}
-        >
-          Contacto
         </Link>
       </div>
 
