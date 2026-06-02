@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
-    <section className="pt-24 pb-10 md:pb-12 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+    <section className="pt-24 pb-2 md:pb-4 px-6" style={{ backgroundColor: '#FAF7F2' }}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
         {/* Left verse column */}
         <div className="hidden md:block md:col-span-3">
@@ -33,7 +33,7 @@ export default function Hero() {
           >
             Empezar gratis
           </Link>
-          <div className="flex items-center justify-center gap-3 mt-6">
+          <div className="flex items-center justify-center gap-3 mt-4">
             <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
             <span className="text-sm select-none" style={{ color: '#C9922A' }}>◆</span>
             <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />

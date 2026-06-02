@@ -14,7 +14,7 @@ export default function Solution() {
   ];
 
   return (
-    <section id="solucion" className="py-16 md:py-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+    <section id="solucion" className="py-6 md:py-10 px-6" style={{ backgroundColor: '#FAF7F2' }}>
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
           <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>III</span>

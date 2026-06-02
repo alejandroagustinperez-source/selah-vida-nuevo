@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function FinalCta() {
   return (
-    <section className="py-16 md:py-20 px-6 text-center" style={{ backgroundColor: '#0F3D3D' }}>
+    <section className="py-6 md:py-10 px-6 text-center" style={{ backgroundColor: '#0F3D3D' }}>
       <div className="max-w-2xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl font-bold mb-4" style={{ color: '#FAF7F2' }}>
           Empezá hoy — Tu alma lo necesita

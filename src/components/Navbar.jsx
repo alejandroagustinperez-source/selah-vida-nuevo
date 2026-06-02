@@ -12,7 +12,7 @@ export default function Navbar() {
   const homeLinks = [
     { href: '#problema', label: 'Problema' },
     { href: '#solucion', label: 'Solución' },
-    { href: '#caracteristicas', label: 'Características' },
+    { href: '#testimonios', label: 'Testimonios' },
     { href: '#precios', label: 'Precios' },
   ];
 
@@ -37,11 +37,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white" style={{ borderBottom: '1px solid rgba(201,146,42,0.2)' }}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-            <path d="M2 17l10 5 10-5" />
-            <path d="M2 12l10 5 10-5" />
-          </svg>
+          <img src="/logo.png" alt="Selah Vida" className="w-[30px] h-[30px] object-contain" />
           <span className="font-serif text-lg font-bold" style={{ color: '#0F3D3D' }}>Selah Vida</span>
         </Link>
 
