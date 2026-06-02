@@ -134,7 +134,14 @@ export default function Canvas() {
   return (
     <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
       <div className="text-center mb-6">
-        <div className="text-[28px] mb-2 leading-none" style={{ color: '#C9922A' }}>◈</div>
+        <div className="flex justify-center mb-2">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.2">
+            <rect x="3" y="2" width="18" height="14" rx="1"/>
+            <line x1="12" y1="16" x2="12" y2="22"/>
+            <line x1="8" y1="22" x2="16" y2="22"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+          </svg>
+        </div>
         <h1 className="font-['Playfair_Display'] font-bold text-[26px]" style={{ color: '#0F3D3D' }}>El Lienzo Sagrado</h1>
         <p className="text-sm mt-1 max-w-md mx-auto" style={{ color: '#6b6b6b' }}>
           Completá desafíos bíblicos para revelar &laquo;La Última Cena&raquo;
