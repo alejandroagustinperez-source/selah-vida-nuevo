@@ -28,6 +28,7 @@ import Terminos from './pages/Terminos';
 import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
 import ManuscriptBorders from './components/ManuscriptBorders';
+import RafaelWidget from './components/RafaelWidget';
 
 function HomePage() {
   return (
@@ -50,6 +51,7 @@ function HomePage() {
       <Divider />
       <RevealOnScroll><FinalCta /></RevealOnScroll>
       <Footer />
+      <RafaelWidget />
     </ManuscriptBorders>
   );
 }
