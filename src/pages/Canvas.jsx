@@ -5,11 +5,18 @@ import confetti from 'canvas-confetti';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
+const CHALLENGE_ICONS = {
+  trivia_hard: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5"><polyline points="8 21 12 17 16 21"/><line x1="12" y1="17" x2="12" y2="11"/><path d="M7 4H4v4a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V4h-3"/><rect x="7" y="2" width="10" height="4" rx="1"/></svg>,
+  verse_game: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
+  word_search: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>,
+  quote_game: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>,
+};
+
 const PIECES = [
-  { key: 'trivia_hard', label: 'Pieza 1', challenge: 'Gana la Trivia en nivel Difícil', emoji: '🏆', pieces: 'Pieza 1 (izquierda)', threshold: 1 },
-  { key: 'verse_game', label: 'Pieza 2', challenge: 'Completa Adivina el Versículo 4 veces', emoji: '📖', pieces: 'Pieza 2', threshold: 4 },
-  { key: 'word_search', label: 'Pieza 3', challenge: 'Completa la Sopa de Letras 10 veces', emoji: '🔤', pieces: 'Pieza 3', threshold: 10 },
-  { key: 'quote_game', label: 'Pieza 4', challenge: 'Completa ¿Quién dijo esto? 5 veces', emoji: '👤', pieces: 'Pieza 4 (derecha)', threshold: 5 },
+  { key: 'trivia_hard', label: 'Pieza 1', challenge: 'Gana la Trivia en nivel Difícil', pieces: 'Pieza 1 (izquierda)', threshold: 1 },
+  { key: 'verse_game', label: 'Pieza 2', challenge: 'Completa Adivina el Versículo 4 veces', pieces: 'Pieza 2', threshold: 4 },
+  { key: 'word_search', label: 'Pieza 3', challenge: 'Completa la Sopa de Letras 10 veces', pieces: 'Pieza 3', threshold: 10 },
+  { key: 'quote_game', label: 'Pieza 4', challenge: 'Completa ¿Quién dijo esto? 5 veces', pieces: 'Pieza 4 (derecha)', threshold: 5 },
 ];
 
 export default function Canvas() {
@@ -125,96 +132,99 @@ export default function Canvas() {
   }
 
   return (
-    <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto">
+    <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
       <div className="text-center mb-6">
-        <div className="text-5xl mb-2">🖼️</div>
-        <h1 className="font-serif text-2xl font-bold text-dark-blue">El Lienzo Sagrado</h1>
-        <p className="text-dark-blue/50 text-sm mt-1 max-w-md mx-auto">
+        <div className="text-[28px] mb-2 leading-none" style={{ color: '#C9922A' }}>◈</div>
+        <h1 className="font-['Playfair_Display'] font-bold text-[26px]" style={{ color: '#0F3D3D' }}>El Lienzo Sagrado</h1>
+        <p className="text-sm mt-1 max-w-md mx-auto" style={{ color: '#6b6b6b' }}>
           Completá desafíos bíblicos para revelar &laquo;La Última Cena&raquo;
         </p>
       </div>
 
       {showAllComplete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-6" onClick={() => setShowAllComplete(false)}>
-          <div className="bg-cream rounded-3xl p-8 text-center max-w-sm border-4 border-gold shadow-2xl animate-bounce-in">
-            <div className="text-7xl mb-4">🙏</div>
-            <h2 className="font-serif text-2xl font-bold text-dark-blue mb-2">¡Has completado La Última Cena!</h2>
-            <p className="text-dark-blue/60 text-sm">Has desbloqueado todas las piezas. Que este lienzo te recuerde el amor infinito de Cristo.</p>
-            <button onClick={() => setShowAllComplete(false)} className="mt-6 bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Cerrar</button>
+          <div className="p-8 text-center max-w-sm shadow-2xl animate-bounce-in" style={{ background: '#FAF7F2', border: '2px solid #C9922A', borderRadius: '8px' }}>
+            <div style={{ color: '#C9922A', fontSize: '48px', marginBottom: '16px' }}>◈</div>
+            <h2 className="font-['Playfair_Display'] text-2xl font-bold mb-2" style={{ color: '#0F3D3D' }}>¡Has completado La Última Cena!</h2>
+            <p className="text-sm" style={{ color: '#6b6b6b' }}>Has desbloqueado todas las piezas. Que este lienzo te recuerde el amor infinito de Cristo.</p>
+            <button onClick={() => setShowAllComplete(false)} className="mt-6 px-6 py-2.5 text-sm font-['Playfair_Display'] transition-colors" style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}>Cerrar</button>
           </div>
         </div>
       )}
 
       {/* Frame */}
       <div className="relative max-w-2xl mx-auto w-full mb-8">
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/30 via-gold/10 to-gold/30 rounded-3xl blur-sm" />
-        <div className="relative bg-gradient-to-br from-[#d4a84b] via-[#c9952e] to-[#b8860b] p-1.5 rounded-2xl shadow-2xl">
-          <div className="bg-gradient-to-br from-[#f5e6c8] via-[#e8d5a8] to-[#d4b87a] p-1 rounded-xl">
-            <div className="bg-[#1a1a1a] rounded-lg overflow-hidden" style={{ aspectRatio: '1659/948' }}>
-              <div className="grid grid-cols-4 h-full">
-                {PIECES.map((piece, idx) => {
-                  const unlocked = pieces?.[piece.key];
-                  return (
-                    <div key={piece.key} className="relative overflow-hidden">
-                      <img
-                        src={`/last-supper-${idx + 1}.png`}
-                        alt={`Pieza ${idx + 1}`}
-                        className={`w-full h-full object-cover transition-all duration-1000 ${
-                          unlocked ? 'opacity-100 scale-100' : 'opacity-40 scale-105 blur-lg'
-                        } ${justUnlocked === piece.key ? 'animate-reveal-piece' : ''}`}
-                      />
-                      {!unlocked && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                          <span className="text-4xl drop-shadow-lg">🔒</span>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+        <div className="relative" style={{ border: '2px solid #C9922A', borderRadius: '8px', boxShadow: '0 0 0 8px #FAF7F2, 0 0 0 9px #E8E0D0' }}>
+          <div className="bg-[#1a1a1a] overflow-hidden" style={{ borderRadius: '6px', aspectRatio: '1659/948' }}>
+            <div className="grid grid-cols-4 h-full">
+              {PIECES.map((piece, idx) => {
+                const unlocked = pieces?.[piece.key];
+                return (
+                  <div key={piece.key} className="relative overflow-hidden">
+                    <img
+                      src={`/last-supper-${idx + 1}.png`}
+                      alt={`Pieza ${idx + 1}`}
+                      className={`w-full h-full object-cover transition-all duration-1000 ${
+                        unlocked ? 'opacity-100 scale-100' : 'opacity-40 scale-105 blur-lg'
+                      } ${justUnlocked === piece.key ? 'animate-reveal-piece' : ''}`}
+                    />
+                    {!unlocked && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
 
         {justUnlocked && (
-          <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg animate-bounce z-10 whitespace-nowrap">
-            🎉 ¡Pieza desbloqueada!
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 text-sm font-['Playfair_Display'] shadow-lg animate-bounce z-10 whitespace-nowrap" style={{ background: '#C9922A', color: '#FAF7F2', borderRadius: '4px' }}>
+            ¡Pieza desbloqueada!
           </div>
         )}
       </div>
 
       {/* Challenges */}
-      <div className="max-w-lg mx-auto w-full space-y-3 mb-8">
-        <h3 className="font-serif text-lg font-bold text-dark-blue text-center mb-4">Desafíos</h3>
+      <div className="text-center mb-6" style={{ maxWidth: '512px', margin: '0 auto' }}>
+        <h3 className="font-['Playfair_Display'] font-bold" style={{ color: '#0F3D3D', fontSize: '18px', marginBottom: '16px' }}>Desafíos</h3>
+        <div style={{ width: '60px', height: '1px', background: '#C9922A', opacity: 0.3, margin: '0 auto 16px' }} />
+      </div>
+      <div className="mx-auto w-full space-y-3 mb-8" style={{ maxWidth: '512px' }}>
         {PIECES.map((piece) => {
           const unlocked = pieces?.[piece.key];
           const count = progress?.[piece.key];
+          const completed = unlocked || (count !== undefined && typeof count === 'number' && count >= piece.threshold);
           return (
             <div
               key={piece.key}
-              className={`bg-white rounded-2xl border p-4 transition-all ${
-                unlocked ? 'border-green-300 bg-green-50/30' : 'border-gold/10'
-              }`}
+              style={{
+                background: unlocked ? '#F0F7F4' : '#fff',
+                border: `1px solid ${unlocked ? '#0F3D3D' : '#E8E0D0'}`,
+                borderRadius: '6px',
+                padding: '16px 20px',
+                transition: 'all 0.2s',
+              }}
             >
               <div className="flex items-center gap-3">
-                <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
-                  unlocked ? 'bg-green-100' : 'bg-cream'
-                }`}>
-                  {piece.emoji}
+                <div className="shrink-0 w-10 h-10 flex items-center justify-center" style={{ borderRadius: '6px', background: unlocked ? '#F0F7F4' : '#FAF7F2', border: `1px solid ${unlocked ? '#0F3D3D' : '#E8E0D0'}` }}>
+                  {CHALLENGE_ICONS[piece.key]}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-medium ${unlocked ? 'text-green-700' : 'text-dark-blue'}`}>
+                  <p className="font-['Playfair_Display'] font-bold text-sm" style={{ color: '#0F3D3D' }}>
                     {piece.challenge}
                   </p>
-                  <p className="text-xs text-dark-blue/40 mt-0.5">
+                  <p style={{ color: '#C9922A', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '2px' }}>
                     {piece.pieces}
-                    {!unlocked && count !== undefined && typeof count === 'number' && (
-                      <span className="ml-2 text-gold font-medium">{count}/{piece.threshold}</span>
+                    {!completed && count !== undefined && typeof count === 'number' && (
+                      <span style={{ color: '#C9922A', fontWeight: 600, marginLeft: '8px' }}>({count}/{piece.threshold})</span>
                     )}
                   </p>
                 </div>
                 {unlocked && (
-                  <span className="text-xl shrink-0">✅</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F3D3D" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
                 )}
               </div>
             </div>
