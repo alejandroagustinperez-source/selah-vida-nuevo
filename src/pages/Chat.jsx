@@ -383,6 +383,24 @@ export default function Chat() {
         </div>
       </header>
 
+      {/* Approaching limit warning */}
+      {!isPremium && used >= 15 && used < limit && (
+        <div className="flex-shrink-0 bg-amber-50/80 border-b border-amber-200/50 px-6 py-2 text-center">
+          <p className="text-xs text-amber-700">
+            Te quedan <span className="font-semibold">{limit - used}</span> mensajes hoy.{' '}
+            Con Premium tenés mensajes ilimitados.{' '}
+            <a
+              href="https://pay.hotmart.com/Q105734847S"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold font-semibold hover:underline"
+            >
+              Ver planes →
+            </a>
+          </p>
+        </div>
+      )}
+
       {/* Limit reached modal/banner */}
       {atLimit && !hideLimit && (
         <LimitModal resetIn={resetIn} onClose={() => setHideLimit(true)} />

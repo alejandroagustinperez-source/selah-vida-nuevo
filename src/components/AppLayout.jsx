@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
-import PremiumModal from '../components/PremiumModal';
 import CancelModal from '../components/CancelModal';
 import { trackEvent, updateLocation } from '../utils/tracking';
 
@@ -31,7 +30,7 @@ export default function AppLayout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [modalItem, setModalItem] = useState(null);
+  const [showPremiumToast, setShowPremiumToast] = useState(false);
   const [cancelOpen, setCancelOpen] = useState(false);
   const [chats, setChats] = useState([]);
   const [loadingChats, setLoadingChats] = useState(false);
@@ -106,10 +105,17 @@ export default function AppLayout({ children }) {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (!showPremiumToast) return;
+    const t = setTimeout(() => setShowPremiumToast(false), 5000);
+    return () => clearTimeout(t);
+  }, [showPremiumToast]);
+
   const handleNavClick = (item) => {
     setSidebarOpen(false);
     if (item.isLocked && !isPremium) {
-      setModalItem(item);
+      setShowPremiumToast(true);
       return;
     }
     navigate(item.to);
@@ -384,7 +390,27 @@ export default function AppLayout({ children }) {
                 Cancelar suscripción
               </button>
             </div>
-          ) : null}
+          ) : (
+            <div className="px-1 py-1">
+              <div className="bg-cream border border-gold/30 rounded-xl p-3 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-gold text-sm">✦</span>
+                  <span className="text-xs font-semibold text-dark-blue">Accedé a todo con Premium</span>
+                </div>
+                <p className="text-[10px] text-dark-blue/50 leading-relaxed">
+                  Música, juegos, oraciones ilimitadas y más.
+                </p>
+                <a
+                  href="https://pay.hotmart.com/Q105734847S"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center bg-gold text-white text-xs py-2 rounded-lg font-semibold hover:bg-gold-dark transition-colors"
+                >
+                  Ver planes
+                </a>
+              </div>
+            </div>
+          )}
           <button
             onClick={handleLogout}
             className="w-full text-left py-3 px-4 text-sm text-dark-blue/40 cursor-pointer touch-action-manipulation rounded-lg active:text-red-500 active:bg-red-50 transition-colors"
@@ -401,10 +427,28 @@ export default function AppLayout({ children }) {
         </div>
       </div>
 
-      <PremiumModal
-        open={!!modalItem}
-        onClose={() => setModalItem(null)}
-      />
+      {/* Premium toast */}
+      {showPremiumToast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] animate-fadeIn">
+          <div className="bg-white border border-gold/30 rounded-xl shadow-xl px-5 py-3 flex items-center gap-3 max-w-sm mx-4">
+            <span className="text-gold text-lg">✦</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-dark-blue font-medium">
+                Esta función es exclusiva de Premium. ¿Querés desbloquearla?
+              </p>
+            </div>
+            <a
+              href="https://pay.hotmart.com/Q105734847S"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 text-xs text-gold font-semibold hover:text-gold-dark hover:underline whitespace-nowrap"
+            >
+              Ver planes →
+            </a>
+          </div>
+        </div>
+      )}
+
       <CancelModal
         open={cancelOpen}
         onClose={() => setCancelOpen(false)}

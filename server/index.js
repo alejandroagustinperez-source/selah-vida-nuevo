@@ -362,11 +362,16 @@ app.get('/api/user/usage', verifyToken, async (req, res) => {
 
     const resetIn = lastReset ? Math.max(0, TWENTY_FOUR_HOURS - (now - lastReset)) : 0;
 
+    let isPremium = profile.is_premium;
+    if (profile.premium_until && new Date(profile.premium_until) < new Date()) {
+      isPremium = false;
+    }
+
     res.json({
       messagesCount: profile.messages_count,
       resetIn,
       limit: 20,
-      isPremium: profile.is_premium,
+      isPremium,
       premiumUntil: profile.premium_until,
     });
   } catch (err) {
@@ -412,7 +417,7 @@ app.post('/api/webhook/hotmart', async (req, res) => {
           const buyerName = payload.buyer?.name || payload.name || null;
           const emailContent = buildWelcomeEmail(buyerName);
           await resend.emails.send({
-            from: 'Selah Vida <noreply@selah-vida.vercel.app>',
+            from: 'Selah Vida <onboarding@resend.dev>',
             to: email,
             subject: emailContent.subject,
             html: emailContent.html,

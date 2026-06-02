@@ -42,6 +42,10 @@ export default async function handler(req, res) {
     let isPremium = profile?.is_premium ?? false;
     const premiumUntil = profile?.premium_until ?? null;
 
+    if (premiumUntil && new Date(premiumUntil) < new Date()) {
+      isPremium = false;
+    }
+
     const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
     const now = new Date();
     const lastReset = profile?.last_message_reset ? new Date(profile.last_message_reset) : null;

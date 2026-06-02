@@ -129,7 +129,7 @@ export default async function handler(req, res) {
           const buyerName = req.body?.data?.buyer?.name || req.body?.data?.name || null;
           const emailContent = buildWelcomeEmail(buyerName);
           await resend.emails.send({
-            from: 'Selah Vida <noreply@selah-vida.vercel.app>',
+            from: 'Selah Vida <onboarding@resend.dev>',
             to: email,
             subject: emailContent.subject,
             html: emailContent.html,
