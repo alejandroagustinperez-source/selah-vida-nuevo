@@ -1,66 +1,108 @@
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
+  const year = 2024;
+
   return (
-    <footer style={{ backgroundColor: '#0F2E2E' }}>
-      <div className="max-w-6xl mx-auto px-6 py-14 md:py-18">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
-          {/* Brand */}
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="Selah Vida" style={{ height: '36px', width: 'auto', objectFit: 'contain' }} />
-              <span className="font-serif text-lg font-bold text-white">Selah Vida</span>
-            </div>
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              Acompa&ntilde;amiento espiritual con inteligencia b&iacute;blica.
-            </p>
+    <footer className="px-6 py-14 md:py-16" style={{ backgroundColor: '#0F2E2E' }}>
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col items-center text-center mb-10">
+          <div className="flex items-center gap-2 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
+            <span className="font-serif text-lg font-bold" style={{ color: '#FAF7F2' }}>Selah Vida</span>
           </div>
-
-          {/* Navigation */}
-          <div>
-            <h4 className="text-xs tracking-[3px] font-semibold uppercase mb-5" style={{ color: '#C9922A' }}>Navegaci&oacute;n</h4>
-            <div className="flex flex-col gap-3">
-              <Link to="/" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Inicio</Link>
-              <Link to="/contacto" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Contacto</Link>
-              <Link to="/login" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Iniciar sesi&oacute;n</Link>
-              <Link to="/register" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Registrarse</Link>
-            </div>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h4 className="text-xs tracking-[3px] font-semibold uppercase mb-5" style={{ color: '#C9922A' }}>Recursos</h4>
-            <div className="flex flex-col gap-3">
-              <Link to="/privacy" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Pol&iacute;tica de Privacidad</Link>
-              <Link to="/terms" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>T&eacute;rminos de Uso</Link>
-              <a href="#problema" className="text-sm transition-colors" style={{ color: 'rgba(255,255,255,0.7)' }}>Preguntas frecuentes</a>
-            </div>
-          </div>
-
-          {/* Download */}
-          <div>
-            <h4 className="text-xs tracking-[3px] font-semibold uppercase mb-5" style={{ color: '#C9922A' }}>Descarga la app</h4>
-            <p className="text-sm leading-relaxed mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              Pr&oacute;ximamente disponible en iOS y Android.
-            </p>
-            <div className="flex flex-col gap-2">
-              {/*
-              <span className="inline-block px-4 py-2 rounded-lg text-xs text-center border transition-opacity" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.4)' }}>
-                App Store
-              </span>
-              <span className="inline-block px-4 py-2 rounded-lg text-xs text-center border transition-opacity" style={{ borderColor: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.4)' }}>
-                Google Play
-              </span>
-              */}
+          <p className="text-xs max-w-xs leading-relaxed mb-3" style={{ color: 'rgba(250,247,242,0.6)' }}>
+            Tu refugio espiritual con inteligencia artificial, disponible 24/7 para acompañarte en tu fe.
+          </p>
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8" style={{ backgroundColor: '#C9922A' }} />
+            <span className="text-sm select-none" style={{ color: '#C9922A' }}>◆</span>
+            <div className="h-px w-8" style={{ backgroundColor: '#C9922A' }} />
           </div>
         </div>
-      </div>
-      </div>
 
-      <div className="border-t py-6 px-6" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-        <p className="text-xs text-center" style={{ color: 'rgba(255,255,255,0.4)' }}>
-          &copy; {new Date().getFullYear()} Selah Vida. Todos los derechos reservados.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+          <div>
+            <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Selah Vida</h4>
+            <ul className="space-y-2">
+              {['Inicio', 'Características', 'Precios', 'Contacto'].map((item) => (
+                <li key={item}>
+                  <Link
+                    to={item === 'Inicio' ? '/' : item === 'Características' ? '/#caracteristicas' : item === 'Precios' ? '/#precios' : '/contacto'}
+                    className="text-xs hover:underline"
+                    style={{ color: 'rgba(250,247,242,0.7)' }}
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Navegación</h4>
+            <ul className="space-y-2">
+              {[
+                { label: 'Iniciar sesión', to: '/login' },
+                { label: 'Crear cuenta', to: '/register' },
+                { label: 'Términos y condiciones', to: '/terminos' },
+                { label: 'Privacidad', to: '/privacidad' },
+              ].map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Recursos</h4>
+            <ul className="space-y-2">
+              {[
+                { label: 'Devocionales', to: '/' },
+                { label: 'Blog', to: '/' },
+                { label: 'Ayuda', to: '/contacto' },
+              ].map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Descarga la App</h4>
+            <ul className="space-y-3">
+              {[
+                { label: 'App Store (Próximamente)', disabled: true },
+                { label: 'Google Play (Próximamente)', disabled: true },
+              ].map((l) => (
+                <li key={l.label}>
+                  <span
+                    className="inline-block text-xs px-4 py-2 rounded-lg opacity-50 cursor-not-allowed"
+                    style={{ backgroundColor: 'rgba(250,247,242,0.05)', color: 'rgba(250,247,242,0.5)' }}
+                  >
+                    {l.label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="text-center mt-10 pt-6" style={{ borderTop: '1px solid rgba(250,247,242,0.08)' }}>
+          <p className="text-xs" style={{ color: 'rgba(250,247,242,0.4)' }}>
+            &copy; {year} Selah Vida. Todos los derechos reservados.
+          </p>
+        </div>
       </div>
     </footer>
   );

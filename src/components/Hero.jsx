@@ -2,53 +2,51 @@ import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
-    <section className="min-h-[85vh] flex items-center justify-center pt-24 pb-16 md:pb-20 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(165deg, #FAF7F2 0%, #f5efe4 50%, #efe6d6 100%)' }}
-    >
-      <div className="absolute top-[-30%] left-[-15%] w-[70%] h-full bg-[radial-gradient(ellipse_at_center,rgba(201,146,42,0.07)_0%,transparent_70%)] pointer-events-none" />
-
-      <div className="relative z-10 w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
-        {/* Left verse — hidden on mobile */}
-        <div className="hidden md:block text-right">
-          <p className="font-serif text-sm lg:text-base italic leading-relaxed" style={{ color: '#5A6A5A', lineHeight: '1.8' }}>
-            &laquo;El Se&ntilde;or es mi pastor;<br />
-            nada me falta.<br />
-            En verdes pastos me hace descansar,<br />
-            junto a tranquilas aguas me conduce.&raquo;
+    <section className="pt-24 pb-16 md:pb-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+        {/* Left verse column */}
+        <div className="hidden md:block md:col-span-3">
+          <p className="text-xs tracking-[0.15em] font-semibold mb-3" style={{ color: '#C9922A' }}>SALMO 23:1-2</p>
+          <p className="font-serif text-sm leading-relaxed" style={{ color: '#3D3D3D', lineHeight: '1.9' }}>
+            <span className="align-super text-[0.6rem]" style={{ color: '#C9922A' }}>1 </span>Jehová es mi pastor; nada me faltará.<br />
+            <span className="align-super text-[0.6rem]" style={{ color: '#C9922A' }}>2 </span>En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará.
           </p>
-          <p className="text-xs mt-3 tracking-wider" style={{ color: '#C9922A' }}>SALMOS 23:1-2</p>
         </div>
 
-        {/* Center */}
-        <div className="text-center">
-          <div className="text-7xl md:text-8xl lg:text-9xl font-serif font-bold leading-none mb-4 select-none" style={{ color: '#8B1A1A' }}>I</div>
-          <h1 className="font-serif text-[clamp(2rem,6vw,3.5rem)] font-bold leading-tight mb-3" style={{ color: '#0F3D3D' }}>
-            Selah Vida
-          </h1>
-          <p className="italic text-base lg:text-lg mb-6" style={{ color: '#C9922A' }}>
+        {/* Center column */}
+        <div className="md:col-span-6 text-center">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="font-serif font-bold leading-none" style={{ color: '#8B1A1A', fontSize: 'clamp(3rem,8vw,5rem)' }}>I</span>
+            <h1 className="font-serif font-bold leading-tight" style={{ color: '#0F3D3D', fontSize: 'clamp(2rem,6vw,3.8rem)' }}>
+              Selah Vida
+            </h1>
+          </div>
+          <p className="italic text-base lg:text-lg mb-5" style={{ color: '#C9922A' }}>
             Tu refugio espiritual &middot; 24/7
           </p>
-          <p className="text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed" style={{ color: '#5A6A5A' }}>
-            Un espacio seguro para fortalecer tu fe, encontrar paz y crecer espiritualmente con acompa&ntilde;amiento b&iacute;blico personalizado.
+          <p className="text-sm md:text-base max-w-lg mx-auto mb-8 leading-relaxed" style={{ color: '#3D3D3D' }}>
+            Una aplicación cristiana impulsada por inteligencia artificial que te escucha, te guía y te ayuda a crecer en tu fe cada día.
           </p>
           <Link
             to="/register"
-            className="inline-block border-2 border-[#C9922A] text-[#0F3D3D] px-10 py-3.5 rounded-full text-xs tracking-[2px] font-semibold uppercase hover:bg-[#C9922A] hover:text-white transition-all"
+            className="inline-block border-2 border-[#C9922A] text-[#0F3D3D] px-10 py-3.5 rounded-full text-xs tracking-[0.15em] font-semibold uppercase hover:bg-[#C9922A] hover:text-white transition-all"
           >
             Empezar gratis
           </Link>
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
+            <span className="text-sm select-none" style={{ color: '#C9922A' }}>◆</span>
+            <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
+          </div>
         </div>
 
-        {/* Right verse — hidden on mobile */}
-        <div className="hidden md:block text-left">
-          <p className="font-serif text-sm lg:text-base italic leading-relaxed" style={{ color: '#5A6A5A', lineHeight: '1.8' }}>
-            &laquo;No se angustien por nada,<br />
-            sino pres&eacute;ntenle a Dios<br />
-            todas sus peticiones mediante<br />
-            la oraci&oacute;n y la s&uacute;plica,<br />
-            con acciones de gracias.&raquo;
+        {/* Right verse column */}
+        <div className="hidden md:block md:col-span-3">
+          <p className="text-xs tracking-[0.15em] font-semibold mb-3" style={{ color: '#C9922A' }}>FILIPENSES 4:6-7</p>
+          <p className="font-serif text-sm leading-relaxed" style={{ color: '#3D3D3D', lineHeight: '1.9' }}>
+            <span className="align-super text-[0.6rem]" style={{ color: '#C9922A' }}>6 </span>Por nada estéis afanosos, sino sean conocidas vuestras peticiones delante de Dios en toda oración y ruego, con acción de gracias.<br />
+            <span className="align-super text-[0.6rem]" style={{ color: '#C9922A' }}>7 </span>Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones y vuestros pensamientos en Cristo Jesús.
           </p>
-          <p className="text-xs mt-3 tracking-wider" style={{ color: '#C9922A' }}>FILIPENSES 4:6-7</p>
         </div>
       </div>
     </section>

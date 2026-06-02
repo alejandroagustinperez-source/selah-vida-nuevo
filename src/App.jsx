@@ -30,11 +30,15 @@ function HomePage() {
   return (
     <>
       <Navbar />
+      <Divider thin />
       <Hero />
       <Divider />
-      <RevealOnScroll><Problem /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><Solution /></RevealOnScroll>
+      <RevealOnScroll>
+        <div className="flex flex-col md:grid md:grid-cols-2">
+          <Problem />
+          <Solution />
+        </div>
+      </RevealOnScroll>
       <Divider />
       <RevealOnScroll><Verse /></RevealOnScroll>
       <Divider />
