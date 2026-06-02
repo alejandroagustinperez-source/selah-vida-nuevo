@@ -25,28 +25,25 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
-import ManuscriptBorders from './components/ManuscriptBorders';
 
 function HomePage() {
   return (
     <>
       <Navbar />
-      <ManuscriptBorders>
-        <Divider thin />
-        <Hero />
-        <Divider />
-        <RevealOnScroll><Problem /></RevealOnScroll>
-        <Divider />
-        <RevealOnScroll><Solution /></RevealOnScroll>
-        <Divider />
-        <RevealOnScroll><Verse /></RevealOnScroll>
-        <Divider />
-        <RevealOnScroll><Testimonials /></RevealOnScroll>
-        <Divider />
-        <RevealOnScroll><Pricing /></RevealOnScroll>
-        <Divider />
-        <RevealOnScroll><FinalCta /></RevealOnScroll>
-      </ManuscriptBorders>
+      <Divider thin />
+      <Hero />
+      <Divider />
+      <RevealOnScroll><Problem /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><Solution /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><Verse /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><Testimonials /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><Pricing /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><FinalCta /></RevealOnScroll>
       <Footer />
     </>
   );
