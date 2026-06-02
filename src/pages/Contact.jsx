@@ -3,8 +3,15 @@ import { Link } from 'react-router-dom';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
+const SUBJECTS = [
+  'Soporte técnico',
+  'Consulta sobre Premium',
+  'Sugerencia',
+  'Otro',
+];
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState(null);
 
@@ -22,10 +29,14 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error('Error');
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || 'Error');
+      }
       setStatus('success');
-      setForm({ name: '', email: '', message: '' });
-    } catch {
+      setForm({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      console.error('Contact form error:', err);
       setStatus('error');
     } finally {
       setSending(false);
@@ -93,6 +104,24 @@ export default function Contact() {
                 onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
                 onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
               />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-xs tracking-[0.15em] font-semibold uppercase mb-1" style={{ color: '#C9922A' }}>
+                Asunto
+              </label>
+              <select
+                name="subject" required value={form.subject} onChange={handleChange}
+                className="w-full py-2.5 bg-transparent outline-none text-sm transition-colors appearance-none"
+                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A' }}
+                onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
+                onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
+              >
+                <option value="" disabled style={{ color: 'rgba(15,61,61,0.4)' }}>Seleccioná un asunto</option>
+                {SUBJECTS.map((s) => (
+                  <option key={s} value={s} style={{ color: '#0F3D3D' }}>{s}</option>
+                ))}
+              </select>
             </div>
 
             <div className="mb-8">

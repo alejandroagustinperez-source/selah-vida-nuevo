@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const TO_EMAIL = 'origenvitalsl@gmail.com';
+const TO_EMAIL = 'alejandro.agustin.perez@gmail.com';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,8 +13,10 @@ export default async function handler(req, res) {
   try {
     const { name, email, subject, message } = req.body || {};
 
-    if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    console.log('Contact form received:', JSON.stringify({ name, email, subject, messageLength: message?.length }));
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Faltan campos requeridos: nombre, email y mensaje son obligatorios' });
     }
 
     if (!resend) {
@@ -23,11 +25,12 @@ export default async function handler(req, res) {
       return res.json({ success: true });
     }
 
-    console.log('Enviando email...');
+    const finalSubject = subject || 'General';
+    console.log(`Sending via Resend: from=onboarding@resend.dev to=${TO_EMAIL} subject=${finalSubject}`);
     const { data, error } = await resend.emails.send({
       from: 'Selah Vida <onboarding@resend.dev>',
       to: TO_EMAIL,
-      subject: `[Selah Vida] [${subject}] - de ${name}`,
+      subject: `[Selah Vida] [${finalSubject}] - de ${name}`,
       html: `
         <div style="font-family: Inter, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px 24px; background-color: #FAF6EF; color: #1a3a4a;">
           <div style="text-align: center; margin-bottom: 24px;">
@@ -49,15 +52,15 @@ export default async function handler(req, res) {
       `.trim(),
     });
 
-    console.log('Respuesta Resend:', JSON.stringify(data));
+    console.log('Resend response:', JSON.stringify({ data, error }));
     if (error) {
-      console.log('Error Resend:', JSON.stringify(error));
+      console.error('Resend error details:', JSON.stringify(error, null, 2));
       return res.status(500).json({ error: error.message, details: error });
     }
 
     return res.json({ success: true });
   } catch (err) {
-    console.log('Error Resend:', JSON.stringify(err));
+    console.error('Contact handler exception:', err);
     return res.status(500).json({ error: err.message, details: err });
   }
 }
