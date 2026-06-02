@@ -5,9 +5,9 @@ export default function Pricing() {
     <section id="precios" className="py-16 md:py-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-8">
-          <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>VI</span>
+          <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>V</span>
           <h2 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
-            Elige tu plan
+            Elige tu camino
           </h2>
         </div>
 
@@ -50,8 +50,8 @@ export default function Pricing() {
               Recomendado
             </span>
             <h3 className="font-serif text-xl font-bold text-center" style={{ color: '#0F3D3D' }}>Premium</h3>
-            <p className="text-3xl font-bold text-center my-4" style={{ color: '#0F3D3D' }}>$7<span className="text-base font-normal" style={{ color: 'rgba(15,61,61,0.6)' }}>/mes</span></p>
-            <p className="text-xs text-center mb-6 tracking-[0.05em]" style={{ color: 'rgba(15,61,61,0.6)' }}>Cancela cuando quieras</p>
+            <p className="text-3xl font-bold text-center my-4" style={{ color: '#0F3D3D' }}>$4.99<span className="text-base font-normal" style={{ color: 'rgba(15,61,61,0.6)' }}>/mes</span></p>
+            <p className="text-xs text-center mb-6 tracking-[0.05em]" style={{ color: 'rgba(15,61,61,0.6)' }}>Para quienes buscan más profundidad</p>
             <ul className="space-y-3 text-sm flex-1" style={{ color: '#3D3D3D' }}>
               <li className="flex items-start gap-2">
                 <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>1.</span>

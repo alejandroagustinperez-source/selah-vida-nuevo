@@ -13,7 +13,7 @@ export default function Problem() {
         <div className="text-center mb-8">
           <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>II</span>
           <h2 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
-            ¿Te has sentido así?
+            Sabemos lo que duele
           </h2>
         </div>
 
