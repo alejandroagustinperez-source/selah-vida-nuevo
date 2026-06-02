@@ -240,7 +240,7 @@ export default function AppLayout({ children }) {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden bg-cream">
+    <div className="h-screen flex overflow-hidden" style={{ height: '100dvh', backgroundColor: '#FAF7F2' }}>
       {/* Mobile header - fixed */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-30 px-4 py-3 flex items-center gap-3" style={{ backgroundColor: '#0F3D3D' }}>
         <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú" style={{ color: '#FAF7F2' }}>

@@ -412,7 +412,7 @@ export default function Chat() {
       )}
 
       {/* Messages - scrollable */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-3xl mx-auto w-full" style={{ backgroundColor: '#FAF7F2' }}>
+      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-3xl mx-auto w-full" style={{ backgroundColor: '#FAF7F2', paddingBottom: '16px', WebkitOverflowScrolling: 'touch' }}>
         <DailyVerse />
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -490,7 +490,7 @@ export default function Chat() {
       </div>
 
       {/* Input - flex-shrink-0 at bottom */}
-      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '16px 24px' }}>
+      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '16px 24px', paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
         <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-3xl mx-auto">
           <input
             type="text"
