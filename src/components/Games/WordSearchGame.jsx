@@ -278,7 +278,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
   const themeLabels = { profetas: 'Profetas', discípulos: 'Discípulos', lugares: 'Lugares', ángeles: 'Ángeles', milagros: 'Milagros', oración: 'Oración' };
 
   return (
-    <div className="h-full flex flex-col overflow-y-auto" style={{ background: '#FAF7F2', padding: '24px' }}>
+    <div className="ws-game h-full flex flex-col overflow-y-auto" style={{ background: '#FAF7F2', padding: '24px' }}>
       <div className="w-full mx-auto" style={{ maxWidth: '900px' }}>
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
@@ -288,16 +288,17 @@ export default function WordSearchGame({ onBack, onComplete }) {
 
         <div className="flex flex-col lg:flex-row gap-5 w-full">
           {/* Words panel */}
-          <div className="w-full lg:w-[250px] shrink-0">
+          <div className="ws-words-panel w-full lg:w-[250px] shrink-0">
             <div style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px', padding: '20px' }}>
               <h3 className="font-['Playfair_Display'] font-bold" style={{ color: '#0F3D3D', fontSize: '14px', marginBottom: '12px' }}>Palabras a encontrar</h3>
               <div style={{ height: '1px', background: '#C9922A', opacity: 0.3, marginBottom: '4px' }} />
-              <div>
+              <div className="ws-words-inner">
                 {words.map((w) => {
                   const isFoundWord = foundWords.includes(w);
                   return (
                     <div
                       key={w}
+                      className="ws-word-item"
                       style={{
                         fontSize: '12px',
                         color: isFoundWord ? '#0F3D3D' : '#6b6b6b',
@@ -322,7 +323,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
           </div>
 
           {/* Grid area */}
-          <div className="flex-1 min-w-0">
+          <div className="ws-grid-wrapper flex-1 min-w-0">
             <div
               className="touch-none select-none"
               style={{
@@ -333,7 +334,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
               }}
             >
               <div
-                className="inline-grid mx-auto"
+                className="ws-grid-inner inline-grid mx-auto"
                 style={{
                   gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
                   gap: '3px',
@@ -354,6 +355,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
                     return (
                       <button
                         key={`${r}-${c}`}
+                        className="ws-cell"
                         onMouseDown={(e) => { e.preventDefault(); handleCellClick(r, c); }}
                         onTouchStart={(e) => { e.preventDefault(); handleCellClick(r, c); }}
                         style={{
@@ -407,6 +409,34 @@ export default function WordSearchGame({ onBack, onComplete }) {
           </div>
         )}
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .ws-game { padding: 0 12px !important; }
+          .ws-words-panel { max-height: 160px; overflow-y: auto; }
+          .ws-words-inner { display: flex; flex-wrap: wrap; gap: 6px; }
+          .ws-word-item {
+            display: inline-block !important;
+            background: #FAF7F2 !important;
+            border: 1px solid #E8E0D0 !important;
+            border-radius: 4px !important;
+            padding: 4px 10px !important;
+            font-size: 11px !important;
+            border-bottom: none !important;
+            margin: 0 !important;
+            width: auto !important;
+          }
+          .ws-grid-wrapper { overflow-x: hidden; width: 100%; }
+          .ws-grid-inner { width: 100% !important; max-width: 100% !important; }
+          .ws-cell {
+            font-size: 11px !important;
+            max-width: none !important;
+            max-height: none !important;
+            min-width: 20px !important;
+            min-height: 20px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
