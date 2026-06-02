@@ -29,6 +29,7 @@ import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
 import ManuscriptBorders from './components/ManuscriptBorders';
 import RafaelWidget from './components/RafaelWidget';
+import ScrollToTop from './components/ScrollToTop';
 
 function HomePage() {
   return (
@@ -67,6 +68,7 @@ function ProtectedLayout({ children }) {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />

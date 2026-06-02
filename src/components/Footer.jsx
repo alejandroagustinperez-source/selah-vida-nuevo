@@ -28,7 +28,7 @@ export default function Footer() {
             <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Navegación</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Inicio', to: '/' },
+                { label: 'Inicio', to: '/', scrollTop: true },
                 { label: 'Iniciar sesión', to: '/login' },
                 { label: 'Crear cuenta', to: '/register' },
                 { label: 'Contacto', to: '/contacto' },
@@ -36,7 +36,7 @@ export default function Footer() {
                 { label: 'Términos y condiciones', to: '/terminos' },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
+                  <Link to={l.to} onClick={l.scrollTop ? () => window.scrollTo(0, 0) : undefined} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
                     {l.label}
                   </Link>
                 </li>

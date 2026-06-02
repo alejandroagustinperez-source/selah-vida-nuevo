@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+useEffect(() => { window.scrollTo(0, 0); }, []);
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 

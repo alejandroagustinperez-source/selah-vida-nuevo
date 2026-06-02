@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+useEffect(() => { window.scrollTo(0, 0); }, []);
 
 const crisisLines = [
   { country: 'Argentina', lines: [{ name: 'Centro de Asistencia al Suicida', phone: '135 (gratuito)' }, { name: '', phone: '+54 11 5275-1135' }] },
