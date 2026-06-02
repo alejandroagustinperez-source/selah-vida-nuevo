@@ -275,81 +275,138 @@ export default function WordSearchGame({ onBack, onComplete }) {
     );
   }
 
+  const themeLabels = { profetas: 'Profetas', discípulos: 'Discípulos', lugares: 'Lugares', ángeles: 'Ángeles', milagros: 'Milagros', oración: 'Oración' };
+
   return (
-    <div className="h-full flex flex-col px-4 py-4 overflow-y-auto" style={{ background: '#FAF7F2' }}>
-      <button onClick={onBack} className="self-start text-sm mb-3 hover:underline" style={{ color: '#6b6b6b' }}>&larr; Volver a juegos</button>
+    <div className="h-full flex flex-col overflow-y-auto" style={{ background: '#FAF7F2', padding: '24px' }}>
+      <div className="w-full mx-auto" style={{ maxWidth: '900px' }}>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <button onClick={onBack} className="text-sm hover:underline" style={{ color: '#C9922A', fontSize: '13px' }}>&larr; Volver</button>
+          <span className="font-['Playfair_Display'] italic" style={{ color: '#0F3D3D', fontSize: '16px' }}>{themeLabels[theme] || theme}</span>
+        </div>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-4 max-w-3xl mx-auto w-full">
-        {/* Word list */}
-        <div className="lg:w-48 shrink-0 order-2 lg:order-1">
-          <div className="p-4" style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px' }}>
-            <h3 className="font-['Playfair_Display'] font-bold text-sm mb-3" style={{ color: '#0F3D3D' }}>Palabras</h3>
-            <div className="space-y-1.5">
-              {words.map((w) => {
-                const isFoundWord = foundWords.includes(w);
-                return (
-                  <div
-                    key={w}
-                    className="text-xs px-3 py-1.5 transition-all"
-                    style={{
-                      color: isFoundWord ? '#6b6b6b' : '#0F3D3D',
-                      textDecoration: isFoundWord ? 'line-through' : 'none',
-                      opacity: isFoundWord ? 0.5 : 1,
-                    }}
-                  >
-                    {w}
-                  </div>
-                );
-              })}
+        <div className="flex flex-col lg:flex-row gap-5 w-full">
+          {/* Words panel */}
+          <div className="w-full lg:w-[250px] shrink-0">
+            <div style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px', padding: '20px' }}>
+              <h3 className="font-['Playfair_Display'] font-bold" style={{ color: '#0F3D3D', fontSize: '14px', marginBottom: '12px' }}>Palabras a encontrar</h3>
+              <div style={{ height: '1px', background: '#C9922A', opacity: 0.3, marginBottom: '4px' }} />
+              <div>
+                {words.map((w) => {
+                  const isFoundWord = foundWords.includes(w);
+                  return (
+                    <div
+                      key={w}
+                      style={{
+                        fontSize: '12px',
+                        color: isFoundWord ? '#0F3D3D' : '#6b6b6b',
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        padding: '6px 0',
+                        borderBottom: '1px solid #F0EBE3',
+                        textDecoration: isFoundWord ? 'line-through' : 'none',
+                        opacity: isFoundWord ? 0.4 : 1,
+                        transition: 'all 0.2s',
+                      }}
+                    >
+                      {w}
+                    </div>
+                  );
+                })}
+              </div>
+              <p style={{ color: '#C9922A', fontSize: '11px', fontWeight: 600, marginTop: '12px' }}>
+                {foundWords.length}/{words.length} encontradas
+              </p>
             </div>
-            <p className="text-xs mt-3" style={{ color: '#C9922A' }}>
-              {foundWords.length}/{words.length} encontradas
-            </p>
+          </div>
+
+          {/* Grid area */}
+          <div className="flex-1 min-w-0">
+            <div
+              className="touch-none select-none"
+              style={{
+                background: '#fff',
+                border: '1px solid #E8E0D0',
+                borderRadius: '6px',
+                padding: '16px',
+              }}
+            >
+              <div
+                className="inline-grid mx-auto"
+                style={{
+                  gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
+                  gap: '3px',
+                  maxWidth: '100%',
+                  width: `min(${GRID_SIZE * 39}px, 100%)`,
+                }}
+              >
+                {grid.map((row, r) =>
+                  row.map((cell, c) => {
+                    const sel = isSelected(r, c);
+                    const found = isFound(r, c);
+                    let bg = '#FAF7F2';
+                    let color = '#0F3D3D';
+                    let borderColor = '#E8E0D0';
+                    if (found) { bg = '#C9922A'; color = '#FAF7F2'; borderColor = '#C9922A'; }
+                    else if (sel) { bg = '#0F3D3D'; color = '#FAF7F2'; borderColor = '#0F3D3D'; }
+
+                    return (
+                      <button
+                        key={`${r}-${c}`}
+                        onMouseDown={(e) => { e.preventDefault(); handleCellClick(r, c); }}
+                        onTouchStart={(e) => { e.preventDefault(); handleCellClick(r, c); }}
+                        style={{
+                          background: bg,
+                          color: color,
+                          border: `1px solid ${borderColor}`,
+                          borderRadius: '4px',
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          aspectRatio: '1 / 1',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s',
+                          maxWidth: '36px',
+                          maxHeight: '36px',
+                          minWidth: '22px',
+                          minHeight: '22px',
+                          width: '100%',
+                          padding: 0,
+                          lineHeight: 1,
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!sel && !found) {
+                            e.currentTarget.style.background = '#F0EBE3';
+                            e.currentTarget.style.borderColor = '#C9922A';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!sel && !found) {
+                            e.currentTarget.style.background = bg;
+                            e.currentTarget.style.borderColor = borderColor;
+                          }
+                        }}
+                      >
+                        {cell}
+                      </button>
+                    );
+                  })
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Grid */}
-        <div className="flex-1 order-1 lg:order-2 flex justify-center">
-          <div
-            className="inline-grid gap-[1px] p-[2px] overflow-hidden touch-none select-none"
-            style={{
-              gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-              maxWidth: '100%',
-              background: '#E8E0D0',
-              borderRadius: '6px',
-            }}
-          >
-            {grid.map((row, r) =>
-              row.map((cell, c) => {
-                const sel = isSelected(r, c);
-                const found = isFound(r, c);
-                let bg = '#fff';
-                let color = '#0F3D3D';
-                if (found) { bg = '#C9922A'; color = '#FAF7F2'; }
-                else if (sel) { bg = '#0F3D3D'; color = '#FAF7F2'; }
-
-                return (
-                  <button
-                    key={`${r}-${c}`}
-                    onMouseDown={(e) => { e.preventDefault(); handleCellClick(r, c); }}
-                    onTouchStart={(e) => { e.preventDefault(); handleCellClick(r, c); }}
-                    className="w-full aspect-square flex items-center justify-center transition-colors active:scale-90"
-                    style={{ background: bg, color: color, minWidth: '22px', minHeight: '22px', fontFamily: "'Playfair Display', serif", fontSize: '14px' }}
-                  >
-                    {cell}
-                  </button>
-                );
-              })
-            )}
+        {selection.length > 0 && (
+          <div className="text-center mt-4 text-xs" style={{ color: '#6b6b6b' }}>
+            Seleccionando: <span style={{ color: '#C9922A' }}>{selection.map((p) => grid[p.row][p.col]).join('')}</span>
           </div>
-        </div>
+        )}
       </div>
-
-      {selection.length > 0 && (
-        <div className="text-center mt-3 text-xs" style={{ color: '#6b6b6b' }}>
-          Seleccionando: <span style={{ color: '#C9922A' }}>{selection.map((p) => grid[p.row][p.col]).join('')}</span>
-        </div>
-      )}
     </div>
   );
 }
