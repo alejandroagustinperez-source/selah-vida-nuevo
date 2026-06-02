@@ -8,11 +8,11 @@ import { trackEvent, updateLocation } from '../utils/tracking';
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const navItems = [
-  { to: '/chat', icon: '💬', label: 'Chat con Rafael' },
-  { to: '/music', icon: '🎵', label: 'Música de Alabanza' },
-  { to: '/games', icon: '🎮', label: 'Juegos Bíblicos' },
-  { to: '/canvas', icon: '🖼️', label: 'El Lienzo Sagrado' },
-  { to: '/prayer', icon: '🙏', label: 'Oración Guiada' },
+  { to: '/chat', icon: '✦', label: 'Chat con Rafael' },
+  { to: '/music', icon: '♪', label: 'Música de Alabanza' },
+  { to: '/games', icon: '✝', label: 'Juegos Bíblicos' },
+  { to: '/canvas', icon: '◈', label: 'El Lienzo Sagrado' },
+  { to: '/prayer', icon: '❧', label: 'Oración Guiada' },
 ];
 
 function formatDate(dateStr) {
@@ -217,7 +217,7 @@ export default function AppLayout({ children }) {
           ☰
         </button>
         <NavLink to="/" className="font-serif text-base font-bold flex items-center gap-2" style={{ color: '#FAF7F2' }}>
-          🔥 Selah Vida
+          <img src="/logo.png" alt="Selah Vida" style={{ width: '28px', height: '28px', objectFit: 'contain' }} /> Selah Vida
         </NavLink>
       </header>
 
@@ -239,7 +239,7 @@ export default function AppLayout({ children }) {
         {/* Logo */}
         <div className="px-5 pt-6 pb-4" style={{ borderBottom: '1px solid rgba(250,247,242,0.08)' }}>
           <NavLink to="/" className="font-serif text-lg font-bold flex items-center gap-2" style={{ color: '#FAF7F2' }}>
-            🔥 Selah Vida
+            <img src="/logo.png" alt="Selah Vida" style={{ width: '32px', height: '32px', objectFit: 'contain' }} /> Selah Vida
           </NavLink>
         </div>
 
@@ -264,7 +264,7 @@ export default function AppLayout({ children }) {
                 if (!isActive(item.to)) e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
-              <span className="shrink-0 text-base" style={{ color: '#C9922A' }}>{item.icon}</span>
+              <span style={{ color: '#C9922A', fontSize: '16px', minWidth: '20px', textAlign: 'center', marginRight: '10px' }}>{item.icon}</span>
               <span style={{ fontSize: '14px' }}>{item.label}</span>
               {item.isLocked && (
                 <span className="ml-auto text-xs" style={{ color: 'rgba(201,146,42,0.5)' }} title="Premium">🔒</span>
@@ -292,7 +292,7 @@ export default function AppLayout({ children }) {
                   if (!isActive('/admin')) e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
-                <span className="shrink-0 text-base" style={{ color: '#C9922A' }}>📊</span>
+                <span style={{ color: '#C9922A', fontSize: '16px', minWidth: '20px', textAlign: 'center', marginRight: '10px' }}>▦</span>
                 <span style={{ fontSize: '14px' }}>Dashboard</span>
               </button>
             </div>
