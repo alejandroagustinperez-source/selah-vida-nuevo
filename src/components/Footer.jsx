@@ -31,8 +31,9 @@ export default function Footer() {
                 { label: 'Inicio', to: '/' },
                 { label: 'Iniciar sesión', to: '/login' },
                 { label: 'Crear cuenta', to: '/register' },
+                { label: 'Contacto', to: '/contacto' },
+                { label: 'Privacidad', to: '/privacy' },
                 { label: 'Términos y condiciones', to: '/terminos' },
-                { label: 'Privacidad', to: '/privacidad' },
               ].map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
@@ -48,15 +49,35 @@ export default function Footer() {
             <h4 className="font-bold text-xs tracking-[0.15em] uppercase mb-4" style={{ color: '#C9922A' }}>Recursos</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Características', to: '/#caracteristicas' },
-                { label: 'Precios', to: '/#precios' },
+                { label: 'Características', to: '/#solucion', hash: true },
+                { label: 'Precios', to: '/#precios', hash: true },
                 { label: 'Contacto', to: '/contacto' },
                 { label: 'Ayuda', to: '/contacto' },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
-                    {l.label}
-                  </Link>
+                  {l.hash ? (
+                    <a
+                      href={l.to}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const id = l.to.split('#')[1];
+                        if (window.location.pathname !== '/') {
+                          window.location.href = l.to;
+                        } else {
+                          const el = document.getElementById(id);
+                          if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                      className="text-xs hover:underline"
+                      style={{ color: 'rgba(250,247,242,0.7)' }}
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link to={l.to} className="text-xs hover:underline" style={{ color: 'rgba(250,247,242,0.7)' }}>
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

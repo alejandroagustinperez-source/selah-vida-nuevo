@@ -24,6 +24,7 @@ import Prayer from './pages/Prayer';
 import Admin from './pages/Admin';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Terminos from './pages/Terminos';
 import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
 import ManuscriptBorders from './components/ManuscriptBorders';
@@ -78,6 +79,7 @@ export default function App() {
           <Route path="/admin" element={<ProtectedLayout><Admin /></ProtectedLayout>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
+          <Route path="/terminos" element={<><Navbar /><Terminos /></>} />
           <Route path="/contacto" element={<><Navbar /><Contact /><Divider /><Footer /></>} />
         </Routes>
       </AuthProvider>
