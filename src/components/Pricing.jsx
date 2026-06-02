@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+
+const btnClasses = "block w-full text-center font-serif mt-6 transition-all hover:bg-[#C9922A]";
+
 export default function Pricing() {
   return (
     <section id="precios" className="py-6 md:py-10 px-6" style={{ backgroundColor: '#FAF7F2' }}>
@@ -15,14 +19,18 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-stretch">
           {/* Free */}
           <div
-            className="rounded-2xl p-8 flex flex-col w-full max-w-[380px]"
-            style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DFC8' }}
+            className="flex flex-col w-full max-w-[380px] relative overflow-hidden"
+            style={{ backgroundColor: '#FAF7F2', border: '1.5px solid #C9922A', borderRadius: '8px', padding: '40px 32px' }}
           >
+            {/* Gold top accent bar */}
+            <div className="absolute top-0 left-0 right-0" style={{ height: '4px', backgroundColor: '#C9922A' }} />
             <span className="text-xs tracking-[0.15em] font-semibold uppercase text-center" style={{ color: '#C9922A' }}>
               GRATIS
             </span>
-            <p className="text-3xl font-bold text-center my-4" style={{ color: '#0F3D3D' }}>$0</p>
-            <ul className="space-y-3 text-sm flex-1" style={{ color: '#3D3D3D' }}>
+            <p className="font-serif text-center font-bold mt-3 mb-0" style={{ color: '#0F3D3D', fontSize: '48px' }}>$0</p>
+            <p className="text-center text-[13px] mt-1 mb-0" style={{ color: 'rgba(15,61,61,0.5)' }}>Para siempre</p>
+            <div className="w-12 h-px mx-auto my-5" style={{ backgroundColor: '#C9922A' }} />
+            <ul className="flex-1 space-y-0" style={{ color: '#0F3D3D', fontSize: '15px', lineHeight: '2' }}>
               <li className="flex items-start gap-2">
                 <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Chat con Rafael (20 mensajes/día)</span>
@@ -32,6 +40,20 @@ export default function Pricing() {
                 <span>Versículo del día</span>
               </li>
             </ul>
+            <Link
+              to="/register"
+              className={btnClasses}
+              style={{
+                backgroundColor: '#0F3D3D',
+                color: '#FAF7F2',
+                fontSize: '15px',
+                letterSpacing: '0.08em',
+                padding: '14px',
+                borderRadius: '4px',
+              }}
+            >
+              ¡Empezá Ahora!
+            </Link>
           </div>
 
           {/* Premium */}
