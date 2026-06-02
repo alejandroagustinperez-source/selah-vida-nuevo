@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-const TO_EMAIL = 'alejandro.agustin.perez@gmail.com';
+const TO_EMAIL = 'origenvitalsl@gmail.com';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
