@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 export default function Pricing() {
   return (
     <section id="precios" className="py-6 md:py-10 px-6" style={{ backgroundColor: '#FAF7F2' }}>
@@ -9,64 +7,82 @@ export default function Pricing() {
           <h2 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
             Elige tu camino
           </h2>
+          <p className="font-serif text-sm italic mt-2" style={{ color: '#5A6A5A' }}>
+            Comenzá gratis. Crecé cuando estés listo.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-stretch">
           {/* Free */}
-          <div className="rounded-2xl p-8 flex flex-col" style={{ backgroundColor: '#FAF7F2', border: '1px solid rgba(201,146,42,0.2)' }}>
-            <h3 className="font-serif text-xl font-bold text-center" style={{ color: '#0F3D3D' }}>Gratuito</h3>
+          <div
+            className="rounded-2xl p-8 flex flex-col w-full max-w-[380px]"
+            style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DFC8' }}
+          >
+            <span className="text-xs tracking-[0.15em] font-semibold uppercase text-center" style={{ color: '#C9922A' }}>
+              GRATIS
+            </span>
             <p className="text-3xl font-bold text-center my-4" style={{ color: '#0F3D3D' }}>$0</p>
-            <p className="text-xs text-center mb-6 tracking-[0.05em]" style={{ color: 'rgba(15,61,61,0.6)' }}>Siempre gratis</p>
             <ul className="space-y-3 text-sm flex-1" style={{ color: '#3D3D3D' }}>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>1.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Chat con Rafael (20 mensajes/día)</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>2.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Versículo del día</span>
               </li>
             </ul>
           </div>
 
           {/* Premium */}
-          <div className="rounded-2xl p-8 flex flex-col relative" style={{ backgroundColor: '#FAF7F2', border: '2px solid #C9922A' }}>
+          <div
+            className="rounded-2xl p-8 flex flex-col relative w-full max-w-[380px]"
+            style={{ backgroundColor: '#0F3D3D', border: '2px solid #C9922A' }}
+          >
+            {/* Gold crown accent line */}
+            <div className="absolute top-0 left-8 right-8 h-[2px]" style={{ backgroundColor: '#C9922A' }} />
+
             <span
-              className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs tracking-[0.15em] font-semibold uppercase px-5 py-1 rounded-full"
-              style={{ backgroundColor: '#C9922A', color: '#FAF7F2' }}
+              className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-xs tracking-[0.15em] font-semibold uppercase px-5 py-1 rounded-full whitespace-nowrap"
+              style={{ backgroundColor: '#C9922A', color: '#FFFFFF' }}
             >
               Recomendado
             </span>
-            <h3 className="font-serif text-xl font-bold text-center" style={{ color: '#0F3D3D' }}>Premium</h3>
-            <p className="text-3xl font-bold text-center my-4" style={{ color: '#0F3D3D' }}>$4.99<span className="text-base font-normal" style={{ color: 'rgba(15,61,61,0.6)' }}>/mes</span></p>
-            <p className="text-xs text-center mb-6 tracking-[0.05em]" style={{ color: 'rgba(15,61,61,0.6)' }}>Para quienes buscan más profundidad</p>
-            <ul className="space-y-3 text-sm flex-1" style={{ color: '#3D3D3D' }}>
+            <h3 className="font-serif text-xl font-bold text-center" style={{ color: '#FAF7F2' }}>Premium</h3>
+            <p className="text-5xl font-bold text-center my-4" style={{ color: '#FAF7F2' }}>
+              $4.99
+              <span className="text-base font-normal" style={{ color: '#C9922A' }}>/mes</span>
+            </p>
+            <p className="text-xs text-center mb-6 tracking-[0.05em]" style={{ color: 'rgba(250,247,242,0.7)' }}>
+              Para quienes buscan más profundidad
+            </p>
+            <ul className="space-y-3 text-sm flex-1" style={{ color: '#FAF7F2' }}>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>1.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Chat con Rafael ilimitado</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>2.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Historial de conversaciones guardado</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>3.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Juegos bíblicos sin límite diario</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>4.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>El Lienzo Sagrado completo</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>5.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Oración guiada ilimitada</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>6.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Música cristiana sin interrupciones</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>7.</span>
+                <span className="shrink-0" style={{ color: '#C9922A' }}>✓</span>
                 <span>Nuevos contenidos cada mes</span>
               </li>
             </ul>
@@ -74,7 +90,8 @@ export default function Pricing() {
               href="https://pay.hotmart.com/Q105734847S"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center border-2 border-[#C9922A] text-[#0F3D3D] px-8 py-3.5 rounded-full text-xs tracking-[0.15em] font-semibold uppercase mt-6 hover:bg-[#C9922A] hover:text-white transition-all"
+              className="block w-full text-center text-xs tracking-[0.15em] font-semibold uppercase px-8 py-3.5 rounded-full mt-6 transition-all"
+              style={{ backgroundColor: '#C9922A', color: '#0F3D3D' }}
             >
               Suscribirme ahora
             </a>
