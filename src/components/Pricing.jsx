@@ -83,7 +83,7 @@ export default function Pricing() {
               </li>
             </ul>
             <a
-              href="https://pay.hotmart.com/U97704875J"
+              href="https://pay.hotmart.com/Q105734847S"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center border-2 border-[#C9922A] text-[#0F3D3D] px-8 py-3.5 rounded-full text-xs tracking-[0.15em] font-semibold uppercase mt-6 hover:bg-[#C9922A] hover:text-white transition-all"
