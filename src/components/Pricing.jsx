@@ -20,23 +20,11 @@ export default function Pricing() {
             <ul className="space-y-3 text-sm flex-1" style={{ color: '#3D3D3D' }}>
               <li className="flex items-start gap-2">
                 <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>1.</span>
-                <span>Chat con Rafael (mensajes limitados)</span>
+                <span>Chat con Rafael (20 mensajes/día)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>2.</span>
-                <span>Juegos bíblicos (8 partidas/día, 3 niveles)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>3.</span>
-                <span>El Lienzo Sagrado completo</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>4.</span>
-                <span>Oración guiada (1 sesión/día)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>5.</span>
-                <span>Música cristiana</span>
+                <span>Versículo del día</span>
               </li>
             </ul>
           </div>
@@ -75,7 +63,7 @@ export default function Pricing() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>6.</span>
-                <span>Música cristiana</span>
+                <span>Música cristiana sin interrupciones</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-serif font-bold shrink-0" style={{ color: '#C9922A' }}>7.</span>
