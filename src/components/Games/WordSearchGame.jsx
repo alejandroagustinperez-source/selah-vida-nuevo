@@ -1,16 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
+import PremiumModal from '../../components/PremiumModal';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 const GRID_SIZE = 14;
 const THEMES = [
-  { key: 'profetas', label: 'Profetas', emoji: '📜' },
-  { key: 'discípulos', label: 'Discípulos', emoji: '🐟' },
-  { key: 'lugares', label: 'Lugares', emoji: '🗺️' },
-  { key: 'ángeles', label: 'Ángeles', emoji: '👼' },
-  { key: 'milagros', label: 'Milagros', emoji: '✨' },
-  { key: 'oración', label: 'Oración', emoji: '🙏' },
+  { key: 'profetas', label: 'Profetas' },
+  { key: 'discípulos', label: 'Discípulos' },
+  { key: 'lugares', label: 'Lugares' },
+  { key: 'ángeles', label: 'Ángeles' },
+  { key: 'milagros', label: 'Milagros' },
+  { key: 'oración', label: 'Oración' },
 ];
 
 function generateGrid(words) {
@@ -104,6 +105,7 @@ export default function WordSearchGame({ onBack, onComplete }) {
   const [foundWords, setFoundWords] = useState([]);
   const [error, setError] = useState('');
   const completedRef = useRef(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
   const { isPremium } = useAuth();
 
   const getToken = async () => {
@@ -194,110 +196,104 @@ export default function WordSearchGame({ onBack, onComplete }) {
 
   const isStartOfSelection = (r, c) => selection.length > 0 && selection[0].row === r && selection[0].col === c;
 
-  if (!isPremium) {
-    return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
-        <div className="text-5xl mb-4">⭐</div>
-        <h2 className="font-serif text-xl font-bold mb-2">Función exclusiva</h2>
-        <p className="text-dark-blue/60 text-sm mb-6">Esta función es exclusiva para usuarios Premium.</p>
-        <button onClick={onBack} className="text-gold text-sm font-medium hover:underline">Volver a juegos</button>
-      </div>
-    );
-  }
-
   if (screen === 'start') {
     return (
-      <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
-        <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
-        <div className="text-center mb-6">
-          <div className="text-5xl mb-3">🔤</div>
-          <h2 className="font-serif text-2xl font-bold mb-2">Sopa de Letras</h2>
-          <p className="text-dark-blue/60 text-sm max-w-sm mx-auto">
-            Encontrá las palabras bíblicas ocultas en la grilla.
-            Tocá las letras en orden para marcar cada palabra.
-          </p>
+      <>
+        <div className="h-full flex flex-col px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
+          <button onClick={onBack} className="self-start text-sm mb-4 hover:underline" style={{ color: '#6b6b6b' }}>&larr; Volver a juegos</button>
+          <div className="text-center mb-6">
+            <div className="text-[28px] mb-3 leading-none" style={{ color: '#C9922A' }}>✦</div>
+            <h2 className="font-['Playfair_Display'] text-2xl font-bold mb-2" style={{ color: '#0F3D3D' }}>Sopa de Letras</h2>
+            <p className="text-sm max-w-sm mx-auto" style={{ color: '#6b6b6b' }}>
+              Encontrá las palabras bíblicas ocultas en la grilla.
+              Tocá las letras en orden para marcar cada palabra.
+            </p>
+          </div>
+          <p className="text-center mb-3" style={{ color: '#C9922A', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Elegí un tema:</p>
+          <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full">
+            {THEMES.map((t) => (
+              <button
+                key={t.key}
+                onClick={() => { if (!isPremium) { setShowPremiumModal(true); } else { startGame(t.key); } }}
+                style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px', padding: '16px' }}
+                className="text-center transition-all active:scale-[0.98]"
+                onMouseEnter={(e) => e.currentTarget.style.borderColor = '#C9922A'}
+                onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E8E0D0'}
+              >
+                <div className="font-['Playfair_Display'] text-lg mb-1" style={{ color: '#C9922A' }}>◆</div>
+                <div className="font-['Playfair_Display'] font-bold text-sm" style={{ color: '#0F3D3D' }}>{t.label}</div>
+              </button>
+            ))}
+          </div>
         </div>
-        <p className="text-xs text-dark-blue/40 text-center mb-3">Elegí un tema:</p>
-        <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full">
-          {THEMES.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => startGame(t.key)}
-              className="bg-white border border-gold/10 rounded-2xl p-4 text-center hover:border-gold/30 hover:shadow-md transition-all active:scale-[0.98]"
-            >
-              <div className="text-2xl mb-1">{t.emoji}</div>
-              <div className="font-semibold text-dark-blue text-sm">{t.label}</div>
-            </button>
-          ))}
-        </div>
-      </div>
+        <PremiumModal open={showPremiumModal} onClose={() => setShowPremiumModal(false)} />
+      </>
     );
   }
 
   if (screen === 'loading') {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{ background: '#FAF7F2' }}>
         <div className="animate-spin text-4xl mb-4">⏳</div>
-        <p className="text-dark-blue/60 text-sm">Generando sopa de letras...</p>
+        <p className="text-sm" style={{ color: '#6b6b6b' }}>Generando sopa de letras...</p>
       </div>
     );
   }
 
   if (screen === 'error') {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{ background: '#FAF7F2' }}>
         <div className="text-4xl mb-4">❌</div>
-        <p className="text-dark-blue/70 mb-2 text-sm">{error}</p>
-        <button onClick={() => startGame(theme)} className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Intentar de nuevo</button>
-        <button onClick={onBack} className="text-dark-blue/50 text-sm mt-3 hover:text-dark-blue">Volver a juegos</button>
+        <p className="mb-2 text-sm" style={{ color: '#0F3D3D' }}>{error}</p>
+        <button onClick={() => startGame(theme)} className="px-6 py-2.5 text-sm font-['Playfair_Display'] transition-colors" style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}>Intentar de nuevo</button>
+        <button onClick={onBack} className="text-sm mt-3 hover:underline" style={{ color: '#6b6b6b' }}>Volver a juegos</button>
       </div>
     );
   }
 
   if (screen === 'result') {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{ background: '#FAF7F2' }}>
         <div className="text-6xl mb-4">🎉</div>
-        <h2 className="font-serif text-2xl font-bold mb-1">¡Completaste la sopa de letras!</h2>
-        <p className="text-dark-blue/50 text-sm mb-2">Tema: {theme}</p>
-        <p className="text-dark-blue/40 text-xs mb-6">{foundWords.length} palabras encontradas</p>
+        <h2 className="font-['Playfair_Display'] text-2xl font-bold mb-1" style={{ color: '#0F3D3D' }}>¡Completaste la sopa de letras!</h2>
+        <p className="text-sm mb-2" style={{ color: '#6b6b6b' }}>Tema: {theme}</p>
+        <p className="text-xs mb-6" style={{ color: '#6b6b6b' }}>{foundWords.length} palabras encontradas</p>
         <div className="flex gap-3">
-          <button onClick={() => startGame(theme)} className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Jugar de nuevo</button>
-          <button onClick={onBack} className="bg-white border border-gold/10 text-dark-blue px-6 py-2.5 rounded-full text-sm font-medium hover:border-gold/30 transition-colors">Volver a juegos</button>
+          <button onClick={() => startGame(theme)} className="px-6 py-2.5 text-sm font-['Playfair_Display'] transition-colors" style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}>Jugar de nuevo</button>
+          <button onClick={onBack} className="px-6 py-2.5 text-sm font-medium transition-colors" style={{ background: '#fff', border: '1px solid #E8E0D0', color: '#0F3D3D', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E8E0D0'}>Volver a juegos</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="h-full flex flex-col px-4 py-4 overflow-y-auto">
-      <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-3">&larr; Volver a juegos</button>
+    <div className="h-full flex flex-col px-4 py-4 overflow-y-auto" style={{ background: '#FAF7F2' }}>
+      <button onClick={onBack} className="self-start text-sm mb-3 hover:underline" style={{ color: '#6b6b6b' }}>&larr; Volver a juegos</button>
 
       <div className="flex-1 flex flex-col lg:flex-row gap-4 max-w-3xl mx-auto w-full">
         {/* Word list */}
         <div className="lg:w-48 shrink-0 order-2 lg:order-1">
-          <div className="bg-white rounded-2xl border border-gold/10 p-4">
-            <h3 className="font-semibold text-dark-blue text-sm mb-3 flex items-center gap-2">
-              <span>📋</span> Palabras
-            </h3>
+          <div className="p-4" style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px' }}>
+            <h3 className="font-['Playfair_Display'] font-bold text-sm mb-3" style={{ color: '#0F3D3D' }}>Palabras</h3>
             <div className="space-y-1.5">
               {words.map((w) => {
                 const isFoundWord = foundWords.includes(w);
                 return (
                   <div
                     key={w}
-                    className={`text-xs px-3 py-1.5 rounded-lg transition-all ${
-                      isFoundWord
-                        ? 'bg-green-50 text-green-600 line-through border border-green-200'
-                        : 'text-dark-blue/70 bg-cream'
-                    }`}
+                    className="text-xs px-3 py-1.5 transition-all"
+                    style={{
+                      color: isFoundWord ? '#6b6b6b' : '#0F3D3D',
+                      textDecoration: isFoundWord ? 'line-through' : 'none',
+                      opacity: isFoundWord ? 0.5 : 1,
+                    }}
                   >
-                    {isFoundWord ? '✓' : '○'} {w}
+                    {w}
                   </div>
                 );
               })}
             </div>
-            <p className="text-xs text-dark-blue/40 mt-3">
+            <p className="text-xs mt-3" style={{ color: '#C9922A' }}>
               {foundWords.length}/{words.length} encontradas
             </p>
           </div>
@@ -306,29 +302,30 @@ export default function WordSearchGame({ onBack, onComplete }) {
         {/* Grid */}
         <div className="flex-1 order-1 lg:order-2 flex justify-center">
           <div
-            className="inline-grid gap-[1px] bg-gold/10 p-[2px] rounded-xl overflow-hidden touch-none select-none"
+            className="inline-grid gap-[1px] p-[2px] overflow-hidden touch-none select-none"
             style={{
               gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
               maxWidth: '100%',
+              background: '#E8E0D0',
+              borderRadius: '6px',
             }}
           >
             {grid.map((row, r) =>
               row.map((cell, c) => {
                 const sel = isSelected(r, c);
                 const found = isFound(r, c);
-                const start = isStartOfSelection(r, c);
-                let bg = 'bg-cream hover:bg-gold/10';
-                if (found) bg = 'bg-green-100';
-                else if (sel && start) bg = 'bg-gold/30';
-                else if (sel) bg = 'bg-gold/20';
+                let bg = '#fff';
+                let color = '#0F3D3D';
+                if (found) { bg = '#C9922A'; color = '#FAF7F2'; }
+                else if (sel) { bg = '#0F3D3D'; color = '#FAF7F2'; }
 
                 return (
                   <button
                     key={`${r}-${c}`}
                     onMouseDown={(e) => { e.preventDefault(); handleCellClick(r, c); }}
                     onTouchStart={(e) => { e.preventDefault(); handleCellClick(r, c); }}
-                    className={`w-full aspect-square flex items-center justify-center text-xs sm:text-sm font-medium text-dark-blue rounded-sm transition-colors active:scale-90 ${bg}`}
-                    style={{ minWidth: '22px', minHeight: '22px' }}
+                    className="w-full aspect-square flex items-center justify-center transition-colors active:scale-90"
+                    style={{ background: bg, color: color, minWidth: '22px', minHeight: '22px', fontFamily: "'Playfair Display', serif", fontSize: '14px' }}
                   >
                     {cell}
                   </button>
@@ -340,8 +337,8 @@ export default function WordSearchGame({ onBack, onComplete }) {
       </div>
 
       {selection.length > 0 && (
-        <div className="text-center mt-3 text-xs text-dark-blue/50">
-          Seleccionando: <span className="font-semibold text-gold">{selection.map((p) => grid[p.row][p.col]).join('')}</span>
+        <div className="text-center mt-3 text-xs" style={{ color: '#6b6b6b' }}>
+          Seleccionando: <span style={{ color: '#C9922A' }}>{selection.map((p) => grid[p.row][p.col]).join('')}</span>
         </div>
       )}
     </div>

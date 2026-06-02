@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../supabase';
+import PremiumModal from '../../components/PremiumModal';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 const LABELS = ['A', 'B', 'C', 'D'];
 
 export default function VerseGame({ onBack, onComplete }) {
   const { isPremium } = useAuth();
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [screen, setScreen] = useState('start');
   const [verses, setVerses] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -61,72 +63,67 @@ export default function VerseGame({ onBack, onComplete }) {
     }
   };
 
-  if (!isPremium) {
-    return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
-        <div className="text-5xl mb-4">⭐</div>
-        <h2 className="font-serif text-xl font-bold mb-2">Función exclusiva</h2>
-        <p className="text-dark-blue/60 text-sm mb-6">Esta función es exclusiva para usuarios Premium.</p>
-        <button onClick={onBack} className="text-gold text-sm font-medium hover:underline">Volver a juegos</button>
-      </div>
-    );
-  }
-
   if (screen === 'start') {
     return (
-      <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
-        <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
-        <div className="flex-1 flex flex-col items-center justify-center text-center">
-          <div className="text-5xl mb-3">📖</div>
-          <h2 className="font-serif text-2xl font-bold mb-2">Adivina el Versículo</h2>
-          <p className="text-dark-blue/60 text-sm max-w-sm mb-6">
-            Te mostramos un versículo completo. Elegí la referencia bíblica correcta entre las 4 opciones.
-          </p>
-          <button
-            onClick={fetchVerses}
-            className="bg-gold text-white px-8 py-3 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors"
-          >
-            Comenzar
-          </button>
+      <>
+        <div className="h-full flex flex-col px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
+          <button onClick={onBack} className="self-start text-sm mb-4 hover:underline" style={{ color: '#6b6b6b' }}>&larr; Volver a juegos</button>
+          <div className="flex-1 flex flex-col items-center justify-center text-center">
+            <div className="text-[28px] mb-3 leading-none" style={{ color: '#C9922A' }}>◆</div>
+            <h2 className="font-['Playfair_Display'] text-2xl font-bold mb-2" style={{ color: '#0F3D3D' }}>Adivina el Versículo</h2>
+            <p className="text-sm max-w-sm mb-6" style={{ color: '#6b6b6b' }}>
+              Te mostramos un versículo completo. Elegí la referencia bíblica correcta entre las 4 opciones.
+            </p>
+            <button
+              onClick={() => { if (!isPremium) { setShowPremiumModal(true); } else { fetchVerses(); } }}
+              className="font-['Playfair_Display'] transition-colors"
+              style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px', padding: '12px 32px', fontSize: '14px' }}
+              onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'}
+              onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}
+            >
+              Comenzar
+            </button>
+          </div>
         </div>
-      </div>
+        <PremiumModal open={showPremiumModal} onClose={() => setShowPremiumModal(false)} />
+      </>
     );
   }
 
   if (screen === 'loading') {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{ background: '#FAF7F2' }}>
         <div className="animate-spin text-4xl mb-4">⏳</div>
-        <p className="text-dark-blue/60 text-sm">Preparando versículos...</p>
+        <p className="text-sm" style={{ color: '#6b6b6b' }}>Preparando versículos...</p>
       </div>
     );
   }
 
   if (screen === 'error') {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{ background: '#FAF7F2' }}>
         <div className="text-4xl mb-4">❌</div>
-        <p className="text-dark-blue/70 mb-2 text-sm">Error al cargar los versículos</p>
-        <button onClick={fetchVerses} className="bg-gold text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Intentar de nuevo</button>
-        <button onClick={onBack} className="text-dark-blue/50 text-sm mt-3 hover:text-dark-blue">Volver a juegos</button>
+        <p className="mb-2 text-sm" style={{ color: '#0F3D3D' }}>Error al cargar los versículos</p>
+        <button onClick={fetchVerses} className="px-6 py-2.5 text-sm font-['Playfair_Display'] transition-colors" style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}>Intentar de nuevo</button>
+        <button onClick={onBack} className="text-sm mt-3 hover:underline" style={{ color: '#6b6b6b' }}>Volver a juegos</button>
       </div>
     );
   }
 
   if (screen === 'result') {
     return (
-      <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
+      <div className="h-full flex flex-col px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-lg mx-auto w-full">
           <div className="text-5xl mb-3">{score === verses.length ? '🎉' : score >= 3 ? '👏' : '💪'}</div>
-          <h2 className="font-serif text-2xl font-bold mb-1">
+          <h2 className="font-['Playfair_Display'] text-2xl font-bold mb-1" style={{ color: '#0F3D3D' }}>
             {score === verses.length ? '¡Perfecto!' : score >= 3 ? '¡Muy bien!' : '¡Sigue intentando!'}
           </h2>
-          <p className="text-dark-blue/60 text-sm mb-6">
-            Acertaste <span className="text-gold font-bold text-lg">{score}</span> de <span className="font-bold">{verses.length}</span> versículos
+          <p className="text-sm mb-6" style={{ color: '#6b6b6b' }}>
+            Acertaste <span className="font-bold text-lg" style={{ color: '#C9922A' }}>{score}</span> de <span className="font-bold">{verses.length}</span> versículos
           </p>
           <div className="flex gap-3 w-full max-w-xs">
-            <button onClick={fetchVerses} className="flex-1 bg-gold text-white py-3 rounded-full text-sm font-semibold hover:bg-gold-dark transition-colors">Jugar de nuevo</button>
-            <button onClick={onBack} className="flex-1 bg-white border border-gold/10 text-dark-blue py-3 rounded-full text-sm font-medium hover:border-gold/30 transition-colors">Volver</button>
+            <button onClick={fetchVerses} className="flex-1 py-3 text-sm font-['Playfair_Display'] transition-colors" style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}>Jugar de nuevo</button>
+            <button onClick={onBack} className="flex-1 py-3 text-sm font-medium transition-colors" style={{ background: '#fff', border: '1px solid #E8E0D0', color: '#0F3D3D', borderRadius: '4px' }} onMouseEnter={(e) => e.currentTarget.style.borderColor = '#C9922A'} onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E8E0D0'}>Volver</button>
           </div>
         </div>
       </div>
@@ -137,21 +134,22 @@ export default function VerseGame({ onBack, onComplete }) {
   if (!current) return null;
 
   return (
-    <div className="h-full flex flex-col px-6 py-6 overflow-y-auto">
-      <button onClick={onBack} className="self-start text-dark-blue/50 hover:text-dark-blue text-sm mb-4">&larr; Volver a juegos</button>
+    <div className="h-full flex flex-col px-6 py-6 overflow-y-auto" style={{ background: '#FAF7F2' }}>
+      <button onClick={onBack} className="self-start text-sm mb-4 hover:underline" style={{ color: '#6b6b6b' }}>&larr; Volver a juegos</button>
       <div className="flex-1 flex flex-col max-w-lg mx-auto w-full">
         {/* Progress */}
         <div className="flex items-center justify-center gap-1.5 mb-4">
-          {verses.map((_, i) => (
-            <div key={i} className={`w-6 h-1.5 rounded-full transition-colors ${i < currentIdx ? 'bg-gold' : i === currentIdx ? 'bg-gold/70' : 'bg-gold/20'}`} />
-          ))}
-          <span className="text-xs text-dark-blue/40 ml-2">{currentIdx + 1}/{verses.length}</span>
+          <div className="flex gap-1.5 items-center">
+            {verses.map((_, i) => (
+              <div key={i} style={{ width: '24px', height: '4px', background: i <= currentIdx ? '#C9922A' : '#E8E0D0', borderRadius: '2px', transition: 'background 0.3s' }} />
+            ))}
+          </div>
+          <span className="text-xs ml-2" style={{ color: '#6b6b6b' }}>{currentIdx + 1}/{verses.length}</span>
         </div>
 
         {/* Verse card */}
-        <div className="bg-white rounded-2xl border border-gold/10 p-6 mb-6">
-          <div className="text-3xl text-center mb-4">📖</div>
-          <p className="font-serif text-lg text-dark-blue leading-relaxed text-center italic">
+        <div className="p-6 mb-6" style={{ background: '#fff', border: '1px solid #E8E0D0', borderRadius: '6px', borderLeft: '3px solid #C9922A' }}>
+          <p className="font-['Playfair_Display'] text-base leading-relaxed text-center italic" style={{ color: '#0F3D3D' }}>
             &ldquo;{current.text}&rdquo;
           </p>
         </div>
@@ -161,31 +159,31 @@ export default function VerseGame({ onBack, onComplete }) {
           {current.options.map((opt, i) => {
             const isSelected = answered === opt;
             const isCorrectOpt = opt === current.correct;
-            let btnClass = 'bg-white border-gold/20 hover:border-gold/40 hover:bg-cream';
+            let borderColor = '#E8E0D0';
+            let bg = '#fff';
+            let badgeBg = '#FAF7F2';
+            let badgeBorder = '#E8E0D0';
+            let badgeColor = '#0F3D3D';
+            let textColor = '#0F3D3D';
             if (answered) {
-              if (isCorrectOpt) btnClass = 'bg-green-50 border-green-400 text-green-800';
-              else if (isSelected) btnClass = 'bg-red-50 border-red-300 text-red-700';
-              else btnClass = 'bg-white/50 border-gold/10 text-dark-blue/40';
+              if (isCorrectOpt) { borderColor = '#0F3D3D'; bg = '#F0F7F4'; badgeBg = '#0F3D3D'; badgeBorder = '#0F3D3D'; badgeColor = '#FAF7F2'; }
+              else if (isSelected) { borderColor = '#8B1A1A'; bg = '#FDF5F5'; badgeBg = '#8B1A1A'; badgeBorder = '#8B1A1A'; badgeColor = '#FAF7F2'; }
+              else { borderColor = '#E8E0D0'; bg = '#fff'; badgeBg = '#E8E0D0'; badgeBorder = '#E8E0D0'; badgeColor = '#6b6b6b'; textColor = '#6b6b6b'; }
             }
             return (
               <button
                 key={i}
                 onClick={() => handleAnswer(opt)}
                 disabled={!!answered}
-                className={`w-full text-left flex items-center gap-4 px-5 py-4 rounded-xl border-2 text-sm font-medium transition-all min-h-[52px] touch-action-manipulation cursor-pointer ${btnClass}`}
+                className="w-full text-left flex items-center gap-4 px-5 py-4 text-sm font-medium transition-all min-h-[52px] touch-action-manipulation cursor-pointer"
+                style={{ background: bg, border: `1px solid ${borderColor}`, borderRadius: '6px' }}
+                onMouseEnter={(e) => { if (!answered) { e.currentTarget.style.borderColor = '#C9922A'; const badge = e.currentTarget.querySelector('.verse-badge'); if (badge) { badge.style.background = '#C9922A'; badge.style.color = '#FAF7F2'; badge.style.borderColor = '#C9922A'; } }}}
+                onMouseLeave={(e) => { if (!answered) { e.currentTarget.style.borderColor = '#E8E0D0'; const badge = e.currentTarget.querySelector('.verse-badge'); if (badge) { badge.style.background = '#FAF7F2'; badge.style.color = '#0F3D3D'; badge.style.borderColor = '#E8E0D0'; } }}}
               >
-                <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
-                  answered
-                    ? isCorrectOpt
-                      ? 'bg-green-500 text-white'
-                      : isSelected
-                        ? 'bg-red-500 text-white'
-                        : 'bg-gray-200 text-gray-400'
-                    : 'bg-gold/10 text-gold'
-                }`}>
-                  {LABELS[i]}
+                <span className="verse-badge w-7 h-7 flex items-center justify-center text-xs font-['Playfair_Display'] shrink-0 transition-all" style={{ background: badgeBg, border: `1px solid ${badgeBorder}`, color: badgeColor, borderRadius: '4px' }}>
+                  {answered && isCorrectOpt ? '✓' : answered && isSelected && !isCorrectOpt ? '✗' : LABELS[i]}
                 </span>
-                <span className="leading-snug">{opt}</span>
+                <span className="leading-snug" style={{ color: textColor }}>{opt}</span>
               </button>
             );
           })}
@@ -193,18 +191,14 @@ export default function VerseGame({ onBack, onComplete }) {
 
         {/* Feedback */}
         {showResult && (
-          <div className={`rounded-2xl p-4 mb-5 text-center ${
-            answered === current.correct
-              ? 'bg-green-50 border border-green-200'
-              : 'bg-red-50 border border-red-200'
-          }`}>
-            <p className={`font-semibold text-sm ${answered === current.correct ? 'text-green-700' : 'text-red-600'}`}>
+          <div className="p-4 mb-5 text-center" style={{ background: answered === current.correct ? '#F0F7F4' : '#FDF5F5', border: `1px solid ${answered === current.correct ? '#0F3D3D' : '#8B1A1A'}`, borderRadius: '6px' }}>
+            <p className="font-semibold text-sm" style={{ color: answered === current.correct ? '#0F3D3D' : '#8B1A1A' }}>
               {answered === current.correct
-                ? '✅ ¡Correcto!'
-                : `❌ Incorrecto — La respuesta correcta es ${current.correct}`}
+                ? '¡Correcto!'
+                : `Incorrecto — La respuesta correcta es ${current.correct}`}
             </p>
             {current.explanation && (
-              <p className="text-xs text-dark-blue/60 mt-2 leading-relaxed">{current.explanation}</p>
+              <p className="text-xs mt-2 leading-relaxed" style={{ color: '#6b6b6b' }}>{current.explanation}</p>
             )}
           </div>
         )}
@@ -213,7 +207,10 @@ export default function VerseGame({ onBack, onComplete }) {
         {showResult && (
           <button
             onClick={handleNext}
-            className="w-full bg-gold text-white py-3.5 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors cursor-pointer touch-action-manipulation min-h-[48px]"
+            className="w-full py-3.5 text-sm font-['Playfair_Display'] transition-colors cursor-pointer touch-action-manipulation min-h-[48px]"
+            style={{ background: '#0F3D3D', color: '#FAF7F2', border: 'none', borderRadius: '4px' }}
+            onMouseEnter={(e) => e.currentTarget.style.background = '#C9922A'}
+            onMouseLeave={(e) => e.currentTarget.style.background = '#0F3D3D'}
           >
             {currentIdx < verses.length - 1 ? 'Siguiente versículo →' : 'Ver puntaje'}
           </button>

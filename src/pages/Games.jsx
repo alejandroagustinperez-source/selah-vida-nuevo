@@ -8,43 +8,13 @@ import { useState } from 'react';
 import { supabase } from '../supabase';
 import { trackEvent } from '../utils/tracking';
 
+const ROMAN = ['I', 'II', 'III', 'IV'];
+
 const GAMES = [
-  {
-    id: 'trivia',
-    title: 'Trivia Bíblica',
-    desc: 'Respondé preguntas bíblicas de distintos niveles',
-    emoji: '📝',
-    color: 'from-amber-50 to-amber-100/50',
-    border: 'border-amber-200/30',
-    iconBg: 'bg-amber-100',
-  },
-  {
-    id: 'verse',
-    title: 'Adivina el Versículo',
-    desc: 'Completá versículos bíblicos con la palabra faltante',
-    emoji: '📖',
-    color: 'from-blue-50 to-blue-100/50',
-    border: 'border-blue-200/30',
-    iconBg: 'bg-blue-100',
-  },
-  {
-    id: 'wordsearch',
-    title: 'Sopa de Letras',
-    desc: 'Encontrá palabras bíblicas ocultas en la grilla',
-    emoji: '🔤',
-    color: 'from-green-50 to-green-100/50',
-    border: 'border-green-200/30',
-    iconBg: 'bg-green-100',
-  },
-  {
-    id: 'quote',
-    title: '¿Quién dijo esto?',
-    desc: 'Adiviná qué personaje bíblico dijo cada cita',
-    emoji: '🗣️',
-    color: 'from-purple-50 to-purple-100/50',
-    border: 'border-purple-200/30',
-    iconBg: 'bg-purple-100',
-  },
+  { id: 'trivia', title: 'Trivia Bíblica', desc: 'Respondé preguntas bíblicas de distintos niveles' },
+  { id: 'verse', title: 'Adivina el Versículo', desc: 'Completá versículos bíblicos con la palabra faltante' },
+  { id: 'wordsearch', title: 'Sopa de Letras', desc: 'Encontrá palabras bíblicas ocultas en la grilla' },
+  { id: 'quote', title: '¿Quién dijo esto?', desc: 'Adiviná qué personaje bíblico dijo cada cita' },
 ];
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
@@ -84,39 +54,37 @@ export default function Games() {
 
   return (
     <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto">
-      <div className="text-center mb-6">
-        <div className="text-5xl mb-2">🎮</div>
-        <h1 className="font-serif text-2xl font-bold text-dark-blue">Juegos Bíblicos</h1>
-        <p className="text-dark-blue/50 text-sm mt-1 max-w-md mx-auto">
+      <div className="text-center mb-8">
+        <div className="text-[32px] mb-2 leading-none" style={{ color: '#C9922A' }}>◆</div>
+        <h1 className="font-['Playfair_Display'] font-bold text-[28px] mb-1.5" style={{ color: '#0F3D3D' }}>Juegos Bíblicos</h1>
+        <p className="text-sm max-w-md mx-auto" style={{ color: '#6b6b6b' }}>
           Aprendé y divertite con dinámicas interactivas basadas en la Biblia
         </p>
         {!isPremium && (
-          <div className="inline-flex items-center gap-1.5 mt-3 bg-amber-50 border border-amber-200/50 rounded-full px-4 py-1.5 text-xs text-amber-700">
-            ⭐ Exclusivo Premium
+          <div className="inline-flex items-center gap-1.5 mt-3 text-xs px-4 py-1.5" style={{ color: '#C9922A', border: '1px solid #C9922A', borderRadius: '2px' }}>
+            Exclusivo Premium
           </div>
         )}
         {isPremium && (
-          <div className="inline-flex items-center gap-1.5 mt-3 bg-gold/10 border border-gold/20 rounded-full px-4 py-1.5 text-xs text-gold font-semibold">
-            🕊️ Premium activo
+          <div className="inline-flex items-center gap-1.5 mt-3 text-xs font-['Playfair_Display']" style={{ background: '#C9922A', color: '#FAF7F2', padding: '4px 14px', borderRadius: '2px' }}>
+            Premium activo
           </div>
         )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto w-full">
-        {GAMES.map((game) => (
+        {GAMES.map((game, idx) => (
           <button
             key={game.id}
             onClick={() => handleSelect(game.id)}
-            className="group relative bg-white rounded-2xl border border-gold/10 p-5 text-left hover:shadow-md hover:border-gold/30 transition-all active:scale-[0.98] overflow-hidden"
+            className="group bg-white text-left transition-all active:scale-[0.98] overflow-hidden hover:shadow-[0_4px_16px_rgba(15,61,61,0.08)]"
+            style={{ border: '1px solid #E8E0D0', borderRadius: '6px', padding: '24px' }}
+            onMouseEnter={(e) => e.currentTarget.style.borderColor = '#C9922A'}
+            onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E8E0D0'}
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${game.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
-            <div className="relative z-10">
-              <div className={`w-12 h-12 rounded-xl ${game.iconBg} flex items-center justify-center text-2xl mb-3`}>
-                {game.emoji}
-              </div>
-              <h3 className="font-serif font-bold text-dark-blue text-base mb-1">{game.title}</h3>
-              <p className="text-dark-blue/50 text-xs leading-relaxed">{game.desc}</p>
-            </div>
+            <div className="font-['Playfair_Display'] text-2xl mb-3" style={{ color: '#C9922A' }}>{ROMAN[idx]}</div>
+            <h3 className="font-['Playfair_Display'] font-bold text-base mb-1" style={{ color: '#0F3D3D' }}>{game.title}</h3>
+            <p className="text-sm leading-relaxed" style={{ color: '#6b6b6b' }}>{game.desc}</p>
           </button>
         ))}
       </div>
