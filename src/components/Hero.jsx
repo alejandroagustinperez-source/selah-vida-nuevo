@@ -33,11 +33,6 @@ export default function Hero() {
           >
             Empezar gratis
           </Link>
-          <div className="flex items-center justify-center gap-3 mt-4">
-            <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
-            <span className="text-sm select-none" style={{ color: '#C9922A' }}>◆</span>
-            <div className="h-px flex-1 max-w-[60px]" style={{ backgroundColor: '#C9922A' }} />
-          </div>
         </div>
 
         {/* Right verse column */}
