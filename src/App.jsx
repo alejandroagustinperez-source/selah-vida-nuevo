@@ -8,6 +8,7 @@ import Problem from './components/Problem';
 import Solution from './components/Solution';
 import Verse from './components/Verse';
 import Testimonials from './components/Testimonials';
+import VideoSection from './components/VideoSection';
 import Pricing from './components/Pricing';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
@@ -41,6 +42,8 @@ function HomePage() {
       <RevealOnScroll><Verse /></RevealOnScroll>
       <Divider />
       <RevealOnScroll><Testimonials /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><VideoSection /></RevealOnScroll>
       <Divider />
       <RevealOnScroll><Pricing /></RevealOnScroll>
       <Divider />
