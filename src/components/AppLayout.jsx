@@ -8,12 +8,42 @@ import { trackEvent, updateLocation } from '../utils/tracking';
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const navItems = [
-  { to: '/chat', icon: '✦', label: 'Chat con Rafael' },
-  { to: '/music', icon: '♪', label: 'Música de Alabanza' },
-  { to: '/games', icon: '✝', label: 'Juegos Bíblicos' },
-  { to: '/canvas', icon: '◈', label: 'El Lienzo Sagrado' },
-  { to: '/prayer', icon: '❧', label: 'Oración Guiada' },
+  { to: '/chat', label: 'Chat con Rafael' },
+  { to: '/music', label: 'Música de Alabanza' },
+  { to: '/games', label: 'Juegos Bíblicos' },
+  { to: '/canvas', label: 'El Lienzo Sagrado' },
+  { to: '/prayer', label: 'Oración Guiada' },
 ];
+
+const iconWrap = { minWidth: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' };
+
+const NAV_ICONS = {
+  '/chat': (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  ),
+  '/music': (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+      <path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" />
+    </svg>
+  ),
+  '/games': (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  ),
+  '/canvas': (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+      <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
+    </svg>
+  ),
+  '/prayer': (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+      <path d="M18 11V7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v4" /><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2" /><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8" /><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+    </svg>
+  ),
+};
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -264,7 +294,7 @@ export default function AppLayout({ children }) {
                 if (!isActive(item.to)) e.currentTarget.style.backgroundColor = 'transparent';
               }}
             >
-              <span style={{ color: '#C9922A', fontSize: '16px', minWidth: '20px', textAlign: 'center', marginRight: '10px' }}>{item.icon}</span>
+              <span style={iconWrap}>{NAV_ICONS[item.to]}</span>
               <span style={{ fontSize: '14px' }}>{item.label}</span>
               {item.isLocked && (
                 <span className="ml-auto text-xs" style={{ color: 'rgba(201,146,42,0.5)' }} title="Premium">🔒</span>
@@ -292,7 +322,11 @@ export default function AppLayout({ children }) {
                   if (!isActive('/admin')) e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
-                <span style={{ color: '#C9922A', fontSize: '16px', minWidth: '20px', textAlign: 'center', marginRight: '10px' }}>▦</span>
+                <span style={iconWrap}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5">
+                  <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+                </svg>
+              </span>
                 <span style={{ fontSize: '14px' }}>Dashboard</span>
               </button>
             </div>
