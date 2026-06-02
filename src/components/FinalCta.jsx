@@ -5,10 +5,10 @@ export default function FinalCta() {
     <section className="py-16 md:py-20 px-6 text-center" style={{ backgroundColor: '#0F3D3D' }}>
       <div className="max-w-2xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl font-bold mb-4" style={{ color: '#FAF7F2' }}>
-          Comienza tu camino hoy
+          Empezá hoy — Tu alma lo necesita
         </h2>
         <p className="text-sm md:text-base mb-8 leading-relaxed" style={{ color: 'rgba(250,247,242,0.8)' }}>
-          No esperes a que el ánimo llegue solo. Da el primer paso y descubre cómo Selah Vida puede transformar tu vida espiritual.
+          No esperes a que el peso sea demasiado. Dios te espera con brazos abiertos.
         </p>
         <Link
           to="/register"
