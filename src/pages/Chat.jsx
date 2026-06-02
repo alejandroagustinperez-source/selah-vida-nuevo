@@ -357,43 +357,48 @@ export default function Chat() {
 
   if (loadingChat) {
     return (
-      <div className="flex items-center justify-center h-full bg-cream">
-        <div className="text-gold text-lg animate-pulse">Cargando…</div>
+      <div className="flex items-center justify-center h-full" style={{ backgroundColor: '#FAF7F2' }}>
+        <div className="text-lg animate-pulse" style={{ color: '#C9922A' }}>Cargando…</div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full bg-cream">
+    <div className="flex flex-col h-full" style={{ backgroundColor: '#FAF7F2' }}>
       {/* Header */}
-      <header className="flex-shrink-0 bg-white border-b border-gold/10 px-6 py-3 flex items-center justify-between">
-        <div>
-          <h1 className="font-serif text-lg font-bold leading-tight">Rafael</h1>
-          <p className="text-xs text-dark-blue/50">Tu acompañante espiritual</p>
+      <header className="flex-shrink-0 px-6 py-3 flex items-center justify-between" style={{ backgroundColor: '#FAF7F2', borderBottom: '1px solid #E8E0D0' }}>
+        <div className="flex items-center gap-3">
+          <img src="/rafael-avatar.png" alt="Rafael" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #C9922A' }} />
+          <div>
+            <h1 className="font-serif font-bold leading-tight" style={{ fontSize: '18px', color: '#0F3D3D' }}>Rafael</h1>
+            <p style={{ color: '#C9922A', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Tu acompañante espiritual</p>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           {!loadingUsage && !isPremium && (
-            <span className={`text-xs px-3 py-1 rounded-full ${atLimit ? 'bg-amber-50 text-amber-700 font-medium' : 'text-dark-blue/50 bg-cream'}`}>
+            <span className={`text-xs px-3 py-1 rounded-full ${atLimit ? 'bg-amber-50 text-amber-700 font-medium' : ''}`}
+              style={!atLimit ? { color: 'rgba(15,61,61,0.5)', backgroundColor: '#E8E0D0' } : {}}>
               {used}/{limit} mensajes
             </span>
           )}
           {isPremium && (
-            <span className="text-xs text-gold bg-gold/10 px-3 py-1 rounded-full font-semibold">Premium</span>
+            <span style={{ backgroundColor: '#C9922A', color: '#FAF7F2', fontSize: '11px', padding: '4px 12px', borderRadius: '2px', fontFamily: "'Playfair Display', serif" }}>Premium</span>
           )}
         </div>
       </header>
 
       {/* Approaching limit warning */}
       {!isPremium && used >= 15 && used < limit && (
-        <div className="flex-shrink-0 bg-amber-50/80 border-b border-amber-200/50 px-6 py-2 text-center">
-          <p className="text-xs text-amber-700">
+        <div className="flex-shrink-0 px-6 py-2 text-center" style={{ backgroundColor: 'rgba(201,146,42,0.08)', borderBottom: '1px solid rgba(201,146,42,0.2)' }}>
+          <p className="text-xs" style={{ color: '#8B1A1A' }}>
             Te quedan <span className="font-semibold">{limit - used}</span> mensajes hoy.{' '}
             Con Premium tenés mensajes ilimitados.{' '}
             <a
               href="https://pay.hotmart.com/Q105734847S"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold font-semibold hover:underline"
+              className="font-semibold hover:underline"
+              style={{ color: '#C9922A' }}
             >
               Ver planes →
             </a>
@@ -407,18 +412,22 @@ export default function Chat() {
       )}
 
       {/* Messages - scrollable */}
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-3xl mx-auto w-full">
+      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 max-w-3xl mx-auto w-full" style={{ backgroundColor: '#FAF7F2' }}>
         <DailyVerse />
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[80%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
-                msg.role === 'user'
-                  ? 'bg-gold text-white rounded-br-md'
+              className="text-sm leading-relaxed"
+              style={{
+                maxWidth: '65%',
+                padding: '12px 18px',
+                ...(msg.role === 'user'
+                  ? { backgroundColor: '#0F3D3D', color: '#FAF7F2', borderRadius: '12px 0 12px 12px' }
                   : msg.premiumBlock
-                    ? 'bg-amber-50 border border-amber-200 text-dark-blue rounded-bl-md'
-                    : 'bg-white border border-gold/10 text-dark-blue rounded-bl-md shadow-sm'
-              }`}
+                    ? { backgroundColor: 'rgba(201,146,42,0.08)', border: '1px solid rgba(201,146,42,0.2)', color: '#0F3D3D', borderRadius: '0 12px 12px 12px', borderLeft: '3px solid #C9922A' }
+                    : { backgroundColor: '#FFFFFF', border: '1px solid #E8E0D0', color: '#2C2C2C', borderRadius: '0 12px 12px 12px' }
+                ),
+              }}
             >
               {msg.premiumBlock ? (
                 <>
@@ -426,7 +435,8 @@ export default function Chat() {
                   <a
                     href="#"
                     onClick={(e) => { e.preventDefault(); window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }}
-                    className="inline-block bg-gold text-white text-sm px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition-colors"
+                    className="inline-block text-sm px-6 py-2.5 rounded-lg font-semibold transition-colors"
+                    style={{ backgroundColor: '#C9922A', color: '#FAF7F2' }}
                   >
                     Obtener Premium — $4.99/mes
                   </a>
@@ -441,13 +451,22 @@ export default function Chat() {
         {/* Emotion quick-select buttons */}
         {!hasInteracted && !sending && (
           <div className="py-2">
-            <p className="text-xs text-dark-blue/40 text-center mb-3">¿Cómo te sentís hoy?</p>
+            <p className="text-center mb-3" style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', color: '#0F3D3D', fontSize: '15px' }}>¿Cómo te sentís hoy?</p>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
               {EMOTIONS.map((e) => (
                 <button
                   key={e.label}
                   onClick={() => handleEmotion(e.emoji, e.label)}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gold/10 text-sm text-dark-blue/70 hover:bg-gold/10 hover:border-gold/30 hover:text-dark-blue transition-all text-left"
+                  className="flex items-center gap-2 px-3 py-2.5 text-left transition-colors"
+                  style={{
+                    border: '1px solid #E8E0D0',
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '6px',
+                    fontSize: '13px',
+                    color: '#0F3D3D',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#C9922A'; e.currentTarget.style.backgroundColor = '#FAF7F2'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#E8E0D0'; e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
                 >
                   <span className="text-base">{e.emoji}</span>
                   <span className="text-xs font-medium">{e.label}</span>
@@ -459,7 +478,7 @@ export default function Chat() {
 
         {sending && (
           <div className="flex justify-start">
-            <div className="bg-white border border-gold/10 rounded-2xl rounded-bl-md px-5 py-3 text-sm text-dark-blue/50">
+            <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E0D0', borderRadius: '0 12px 12px 12px', padding: '12px 18px', color: '#2C2C2C', fontSize: '14px' }}>
               <span className="animate-pulse">Escribiendo</span>
               <span className="animate-pulse">.</span>
               <span className="animate-pulse" style={{ animationDelay: '0.2s' }}>.</span>
@@ -471,27 +490,50 @@ export default function Chat() {
       </div>
 
       {/* Input - flex-shrink-0 at bottom */}
-      <div className="flex-shrink-0 border-t border-gold/10 bg-white">
-        <form onSubmit={handleSubmit} className="flex items-center gap-2 px-3 py-2 max-w-3xl mx-auto">
+      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '16px 24px' }}>
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-3xl mx-auto">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Escribe tu mensaje..."
             disabled={sending || atLimit}
-            className="flex-1 min-w-0 px-4 py-2 rounded-full border border-gold/20 bg-cream/50 focus:outline-none focus:ring-2 focus:ring-gold/40 disabled:opacity-40"
-            style={{ fontSize: '16px' }}
+            style={{
+              flex: 1, minWidth: 0,
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E8E0D0',
+              borderRadius: '6px',
+              fontSize: '14px',
+              color: '#2C2C2C',
+              padding: '12px 16px',
+            }}
+            className="disabled:opacity-40"
+            onFocus={(e) => e.target.style.borderColor = '#C9922A'}
+            onBlur={(e) => e.target.style.borderColor = '#E8E0D0'}
           />
           <button
             type="submit"
             disabled={sending || !input.trim() || atLimit}
-            className="flex-shrink-0 bg-gold text-white px-3 py-2 rounded-full font-semibold text-sm whitespace-nowrap hover:bg-gold-dark transition-colors disabled:opacity-40"
+            style={{
+              backgroundColor: '#0F3D3D',
+              color: '#FAF7F2',
+              borderRadius: '6px',
+              padding: '12px 20px',
+              fontSize: '13px',
+              letterSpacing: '0.08em',
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+            className="disabled:opacity-40"
+            onMouseEnter={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#C9922A'; }}
+            onMouseLeave={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#0F3D3D'; }}
           >
             Enviar
           </button>
         </form>
         {atLimit && (
-          <p className="text-center text-xs text-amber-600 pb-2">
+          <p className="text-center text-xs mt-2" style={{ color: '#8B1A1A' }}>
             Límite alcanzado. Se reinicia en {Math.floor(resetIn / 3600000)}h {Math.floor((resetIn % 3600000) / 60000)}m.
           </p>
         )}

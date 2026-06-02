@@ -197,6 +197,8 @@ export default function AppLayout({ children }) {
     setDeleteConfirmId(null);
   };
 
+  const isActive = (to) => location.pathname === to;
+
   const itemsWithLock = navItems.map((item) => ({
     ...item,
     isLocked: item.to !== '/chat' && !isPremium,
@@ -210,12 +212,12 @@ export default function AppLayout({ children }) {
   return (
     <div className="h-screen flex overflow-hidden bg-cream">
       {/* Mobile header - fixed */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 bg-white border-b border-gold/10 px-4 py-3 flex items-center gap-3">
-        <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú">
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 px-4 py-3 flex items-center gap-3" style={{ backgroundColor: '#0F3D3D' }}>
+        <button onClick={() => setSidebarOpen(true)} className="text-xl" aria-label="Menú" style={{ color: '#FAF7F2' }}>
           ☰
         </button>
-        <NavLink to="/" className="font-serif text-base font-bold text-dark-blue flex items-center gap-2">
-          <img src="/logo.png" alt="Selah Vida" style={{ height: '28px', width: 'auto', objectFit: 'contain' }} /> Selah Vida
+        <NavLink to="/" className="font-serif text-base font-bold flex items-center gap-2" style={{ color: '#FAF7F2' }}>
+          🔥 Selah Vida
         </NavLink>
       </header>
 
@@ -229,92 +231,110 @@ export default function AppLayout({ children }) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-gold/10 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed lg:static inset-y-0 left-0 z-50 flex flex-col transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        style={{ width: '220px', backgroundColor: '#0F3D3D' }}
       >
         {/* Logo */}
-        <div className="px-6 pt-6 pb-4 border-b border-gold/10">
-          <NavLink to="/" className="font-serif text-xl font-bold text-dark-blue flex items-center gap-2">
-            <img src="/logo.png" alt="Selah Vida" style={{ height: '32px', width: 'auto', objectFit: 'contain' }} /> Selah Vida
+        <div className="px-5 pt-6 pb-4" style={{ borderBottom: '1px solid rgba(250,247,242,0.08)' }}>
+          <NavLink to="/" className="font-serif text-lg font-bold flex items-center gap-2" style={{ color: '#FAF7F2' }}>
+            🔥 Selah Vida
           </NavLink>
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-          {itemsWithLock.map((item) => {
-            const isActive = location.pathname === item.to;
-            return (
-              <button
-                key={item.to}
-                onClick={() => handleNavClick(item)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors ${
-                  isActive
-                    ? 'bg-gold/10 text-gold'
-                    : isPremium && item.to !== '/chat'
-                      ? 'text-dark-blue hover:bg-cream'
-                      : 'text-dark-blue/70 hover:bg-cream'
-                }`}
-              >
-                <span className="text-lg">{item.icon}</span>
-                <span className="flex-1">{item.label}</span>
-                {item.isLocked && (
-                  <span className="text-xs text-dark-blue/30" title="Premium">🔒</span>
-                )}
-              </button>
-            );
-          })}
+        <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto" style={{ scrollbarColor: 'rgba(250,247,242,0.15) transparent' }}>
+          {itemsWithLock.map((item) => (
+            <button
+              key={item.to}
+              onClick={() => handleNavClick(item)}
+              className="w-full flex items-center gap-3 text-sm font-medium text-left transition-colors"
+              style={{
+                padding: '10px 16px',
+                borderRadius: '6px',
+                color: isActive(item.to) ? '#C9922A' : '#FAF7F2',
+                backgroundColor: isActive(item.to) ? 'rgba(201,146,42,0.2)' : 'transparent',
+                borderLeft: isActive(item.to) ? '3px solid #C9922A' : '3px solid transparent',
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive(item.to)) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.07)';
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive(item.to)) e.currentTarget.style.backgroundColor = 'transparent';
+              }}
+            >
+              <span className="shrink-0 text-base" style={{ color: '#C9922A' }}>{item.icon}</span>
+              <span style={{ fontSize: '14px' }}>{item.label}</span>
+              {item.isLocked && (
+                <span className="ml-auto text-xs" style={{ color: 'rgba(201,146,42,0.5)' }} title="Premium">🔒</span>
+              )}
+            </button>
+          ))}
 
           {/* Admin link - only for admin email */}
           {user?.email?.toLowerCase() === 'alejandro.agustin.perez@gmail.com' && (
-            <div className="pt-4 mt-4 border-t border-gold/10">
+            <div className="pt-3 mt-3" style={{ borderTop: '1px solid rgba(250,247,242,0.08)' }}>
               <button
                 onClick={() => { setSidebarOpen(false); navigate('/admin'); }}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left transition-colors ${
-                  location.pathname === '/admin' ? 'bg-gold/10 text-gold' : 'text-dark-blue/70 hover:bg-cream'
-                }`}
+                className="w-full flex items-center gap-3 text-sm font-medium text-left transition-colors"
+                style={{
+                  padding: '10px 16px',
+                  borderRadius: '6px',
+                  color: isActive('/admin') ? '#C9922A' : '#FAF7F2',
+                  backgroundColor: isActive('/admin') ? 'rgba(201,146,42,0.2)' : 'transparent',
+                  borderLeft: isActive('/admin') ? '3px solid #C9922A' : '3px solid transparent',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive('/admin')) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.07)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive('/admin')) e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
-                <span className="text-lg">📊</span>
-                <span>Dashboard</span>
+                <span className="shrink-0 text-base" style={{ color: '#C9922A' }}>📊</span>
+                <span style={{ fontSize: '14px' }}>Dashboard</span>
               </button>
             </div>
           )}
 
           {/* Chat history for Premium users */}
           {isPremium && location.pathname === '/chat' && (
-            <div className="mt-4 pt-4 border-t border-gold/10">
-              <div className="flex items-center justify-between px-4 mb-2">
-                <span className="text-xs font-semibold text-dark-blue/40 uppercase tracking-wider">
+            <div className="mt-5 pt-4" style={{ borderTop: '1px solid rgba(250,247,242,0.08)' }}>
+              <div className="flex items-center justify-between px-3 mb-2">
+                <span style={{ color: '#C9922A', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                   Conversaciones
                 </span>
                 <button
                   onClick={handleNewChat}
-                  className="text-gold hover:text-gold-dark text-lg leading-none p-1"
+                  style={{ color: '#C9922A', fontSize: '16px', lineHeight: 1, padding: '2px 6px', background: 'none', border: 'none', cursor: 'pointer' }}
                   title="Nuevo chat"
                 >
                   +
                 </button>
               </div>
               {loadingChats ? (
-                <div className="px-4 py-2 text-xs text-dark-blue/30 animate-pulse">Cargando…</div>
+                <div className="px-3 py-2 text-xs" style={{ color: 'rgba(250,247,242,0.4)' }}>Cargando…</div>
               ) : chats.length === 0 ? (
-                <div className="px-4 py-2 text-xs text-dark-blue/30">Sin conversaciones guardadas</div>
+                <div className="px-3 py-2 text-xs" style={{ color: 'rgba(250,247,242,0.4)' }}>Sin conversaciones guardadas</div>
               ) : (
                 <div className="space-y-0.5">
                   {chats.map((chat) => (
                     <div key={chat.id} className="group relative">
                       {deleteConfirmId === chat.id ? (
-                        <div className="flex items-center gap-1 px-3 py-2 rounded-lg bg-red-50">
-                          <span className="text-xs text-red-700 flex-1">¿Eliminar?</span>
+                        <div className="flex items-center gap-1 px-3 py-2 rounded-lg" style={{ backgroundColor: 'rgba(201,146,42,0.15)' }}>
+                          <span className="text-xs flex-1" style={{ color: '#FAF7F2' }}>¿Eliminar?</span>
                           <button
                             onClick={(e) => { e.stopPropagation(); executeDelete(chat.id); }}
-                            className="text-xs text-white bg-red-500 px-2 py-1 rounded hover:bg-red-600"
+                            className="text-xs px-2 py-1 rounded"
+                            style={{ backgroundColor: '#8B1A1A', color: '#FAF7F2' }}
                           >
                             Eliminar
                           </button>
                           <button
                             onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(null); }}
-                            className="text-xs text-dark-blue/50 px-2 py-1 rounded hover:bg-white/50"
+                            className="text-xs px-2 py-1 rounded"
+                            style={{ color: 'rgba(250,247,242,0.5)' }}
                           >
                             Cancelar
                           </button>
@@ -328,19 +348,24 @@ export default function AppLayout({ children }) {
                           onBlur={() => saveRename(chat.id)}
                           onKeyDown={(e) => handleRenameKeyDown(e, chat.id)}
                           onClick={(e) => e.stopPropagation()}
-                          className="w-full px-4 py-2 rounded-lg text-xs bg-cream border border-gold/30 focus:outline-none focus:ring-1 focus:ring-gold/50 text-dark-blue"
+                          className="w-full px-4 py-2 rounded-lg text-xs focus:outline-none"
+                          style={{ backgroundColor: '#0F3D3D', border: '1px solid #C9922A', color: '#FAF7F2' }}
                         />
                       ) : (
                         <button
                           onClick={() => handleChatClick(chat)}
-                          className="w-full flex items-center gap-2 px-4 py-2 rounded-lg text-xs text-left hover:bg-cream transition-colors"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-left transition-colors"
+                          style={{ color: 'rgba(250,247,242,0.7)', fontSize: '13px' }}
+                          onMouseEnter={(e) => e.currentTarget.style.color = '#FAF7F2'}
+                          onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(250,247,242,0.7)'}
                         >
-                          <span className="text-dark-blue/40 shrink-0">💬</span>
-                          <span className="flex-1 truncate text-dark-blue/70">{chat.title}</span>
-                          <span className="text-dark-blue/30 shrink-0 text-[10px]">{formatDate(chat.updated_at)}</span>
+                          <span style={{ color: '#C9922A', opacity: 0.6 }}>💬</span>
+                          <span className="flex-1 truncate">{chat.title}</span>
+                          <span className="shrink-0" style={{ color: 'rgba(250,247,242,0.3)', fontSize: '10px' }}>{formatDate(chat.updated_at)}</span>
                           <button
                             onClick={(e) => toggleMenu(e, chat.id)}
-                            className="opacity-0 group-hover:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 text-dark-blue/30 hover:text-dark-blue transition-opacity shrink-0 px-0.5"
+                            className="shrink-0 px-0.5 opacity-0 group-hover:opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity"
+                            style={{ color: 'rgba(250,247,242,0.3)' }}
                           >
                             ⋯
                           </button>
@@ -351,18 +376,25 @@ export default function AppLayout({ children }) {
                       {menuChatId === chat.id && (
                         <div
                           ref={menuRef}
-                          className="absolute right-2 top-full mt-0.5 z-50 bg-white border border-gold/10 rounded-lg shadow-lg py-1 min-w-[140px]"
+                          className="absolute right-2 top-full mt-0.5 z-50 border rounded-lg shadow-lg py-1 min-w-[140px]"
+                          style={{ backgroundColor: '#0F3D3D', border: '1px solid #C9922A' }}
                           onClick={(e) => e.stopPropagation()}
                         >
                           <button
                             onClick={(e) => startRename(e, chat)}
-                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left text-dark-blue/70 hover:bg-cream transition-colors"
+                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left transition-colors"
+                            style={{ color: 'rgba(250,247,242,0.8)' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.07)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
                             ✏️ Renombrar
                           </button>
                           <button
                             onClick={(e) => confirmDelete(e, chat.id)}
-                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left text-red-500 hover:bg-red-50 transition-colors"
+                            className="w-full flex items-center gap-2 px-4 py-2 text-xs text-left transition-colors"
+                            style={{ color: '#8B1A1A' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(139,26,26,0.15)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
                             🗑️ Eliminar
                           </button>
@@ -377,43 +409,50 @@ export default function AppLayout({ children }) {
         </nav>
 
         {/* User section */}
-        <div className="px-4 py-4 border-t border-gold/10 space-y-1">
+        <div className="px-3 py-4 space-y-2" style={{ borderTop: '1px solid #C9922A' }}>
           {isPremium ? (
             <div className="space-y-1">
-              <span className="text-xs text-gold bg-gold/10 px-2.5 py-1 rounded-full font-semibold inline-block">
+              <span className="text-xs font-semibold inline-block" style={{ backgroundColor: '#C9922A', color: '#0F3D3D', padding: '3px 10px', borderRadius: '2px' }}>
                 Premium
               </span>
               <button
                 onClick={() => setCancelOpen(true)}
-                className="block w-full text-left text-sm text-red-500 py-3 px-4 cursor-pointer touch-action-manipulation rounded-lg active:text-red-700 active:underline transition-colors"
+                className="block w-full text-left py-2.5 px-3 rounded-lg text-sm cursor-pointer touch-action-manipulation transition-colors"
+                style={{ color: 'rgba(250,247,242,0.6)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#FAF7F2'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(250,247,242,0.6)'}
               >
                 Cancelar suscripción
               </button>
             </div>
           ) : (
-            <div className="px-1 py-1">
-              <div className="bg-cream border border-gold/30 rounded-xl p-3 space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-gold text-sm">✦</span>
-                  <span className="text-xs font-semibold text-dark-blue">Accedé a todo con Premium</span>
-                </div>
-                <p className="text-[10px] text-dark-blue/50 leading-relaxed">
-                  Música, juegos, oraciones ilimitadas y más.
-                </p>
-                <a
-                  href="https://pay.hotmart.com/Q105734847S"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-gold text-white text-xs py-2 rounded-lg font-semibold hover:bg-gold-dark transition-colors"
-                >
-                  Ver planes
-                </a>
+            <div className="px-2 py-2" style={{ border: '1px solid rgba(201,146,42,0.3)', borderRadius: '8px' }}>
+              <div className="flex items-center gap-2 mb-1">
+                <span style={{ color: '#C9922A', fontSize: '14px' }}>✦</span>
+                <span className="text-xs font-semibold" style={{ color: '#FAF7F2' }}>Accedé a todo con Premium</span>
               </div>
+              <p className="text-[10px] mb-2" style={{ color: 'rgba(250,247,242,0.5)' }}>
+                Música, juegos, oraciones ilimitadas y más.
+              </p>
+              <a
+                href="https://pay.hotmart.com/Q105734847S"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center text-xs py-2 rounded-lg font-semibold transition-colors"
+                style={{ backgroundColor: '#C9922A', color: '#0F3D3D' }}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              >
+                Ver planes
+              </a>
             </div>
           )}
           <button
             onClick={handleLogout}
-            className="w-full text-left py-3 px-4 text-sm text-dark-blue/40 cursor-pointer touch-action-manipulation rounded-lg active:text-red-500 active:bg-red-50 transition-colors"
+            className="w-full text-left py-2.5 px-3 rounded-lg text-sm cursor-pointer touch-action-manipulation transition-colors"
+            style={{ color: 'rgba(250,247,242,0.6)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#FAF7F2'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(250,247,242,0.6)'}
           >
             Cerrar sesión
           </button>
@@ -421,7 +460,7 @@ export default function AppLayout({ children }) {
       </aside>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0" style={{ backgroundColor: '#FAF7F2' }}>
         <div className="flex-1 min-h-0 lg:pt-0 pt-[52px]">
           {children}
         </div>
@@ -430,10 +469,10 @@ export default function AppLayout({ children }) {
       {/* Premium toast */}
       {showPremiumToast && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] animate-fadeIn">
-          <div className="bg-white border border-gold/30 rounded-xl shadow-xl px-5 py-3 flex items-center gap-3 max-w-sm mx-4">
-            <span className="text-gold text-lg">✦</span>
+          <div className="border shadow-xl px-5 py-3 flex items-center gap-3 max-w-sm mx-4" style={{ backgroundColor: '#FAF7F2', border: '1px solid #C9922A', borderRadius: '10px' }}>
+            <span style={{ color: '#C9922A', fontSize: '18px' }}>✦</span>
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-dark-blue font-medium">
+              <p className="text-xs font-medium" style={{ color: '#0F3D3D' }}>
                 Esta función es exclusiva de Premium. ¿Querés desbloquearla?
               </p>
             </div>
@@ -441,7 +480,8 @@ export default function AppLayout({ children }) {
               href="https://pay.hotmart.com/Q105734847S"
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 text-xs text-gold font-semibold hover:text-gold-dark hover:underline whitespace-nowrap"
+              className="shrink-0 text-xs font-semibold whitespace-nowrap"
+              style={{ color: '#C9922A' }}
             >
               Ver planes →
             </a>

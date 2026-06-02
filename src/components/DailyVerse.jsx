@@ -478,24 +478,16 @@ export default function DailyVerse() {
 
   return (
     <div className="mx-auto w-full px-4 pt-6 pb-2 max-w-3xl">
-      <div className="relative bg-white rounded-2xl border border-gold/20 shadow-sm overflow-hidden">
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gold to-amber-300" />
-        <div className="pl-5 pr-6 py-4">
-          <div className="flex items-start gap-3">
-            <span className="text-gold shrink-0 mt-0.5 text-lg">📖</span>
-            <div className="min-w-0">
-              <p className="text-xs uppercase tracking-wider text-gold font-semibold mb-1">
-                Versículo del día
-              </p>
-              <p className="text-sm italic leading-relaxed text-dark-blue/85 font-serif">
-                &ldquo;{verse.text}&rdquo;
-              </p>
-              <p className="text-xs text-dark-blue/50 mt-1.5 font-medium">
-                — {verse.ref}
-              </p>
-            </div>
-          </div>
-        </div>
+      <div style={{ backgroundColor: '#FFFFFF', borderRadius: '6px', borderLeft: '3px solid #C9922A', padding: '16px 20px' }}>
+        <p className="text-xs uppercase tracking-wider font-semibold mb-1" style={{ color: '#C9922A' }}>
+          Versículo del día
+        </p>
+        <p className="text-sm italic leading-relaxed font-serif" style={{ color: '#0F3D3D' }}>
+          &ldquo;{verse.text}&rdquo;
+        </p>
+        <p className="text-xs mt-1.5 font-medium" style={{ color: 'rgba(15,61,61,0.5)' }}>
+          — {verse.ref}
+        </p>
       </div>
     </div>
   );
