@@ -2,7 +2,7 @@ export default function CancelModal({ open, onClose }) {
   if (!open) return null;
 
   const handleConfirm = () => {
-    window.open('https://app.hotmart.com/subscription', '_blank', 'noopener,noreferrer');
+    window.open('https://app.hotmart.com/subscriptions', '_blank', 'noopener,noreferrer');
     onClose();
   };
 
