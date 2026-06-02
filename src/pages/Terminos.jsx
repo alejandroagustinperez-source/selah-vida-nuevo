@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-useEffect(() => { window.scrollTo(0, 0); }, []);
-
 const crisisLines = [
   { country: 'Argentina', lines: [{ name: 'Centro de Asistencia al Suicida', phone: '135 (gratuito)' }, { name: '', phone: '+54 11 5275-1135' }] },
   { country: 'México', lines: [{ name: 'SAPTEL', phone: '55 5259-8121 (24hs)' }, { name: 'CONASAMA', phone: '800 290 0024' }] },
@@ -25,6 +23,7 @@ const crisisLines = [
 ];
 
 export default function Terminos() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#FAF7F2' }}>
       {/* Navbar spacer */}

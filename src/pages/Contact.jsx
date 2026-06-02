@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-useEffect(() => { window.scrollTo(0, 0); }, []);
-
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const SUBJECTS = [
@@ -13,6 +11,7 @@ const SUBJECTS = [
 ];
 
 export default function Contact() {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState(null);
