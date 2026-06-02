@@ -26,7 +26,7 @@ export default function Verse() {
         <div className="flex flex-col items-center justify-center px-10 md:pr-16 md:pl-12 py-4 md:py-0">
           <p className="text-xs tracking-[0.15em] font-semibold mb-4 self-start" style={{ color: '#C9922A' }}>SALMOS 46:1</p>
           <p className="font-serif italic text-2xl md:text-3xl leading-relaxed" style={{ color: '#0F3D3D', lineHeight: '1.7' }}>
-            Dios es nuestro amparo y nuestra fortaleza, nuestro pronto auxilio en las tribulaciones.
+            Dios es nuestro amparo y nuestra fortaleza, nuestra ayuda segura en momentos de angustia.
           </p>
         </div>
       </div>

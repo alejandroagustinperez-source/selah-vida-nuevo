@@ -17,7 +17,7 @@ export default function Problem() {
           </h2>
         </div>
 
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1">
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1 items-start">
           {items.map((item, idx) => (
             <div key={idx} className="flex items-start gap-3 py-1">
               <span className="font-serif text-lg font-bold shrink-0" style={{ color: '#C9922A' }}>{idx + 1}.</span>
@@ -26,7 +26,7 @@ export default function Problem() {
           ))}
         </div>
 
-        <p className="text-center font-semibold italic text-sm md:text-base mt-6" style={{ color: '#0F3D3D' }}>
+        <p className="text-center font-semibold italic text-sm md:text-base mt-4" style={{ color: '#0F3D3D' }}>
           — No estás solo
         </p>
       </div>

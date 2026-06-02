@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand column — left aligned */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <img src="/logo.png" alt="Selah Vida" className="w-[26px] h-[26px] object-contain" />
+              <img src="/logo.png" alt="Selah Vida" className="w-8 h-8 object-contain" />
               <span className="font-serif text-lg font-bold" style={{ color: '#FAF7F2' }}>Selah Vida</span>
             </div>
             <p className="text-xs leading-relaxed mb-3" style={{ color: 'rgba(250,247,242,0.6)' }}>
