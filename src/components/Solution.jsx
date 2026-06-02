@@ -15,7 +15,7 @@ export default function Solution() {
 
   return (
     <section id="solucion" className="py-6 md:py-10 px-6" style={{ backgroundColor: '#FAF7F2' }}>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>III</span>
           <h2 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
@@ -23,7 +23,7 @@ export default function Solution() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-0 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 gap-0 mx-auto">
           {features.map((f, idx) => {
             const Icon = iconMap[f.icon];
             return (

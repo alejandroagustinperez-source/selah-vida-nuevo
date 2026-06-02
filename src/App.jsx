@@ -33,12 +33,9 @@ function HomePage() {
       <Divider thin />
       <Hero />
       <Divider />
-      <RevealOnScroll>
-        <div className="flex flex-col md:grid md:grid-cols-2">
-          <Problem />
-          <Solution />
-        </div>
-      </RevealOnScroll>
+      <RevealOnScroll><Problem /></RevealOnScroll>
+      <Divider />
+      <RevealOnScroll><Solution /></RevealOnScroll>
       <Divider />
       <RevealOnScroll><Verse /></RevealOnScroll>
       <Divider />
