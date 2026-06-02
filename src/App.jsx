@@ -25,10 +25,11 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Contact from './pages/Contact';
 import AuthCallback from './pages/AuthCallback';
+import ManuscriptBorders from './components/ManuscriptBorders';
 
 function HomePage() {
   return (
-    <>
+    <ManuscriptBorders>
       <Navbar />
       <Divider thin />
       <Hero />
@@ -45,7 +46,7 @@ function HomePage() {
       <Divider />
       <RevealOnScroll><FinalCta /></RevealOnScroll>
       <Footer />
-    </>
+    </ManuscriptBorders>
   );
 }
 
