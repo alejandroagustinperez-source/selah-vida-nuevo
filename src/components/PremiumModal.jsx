@@ -23,7 +23,7 @@ export default function PremiumModal({ open, onClose }) {
           Esta función es exclusiva para usuarios Premium.
         </p>
         <button
-          onClick={() => window.open('https://pay.hotmart.com/Q105734847S', '_blank')}
+          onClick={() => { window.open('https://wa.me/5492665066606?text=Hola%20Alejandro%2C%20quiero%20suscribirme%20a%20Selah%20Vida%20Premium%20%F0%9F%99%8F', '_blank'); setTimeout(() => { window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }, 200); }}
           className="w-full bg-gold text-white py-3.5 rounded-full font-semibold text-sm hover:bg-gold-dark transition-colors"
         >
           Quiero ser Premium

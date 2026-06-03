@@ -474,7 +474,7 @@ export default function AppLayout({ children }) {
                 <div><span style={{ color:'#C9922A' }}>✓</span> Nuevos contenidos cada mes</div>
               </div>
               <button
-                onClick={() => { window.location.href = '/#precios'; }}
+                onClick={() => { window.open('https://wa.me/5492665066606?text=Hola%20Alejandro%2C%20quiero%20suscribirme%20a%20Selah%20Vida%20Premium%20%F0%9F%99%8F', '_blank'); setTimeout(() => { window.open('https://pay.hotmart.com/Q105734847S', '_blank'); }, 200); }}
                 style={{
                   display:'block', width:'100%', background:'#C9922A', color:'#FAF7F2',
                   fontFamily:"'Playfair Display',serif", fontSize:'13px', letterSpacing:'0.1em',
