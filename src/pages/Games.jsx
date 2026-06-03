@@ -4,6 +4,7 @@ import VerseGame from '../components/Games/VerseGame';
 import WordSearchGame from '../components/Games/WordSearchGame';
 import QuoteGame from '../components/Games/QuoteGame';
 import PremiumModal from '../components/PremiumModal';
+import RafaelGuide from '../components/RafaelGuide';
 import { useState } from 'react';
 import { supabase } from '../supabase';
 import { trackEvent } from '../utils/tracking';
@@ -53,6 +54,7 @@ export default function Games() {
   if (activeGame === 'quote') return <QuoteGame onBack={() => setActiveGame(null)} onComplete={handleGameComplete} />;
 
   return (
+    <>
     <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto">
       <div className="text-center mb-8">
         <div className="text-[32px] mb-2 leading-none" style={{ color: '#C9922A' }}>◆</div>
@@ -90,6 +92,8 @@ export default function Games() {
       </div>
 
       <PremiumModal open={showPremium} onClose={() => setShowPremium(false)} />
+      <RafaelGuide sectionKey="games" message="¡Bienvenido a los Juegos Bíblicos! 📖 Tenés Trivia, Adivina el Versículo, Sopa de Letras y ¿Quién dijo esto? Cada juego tiene distintos niveles de dificultad. ¡Poné a prueba tu conocimiento de las Escrituras!" />
     </div>
+    </>
   );
 }

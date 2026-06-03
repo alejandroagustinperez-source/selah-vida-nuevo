@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import confetti from 'canvas-confetti';
+import RafaelGuide from '../components/RafaelGuide';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -257,6 +258,7 @@ export default function Canvas() {
           animation: bounce-in 0.6s ease-out;
         }
       `}</style>
+      <RafaelGuide sectionKey="canvas" message="El Lienzo Sagrado es un desafío especial 🎨 Para revelar la obra completa de La Última Cena, completá los 4 desafíos bíblicos. Cada desafío completado desbloquea una pieza del cuadro." />
     </div>
   );
 }

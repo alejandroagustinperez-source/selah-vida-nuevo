@@ -5,6 +5,7 @@ import { supabase } from '../supabase';
 import DailyVerse from '../components/DailyVerse';
 import LimitModal from '../components/LimitModal';
 import { trackEvent } from '../utils/tracking';
+import RafaelGuide from '../components/RafaelGuide';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -364,6 +365,7 @@ export default function Chat() {
   }
 
   return (
+    <>
     <div className="flex flex-col h-full" style={{ backgroundColor: '#FAF7F2' }}>
       {/* Header */}
       <header className="flex-shrink-0 px-6 py-3 flex items-center justify-between" style={{ backgroundColor: '#FAF7F2', borderBottom: '1px solid #E8E0D0' }}>
@@ -539,5 +541,7 @@ export default function Chat() {
         )}
       </div>
     </div>
+      <RafaelGuide sectionKey="chat" message="Hola, soy Rafael 👋 Estoy aquí para escucharte y acompañarte en tu fe. Podés contarme lo que sentís, hacer preguntas sobre la Biblia, pedir oración o simplemente charlar. No hay tema prohibido — estoy disponible las 24 horas." />
+    </>
   );
 }

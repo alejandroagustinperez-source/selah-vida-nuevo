@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
+import RafaelGuide from '../components/RafaelGuide';
 
 const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
@@ -93,13 +94,16 @@ export default function Prayer() {
 
   if (!isPremium) {
     return (
-      <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{background:'#FAF7F2'}}>
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5" style={{marginBottom:'16px'}}>
-          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-        <h2 className="font-serif text-xl font-bold" style={{fontFamily:"'Playfair Display',serif",color:'#0F3D3D',marginBottom:'8px'}}>Función exclusiva</h2>
-        <p style={{color:'rgba(15,61,61,0.6)',fontSize:'14px',marginBottom:'0'}}>Oración Guiada es exclusiva para usuarios Premium.</p>
-      </div>
+      <>
+        <div className="h-full flex flex-col items-center justify-center text-center px-6" style={{background:'#FAF7F2'}}>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.5" style={{marginBottom:'16px'}}>
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <h2 className="font-serif text-xl font-bold" style={{fontFamily:"'Playfair Display',serif",color:'#0F3D3D',marginBottom:'8px'}}>Función exclusiva</h2>
+          <p style={{color:'rgba(15,61,61,0.6)',fontSize:'14px',marginBottom:'0'}}>Oración Guiada es exclusiva para usuarios Premium.</p>
+        </div>
+        <RafaelGuide sectionKey="prayer" message="La Oración Guiada te acompaña en 7 caminos de conexión con Dios 🙏 Elegí el tema que más resuene con lo que estás viviendo — ansiedad, sanidad, familia, trabajo, gratitud, arrepentimiento o fe." />
+      </>
     );
   }
 
@@ -115,39 +119,43 @@ export default function Prayer() {
 
   if (screen === 'categories') {
     return (
-      <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto" style={{background: '#FAF7F2'}}>
-        <div className="text-center mb-8">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.2" style={{display:'block',margin:'0 auto 8px'}}>
-            <path d="M18 11V7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v4"/>
-            <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
-            <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
-            <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
-          </svg>
-          <h1 className="font-serif text-2xl font-bold" style={{fontFamily:"'Playfair Display',serif",color:'#0F3D3D',fontSize:'26px'}}>Oración Guiada</h1>
-          <p style={{color:'#6b6b6b',fontSize:'13px',marginTop:'4px'}}>Elegí un tema y dejá que Rafael guíe tu oración</p>
-          <div style={{width:'40px',height:'2px',background:'#C9922A',margin:'12px auto 0',opacity:0.6}} />
+      <>
+        <div className="h-full flex flex-col px-4 sm:px-6 py-6 overflow-y-auto" style={{background:'#FAF7F2'}}>
+          <div className="text-center mb-8">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C9922A" strokeWidth="1.2" style={{display:'block',margin:'0 auto 8px'}}>
+              <path d="M18 11V7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v4"/>
+              <path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/>
+              <path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/>
+              <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+            </svg>
+            <h1 className="font-serif text-2xl font-bold" style={{fontFamily:"'Playfair Display',serif",color:'#0F3D3D',fontSize:'26px'}}>Oración Guiada</h1>
+            <p style={{color:'#6b6b6b',fontSize:'13px',marginTop:'4px'}}>Elegí un tema y dejá que Rafael guíe tu oración</p>
+            <div style={{width:'40px',height:'2px',background:'#C9922A',margin:'12px auto 0',opacity:0.6}} />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full" style={{maxWidth:'700px',gap:'16px'}}>
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => startPrayer(cat)}
+                className="text-left"
+                style={{background:'#fff',border:'1px solid #E8E0D0',borderRadius:'6px',padding:'24px 20px',cursor:'pointer',transition:'border-color 0.2s,box-shadow 0.2s'}}
+                onMouseEnter={e => {e.currentTarget.style.borderColor='#C9922A';e.currentTarget.style.boxShadow='0 4px 16px rgba(15,61,61,0.08)'}}
+                onMouseLeave={e => {e.currentTarget.style.borderColor='#E8E0D0';e.currentTarget.style.boxShadow='none'}}
+              >
+                {SVG_ICONS[cat.id]}
+                <h3 style={{fontFamily:"'Playfair Display',serif",fontWeight:700,color:'#0F3D3D',fontSize:'15px',marginTop:'12px',marginBottom:0}}>{cat.label}</h3>
+                <p style={{color:'#6b6b6b',fontSize:'13px',lineHeight:1.5,marginTop:'6px',marginBottom:0}}>{cat.desc}</p>
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-auto w-full" style={{maxWidth:'700px',gap:'16px'}}>
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => startPrayer(cat)}
-              className="text-left"
-              style={{background:'#fff',border:'1px solid #E8E0D0',borderRadius:'6px',padding:'24px 20px',cursor:'pointer',transition:'border-color 0.2s,box-shadow 0.2s'}}
-              onMouseEnter={e => {e.currentTarget.style.borderColor='#C9922A';e.currentTarget.style.boxShadow='0 4px 16px rgba(15,61,61,0.08)'}}
-              onMouseLeave={e => {e.currentTarget.style.borderColor='#E8E0D0';e.currentTarget.style.boxShadow='none'}}
-            >
-              {SVG_ICONS[cat.id]}
-              <h3 style={{fontFamily:"'Playfair Display',serif",fontWeight:700,color:'#0F3D3D',fontSize:'15px',marginTop:'12px',marginBottom:0}}>{cat.label}</h3>
-              <p style={{color:'#6b6b6b',fontSize:'13px',lineHeight:1.5,marginTop:'6px',marginBottom:0}}>{cat.desc}</p>
-            </button>
-          ))}
-        </div>
-      </div>
+        <RafaelGuide sectionKey="prayer" message="La Oración Guiada te acompaña en 7 caminos de conexión con Dios 🙏 Elegí el tema que más resuene con lo que estás viviendo — ansiedad, sanidad, familia, trabajo, gratitud, arrepentimiento o fe." />
+      </>
     );
   }
 
   return (
+    <>
     <div className="flex flex-col h-full" style={{background:'#FAF7F2'}}>
       {/* Header */}
       <div className="flex-shrink-0 relative px-4 sm:px-6 py-5" style={{background:'#0F3D3D'}}>
@@ -245,5 +253,7 @@ export default function Prayer() {
         </div>
       )}
     </div>
+      <RafaelGuide sectionKey="prayer" message="La Oración Guiada te acompaña en 7 caminos de conexión con Dios 🙏 Elegí el tema que más resuene con lo que estás viviendo — ansiedad, sanidad, familia, trabajo, gratitud, arrepentimiento o fe." />
+    </>
   );
 }

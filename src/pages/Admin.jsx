@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import RafaelGuide from '../components/RafaelGuide';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../supabase';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
@@ -88,6 +89,7 @@ export default function Admin() {
   };
 
   return (
+    <>
     <div className="h-full overflow-y-auto" style={{ background: '#1a1a2e' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
 
@@ -278,5 +280,7 @@ export default function Admin() {
 
       </div>
     </div>
+      <RafaelGuide sectionKey="dashboard" message="Este es tu panel personal 📊 Aquí podés ver tu actividad en Selah Vida — conversaciones con Rafael, juegos completados y tu progreso espiritual." />
+    </>
   );
 }
