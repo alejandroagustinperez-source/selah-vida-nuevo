@@ -460,25 +460,32 @@ export default function AppLayout({ children }) {
               </button>
             </div>
           ) : (
-            <div className="px-2 py-2" style={{ border: '1px solid rgba(201,146,42,0.3)', borderRadius: '8px' }}>
-              <div className="flex items-center gap-2 mb-1">
-                <span style={{ color: '#C9922A', fontSize: '14px' }}>✦</span>
-                <span className="text-xs font-semibold" style={{ color: '#FAF7F2' }}>Accedé a todo con Premium</span>
-              </div>
-              <p className="text-[10px] mb-2" style={{ color: 'rgba(250,247,242,0.5)' }}>
-                Música, juegos, oraciones ilimitadas y más.
+            <div style={{ background:'#0F3D3D', border:'1px solid #C9922A', borderRadius:'8px', padding:'20px' }}>
+              <div style={{ color:'#C9922A', fontSize:'20px', textAlign:'center', marginBottom:'4px' }}>✦</div>
+              <p style={{ fontFamily:"'Playfair Display',serif", fontWeight:700, color:'#FAF7F2', fontSize:'16px', textAlign:'center', margin:'0 0 4px' }}>
+                Accedé a todo con Premium
               </p>
-              <a
-                href="https://pay.hotmart.com/Q105734847S"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center text-xs py-2 rounded-lg font-semibold transition-colors"
-                style={{ backgroundColor: '#C9922A', color: '#0F3D3D' }}
-                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              <p style={{ color:'rgba(250,247,242,0.8)', fontSize:'12px', textAlign:'center', margin:'0 0 12px' }}>
+                Música, juegos, oraciones ilimitadas y mucho más.
+              </p>
+              <div style={{ fontSize:'12px', color:'#FAF7F2', marginBottom:'14px', lineHeight:1.8 }}>
+                <div><span style={{ color:'#C9922A' }}>✓</span> Chat con Rafael ilimitado</div>
+                <div><span style={{ color:'#C9922A' }}>✓</span> Juegos bíblicos y Oración Guiada sin límites</div>
+                <div><span style={{ color:'#C9922A' }}>✓</span> Nuevos contenidos cada mes</div>
+              </div>
+              <button
+                onClick={() => { window.location.href = '/#precios'; }}
+                style={{
+                  display:'block', width:'100%', background:'#C9922A', color:'#FAF7F2',
+                  fontFamily:"'Playfair Display',serif", fontSize:'13px', letterSpacing:'0.1em',
+                  padding:'12px', borderRadius:'4px', border:'none', cursor:'pointer',
+                  fontWeight:700, transition:'all 200ms', textTransform:'uppercase'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = '#FAF7F2'; e.currentTarget.style.color = '#0F3D3D'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = '#C9922A'; e.currentTarget.style.color = '#FAF7F2'; }}
               >
-                Ver planes
-              </a>
+                SUSCRIBIRME AHORA
+              </button>
             </div>
           )}
           <button
