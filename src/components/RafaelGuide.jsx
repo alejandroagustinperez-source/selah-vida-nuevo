@@ -44,7 +44,7 @@ export default function RafaelGuide({ sectionKey, message }) {
           className="guide-card-enter rafael-guide-card"
           style={{
             position: 'fixed',
-            bottom: '24px',
+            bottom: '130px',
             right: '24px',
             width: '300px',
             zIndex: 50,
@@ -96,7 +96,7 @@ export default function RafaelGuide({ sectionKey, message }) {
           title="Rafael puede ayudarte"
           className="rafael-guide-btn"
           style={{
-            position: 'fixed', bottom: '24px', right: '24px', zIndex: 50,
+            position: 'fixed', bottom: '80px', right: '24px', zIndex: 50,
             width: '40px', height: '40px', borderRadius: '50%',
             background: '#0F3D3D', color: '#FAF7F2',
             border: '2px solid #C9922A',
