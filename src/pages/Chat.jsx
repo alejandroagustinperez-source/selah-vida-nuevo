@@ -498,8 +498,8 @@ export default function Chat() {
       </div>
 
       {/* Input - flex-shrink-0 at bottom */}
-      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '12px 16px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))', overflow: 'hidden' }}>
-        <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-3xl mx-auto" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div className="flex-shrink-0" style={{ boxSizing:'border-box', width:'100%', maxWidth:'100vw', overflow:'hidden', backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '12px 16px 12px 12px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%' }}>
           <input
             type="text"
             value={input}
@@ -507,7 +507,7 @@ export default function Chat() {
             placeholder="Escribe tu mensaje..."
             disabled={sending || atLimit}
             style={{
-              flex: 1, minWidth: 0,
+              flex: 1, minWidth: 0, boxSizing: 'border-box',
               backgroundColor: '#FFFFFF',
               border: '1px solid #E8E0D0',
               borderRadius: '6px',
@@ -523,17 +523,16 @@ export default function Chat() {
             type="submit"
             disabled={sending || !input.trim() || atLimit}
             style={{
+              flexShrink: 0,
+              width: '72px', minWidth: '72px', maxWidth: '72px',
+              padding: 0, height: '44px',
               backgroundColor: '#0F3D3D',
               color: '#FAF7F2',
               borderRadius: '6px',
-              padding: '12px 20px',
               fontSize: '13px',
               letterSpacing: '0.08em',
               border: 'none',
               cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              minWidth: 'fit-content',
             }}
             className="disabled:opacity-40"
             onMouseEnter={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#C9922A'; }}

@@ -25,11 +25,23 @@ export default function RafaelGuide({ sectionKey, message }) {
         .guide-card-enter {
           animation: guide-fade-up 200ms ease forwards;
         }
+        @media (max-width: 768px) {
+          .rafael-guide-card {
+            bottom: 140px !important;
+            right: 12px !important;
+            width: calc(100vw - 24px) !important;
+            max-width: 320px !important;
+          }
+          .rafael-guide-btn {
+            bottom: 90px !important;
+            right: 12px !important;
+          }
+        }
       `}</style>
 
       {isOpen && (
         <div
-          className="guide-card-enter"
+          className="guide-card-enter rafael-guide-card"
           style={{
             position: 'fixed',
             bottom: '24px',
@@ -82,6 +94,7 @@ export default function RafaelGuide({ sectionKey, message }) {
         <button
           onClick={() => setIsOpen(true)}
           title="Rafael puede ayudarte"
+          className="rafael-guide-btn"
           style={{
             position: 'fixed', bottom: '24px', right: '24px', zIndex: 50,
             width: '40px', height: '40px', borderRadius: '50%',
