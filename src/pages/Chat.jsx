@@ -131,6 +131,7 @@ export default function Chat() {
   const [chatId, setChatId] = useState(null);
   const [loadingChat, setLoadingChat] = useState(true);
   const bottomRef = useRef(null);
+  const lastAssistantRef = useRef(null);
   const chatIdRef = useRef(null);
   const premiumRef = useRef(isPremium);
   premiumRef.current = isPremium;
@@ -142,8 +143,12 @@ export default function Chat() {
   const atLimit = !isPremium && used >= limit;
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+    if (!sending && lastAssistantRef.current) {
+      lastAssistantRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (!sending) {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, sending]);
 
   useEffect(() => {
     if (!atLimit) setHideLimit(false);
@@ -368,7 +373,7 @@ export default function Chat() {
     <>
     <div className="flex flex-col h-full" style={{ backgroundColor: '#FAF7F2' }}>
       {/* Header */}
-      <header className="flex-shrink-0 px-6 py-3 flex items-center justify-between" style={{ backgroundColor: '#FAF7F2', borderBottom: '1px solid #E8E0D0' }}>
+      <header className="flex-shrink-0 flex items-center justify-between" style={{ backgroundColor: '#FAF7F2', borderBottom: '1px solid #E8E0D0', padding: '8px 24px', paddingTop: 'calc(8px + env(safe-area-inset-top, 0px))', minHeight: '60px', position: 'relative', zIndex: 1 }}>
         <div className="flex items-center gap-3">
           <img src="/rafael-avatar.png" alt="Rafael" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #C9922A' }} />
           <div>
@@ -419,6 +424,7 @@ export default function Chat() {
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
+              ref={msg.role !== 'user' && i === messages.length - 1 ? lastAssistantRef : undefined}
               className="text-sm leading-relaxed"
               style={{
                 maxWidth: '65%',
@@ -492,8 +498,8 @@ export default function Chat() {
       </div>
 
       {/* Input - flex-shrink-0 at bottom */}
-      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '16px 24px', paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
-        <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-3xl mx-auto">
+      <div className="flex-shrink-0" style={{ backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '12px 16px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))', overflow: 'hidden' }}>
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 max-w-3xl mx-auto" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <input
             type="text"
             value={input}
@@ -526,6 +532,8 @@ export default function Chat() {
               border: 'none',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
+              flexShrink: 0,
+              minWidth: 'fit-content',
             }}
             className="disabled:opacity-40"
             onMouseEnter={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#C9922A'; }}
