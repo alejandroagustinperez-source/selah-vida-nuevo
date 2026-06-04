@@ -497,50 +497,41 @@ export default function Chat() {
         <div ref={bottomRef} />
       </div>
 
-      {/* Input - flex-shrink-0 at bottom */}
-      <div className="flex-shrink-0" style={{ boxSizing:'border-box', width:'100%', maxWidth:'100vw', overflow:'hidden', backgroundColor: '#FAF7F2', borderTop: '1px solid #E8E0D0', padding: '12px 16px 12px 12px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%' }}>
+      {/* Input */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', flexShrink: 0,
+        borderTop: '1px solid #E8E0D0', background: '#FAF7F2',
+        width: '100%', boxSizing: 'border-box'
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', padding: '12px',
+          paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))',
+          gap: '8px', width: '100%', boxSizing: 'border-box'
+        }}>
           <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Escribe tu mensaje..."
-            disabled={sending || atLimit}
             style={{
-              flex: 1, minWidth: 0, boxSizing: 'border-box',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #E8E0D0',
-              borderRadius: '6px',
-              fontSize: '14px',
-              color: '#2C2C2C',
-              padding: '12px 16px',
+              flex: '1', minWidth: '0', width: '0', boxSizing: 'border-box',
+              border: '1px solid #E8E0D0', borderRadius: '6px', padding: '12px',
+              fontSize: '14px', background: '#fff', color: '#2C2C2C', outline: 'none'
             }}
-            className="disabled:opacity-40"
-            onFocus={(e) => e.target.style.borderColor = '#C9922A'}
-            onBlur={(e) => e.target.style.borderColor = '#E8E0D0'}
+            placeholder="Escribe tu mensaje..."
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendText(input.trim()); } }}
           />
           <button
-            type="submit"
-            disabled={sending || !input.trim() || atLimit}
             style={{
-              flexShrink: 0,
-              width: '72px', minWidth: '72px', maxWidth: '72px',
-              padding: 0, height: '44px',
-              backgroundColor: '#0F3D3D',
-              color: '#FAF7F2',
-              borderRadius: '6px',
-              fontSize: '13px',
-              letterSpacing: '0.08em',
-              border: 'none',
-              cursor: 'pointer',
+              flexShrink: '0', width: '70px', height: '44px',
+              background: sending ? '#6b6b6b' : '#0F3D3D', color: '#FAF7F2',
+              border: 'none', borderRadius: '6px', fontSize: '13px',
+              cursor: 'pointer', letterSpacing: '0.05em'
             }}
-            className="disabled:opacity-40"
-            onMouseEnter={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#C9922A'; }}
-            onMouseLeave={(e) => { if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = '#0F3D3D'; }}
+            onClick={() => sendText(input.trim())}
+            disabled={sending}
           >
             Enviar
           </button>
-        </form>
+        </div>
         {atLimit && (
           <p className="text-center text-xs mt-2" style={{ color: '#8B1A1A' }}>
             Límite alcanzado. Se reinicia en {Math.floor(resetIn / 3600000)}h {Math.floor((resetIn % 3600000) / 60000)}m.
