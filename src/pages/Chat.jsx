@@ -512,7 +512,7 @@ export default function Chat() {
             style={{
               flex: '1', minWidth: '0', width: '0', boxSizing: 'border-box',
               border: '1px solid #E8E0D0', borderRadius: '6px', padding: '12px',
-              fontSize: '14px', background: '#fff', color: '#2C2C2C', outline: 'none'
+              fontSize: '16px', background: '#fff', color: '#2C2C2C', outline: 'none', transform: 'translateZ(0)'
             }}
             placeholder="Escribe tu mensaje..."
             value={input}
