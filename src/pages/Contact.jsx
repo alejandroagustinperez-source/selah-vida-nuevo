@@ -123,8 +123,8 @@ export default function Contact() {
               </label>
               <textarea
                 name="message" required value={form.message} onChange={handleChange} rows={4}
-                className="w-full py-2.5 bg-transparent outline-none text-sm resize-y transition-colors"
-                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A' }}
+                className="w-full bg-transparent outline-none text-sm resize-y transition-colors"
+                style={{ color: '#0F3D3D', borderBottom: '1px solid #C9922A', padding: '10px 0', minHeight: '120px' }}
                 onFocus={(e) => e.target.style.borderBottomColor = '#0F3D3D'}
                 onBlur={(e) => e.target.style.borderBottomColor = '#C9922A'}
               />
