@@ -54,10 +54,9 @@ export function AuthProvider({ children }) {
   };
 
   const loginWithGoogle = async () => {
-    const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin;
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${siteUrl}/auth/callback` },
+      options: { redirectTo: 'https://www.selah-vida.com.ar/auth/callback' },
     });
     if (error) throw error;
   };
