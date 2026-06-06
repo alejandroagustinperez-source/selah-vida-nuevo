@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
-
 const SUBJECTS = [
   'Soporte técnico',
   'Consulta sobre Premium',
@@ -25,15 +23,9 @@ export default function Contact() {
     setSending(true);
     setStatus(null);
     try {
-      const res = await fetch(`${API_BASE}/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || 'Error');
-      }
+      const text = `Nombre: ${encodeURIComponent(form.name)}%0AEmail: ${encodeURIComponent(form.email)}%0AAsunto: ${encodeURIComponent(form.subject)}%0AMensaje: ${encodeURIComponent(form.message)}`;
+      const url = `https://wa.me/5492665066606?text=${text}`;
+      window.open(url, '_blank');
       setStatus('success');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
