@@ -43,7 +43,7 @@ function buildWelcomeEmail(name) {
         </ul>
 
         <div style="text-align: center; margin: 32px 0;">
-          <a href="https://selah-vida.vercel.app/chat"
+          <a href="https://www.selah-vida.com.ar/chat"
              style="display: inline-block; background-color: #C9A84C; color: #1a3a4a; text-decoration: none; font-family: Inter, sans-serif; font-weight: 600; font-size: 16px; padding: 14px 36px; border-radius: 8px;">
             Comenzar ahora
           </a>

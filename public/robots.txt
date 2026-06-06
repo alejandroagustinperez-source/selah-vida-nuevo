@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://selah-vida.vercel.app/sitemap.xml
+Sitemap: https://www.selah-vida.com.ar/sitemap.xml
