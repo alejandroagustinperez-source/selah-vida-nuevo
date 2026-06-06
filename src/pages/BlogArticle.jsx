@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import articles from '../data/blog';
 
 export default function BlogArticle() {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const article = articles.find((a) => a.slug === slug);
 
   useEffect(() => {
@@ -55,9 +54,70 @@ export default function BlogArticle() {
             <div className="h-px flex-1 max-w-[40px]" style={{ backgroundColor: '#C9922A' }} />
           </div>
 
+          <style>{`
+            .article-content h2 {
+              font-family: 'Playfair Display', serif;
+              color: #0F3D3D;
+              font-size: 1.4rem;
+              margin-top: 40px;
+              margin-bottom: 16px;
+            }
+            .article-content h2::after {
+              content: '◆';
+              display: block;
+              color: #C9922A;
+              font-size: 0.8rem;
+              margin-top: 8px;
+            }
+            .article-content .section-divider {
+              display: block;
+              color: #C9922A;
+              text-align: center;
+              font-size: 0.8rem;
+              margin: 8px 0;
+            }
+            .article-content blockquote.bible-quote {
+              border-left: 3px solid #C9922A;
+              background: #F0EAE0;
+              font-style: italic;
+              padding: 16px 20px;
+              margin: 24px 0;
+            }
+            .article-content .prayer-block {
+              background: #0F3D3D;
+              color: #FAF7F2;
+              padding: 32px;
+              text-align: center;
+              border-radius: 4px;
+              margin: 32px 0;
+              font-style: italic;
+              line-height: 1.8;
+            }
+            .article-content .key-verses {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 12px;
+              margin: 24px 0;
+            }
+            .article-content .verse-card {
+              border: 1px solid #C9922A;
+              padding: 12px 16px;
+              background: #FAF7F2;
+              font-size: 0.85rem;
+              color: #0F3D3D;
+              max-width: 300px;
+            }
+            .article-content p {
+              margin-bottom: 16px;
+              line-height: 1.8;
+            }
+            .article-content strong {
+              color: #0F3D3D;
+            }
+          `}</style>
           <div
-            className="prose prose-sm max-w-none leading-relaxed"
-            style={{ color: 'rgba(15,61,61,0.85)' }}
+            className="article-content"
+            style={{ color: 'rgba(15,61,61,0.85)', fontSize: '0.95rem' }}
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
         </article>
