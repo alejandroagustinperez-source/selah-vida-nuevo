@@ -13,6 +13,7 @@ export default function Navbar() {
     { href: '#problema', label: 'Problema' },
     { href: '#solucion', label: 'Solución' },
     { href: '#testimonios', label: 'Testimonios' },
+    { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
     { href: '#precios', label: 'Precios' },
   ];

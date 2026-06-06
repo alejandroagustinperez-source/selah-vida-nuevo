@@ -31,6 +31,7 @@ export default function Footer() {
                 { label: 'Inicio', to: '/', scrollTop: true },
                 { label: 'Iniciar sesión', to: '/login' },
                 { label: 'Crear cuenta', to: '/register' },
+                { label: 'Blog', to: '/blog' },
                 { label: 'Contacto', to: '/contacto' },
                 { label: 'Privacidad', to: '/privacy' },
                 { label: 'Términos y condiciones', to: '/terminos' },

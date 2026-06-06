@@ -26,6 +26,8 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Terminos from './pages/Terminos';
 import Contact from './pages/Contact';
+import Blog from './pages/Blog';
+import BlogArticle from './pages/BlogArticle';
 import AuthCallback from './pages/AuthCallback';
 import ManuscriptBorders from './components/ManuscriptBorders';
 import RafaelWidget from './components/RafaelWidget';
@@ -85,6 +87,8 @@ export default function App() {
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
           <Route path="/terminos" element={<><Navbar /><Terminos /></>} />
           <Route path="/contacto" element={<><Navbar /><Contact /><Divider /><Footer /></>} />
+          <Route path="/blog" element={<><Navbar /><Blog /><Footer /></>} />
+          <Route path="/blog/:slug" element={<><Navbar /><BlogArticle /><Footer /></>} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
