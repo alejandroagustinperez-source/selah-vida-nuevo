@@ -82,6 +82,97 @@ const articles = [
     `,
   },
   {
+    slug: "versiculos-biblicos-para-la-soledad",
+    title: "Versículos bíblicos para la soledad: qué dice la Biblia",
+    date: "6 de junio, 2026",
+    excerpt: "Ruth había perdido todo: su marido, su tierra, su futuro. Llegó a Belén como extranjera, sin nada ni nadie. Descubrí qué dice la Biblia sobre la soledad y cómo Dios se acerca a los que se sienten solos.",
+    metaDescription: "Descubrí qué dicen los versículos bíblicos para la soledad. La historia de Ruth, una viuda extranjera que encontró a Dios en su momento más solitario, y una oración para la soledad profunda.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Salmo 68:6 — "Dios hace habitar en familia a los solitarios."</div>
+      <div class="verse-card">📖 Hebreos 13:5 — "No te desampararé, ni te dejaré."</div>
+      <div class="verse-card">📖 Isaías 41:10 — "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios."</div>
+    </div>
+
+    <p>Era una mañana de cosecha en Belén, y Ruth caminaba por los campos recogiendo lo que los segadores dejaban caer.</p>
+    <p>No era un trabajo glamoroso. Era el trabajo de los pobres, de los olvidados, de los que no tenían a nadie. Ruth lo sabía. Y lo hacía igual, porque no había otra opción.</p>
+    <p>Unas semanas antes, su mundo entero había colapsado. Su marido había muerto. Su suegro había muerto. Su cuñado había muerto. Naomi, su suegra, le había dicho con toda honestidad: "Volvé a tu pueblo, a tu familia, a tus dioses. Yo no tengo nada más para darte." Su cuñada Orpah había aceptado, se había dado vuelta, y se había ido.</p>
+    <p>Ruth no.</p>
+    <p>Nadie hubiera juzgado a Ruth si se hubiera vuelto a Moab. Era lo lógico, lo razonable, lo que cualquiera habría hecho. Pero se aferró a Naomi y pronunció unas palabras que siguen resonando tres mil años después: "Donde tú fueres, yo iré. Tu pueblo será mi pueblo. Tu Dios será mi Dios."</p>
+    <p>Y así llegó a Belén. Extranjera. Viuda. Sin dinero. Sin contactos. Sin futuro visible.</p>
+    <p>Si Ruth viviera hoy, la reconoceríamos en cualquier lado. Esa persona que mira al suelo aunque la sala esté llena. Que no sabe a quién llamar cuando las cosas se ponen difíciles. Que siente que todos tienen su grupo, su familia, su lugar en el mundo, y ella no. Sentirse solo en medio de la gente es una de las formas más agudas de soledad, y Ruth la conocía bien.</p>
+    <p>Pero lo que la Biblia registra a continuación cambia completamente la narrativa. Porque justo en ese campo, en ese momento de máxima vulnerabilidad, Dios estaba trabajando.</p>
+
+    <h2>La soledad no es abandono de Dios</h2>
+    <p>Uno de los malentendidos más dolorosos es creer que sentirse solo significa que Dios se alejó. Que si Dios estuviera cerca, no te sentirías así. Que la soledad es una señal de que hiciste algo mal, de que no oraste lo suficiente, de que no tenés suficiente fe.</p>
+    <p>La Biblia cuenta otra historia.</p>
+    <p>David, el rey más ungido de Israel, escribió en el Salmo 22: "Dios mío, Dios mío, ¿por qué me has desamparado?" Las mismas palabras que Jesús pronunció desde la cruz. No eran señal de falta de fe. Eran la expresión más honesta posible de lo que se siente cuando la soledad aplasta.</p>
+    <p>Y sin embargo, ese mismo David escribió en el Salmo 34: "Cercano está Jehová a los quebrantados de corazón." No: estuvo cerca. No: estará cerca. Cercano está. Presente. Ahora.</p>
+    <p>La soledad que sentís no es la ausencia de Dios. A veces es la sala de espera donde Él trabaja más profundamente.</p>
+
+    <h2>Qué dice la Biblia sobre la soledad</h2>
+    <p>El versículo más directo sobre la soledad está en el Salmo 68:6:</p>
+    <blockquote class="bible-quote">"Dios hace habitar en familia a los solitarios." — Salmo 68:6</blockquote>
+    <p>No dice que Dios observa a los solitarios desde lejos. Dice que los coloca en familia. Que el aislamiento no es el destino final de nadie que esté en Sus manos.</p>
+    <p>Pero hay más versículos bíblicos para la soledad que hablan directo al momento de oscuridad:</p>
+    <blockquote class="bible-quote">"No te desampararé, ni te dejaré." — Hebreos 13:5</blockquote>
+    <p>Esta promesa no tiene condiciones adjuntas. No dice "no te dejaré si sos suficientemente fiel" ni "no te dejaré mientras te vaya bien". Es una afirmación absoluta. El mismo Dios que dijo esto a Josué cuando estaba a punto de enfrentar lo imposible lo dice hoy a cualquiera que sienta que está solo.</p>
+    <blockquote class="bible-quote">"No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios; te esforzaré, y siempre te ayudaré." — Isaías 41:10</blockquote>
+    <p>Esta promesa aparece en un momento en que Israel estaba en el exilio. Lejos de casa. Sin templo. Sin rey. Sintiéndose exactamente como Ruth en ese campo de Belén: extranjeros en todas partes, sin lugar donde pertenecer. Y sin embargo Dios dice: estoy acá.</p>
+
+    <h2>Dios en la soledad de Ruth</h2>
+    <p>Volvamos al campo.</p>
+    <p>Ruth estaba recogiendo espigas cuando Boaz, el dueño de ese campo, llegó a supervisar la cosecha. Y entonces ocurrió algo que Ruth no esperaba: Boaz la vio. Realmente la vio.</p>
+    <p>No la vio como a una extranjera molesta. No la vio como a una carga. Le preguntó a su capataz quién era, escuchó su historia, y se acercó a ella con palabras que debieron haberla dejado sin aliento:</p>
+    <blockquote class="bible-quote">"Jehová te recompense tu obra, y tu galardón sea cumplido de parte de Jehová Dios de Israel, bajo cuyas alas has venido a refugiarte." — Rut 2:12</blockquote>
+    <p>Boaz no era un ángel. Era un hombre. Pero fue el instrumento que Dios usó para decirle a Ruth, en lenguaje humano, lo que ya era cierto en el plano espiritual: estás cubierta. No estás sola. Hay alas bajo las que podés refugiarte.</p>
+    <p>Así funciona Dios en la soledad muchas veces. No aparece en estruendo. Aparece en la persona que te llama sin razón aparente. En la conversación que surge de la nada. En el extraño que te trata con una gentileza inesperada. En ese campo donde ibas a recoger solo sobras y terminás siendo vista.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>Los estudios sobre soledad de los últimos veinte años son alarmantes: la soledad crónica tiene efectos físicos comparables al tabaquismo. Sube el cortisol, debilita el sistema inmune, aumenta el riesgo de enfermedades cardiovasculares. El cerebro humano, diseñado para la conexión, literalmente sufre en aislamiento.</p>
+    <p>Pero los mismos estudios muestran algo más: las personas con una práctica espiritual activa, que sienten que pertenecen a algo más grande que ellas mismas y que tienen acceso a una presencia constante, reportan índices significativamente menores de soledad crónica, incluso cuando viven objetivamente solas.</p>
+    <p>Dios no diseñó al ser humano para estar solo. Lo dijo en el Génesis. Y diseñó el camino de regreso a la conexión, tanto con Él como con otros. Cuando preguntamos qué dice la Biblia sobre la soledad, la respuesta siempre apunta a lo mismo: hacia Dios en la soledad y hacia la comunidad.</p>
+
+    <h2>Una oración para la soledad</h2>
+    <p>Si hoy te sentís solo, si sentirse solo es tu realidad aunque estés rodeado de gente, esta oración es para vos. No necesita ser elocuente. Solo necesita ser honesta.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hoy el silencio se siente demasiado grande.<br/>
+      Hay un espacio adentro que no sé cómo llenar,<br/>
+      una sensación de que no pertenezco a ningún lugar,<br/>
+      de que si desapareciera, nadie lo notaría demasiado.<br/><br/>
+      Sé que no es verdad. Pero así se siente hoy.<br/><br/>
+      Tu Palabra dice que hacés habitar en familia a los solitarios.<br/>
+      Yo quiero ser parte de esa promesa.<br/>
+      No sé cómo. No sé cuándo.<br/>
+      Pero confío en que Vos sabés el camino.<br/><br/>
+      Hoy te pido lo que Boaz le dio a Ruth sin saberlo:<br/>
+      que alguien me vea.<br/>
+      Que yo pueda ver a alguien que también necesite ser visto.<br/>
+      Que encuentre bajo Tus alas el refugio que no encontré en ningún otro lado.<br/><br/>
+      Dios en la soledad, acercate hoy.<br/>
+      No como fuego ni como tormenta.<br/>
+      Como voz. Como presencia.<br/>
+      Como alguien que ya sabe mi nombre.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Pasos concretos para salir de la soledad con la Biblia</h2>
+    <p>La historia de Ruth también nos da un mapa práctico. No solo versículos bíblicos para la soledad sino acciones concretas:</p>
+    <p><strong>1. Permanecer leal cuando sería más fácil irse.</strong> Ruth no eligió el camino cómodo. Se quedó con Naomi. La lealtad en los momentos difíciles es una semilla que Dios bendice incluso cuando no lo vemos todavía.</p>
+    <p><strong>2. Salir al campo aunque no tengas ganas.</strong> Ruth no se quedó en casa esperando que algo cambiara. Salió. Actuó. Hizo lo que podía hacer. A veces la gracia de Dios llega en movimiento, no en espera.</p>
+    <p><strong>3. Dejar que te vean.</strong> Boaz vio a Ruth porque ella estaba en el campo. Si nos escondemos completamente, dificultamos que Dios use a otros para encontrarnos. La oración para la soledad es el primer paso, pero no puede ser el único.</p>
+    <p><strong>4. Buscar comunidad.</strong> Qué dice la Biblia sobre la soledad termina siempre en la misma respuesta: juntos. La soledad se cura con conexión. No hay versículo que proponga el aislamiento como plan de Dios para Sus hijos.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Ruth terminó siendo la bisabuela del rey David. Su historia, que empezó en el momento más solitario imaginable, terminó tejida en el linaje del que vendría el Mesías.</p>
+    <p>Dios estaba en cada espiga que recogió. En cada paso que dio en tierra extraña. En cada mañana que salió al campo sin saber si alguien la notaría.</p>
+    <p>Tu historia tampoco terminó en ese campo.</p>
+    <p>Si estás buscando versículos bíblicos para la soledad que hablen directo al corazón, si necesitás una oración para la soledad que puedas hacer tuya, si querés entender qué dice la Biblia sobre sentirse solo y encontrar a Dios en la soledad, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
+  {
     slug: "oracion-para-la-tristeza-y-la-depresion",
     title: "Oración para la tristeza y la depresión: qué dice la Biblia",
     date: "6 de junio, 2026",
