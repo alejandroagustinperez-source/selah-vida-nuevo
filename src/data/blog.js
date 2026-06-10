@@ -256,6 +256,95 @@ const articles = [
     <p>Si estás buscando un lugar donde procesar la tristeza, donde orar, donde encontrar versículos bíblicos para la depresión que hablen directo al corazón en los momentos más oscuros, Selah Vida fue creado para acompañarte.</p>
     `
   },
+  {
+    slug: "oracion-para-el-miedo",
+    title: "Oración para el miedo: qué dice la Biblia",
+    date: "10 de junio, 2026",
+    excerpt: "Gedeón trillaba trigo escondido en un lagar porque tenía demasiado miedo de ser visto. Ahí, en su peor momento, Dios lo llamó valiente guerrero. Descubrí qué dice la Biblia sobre el miedo y cómo vencer el miedo con la Biblia.",
+    metaDescription: "Descubrí qué dice la Biblia sobre el miedo. La historia de Gedeón, escondido en un lagar por el miedo, y cómo Dios lo transformó. Versículos bíblicos para el miedo y una oración para vencer el miedo con fe.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Josué 1:9 — "Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo."</div>
+      <div class="verse-card">📖 Salmo 23:4 — "Aunque ande en valle de sombra de muerte, no temeré mal alguno, porque tú estarás conmigo."</div>
+      <div class="verse-card">📖 2 Timoteo 1:7 — "Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio."</div>
+    </div>
+
+    <p>Era mediodía en Ofra, y Gedeón estaba trillando trigo dentro de un lagar.</p>
+    <p>No es el lugar habitual para trillar. El trigo se trilla en una era abierta, donde el viento puede llevarse la paja. En un lagar no hay viento. Pero tampoco hay visibilidad desde afuera. Y eso era exactamente lo que Gedeón necesitaba: que nadie lo viera.</p>
+    <p>Los madianitas llevaban siete años devastando Israel. Llegaban en manadas sobre camellos, arrasaban los campos, se llevaban el ganado, dejaban hambre y terror detrás suyo. El libro de Jueces dice que eran tantos como langostas. Israel se había acostumbrado a esconderse en cuevas, en las hendiduras de los montes, en los lugares donde la gente con miedo se mete cuando no ve otra salida.</p>
+    <p>Gedeón era uno de ellos. El menor de la familia más pobre de su tribu, según sus propias palabras. Un hombre que trillaba trigo en un lagar porque afuera daba miedo. No era cobardía disfrazada. Era el miedo legítimo de alguien que había visto demasiado.</p>
+    <p>Y entonces el ángel del Señor apareció y dijo algo que debió sonar casi como una burla: "El Señor está contigo, valiente guerrero."</p>
+    <p>Si Gedeón viviera hoy, lo reconoceríamos en cualquier lado. El que evita situaciones por miedo al fracaso. El que no aplica al trabajo porque tiene miedo del rechazo. El que no dice lo que piensa por miedo a lo que dirán. El que no sale de la cama algunos días porque el miedo al futuro pesa más que cualquier razón para moverse. El miedo tiene mil formas y todas se sienten igual desde adentro: como ese lagar donde creés que estás más seguro.</p>
+
+    <h2>El miedo y la fe no son opuestos</h2>
+    <p>Antes de seguir, necesitamos desmantelar algo: la idea de que tener miedo significa no tener fe. Que si confiás en Dios de verdad, no deberías sentir miedo. Que el miedo es señal de debilidad espiritual.</p>
+    <p>La Biblia cuenta otra historia.</p>
+    <p>Los discípulos estaban en el bote con Jesús dormido y una tormenta se levantó. Tenían miedo. Jesús no los llamó apóstatas. Les preguntó: "¿Por qué tienen tanto miedo?" No como acusación, sino como invitación: hay algo más grande que el miedo disponible para vos ahora mismo.</p>
+    <p>Pedro caminó sobre el agua. Ningún ser humano había hecho eso antes. Lo estaba haciendo. Y cuando vio el viento, tuvo miedo y empezó a hundirse. Jesús lo tomó de la mano. No lo regañó primero. Lo tomó primero.</p>
+    <p>El miedo y la fe pueden coexistir. La pregunta no es si tenés miedo. La pregunta es qué hacés con él.</p>
+
+    <h2>Qué dice la Biblia sobre el miedo</h2>
+    <p>La frase "no temas" aparece más de trescientas veces en la Biblia. No es un mandato que castiga el sentimiento. Es una promesa que viene acompañada siempre de la misma razón: porque yo estoy acá.</p>
+    <blockquote class="bible-quote">"No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios; te esforzaré, y siempre te ayudaré, y te sustentaré con la diestra de mi justicia." — Isaías 41:10</blockquote>
+    <p>No dice "no tengas miedo y ya". Dice "no tengas miedo, porque yo". El antídoto al miedo en la Biblia no es la valentía propia sino la presencia de Dios. Es una distinción enorme.</p>
+    <blockquote class="bible-quote">"Aunque ande en valle de sombra de muerte, no temeré mal alguno, porque tú estarás conmigo; tu vara y tu cayado me infundirán aliento." — Salmo 23:4</blockquote>
+    <p>David no escribió este salmo desde la comodidad. Lo escribió conociendo el desierto, la persecución, los años en cuevas huyendo de su propio hijo. Cuando preguntamos qué dice la Biblia sobre el miedo, la respuesta de David no es que el peligro desaparece. Es que el miedo pierde su poder cuando sabés que no estás solo en el valle.</p>
+    <blockquote class="bible-quote">"Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio." — 2 Timoteo 1:7</blockquote>
+    <p>Este versículo es un recordatorio de origen: el miedo paralizante, el miedo que nos encierra en el lagar, no viene de Dios. Él nos dio otra cosa. Poder. Amor. Dominio propio. Herramientas para moverse en la vida incluso cuando el miedo también está presente.</p>
+
+    <h2>Lo que Gedeón descubrió dentro del lagar</h2>
+    <p>Volvamos a Ofra. El ángel le dice a Gedeón que va a salvar a Israel de los madianitas. Gedeón tiene la reacción más humana posible: "¿Cómo voy a salvar a Israel? Mi clan es el más débil de Manasés, y yo soy el menor en la casa de mi padre."</p>
+    <p>No dice "sí, Señor, acá estoy." Dice: ¿te equivocaste de persona?</p>
+    <p>Y Dios le responde con algo que no responde ninguna de sus objeciones lógicas. Le dice: "Ve con la fuerza que tenés. Yo estaré contigo."</p>
+    <p>Gedeón pide señales. No una. Tres. El vellón mojado y seco. El vellón seco y mojado. Otra más. Dios no lo reta por pedir señales. Las da. Porque entiende el miedo y trabaja dentro de él, no en su ausencia.</p>
+    <p>Lo que siguió es una de las historias más extraordinarias del Antiguo Testamento: Dios redujo el ejército de Gedeón de treinta y dos mil hombres a trescientos. No porque quisiera hacer las cosas más difíciles, sino porque quería que cuando la victoria llegara, nadie pudiera atribuírsela a la fuerza humana. El miedo y la fe entraron juntos al campo de batalla esa noche. Y la victoria fue total.</p>
+    <p>El miedo de Gedeón no desapareció antes de que actuara. Actuó con el miedo. Y eso es exactamente lo que significa cómo vencer el miedo con la Biblia: no la ausencia del miedo, sino la presencia de Dios que es más grande que él.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>La neurociencia describe el miedo como una respuesta adaptativa del cerebro ante la amenaza percibida. La amígdala detecta peligro, libera cortisol y adrenalina, y el cuerpo entra en modo lucha, huida o parálisis. Ese modo fue diseñado para situaciones de peligro real, pero en el mundo moderno se activa ante amenazas imaginadas, posibilidades futuras, miedos sociales que el cuerpo procesa exactamente igual que una amenaza física.</p>
+    <p>Lo que los investigadores encontraron es que las prácticas contemplativas, la oración incluida, reducen la actividad de la amígdala y activan la corteza prefrontal: la parte del cerebro responsable de la perspectiva, el razonamiento y la regulación emocional. En otras palabras, la oración para el miedo cambia literalmente la fisiología del miedo en el cerebro.</p>
+    <p>Además, la certeza de no estar solo, de tener una presencia que acompaña, disminuye la respuesta al estrés de manera medible. Dios no diseñó el miedo para paralizarnos. Y diseñó el camino de salida también.</p>
+
+    <h2>Una oración para el miedo</h2>
+    <p>Si hoy el miedo te tiene en tu propio lagar, escondido de algo o de alguien, sin saber cómo dar el próximo paso, esta oración es para vos. No tiene que ser valiente. Solo tiene que ser honesta.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hoy tengo miedo.<br/>
+      No siempre puedo explicar de qué exactamente.<br/>
+      A veces es algo concreto. A veces es solo esa sensación de que algo va a salir mal,<br/>
+      ese nudo en el pecho que no se va aunque quiera que se vaya.<br/><br/>
+      Sé que dijiste que no nos diste espíritu de cobardía.<br/>
+      Pero hoy se siente así.<br/>
+      Y vengo igual, con el miedo y todo,<br/>
+      porque Tu Palabra también dice que estás con los que tiemblan.<br/><br/>
+      Hacé como con Gedeón.<br/>
+      No esperaste que dejara de tener miedo para llamarlo.<br/>
+      Lo llamaste en el medio de su miedo.<br/>
+      Llamame así también a mí.<br/><br/>
+      Dame el poder que dijiste que me diste.<br/>
+      El amor que echa fuera el temor.<br/>
+      El dominio propio que me permite moverme aunque tiemble.<br/><br/>
+      No te pido que el miedo desaparezca ya.<br/>
+      Te pido que Tu presencia sea más grande que él.<br/>
+      Que pueda dar el próximo paso.<br/>
+      Solo el próximo.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo vencer el miedo con la Biblia: pasos concretos</h2>
+    <p>La historia de Gedeón no es solo inspiración, es un mapa para el miedo y la fe en la práctica:</p>
+    <p><strong>1. Nombrá el miedo.</strong> Gedeón no fingió que no tenía miedo. Se lo dijo a Dios directamente: soy el más pequeño, soy el menos indicado. Nombrar el miedo en la oración para el miedo es el primer paso para que deje de tener tanto poder sobre vos.</p>
+    <p><strong>2. Pedí señales si las necesitás.</strong> Gedeón pidió tres señales y Dios no lo rechazó. Si tu fe es pequeña hoy, Dios trabaja con fe pequeña. No tenés que llegar con certeza total para empezar.</p>
+    <p><strong>3. Tomá el próximo paso, no todos los pasos.</strong> Dios le dio a Gedeón instrucciones una noche a la vez. No le mostró el plan completo desde el principio. Cómo vencer el miedo con la Biblia muchas veces se reduce a eso: el próximo paso, no el camino entero.</p>
+    <p><strong>4. Memorizá versículos bíblicos para el miedo.</strong> Josué 1:9, 2 Timoteo 1:7, Salmo 23:4. Palabras que el corazón puede agarrar cuando la mente empieza a girar. El miedo y la fe compiten por el mismo espacio mental: llenar ese espacio con la Palabra de Dios cambia la batalla.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Gedeón pasó de trillar trigo en un lagar a liderar una victoria imposible con trescientos hombres. No porque el miedo desapareciera. Sino porque aprendió que Dios es más grande que el miedo, y que el miedo y la fe pueden caminar juntos hacia la misma batalla.</p>
+    <p>El lagar ya no tiene por qué ser tu destino.</p>
+    <p>Si estás buscando versículos bíblicos para el miedo que hablen directo al corazón, si necesitás una oración para el miedo que puedas hacer tuya, si querés entender qué dice la Biblia sobre el miedo y cómo vencer el miedo con la Biblia paso a paso, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
