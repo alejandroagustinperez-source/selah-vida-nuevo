@@ -345,6 +345,97 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para el miedo que hablen directo al corazón, si necesitás una oración para el miedo que puedas hacer tuya, si querés entender qué dice la Biblia sobre el miedo y cómo vencer el miedo con la Biblia paso a paso, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "que-dice-la-biblia-sobre-el-perdon",
+    title: "Qué dice la Biblia sobre el perdón: la historia de José",
+    date: "11 de junio, 2026",
+    excerpt: "José podría haberse vengado de sus hermanos. Tenía el poder, tenía las razones, tenía veinte años de injusticias acumuladas. Eligió otra cosa. Descubrí qué dice la Biblia sobre el perdón y cómo soltar lo que cargás.",
+    metaDescription: "Descubrí qué dice la Biblia sobre el perdón. La historia de José, vendido por sus hermanos y convertido en el hombre más poderoso de Egipto, y cómo eligió perdonar. Versículos bíblicos sobre el perdón y una oración para perdonar.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Génesis 50:20 — "Vosotros pensasteis mal contra mí, mas Dios lo encaminó a bien."</div>
+      <div class="verse-card">📖 Efesios 4:32 — "Perdonándoos unos a otros, como Dios también os perdonó a vosotros en Cristo."</div>
+      <div class="verse-card">📖 Mateo 6:14 — "Si perdonáis a los hombres sus ofensas, os perdonará también a vosotros vuestro Padre celestial."</div>
+    </div>
+
+    <p>Era el día menos esperado de la vida de José.</p>
+    <p>Llevaba más de veinte años sin ver a sus hermanos. Esos mismos años habían incluido un pozo en el que lo dejaron abandonado, una caravana de esclavistas que lo llevó a Egipto encadenado, una acusación falsa que lo mandó a la cárcel sin juicio, y años en una celda sin saber si alguna vez volvería a ver la luz del sol de nuevo. Había pasado de ser el hijo favorito de Israel a ser una mercancía, de la cárcel al palacio, del olvido a la segunda posición más poderosa del mundo conocido.</p>
+    <p>Y ahora ahí estaban sus hermanos. Parados frente a él. Inclinándose hasta el suelo, sin reconocerlo, pidiéndole trigo al hombre más poderoso de Egipto.</p>
+    <p>Si José hubiera sido cualquiera de nosotros, sabríamos perfectamente qué hacer con ese momento. Había esperado años. Tenía guardias. Tenía poder. Tenía razones, todas las razones del mundo, para hacer que ese reencuentro costara algo.</p>
+    <p>En cambio, el libro de Génesis registra algo que resulta casi imposible de creer: José salió corriendo de la sala, entró a una habitación privada, y lloró tanto que los que estaban en el palacio lo escucharon desde afuera. Y cuando volvió, no volvió con venganza. Volvió con dos palabras que cambiaron la historia de un pueblo entero: "Yo soy José."</p>
+    <p>Si José viviera hoy, lo reconoceríamos en cualquier lado. Esa persona que lleva años cargando una herida que no se ve desde afuera. Que sonríe en las fotos familiares pero sabe exactamente lo que pasó. Que aprendió a funcionar, a seguir adelante, a construir algo nuevo, pero que en algún rincón todavía siente el peso de lo que le hicieron. El perdón más difícil nunca es el de los extraños. Es el de las personas que debían quererlo y eligieron otra cosa.</p>
+
+    <h2>El perdón no es olvido ni excusa</h2>
+    <p>Antes de hablar de cómo perdonar según la Biblia, necesitamos desmantelar el malentendido más común sobre el perdón cristiano: que perdonar significa minimizar el daño, pretender que no pasó nada, o exponerse de vuelta a quien te lastimó.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>José no fingió que el pozo no había existido. No actuó como si veinte años de esclavitud e injusticia hubieran sido un malentendido menor. Cuando finalmente se reveló a sus hermanos, lo primero que hizo fue dar espacio para el dolor. Les preguntó si su padre vivía todavía. Lloró. Les dijo que se acercaran, que lo tocaran, que eran de su sangre.</p>
+    <p>El perdón de José no borró la historia. La reencuadró. Y eso es exactamente lo que qué dice la Biblia sobre el perdón propone: no que el daño desaparece, sino que deja de tener la última palabra. No que lo que pasó estuvo bien, sino que Dios puede tomar incluso eso y convertirlo en algo que da vida.</p>
+
+    <h2>Génesis 50:20: el versículo más poderoso sobre el perdón</h2>
+    <blockquote class="bible-quote">"Vosotros pensasteis mal contra mí, mas Dios lo encaminó a bien, para hacer lo que vemos hoy, para mantener en vida a mucho pueblo." — Génesis 50:20</blockquote>
+    <p>José pronunció estas palabras en el momento en que sus hermanos, recién muerto su padre Jacob, vinieron con miedo de que ahora sí se vengara. Y José les respondió con algo que no es ingenuidad sino una teología del perdón profundamente trabajada.</p>
+    <p>No dice "lo que me hicieron fue bueno". Dice "Dios lo encaminó a bien". La diferencia es enorme. José no justificó la crueldad de sus hermanos. Reconoció que Dios puede tomar lo que el mal intentó destruir y convertirlo en algo que salva vidas. Ese es el corazón de los versículos bíblicos sobre el perdón: no la negación del daño, sino la convicción de que Dios tiene soberanía sobre incluso los capítulos más oscuros de nuestra historia.</p>
+
+    <h2>Qué dice la Biblia sobre el perdón</h2>
+    <p>El perdón en la Biblia no es opcional para el creyente. Es central. Y los versículos que lo tratan son directos:</p>
+    <blockquote class="bible-quote">"Porque si perdonáis a los hombres sus ofensas, os perdonará también a vosotros vuestro Padre celestial. Mas si no perdonáis a los hombres sus ofensas, tampoco vuestro Padre os perdonará vuestras ofensas." — Mateo 6:14-15</blockquote>
+    <p>Jesús no lo presenta como una sugerencia. Lo conecta directamente con nuestra propia experiencia del perdón de Dios. El perdón y la fe no son dos temas separados: quien experimentó el perdón de Dios no puede cerrar la mano sobre el suyo propio indefinidamente.</p>
+    <blockquote class="bible-quote">"Sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como Dios también os perdonó a vosotros en Cristo." — Efesios 4:32</blockquote>
+    <p>El estándar que Pablo pone acá es alto: como Dios nos perdonó. No como nuestra magnanimidad lo permite. No cuando el otro lo merezca. Con la misma medida que Dios usó con nosotros, que no merecíamos nada.</p>
+    <blockquote class="bible-quote">"Soportaos unos a otros, y perdonaos unos a otros si alguno tuviere queja contra otro. De la manera que Cristo os perdonó, así también hacedlo vosotros." — Colosenses 3:13</blockquote>
+    <p>Pablo repite el mismo principio desde otro ángulo: el modelo no es una emoción que tenemos que fabricar. Es un acto que imitamos. Cristo perdonó primero. Nosotros respondemos.</p>
+
+    <h2>Por qué el perdón es tan difícil</h2>
+    <p>Si el perdón fuera fácil, no ocuparía tanto espacio en las Escrituras. La razón por la que cómo perdonar según la Biblia sigue siendo una pregunta relevante es que el perdón genuino va en contra de todo lo que el cerebro humano está diseñado para hacer con el daño.</p>
+    <p>La neurociencia lo describe así: el cerebro guarda las experiencias dolorosas con una intensidad especial. Las injusticias, las traiciones, los abandonos quedan registrados con más fuerza que los momentos neutros. Es un mecanismo de supervivencia. El problema es que ese mismo mecanismo convierte la herida vieja en una herida nueva cada vez que algo la activa.</p>
+    <p>No perdonar no castiga a quien te lastimó. Pero te mantiene atado a ese momento. A ese pozo. A esa traición. El perdón, paradójicamente, es el acto que rompe la cadena para el que fue herido, no para el que hirió. Pablo lo dice con una urgencia casi corporal: "No permitan que el sol se ponga estando aún enojados, ni den cabida al diablo." La falta de perdón no es una posición neutral. Es una abertura.</p>
+
+    <h2>El perdón y la fe: un proceso, no un evento</h2>
+    <p>Una de las cosas más importantes sobre el perdón y la fe es que el perdón no siempre llega en un instante. José no perdonó a sus hermanos con un clic. El proceso duró años. Hay pruebas que les pone cuando llegan por primera vez a Egipto, hay demoras, hay verificaciones. No fue "te perdono ya" de inmediato.</p>
+    <p>Hay una diferencia entre decidir perdonar y terminar de perdonar. La decisión puede ser un acto de voluntad sostenido por la fe. El proceso de sanar puede tomar tiempo. Y ambas cosas son válidas.</p>
+    <p>Si hoy tenés la decisión pero todavía no tenés el sentimiento, eso no es hipocresía. Es el punto de partida. Dios trabaja en ambos lados: en nuestra voluntad y en nuestras emociones, pero no siempre al mismo tiempo ni a la misma velocidad. La oración para perdonar es precisamente ese espacio: donde llevás la decisión cada vez que la herida vuelve a aparecer, hasta que un día la emoción finalmente alcanza a la elección.</p>
+
+    <h2>Una oración para perdonar</h2>
+    <p>Si hoy cargás una herida que no se cerró, si hay un nombre o una cara que aparece cuando hablamos de perdón, esta oración es para vos. No tiene que sentirse completamente sincera todavía. Solo tiene que ser el primer paso.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hay alguien en mi corazón que me lastimó.<br/>
+      No lo voy a nombrar porque Vos ya sabés quién es.<br/>
+      Sabés lo que pasó. Sabés cuánto costó.<br/>
+      Y sabés que una parte de mí todavía lo carga.<br/><br/>
+      Hoy no vengo con el perdón completo.<br/>
+      Vengo con la decisión de querer perdonar,<br/>
+      aunque los sentimientos no llegaron todavía.<br/>
+      Vengo con la voluntad, aunque la emoción todavía no acompañe.<br/><br/>
+      Tu Palabra dice que si perdono como Vos me perdonaste a mí,<br/>
+      algo se libera. Quiero esa libertad.<br/>
+      No tanto por quien me lastimó.<br/>
+      Sino porque no quiero vivir encadenado a ese momento.<br/><br/>
+      Hacé en mí lo que no puedo hacer solo.<br/>
+      Saná lo que duele.<br/>
+      Soltá lo que apreté tanto.<br/>
+      Dame la paz de José frente a sus hermanos:<br/>
+      la certeza de que Vos tenés el control incluso de lo que otros<br/>
+      intentaron usar para destruirme.<br/><br/>
+      Vos lo encaminaste a bien antes.<br/>
+      Confío en que podés hacerlo de nuevo.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo perdonar según la Biblia: pasos concretos</h2>
+    <p>La historia de José también nos da un mapa práctico. No solo versículos bíblicos sobre el perdón sino acciones concretas:</p>
+    <p><strong>1. Reconocé la herida sin minimizarla.</strong> José no fingió que no había pozo. El perdón genuino empieza por nombrar lo que pasó, no por minimizarlo. No es "no fue para tanto". Es "fue real y fue doloroso, y elijo perdonar igual". Ese orden importa.</p>
+    <p><strong>2. Separé el perdón de la reconciliación.</strong> Perdonar no siempre significa volver a tener la misma relación. José perdonó a sus hermanos pero los puso a prueba antes de revelar quién era. El perdón es un acto interior. La reconciliación requiere confianza reconstruida, y eso toma tiempo y señales concretas que quizás lleguen o quizás no.</p>
+    <p><strong>3. Usá la oración para perdonar como práctica regular.</strong> El perdón no siempre es un evento único. A veces tenés que elegirlo de nuevo mañana, y pasado mañana. Cada vez que la memoria duele, volvé a la oración. Llevá esa decisión a Dios hasta que el sentimiento alcance a la elección.</p>
+    <p><strong>4. Buscá el reencuadre de Génesis 50:20.</strong> Pedile a Dios que te muestre cómo está trabajando dentro de ese capítulo oscuro. No para justificar el daño, sino para ampliar la perspectiva más allá de él. El perdón y la fe se sostienen juntos cuando empezás a ver que Dios no estaba ausente en ese momento tampoco.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>José podría haber usado el poder que tenía para destruir a sus hermanos. Eligió usarlo para salvarlos. Y esa elección no fue un final. Fue el comienzo de la historia de un pueblo entero que sobrevivió la hambruna porque un hombre decidió perdonar.</p>
+    <p>No sabemos lo que Dios puede hacer con tu perdón. No sabemos qué historia empieza cuando soltás lo que estuviste sosteniendo todos estos años.</p>
+    <p>Si estás buscando versículos bíblicos sobre el perdón que hablen directo al corazón, si necesitás una oración para perdonar que puedas hacer tuya, si querés entender qué dice la Biblia sobre el perdón y avanzar en el camino de cómo perdonar según la Biblia paso a paso, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
