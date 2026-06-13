@@ -436,6 +436,100 @@ const articles = [
     <p>Si estás buscando versículos bíblicos sobre el perdón que hablen directo al corazón, si necesitás una oración para perdonar que puedas hacer tuya, si querés entender qué dice la Biblia sobre el perdón y avanzar en el camino de cómo perdonar según la Biblia paso a paso, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "oracion-para-problemas-economicos",
+    title: "Oración para problemas económicos: qué dice la Biblia sobre el dinero",
+    date: "12 de junio, 2026",
+    excerpt: "La viuda estaba a punto de perder a sus hijos por deudas que no podía pagar. Solo tenía un pequeño jarro de aceite. Descubrí qué dice la Biblia sobre el dinero, los versículos bíblicos para la crisis económica y una oración para la deuda.",
+    metaDescription: "Descubrí qué dice la Biblia sobre el dinero y los problemas económicos. La historia de la viuda con el aceite, versículos bíblicos para la crisis económica, una oración para la deuda y consejos prácticos de fe y dinero.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Filipenses 4:19 — "Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria en Cristo Jesús."</div>
+      <div class="verse-card">📖 Mateo 6:33 — "Buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas."</div>
+      <div class="verse-card">📖 Salmo 37:25 — "Joven fui, y he envejecido, y no he visto al justo desamparado, ni su descendencia que mendigue pan."</div>
+    </div>
+
+    <p>Era una mañana de deudas en Israel, y la viuda estaba a punto de perder lo último que le quedaba.</p>
+    <p>Su marido había muerto siendo profeta, uno de los hombres de Eliseo. No había dejado herencia, no había dejado tierra, no había dejado nada excepto deudas. Y ahora el acreedor venía a cobrarlas de la única manera que podía: llevándose a sus dos hijos como esclavos.</p>
+    <p>Quien hoy enfrenta problemas económicos graves reconoce esa presión en su versión moderna: el número de la empresa de cobros que aparece en el teléfono, la cuenta bancaria en rojo antes de fin de mes, los vencimientos que se acumulan mientras el dinero no alcanza, esa sensación de que el agua sube y no hay forma de detenerla. La viuda no lo estaba metaforizando. Era su realidad concreta: en cuarenta y ocho horas, sus hijos se iban.</p>
+    <p>No tenía plan B. Tenía algo más específico: un pequeño jarro de aceite. Eso era todo lo que había en su casa.</p>
+    <p>Fue a Eliseo no con soluciones sino con la situación desnuda tal como era. Y Eliseo no le dio una fórmula religiosa ni le dijo que orara más fuerte. Le dio una instrucción práctica que requería fe para ejecutarla:</p>
+    <blockquote class="bible-quote">"Ve y pide prestadas vasijas de todos tus vecinos, vasijas vacías; no pidas pocas. Entra luego, cierra la puerta echando fuera a ti y a tus hijos, y echa aceite en todas las vasijas." — 2 Reyes 4:3-4</blockquote>
+    <p>No tenía sentido económico ninguno. Un jarro pequeño no puede llenar decenas de vasijas grandes. Pero lo hizo. Y el aceite siguió fluyendo hasta que no quedó una sola vasija vacía. Solo cuando se acabaron los recipientes, el aceite se detuvo. Vendió el aceite, pagó la deuda, y lo que sobró alcanzó para vivir.</p>
+    <p>Si la viuda viviera hoy, la reconoceríamos en cualquier barrio. La madre que hace malabares con tres trabajos y todavía no le cierra el mes. El padre que no le dice a nadie lo que debe porque la vergüenza es tan pesada como la deuda. El joven que sacó un crédito porque no había otra opción y ahora los intereses lo atraparon. La oración para problemas económicos empieza exactamente acá, en este reconocimiento: la crisis no discrimina, y no es señal de falta de fe.</p>
+
+    <h2>La crisis económica no es falta de fe</h2>
+    <p>Antes de seguir, hay que desmantelar una idea que hace mucho daño: que los problemas económicos son señal de poca fe. Que si confiaran más en Dios, si fueran más fieles en el diezmo, si oraran con más intensidad, las finanzas estarían bien. Que la deuda es consecuencia del pecado.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>Job era el hombre más recto de su época y lo perdió todo: ganado, propiedades, hijos, salud. No por falta de fe. La viuda de 2 Reyes 4 estaba en quiebra total siendo esposa de un profeta de Dios, alguien que había dedicado su vida a servirlo. La crisis económica que atravesaba no era consecuencia del pecado. Era la realidad de vivir en un mundo imperfecto, con deudas reales y acreedores reales y fechas límite reales.</p>
+    <p>Qué dice la Biblia sobre el dinero no incluye la promesa de que el creyente fiel nunca va a tener problemas económicos. Incluye la promesa de que Dios está presente en la crisis y que trabaja dentro de ella, no en su ausencia. La vergüenza extra que viene de creer que tu situación financiera dice algo sobre tu relación con Dios es una carga que la Biblia no te pone.</p>
+
+    <h2>Qué dice la Biblia sobre el dinero</h2>
+    <p>La Biblia habla de dinero más de ochocientas veces. Más que de la fe, más que de la oración. Jesús tocó el tema con más frecuencia que cualquier otro porque entendía que el dinero toca algo profundo en el corazón humano: la seguridad, el control, el miedo al futuro.</p>
+    <blockquote class="bible-quote">"Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria en Cristo Jesús." — Filipenses 4:19</blockquote>
+    <p>Pablo escribió esto desde la prisión, sin posesiones propias, dependiendo completamente de las ofrendas de la iglesia en Filipos. No era una promesa abstracta. Era el testimonio de alguien que había aprendido a contentarse en toda situación, con mucho o con poco, y que tenía prueba viva de que Dios suplía incluso en los momentos más imposibles. El estándar no es "conforme a lo que tengo". Es conforme a Sus riquezas. La diferencia es infinita.</p>
+    <blockquote class="bible-quote">"Buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas." — Mateo 6:33</blockquote>
+    <p>Jesús no dice que el dinero no importa ni que las necesidades materiales son secundarias en sentido práctico. Dice que hay un orden: cuando lo primero es lo primero, las demás cosas se agregan. No es una garantía de riqueza ilimitada. Es una reorientación de la ansiedad económica hacia algo más grande que el próximo vencimiento. La oración para problemas económicos que transforma no es la que exige respuesta inmediata. Es la que pone la vida entera, finanzas incluidas, en el orden correcto.</p>
+    <blockquote class="bible-quote">"Y poderoso es Dios para hacer que abunde en vosotros toda gracia, a fin de que, teniendo siempre en todas las cosas todo lo suficiente, abundéis para toda buena obra." — 2 Corintios 9:8</blockquote>
+    <p>La promesa no es riqueza que sobra. Es lo suficiente. Lo que se necesita para vivir y para dar. Esa es la provisión que los versículos bíblicos para la crisis económica describen con más consistencia: no la abundancia que deslumbra sino la gracia que alcanza.</p>
+
+    <h2>Lo que la viuda descubrió cuando cerró la puerta</h2>
+    <p>Hay dos detalles en la historia que resultan fascinantes y que cambian todo el sentido de lo que ocurrió.</p>
+    <p>El primero: Eliseo dijo "cerrá la puerta". La viuda y sus hijos debían hacer esto en privado, sin audiencia, sin espectadores. La fe y el dinero, según esta historia, tienen algo íntimo. No un secreto vergonzoso sino algo que sucede en el espacio privado entre Dios y la persona que confía. El milagro del aceite no era un espectáculo público. Era una provisión específica para una necesidad específica, administrada por manos específicas, dentro de una puerta cerrada.</p>
+    <p>El segundo detalle es el más importante: la cantidad del milagro dependía de la cantidad de vasijas que la viuda estuviera dispuesta a conseguir. El texto dice que el aceite se detuvo cuando no hubo más vasijas. No antes. El límite no estaba en la provisión de Dios sino en la capacidad de fe de ella para salir a pedir.</p>
+    <p>Cuántas vasijas estamos dispuestos a conseguir cuando enfrentamos una crisis económica. Si pedimos poco, si cerramos la mano porque ya nos defraudaron antes, si limitamos lo que Dios puede hacer porque nuestra esperanza es pequeña, el aceite sigue teniendo más para dar. Pero no tiene dónde ir.</p>
+
+    <h2>Versículos bíblicos para la crisis económica</h2>
+    <blockquote class="bible-quote">"Joven fui, y he envejecido, y no he visto justo desamparado, ni su descendencia que mendigue pan." — Salmo 37:25</blockquote>
+    <p>David escribió esto después de décadas de vida, incluyendo años huyendo de Saúl en el desierto sin saber qué vendría. No era una promesa de que nunca habría tiempos difíciles. Era el testimonio de alguien que había llegado al otro lado y podía decir: Dios no abandonó. Ni una vez. Cuando la crisis económica aplasta, este versículo no es consuelo abstracto. Es un registro histórico de fidelidad.</p>
+    <blockquote class="bible-quote">"El que da al pobre no tendrá pobreza; pero el que aparta sus ojos tendrá muchas maldiciones." — Proverbios 28:27</blockquote>
+    <p>Este proverbio introduce una de las paradojas más radicales de qué dice la Biblia sobre el dinero: dar cuando no alcanza. No como fórmula mágica sino como un principio que pone el corazón en el lugar correcto. Fe y dinero, en la Biblia, nunca son dos temas separados. La generosidad en la escasez no es imprudencia financiera. Es la declaración más concreta de que confiamos en que la provisión viene de Dios y no solo de nuestro propio esfuerzo.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>La investigación sobre el estrés financiero de los últimos veinte años es consistente: la deuda crónica y la inseguridad económica producen niveles de cortisol comparables a una emergencia médica constante. El cerebro en crisis económica literalmente no puede pensar con claridad, tomar buenas decisiones ni dormir bien. Es un círculo que se retroalimenta: la presión económica deteriora la capacidad de resolución de problemas justo cuando más se necesita.</p>
+    <p>Lo que los mismos estudios encuentran es que las personas con una práctica espiritual activa, que tienen la certeza de no estar solas frente al problema y que perciben que su situación tiene sentido dentro de un marco más grande, reportan significativamente menos ansiedad económica que aquellas que enfrentan la misma situación sin esa dimensión. No porque la oración reemplace la acción. Sino porque la oración para problemas económicos organiza la mente y el corazón para actuar mejor.</p>
+    <p>La viuda pudo salir a buscar vasijas porque primero fue a Eliseo. Primero buscó orientación, después actuó. Ese orden no es casualidad bíblica. Es el orden en que el cerebro puede funcionar cuando la fe reemplaza el pánico.</p>
+
+    <h2>Una oración para la deuda y los problemas económicos</h2>
+    <p>Si hoy estás en tu propio cuarto cerrado, con deudas que no sabés cómo pagar y pocas vasijas en mano, esta oración es para vos. No tiene que ser elocuente. Solo tiene que ser honesta.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hoy las deudas son más grandes que los ingresos<br/>
+      y no sé cómo va a cerrar esto.<br/>
+      Hay números en mi cabeza que me quitan el sueño,<br/>
+      vencimientos que no puedo cubrir,<br/>
+      una presión que no se apaga aunque quiera que se vaya.<br/><br/>
+      No vengo con un plan. Vengo con lo que tengo.<br/>
+      Que quizás es muy poco. Quizás es solo un jarro de aceite.<br/>
+      Pero Tu Palabra dice que eso puede ser suficiente<br/>
+      si lo pongo en Tus manos.<br/><br/>
+      Ayudame a salir a buscar vasijas aunque no tenga ganas.<br/>
+      A no limitar lo que Vos podés hacer con lo poco que tengo.<br/>
+      A confiar en que la provisión que necesito ya existe<br/>
+      y que estás trabajando en ella incluso cuando yo no lo veo.<br/><br/>
+      Dame sabiduría para administrar lo que me des.<br/>
+      Dame paz mientras espero.<br/>
+      Dame fe para no cerrar la mano cuando más miedo tengo.<br/><br/>
+      Vos suplís todo lo que me falta conforme a Tus riquezas.<br/>
+      No conforme a mi situación. Conforme a las Tuyas.<br/>
+      Hoy me afirmo en esa promesa.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Fe y dinero: pasos concretos según la Biblia</h2>
+    <p>La historia de la viuda también nos da un mapa práctico. No solo versículos bíblicos para la crisis económica sino acciones concretas que nacen de la fe:</p>
+    <p><strong>1. Llevá la situación tal como está, sin embellecerla.</strong> La viuda no le presentó a Eliseo un plan de contingencia ni minimizó la gravedad de la deuda. Le dijo exactamente cuál era la situación. La oración para problemas económicos más poderosa empieza con honestidad brutal: "Señor, esto es lo que hay." No lo que debería haber. Lo que hay.</p>
+    <p><strong>2. Salí a buscar vasijas antes de ver cómo se van a llenar.</strong> La viuda tuvo que actuar antes de ver el milagro. Fue a los vecinos, pidió prestado, volvió con vasijas vacías. La provisión de Dios en la crisis económica llega casi siempre en movimiento, no en espera. Fe y dinero en la Biblia siempre incluyen algún paso de obediencia activa mientras la respuesta todavía no llega.</p>
+    <p><strong>3. Hacelo con la puerta cerrada.</strong> La crisis económica carga una vergüenza asociada que la hace más pesada. Encontrar un espacio privado de oración para la deuda, sin audiencia ni juicio, es exactamente lo que Eliseo prescribió. Lo que sucede en ese cuarto cerrado entre vos y Dios puede ser el principio de algo que ninguno de tus vecinos va a poder explicar después.</p>
+    <p><strong>4. No limitéis el milagro con el tamaño de tu fe de hoy.</strong> Eliseo dijo expresamente "no pidas pocas". Pedir con generosidad, esperar con amplitud, no reducir la capacidad de Dios al tamaño de tu situación actual. Qué dice la Biblia sobre el dinero no garantiza riqueza, pero sí garantiza que Dios es infinitamente más grande que cualquier deuda.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>La viuda pagó la deuda. Sus hijos no se fueron. Y lo que sobró del aceite alcanzó para que ella y sus hijos vivieran. La historia no termina con lujo sino con lo suficiente, que en ese contexto era un milagro total que no tenía ninguna explicación racional.</p>
+    <p>Tu crisis económica no tiene que ser el capítulo final. Puede ser el capítulo donde los versículos bíblicos para la crisis económica dejan de ser palabras abstractas y se convierten en tu historia concreta. Donde la oración para la deuda se transforma en la puerta cerrada donde Dios trabaja sin que nadie más lo vea todavía.</p>
+    <p>Si estás buscando una oración para problemas económicos que puedas hacer tuya, si querés entender qué dice la Biblia sobre el dinero y cómo se relacionan fe y dinero en la práctica, si necesitás versículos bíblicos para la crisis económica que hablen directo a tu situación concreta, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
