@@ -7,31 +7,47 @@ export default function Navbar() {
   const { user } = useAuth();
   const location = useLocation();
 
-  const isHome = location.pathname === '/' || location.pathname.startsWith('/blog');
+  const isHome = location.pathname === '/';
+  const showFullNav = isHome || location.pathname.startsWith('/blog') || location.pathname === '/contacto' || location.pathname === '/login' || location.pathname === '/register';
 
   const homeLinks = [
-    { href: '#problema', label: 'Problema' },
-    { href: '#solucion', label: 'Solución' },
-    { href: '#testimonios', label: 'Testimonios' },
+    { href: isHome ? '#problema' : '/#problema', label: 'Problema' },
+    { href: isHome ? '#solucion' : '/#solucion', label: 'Solución' },
+    { href: isHome ? '#testimonios' : '/#testimonios', label: 'Testimonios' },
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
-    { href: '#precios', label: 'Precios' },
+    { href: isHome ? '#precios' : '/#precios', label: 'Precios' },
   ];
 
   const close = () => setOpen(false);
 
   const handleAnchorClick = (e, href) => {
-    if (isHome && href.startsWith('#')) {
+    if (href.startsWith('#') && isHome) {
       e.preventDefault();
       const el = document.querySelector(href);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) {
+        const wrapper = el.closest('[class*="opacity-0"]');
+        if (wrapper) {
+          wrapper.classList.add('opacity-100', 'translate-y-0');
+          wrapper.classList.remove('opacity-0', 'translate-y-8');
+        }
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
       close();
     } else {
       close();
     }
   };
 
-  const navLinks = isHome
+  const handleNavClick = (href) => {
+    if (!isHome && href.startsWith('/#')) {
+      sessionStorage.setItem('scrollTo', href.slice(2));
+    }
+    close();
+  };
+
+  const navLinks = showFullNav
     ? homeLinks
     : [];
 
@@ -50,7 +66,7 @@ export default function Navbar() {
               {l.href.startsWith('/') ? (
                 <Link
                   to={l.href}
-                  onClick={close}
+                  onClick={() => handleNavClick(l.href)}
                   className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
                   style={{ color: '#0F3D3D' }}
                 >
@@ -71,7 +87,7 @@ export default function Navbar() {
               )}
             </span>
           ))}
-          {isHome && (
+          {showFullNav ? (
             <span className="flex items-center">
               <span className="text-xs select-none" style={{ color: 'rgba(201,146,42,0.5)' }}>|</span>
               <Link
@@ -83,8 +99,7 @@ export default function Navbar() {
                 Iniciar sesión
               </Link>
             </span>
-          )}
-          {!isHome && (
+          ) : (
             <Link
               to="/login"
               onClick={close}
@@ -120,7 +135,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               to={l.href}
-              onClick={close}
+              onClick={() => handleNavClick(l.href)}
               className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
               style={{ color: '#0F3D3D' }}
             >
@@ -138,7 +153,7 @@ export default function Navbar() {
             </a>
           )
         ))}
-        {isHome && navLinks.length > 0 && (
+        {showFullNav && navLinks.length > 0 && (
           <div className="h-px w-full my-2" style={{ backgroundColor: 'rgba(201,146,42,0.2)' }} />
         )}
         <Link

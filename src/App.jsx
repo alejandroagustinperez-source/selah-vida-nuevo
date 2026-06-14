@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -34,6 +35,24 @@ import RafaelWidget from './components/RafaelWidget';
 import ScrollToTop from './components/ScrollToTop';
 
 function HomePage() {
+  useEffect(() => {
+    const target = sessionStorage.getItem('scrollTo');
+    if (target) {
+      sessionStorage.removeItem('scrollTo');
+      setTimeout(() => {
+        const el = document.getElementById(target);
+        if (el) {
+          const wrapper = el.closest('[class*="opacity-0"]');
+          if (wrapper) {
+            wrapper.classList.add('opacity-100', 'translate-y-0');
+            wrapper.classList.remove('opacity-0', 'translate-y-8');
+          }
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, []);
+
   return (
     <ManuscriptBorders>
       <Navbar />
