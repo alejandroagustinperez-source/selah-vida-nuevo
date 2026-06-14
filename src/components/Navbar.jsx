@@ -7,7 +7,7 @@ export default function Navbar() {
   const { user } = useAuth();
   const location = useLocation();
 
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === '/' || location.pathname.startsWith('/blog');
 
   const homeLinks = [
     { href: '#problema', label: 'Problema' },
