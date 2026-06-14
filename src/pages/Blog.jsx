@@ -40,10 +40,6 @@ export default function Blog() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#FAF7F2' }}>
       <div className="max-w-4xl mx-auto px-6 py-20">
-        <Link to="/" className="inline-block mb-6">
-          <img src="/logo.png" alt="Selah Vida" style={{ height: '40px', width: 'auto', objectFit: 'contain' }} />
-        </Link>
-
         <div className="text-center mb-4">
           <h1 className="font-serif text-3xl md:text-4xl font-bold" style={{ color: '#0F3D3D' }}>
             Blog
