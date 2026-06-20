@@ -730,6 +730,108 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para la familia que hablen directo al corazón, si necesitás una oración para la familia en crisis que puedas hacer tuya, si querés entender qué dice la Biblia sobre la familia y cómo la fe y familia se sostienen juntas cuando todo parece roto, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "que-dice-la-biblia-sobre-la-muerte-de-un-ser-querido",
+    title: "Qué dice la Biblia sobre la muerte de un ser querido",
+    date: "17 de junio, 2026",
+    excerpt: "María llevaba cuatro días llorando en Betania cuando alguien le dijo que el Maestro preguntaba por ella. Se levantó en medio del duelo y corrió. Descubrí qué dice la Biblia sobre la muerte de un ser querido y cómo encontrar consuelo en el duelo.",
+    metaDescription: "Descubrí qué dice la Biblia sobre la muerte de un ser querido. La historia de María en Betania, versículos bíblicos para el duelo y una oración por la pérdida de un familiar para encontrar consuelo en el duelo.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Juan 11:25 — "Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá."</div>
+      <div class="verse-card">📖 1 Tesalonicenses 4:13 — "Para que no os entristezcáis como los otros que no tienen esperanza."</div>
+      <div class="verse-card">📖 Apocalipsis 21:4 — "Enjugará Dios toda lágrima de los ojos de ellos; y ya no habrá muerte."</div>
+    </div>
+
+    <p>Llevaban cuatro días en Betania y el duelo todavía no cedía.</p>
+    <p>María no había salido de la casa desde que enterraron a Lázaro. Los amigos venían y se iban, las palabras de consuelo llegaban y no alcanzaban, la comida que traían los vecinos se enfriaba sobre la mesa sin que nadie tuviera hambre. Había una ausencia en cada rincón de esa casa: la silla donde Lázaro se sentaba, la voz que no se escucharía en la cena, el hermano que simplemente no estaba más.</p>
+    <p>Marta había salido a recibir a Jesús en cuanto supo que llegaba. María no. No porque no lo amara. Sino porque el duelo tiene su propio tiempo y su propia geografía, y el de María en ese momento era ese cuarto, ese silencio, ese peso que no se podía levantar.</p>
+    <p>Hasta que alguien le dijo: "El Maestro está aquí y te llama."</p>
+    <p>El libro de Juan registra lo que ocurrió a continuación con una economía narrativa que dice más que mil palabras: María se levantó rápidamente y fue adonde estaba Jesús. Cuando llegó, cayó a sus pies. No con una oración elaborada ni con un discurso teológico. Solo con el peso de lo que cuatro días de duelo dejan en el cuerpo y el alma. Y le dijo lo que todos los que pierden a alguien querido piensan aunque no siempre lo digan en voz alta:</p>
+    <blockquote class="bible-quote">"Señor, si hubieses estado aquí, no habría muerto mi hermano." — Juan 11:32</blockquote>
+    <p>Si María viviera hoy, la reconoceríamos en cualquier velatorio, en cualquier living donde todavía hay fotos del que se fue, en cualquier persona que pasa de la cama a la silla y de la silla a la cama sin saber muy bien cómo transcurre el tiempo. Esa pregunta que guardó en sus labios —"si hubieras estado aquí"— es la misma pregunta que se hace el que pierde a su madre a los sesenta, al hijo que muere antes que los padres, al cónyuge que desaparece y deja un silencio que no se puede llenar. Qué dice la Biblia sobre la muerte de un ser querido empieza en este lugar de honestidad absoluta: en la pregunta que duele hacer pero que no se puede no hacer.</p>
+    <p>Y lo que Jesús hizo entonces es lo más importante de toda esta historia.</p>
+    <p>No le dio una clase de teología. No le explicó el plan de Dios. No le dijo que todo pasa por algo. Vio su llanto, vio el llanto de los que la acompañaban, y el texto dice simplemente:</p>
+    <blockquote class="bible-quote">"Jesús lloró." — Juan 11:35</blockquote>
+
+    <h2>El duelo no es falta de fe</h2>
+    <p>Necesitamos detenernos en esas dos palabras porque durante siglos generaron un malentendido enorme en ambientes de fe: la idea de que llorar la muerte de un ser querido es señal de que no confiás lo suficiente en Dios. Que si tenés fe, deberías estar en paz. Que el duelo intenso, el dolor que no cede, la tristeza que no tiene fondo, son señales de una fe débil o inmadura.</p>
+    <p>Jesús sabía perfectamente lo que iba a hacer en los próximos minutos. Sabía que Lázaro saldría de la tumba. Sabía el final de la historia. Y aun así lloró.</p>
+    <p>No porque no tuviera fe. Sino porque el amor hace eso. Porque el dolor de quienes amamos le importa. Porque Dios no mira el duelo humano desde una distancia clínica y serena sino que entra en él.</p>
+    <p>Qué dice la Biblia sobre la muerte de un ser querido nunca propone la insensibilidad como virtud. Pablo escribió a los Tesalonicenses que no debían entristecerse "como los otros que no tienen esperanza", pero no les dijo que no se entristecieran. La diferencia es enorme: el duelo cristiano no es un duelo sin dolor. Es un duelo con un horizonte que el dolor no puede borrar.</p>
+
+    <h2>Versículos bíblicos para el duelo</h2>
+    <p>La Biblia no esquiva el tema de la muerte ni disminuye la pérdida de quienes amamos. La enfrenta con una honestidad que resulta, paradójicamente, el consuelo en el duelo más profundo:</p>
+    <blockquote class="bible-quote">"Jehová está cerca de los quebrantados de corazón; y salva a los contritos de espíritu." — Salmo 34:18</blockquote>
+    <p>No dice que Dios observa a los que sufren desde lejos. Dice que está cerca. El duelo no aleja a Dios. Lo acerca. La cercanía divina no es un premio para los que están bien sino una promesa específica para los que están rotos.</p>
+    <blockquote class="bible-quote">"Para que no os entristezcáis como los otros que no tienen esperanza. Porque si creemos que Jesús murió y resucitó, así también traerá Dios con Jesús a los que durmieron en él." — 1 Tesalonicenses 4:13-14</blockquote>
+    <p>Pablo no niega el dolor de perder a alguien querido. Reconoce que la tristeza es real y que está ahí. Lo que cambia es el horizonte: el creyente llora, pero no llora hacia el vacío. Llora hacia una promesa. Esa diferencia no elimina el dolor del duelo pero le da un marco que el dolor solo no puede construir. Los versículos bíblicos para el duelo más poderosos no son los que prometen que el dolor desaparecerá esta semana. Son los que muestran que el amor de Dios sobrevive a la muerte.</p>
+    <blockquote class="bible-quote">"Enjugará Dios toda lágrima de los ojos de ellos; y ya no habrá muerte, ni habrá más llanto, ni clamor, ni dolor; porque las primeras cosas pasaron." — Apocalipsis 21:4</blockquote>
+    <p>Este versículo es una promesa sobre el final de la historia. Y precisamente por eso es tan poderosa en el duelo: la muerte de un ser querido nos obliga a mirar el final de las cosas. Y el final que describe la Biblia no es la ausencia sino la restauración. No es el vacío sino el encuentro. Dios mismo limpiando las lágrimas que la pérdida dejó.</p>
+
+    <h2>Lo que Jesús le dijo a Marta antes de entrar a la tumba</h2>
+    <p>Antes de que Lázaro saliera de la tumba, Jesús tuvo una conversación con Marta que resulta fundamental para entender cómo superar la muerte de un ser querido con fe.</p>
+    <p>Marta dijo lo que cualquier persona de fe diría: "Yo sé que resucitará en la resurrección, en el día postrero." Era teológicamente correcto. Era la respuesta ortodoxa. Y en ese momento, probablemente, no alcanzaba para el peso de la pérdida.</p>
+    <p>Y Jesús respondió con algo que cambia todo el marco:</p>
+    <blockquote class="bible-quote">"Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá. Y todo aquel que vive y cree en mí, no morirá eternamente." — Juan 11:25-26</blockquote>
+    <p>No dijo "existe la resurrección". Dijo "yo soy la resurrección". No habló de un concepto sino de una persona. La esperanza del creyente frente a la muerte no es una doctrina abstracta. Es una relación. Y las relaciones sobreviven lo que los conceptos no pueden sobrevivir: la noche más larga del duelo, la madrugada en que te despertás y por un segundo olvidaste que esa persona no está más, y después volvés a recordarlo.</p>
+    <p>Consuelo en el duelo, según Jesús, no es un argumento que gana el debate contra el dolor. Es una presencia que acompaña sin que el dolor tenga que desaparecer primero.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>La psicología del duelo identifica la pérdida de un ser querido como uno de los procesos más complejos que atraviesa el ser humano. La investigación muestra que el duelo no sigue un camino lineal, que las etapas se mezclan, que no hay un "tiempo correcto" para procesar la pérdida y que cada persona lo vive de manera diferente.</p>
+    <p>Lo que los estudios también muestran es que las personas con una práctica espiritual activa, que perciben que la muerte de un ser querido no es el final absoluto y que tienen acceso a una comunidad de apoyo, atraviesan el duelo con significativamente menor riesgo de duelo complicado o patológico. No porque la fe evite el dolor. Sino porque provee dos cosas que el duelo necesita desesperadamente: significado y presencia.</p>
+    <p>Significado: la muerte no es un accidente cósmico sino parte de una historia más grande. Presencia: no estás solo en el proceso, ni humanamente ni espiritualmente. La oración por la pérdida de un familiar activa ambas dimensiones: pone el dolor en el contexto de un Dios que lo conoce, y lo hace en el espacio donde más directamente Se nos acerca.</p>
+    <p>Jesús no le dio a María una clase de psicología del duelo. Lloró con ella. Y ese llanto fue más sanador que cualquier argumento.</p>
+
+    <h2>Una oración por la pérdida de un familiar</h2>
+    <p>Si hoy estás en ese cuarto donde todavía se siente la ausencia, si el duelo llegó a un punto donde las palabras de consuelo ya no alcanzan, si querés orar pero no sabés cómo empezar, esta oración es para vos. No tiene que ser perfecta. Solo tiene que ser tuya.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      perdí a alguien que amaba.<br/>
+      No sé cómo decirlo de otra manera.<br/>
+      Hay un lugar vacío que antes estaba lleno,<br/>
+      un silencio donde antes había una voz,<br/>
+      una ausencia que no termino de entender<br/>
+      aunque ya sé que es permanente.<br/><br/>
+      No vengo con fe firme ahora mismo.<br/>
+      Vengo como María frente a Vos:<br/>
+      cayendo a Tus pies con lo que tengo,<br/>
+      con la pregunta que no puedo no hacer,<br/>
+      con el dolor que no sé adónde llevar.<br/><br/>
+      Tu Palabra dice que lloraste con los que lloran.<br/>
+      Que estás cerca de los quebrantados.<br/>
+      Que un día vas a enjugar cada lágrima.<br/>
+      Hoy necesito que esas promesas sean reales para mí.<br/>
+      Aunque no las sienta todavía.<br/>
+      Aunque el duelo sea más grande que mi fe en este momento.<br/><br/>
+      Acompañame en este proceso.<br/>
+      No te pido que lo aceleres.<br/>
+      Solo te pido que no me dejés atravesarlo solo.<br/>
+      Que en cada madrugada difícil,<br/>
+      en cada momento en que recuerdo lo que perdí,<br/>
+      Tu presencia sea lo que me encuentre primero.<br/><br/>
+      Y dame la certeza de que la muerte<br/>
+      no tuvo la última palabra sobre quien amé.<br/>
+      Que Vos sos la resurrección y la vida.<br/>
+      Que el amor que compartimos<br/>
+      va más allá de lo que yo puedo ver desde acá.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo superar la muerte de un ser querido con fe: pasos concretos</h2>
+    <p>La historia de María también nos da un mapa para el duelo que no niega el dolor sino que lo acompaña:</p>
+    <p><strong>1. Permitite estar donde estás.</strong> María no salió corriendo cuando llegó Jesús. Esperó hasta que la llamaron. El duelo tiene su tiempo y su ritmo propio. Cómo superar la muerte de un ser querido con fe no significa acelerar el proceso sino permitir que Dios entre en cada etapa de él, incluyendo las que todavía no tienen nombre.</p>
+    <p><strong>2. Llevá la pregunta difícil.</strong> María le dijo a Jesús "si hubieras estado aquí". No guardó el reproche. No fingió que todo estaba bien. La oración por la pérdida de un familiar más honesta es la que lleva exactamente lo que hay: la confusión, la pregunta sin respuesta, el dolor que no se puede embellecer. Dios no se ofende con la honestidad. La recibe.</p>
+    <p><strong>3. Buscá la presencia antes de buscar las respuestas.</strong> Jesús no explicó por qué Lázaro había muerto. Lloró primero. Estuvo presente primero. El consuelo en el duelo que ofrece la Biblia no comienza con una explicación sino con una compañía. Buscá esa presencia en la oración, en la comunidad, en quienes pueden simplemente estar sin necesitar arreglar nada.</p>
+    <p><strong>4. Ancoráte en versículos bíblicos para el duelo.</strong> Juan 11:25, 1 Tesalonicenses 4:13-14, Apocalipsis 21:4. Palabras que el corazón puede sostener cuando la mente no puede procesar más. No como fórmulas mágicas sino como anclas: algo verdadero a qué aferrarse cuando el dolor sube de madrugada.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Lázaro salió de la tumba. No porque el dolor de María y Marta no hubiera sido real. Sino porque era real y Jesús entró en él. Caminó con ellas hasta la tumba. Lloró con ellas. Y entonces actuó.</p>
+    <p>No sabemos lo que Dios tiene en el horizonte de tu duelo. Pero sabemos lo que la Biblia dice sobre quién acompaña el camino: Alguien que ya estuvo frente a una tumba y conoce lo que hay del otro lado. Alguien que llora con quienes lloran y está cercano a los quebrantados de corazón. Alguien que prometió que la muerte no tiene la última palabra.</p>
+    <p>Si estás buscando versículos bíblicos para el duelo que hablen directo al corazón, si necesitás una oración por la pérdida de un familiar que puedas hacer tuya, si querés entender qué dice la Biblia sobre la muerte de un ser querido y cómo superar la muerte de un ser querido con fe y encontrar consuelo en el duelo, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
