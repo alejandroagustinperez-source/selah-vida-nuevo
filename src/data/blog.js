@@ -928,6 +928,98 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para dormir en paz que hablen directo al corazón, si necesitás una oración para cuando no podés dormir que puedas hacer tuya en la madrugada, si querés entender qué dice la Biblia sobre el insomnio y encontrar descanso y confianza en Dios, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "versiculos-para-recuperarse-de-una-ruptura-amorosa",
+    title: "Versículos para recuperarse de una ruptura amorosa: qué dice la Biblia sobre el desamor",
+    date: "19 de junio, 2026",
+    excerpt: "La casa de Oseas estaba vacía otra vez. Gomer se había ido, y el profeta de Dios se quedó solo con una cama que de noche pesaba el doble. Descubrí qué dice la Biblia sobre el desamor y cómo sanar un corazón roto con fe.",
+    metaDescription: "Descubrí versículos para recuperarse de una ruptura amorosa. La historia de Oseas, cuya esposa lo abandonó, y lo que Dios le enseñó sobre la sanidad emocional. Oración para sanar un corazón roto y cómo superar una ruptura con fe.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Salmo 34:18 — "Cercano está el Señor a los quebrantados de corazón; y salva a los contritos de espíritu."</div>
+      <div class="verse-card">📖 Isaías 61:1 — "Me ha enviado para sanar a los quebrantados de corazón."</div>
+      <div class="verse-card">📖 Jeremías 31:3 — "Con amor eterno te he amado; por tanto, te prolongué mi misericordia."</div>
+    </div>
+
+    <p>La casa de Oseas estaba vacía otra vez.</p>
+    <p>No por ausencia sino por abandono. Gomer se había ido. No había dejado una nota, no había habido una pelea final que explicara todo. Solo la certeza de que eligió otro camino, otra persona, otro lugar que no era él. Y Oseas, el profeta de Dios, el hombre que predicaba sobre el amor divino en las plazas de Israel, se quedó solo con las cuatro paredes de una casa que de repente era demasiado grande y una cama que de noche pesaba el doble.</p>
+    <p>El desamor es así. No avisa. Un día la persona que pensabas iba a estar para siempre simplemente no está. Y el problema no es solo la ausencia. Es que la mente tarda en actualizarse. Que buscás su voz en el silencio de la mañana. Que hay olores, canciones, esquinas de la ciudad que de repente te devuelven todo lo que intentabas no sentir. Que el teléfono brilla y por un segundo esperás que sea esa persona, y después recordás que ya no es, y ese instante de olvido seguido del recuerdo duele como la primera vez.</p>
+    <p>Si Oseas viviera hoy, lo reconoceríamos de inmediato. Esa persona que borra el número del otro y después lo vuelve a buscar en un chat viejo para releer una conversación que ya sabe de memoria. Que en las reuniones sonríe y después vuelve a casa al silencio. Que tiene todo claro de día pero de madrugada el dolor vuelve con toda su fuerza. Que pregunta cómo superar una ruptura con fe y recibe respuestas que suenan bien pero que a las tres de la mañana no alcanzan.</p>
+    <p>Lo que Dios le dijo a Oseas en ese momento cambió para siempre cómo la Biblia habla del corazón roto.</p>
+
+    <h2>El desamor no es señal de que fallaste</h2>
+    <p>Antes de seguir hay algo que necesitamos dejar en claro, porque circula en muchos ambientes de fe una idea que hace más daño que bien: que si la relación terminó, es porque algo hiciste mal. Que si realmente hubieran orado juntos, si hubieran tenido más fe, si vos hubieras sido diferente, la historia habría sido otra. Que el fin de una relación es un fracaso espiritual.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>Oseas era fiel. Amaba a Gomer con una entrega que el texto describe con lujo de detalle. Y aun así, ella se fue. No porque Oseas fallara. Sino porque el libre albedrío de otra persona no está dentro de lo que podés controlar, no importa cuánto ames, no importa cuánto ores, no importa cuánto lo intentes. Qué dice la Biblia sobre el desamor nunca lo presenta como castigo ni como consecuencia de una falla del que queda. Lo presenta como una herida real, legítima, que merece ser atendida, no minimizada ni apurada.</p>
+
+    <h2>Qué dice la Biblia sobre el desamor</h2>
+    <p>El versículo más directo sobre el dolor del corazón roto está en el Salmo 34:18:</p>
+    <blockquote class="bible-quote">"Cercano está el Señor a los quebrantados de corazón; y salva a los contritos de espíritu." — Salmo 34:18</blockquote>
+    <p>La palabra hebrea para "quebrantado" acá implica algo deshecho desde adentro, roto en su forma más íntima. No es la tristeza superficial de un mal día. Es el tipo de dolor que reorganiza las mañanas y los planes y la manera de verse a uno mismo. El corazón roto después de una ruptura amorosa entra exactamente en esa categoría. Y la promesa de Dios no es "ya vas a estar bien pronto" sino algo más inmediato y más honesto: estoy cerca. Ahora. En este momento en que duele más.</p>
+    <p>El libro de Isaías habla del desamor con una ternura que sorprende:</p>
+    <blockquote class="bible-quote">"¿Puede una mujer olvidar a su bebé que mama, que no se compadezca del hijo de su vientre? Aunque ella se olvide, yo no me olvidaré de ti. He aquí que en las palmas de las manos te tengo esculpido." — Isaías 49:15-16</blockquote>
+    <p>Este versículo habla directamente a una de las experiencias más devastadoras de la ruptura amorosa: la sensación de que la persona que te amaba ahora actúa como si nunca te hubiera conocido. Como si todo lo que compartieron, de repente, no existiera. Y Dios responde con la imagen más íntima que puede encontrar: aunque olvidaran algo tan instintivo como el amor de una madre, Él tiene tu nombre esculpido en las palmas de sus manos. No te olvidó. No te olvidará. La sanidad emocional y Dios empiezan acá, en esta promesa de que hay alguien que conoce tu nombre y no lo va a soltar.</p>
+
+    <h2>Lo que Dios le mostró a Oseas</h2>
+    <p>Cuando Gomer se fue, Dios le hizo a Oseas algo que desde afuera podría parecer cruel y desde adentro resultó ser la lección más profunda de su vida. Le pidió que la fuera a buscar de nuevo. Que la amara de nuevo. No porque ella lo mereciera ni porque la situación tuviera sentido, sino para que Oseas entendiera desde adentro algo que solo se aprende viviéndolo: que hay un amor que no es un sentimiento que aparece cuando el otro se porta bien. Es una decisión sostenida incluso cuando duele.</p>
+    <p>Pero lo más importante de la historia no es lo que Oseas hizo. Es lo que Dios le reveló sobre Su propio corazón. Porque el libro de Oseas es, en su nivel más profundo, la historia de Dios mirando a Israel alejarse hacia otros dioses y eligiendo seguir amando de todas formas. Y en ese paralelo hay algo que transforma cómo entendemos los versículos para recuperarse de una ruptura amorosa:</p>
+    <blockquote class="bible-quote">"Con amor eterno te he amado; por tanto, te prolongué mi misericordia." — Jeremías 31:3</blockquote>
+    <p>No un amor condicional que termina cuando la otra persona decepciona. Un amor eterno. Uno que no depende de que lo correspondas perfectamente. Uno que sigue siendo real en la madrugada en que el silencio del teléfono pesa una tonelada. Cómo superar una ruptura con fe no empieza con técnicas ni con voluntad de acero. Empieza con recibir esta promesa como real y dejar que cambie el centro de donde viene tu seguridad.</p>
+
+    <h2>Versículos para recuperarse de una ruptura amorosa</h2>
+    <p>La Biblia tiene versículos específicos que hablan directo al proceso de sanación después de una ruptura amorosa:</p>
+    <blockquote class="bible-quote">"Él sana a los quebrantados de corazón, y venda sus heridas." — Salmo 147:3</blockquote>
+    <p>Este versículo usa dos verbos médicos: sanar y vendar. No dice "les da fuerzas para aguantar" ni "les da sabiduría para entender por qué pasó". Dice que sana y venda. Como si el corazón roto fuera una herida real que requiere atención real, no solo actitud positiva. La sanidad emocional y Dios van de la mano no porque Dios mágicamente elimine el dolor sino porque lo trata como lo que es: algo legítimo que merece cuidado real.</p>
+    <blockquote class="bible-quote">"Me ha enviado para sanar a los quebrantados de corazón, para proclamar libertad a los cautivos... para consolar a todos los que lloran." — Isaías 61:1-2</blockquote>
+    <p>Sanar a los quebrantados de corazón no es una nota al pie de la misión de Jesús. Es lo primero que se menciona. Tu corazón roto después de una ruptura amorosa no es un problema secundario en los planes de Dios. Es exactamente el lugar donde Él quiere llegar primero. Estos son los versículos para recuperarse de una ruptura amorosa que más importan: no los que prometen que el dolor desaparece esta semana, sino los que garantizan que no estás solo en él.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>Los estudios neurológicos sobre las rupturas amorosas son contundentes: el cerebro procesa el rechazo romántico en las mismas regiones que procesa el dolor físico. No es metáfora decir que un corazón roto duele. Duele literalmente. La activación de la amígdala, la suba del cortisol, el descenso de dopamina y serotonina que sigue a la ruptura producen cambios bioquímicos reales y medibles. Eso también explica por qué "simplemente decidir estar bien" no funciona: no es un problema de voluntad. Es una herida que tiene su propio tiempo de cicatrización.</p>
+    <p>Los mismos estudios muestran que los procesos de sanidad emocional más efectivos incluyen tres elementos: permitir sentir el dolor sin suprimirlo, redirigir gradualmente la atención hacia vínculos seguros y estables, y encontrar sentido en la experiencia. La Biblia lleva siglos prescribiendo exactamente eso. La oración para sanar un corazón roto no es un placebo espiritual. Es el acto de llevar el dolor a una presencia estable y segura, que es exactamente lo que el cerebro necesita para empezar a sanar.</p>
+    <p>Sanidad emocional y Dios no son dos caminos paralelos que a veces se cruzan. Son el mismo camino recorrido con honestidad.</p>
+
+    <h2>Una oración para sanar un corazón roto</h2>
+    <p>Si hoy el dolor de una ruptura amorosa te pesa, si el proceso de sanar parece más largo de lo que podés soportar, si hay momentos en que no sabés cómo superar una ruptura con fe cuando la fe misma parece pequeña, esta oración es para vos. No necesita ser perfecta. Solo necesita ser honesta.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hoy el corazón me pesa.<br/>
+      No de una manera que pueda explicar del todo,<br/>
+      pero Vos sabés lo que hay adentro:<br/>
+      el nombre que no termino de dejar ir,<br/>
+      el futuro que imaginé y ya no va a ser,<br/>
+      el silencio de un teléfono que antes sonaba diferente.<br/><br/>
+      No vengo con resignación ni con fuerzas que no tengo.<br/>
+      Vengo con esto, tal como está.<br/>
+      Con el dolor sin adornar.<br/>
+      Con las preguntas que no tienen respuesta todavía.<br/><br/>
+      Tu Palabra dice que estás cerca de los quebrantados de corazón.<br/>
+      Hoy yo soy eso.<br/>
+      Y necesito que esa promesa sea real, no solo en mi cabeza, sino en todo lo que soy.<br/><br/>
+      Sanáme donde yo no puedo sanarme solo.<br/>
+      Vendá lo que está abierto.<br/>
+      Y en el proceso, mostrámete Vos:<br/>
+      el amor que no depende del otro,<br/>
+      el que tiene mi nombre esculpido en las palmas de Tus manos<br/>
+      y no lo va a soltar aunque todo lo demás cambie.<br/><br/>
+      Confío en Vos. Aunque no sienta nada todavía.<br/>
+      Confío igual.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo superar una ruptura con fe: pasos concretos</h2>
+    <p>La historia de Oseas también nos da un mapa práctico para la sanidad emocional. No solo versículos para recuperarse de una ruptura amorosa sino acciones concretas que nacen de la fe:</p>
+    <p><strong>1. Permitite sentir el dolor sin apurarlo.</strong> Oseas no fingió que la partida de Gomer no dolía. El texto registra su dolor con honestidad. La primera condición de cómo superar una ruptura con fe es dejar de pelear contra lo que sentís y llevárselo a Dios tal como está. No el dolor corregido ni el que debería ser. El que es.</p>
+    <p><strong>2. No confundas sanar con olvidar.</strong> La sanidad emocional y Dios no funcionan como un borrón de memoria. Sanar no significa actuar como si no hubiera pasado nada. Significa integrar lo que pasó, encontrar su lugar en la historia de tu vida, y dejar que deje de ser el centro de gravedad de tu presente. Ese proceso lleva tiempo y está bien que lleve tiempo.</p>
+    <p><strong>3. Redirigí tu identidad hacia Aquel que no cambia.</strong> Una de las cosas más duras de la ruptura amorosa es que parte de quién sos estaba ligada a esa persona. Recuperar quién sos fuera de esa relación es parte del proceso. Los versículos para recuperarse de una ruptura amorosa más poderosos son los que te recuerdan cómo Dios te ve, independientemente de quién esté o no esté en tu vida en este momento.</p>
+    <p><strong>4. Buscá comunidad.</strong> Oseas no vivió su historia en aislamiento. Qué dice la Biblia sobre el desamor nunca propone el encierro como respuesta. El dolor romántico prospera en la soledad. La sanidad necesita testigos: personas que puedan acompañar el proceso sin juzgarlo ni apurarlo.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Oseas aprendió algo que ningún libro de autoayuda podría haberle enseñado: que hay un amor que no varía según cómo se porta el otro. Que hay una presencia que no se va aunque todo lo demás cambie. Que el corazón roto por el desamor humano puede convertirse, paradójicamente, en el lugar donde uno descubre que nunca estuvo realmente solo.</p>
+    <p>Tu ruptura amorosa no es el capítulo final de tu historia.</p>
+    <p>Si estás buscando versículos para recuperarse de una ruptura amorosa que hablen directo al corazón, si necesitás una oración para sanar un corazón roto que puedas hacer tuya, si querés entender qué dice la Biblia sobre el desamor y encontrar sanidad emocional con Dios, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
