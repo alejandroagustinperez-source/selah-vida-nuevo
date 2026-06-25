@@ -832,6 +832,102 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para el duelo que hablen directo al corazón, si necesitás una oración por la pérdida de un familiar que puedas hacer tuya, si querés entender qué dice la Biblia sobre la muerte de un ser querido y cómo superar la muerte de un ser querido con fe y encontrar consuelo en el duelo, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "oracion-para-cuando-no-podes-dormir",
+    title: "Oración para cuando no podés dormir: qué dice la Biblia sobre el insomnio",
+    date: "18 de junio, 2026",
+    excerpt: "Asaf era el músico principal de David, el hombre elegido para guiar a Israel en la adoración. Y una noche no podía dormir. Tendió sus manos en la oscuridad, su mente no paraba y su alma se negaba a encontrar consuelo. Descubrí qué dice la Biblia sobre el insomnio y una oración para cuando no podés dormir.",
+    metaDescription: "Descubrí qué dice la Biblia sobre el insomnio. La historia de Asaf, el músico de David que pasó una noche sin dormir con la mente que no paraba, versículos bíblicos para dormir en paz y una oración antes de dormir para encontrar descanso y confianza en Dios.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Salmo 4:8 — "En paz me acostaré y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado."</div>
+      <div class="verse-card">📖 Proverbios 3:24 — "Cuando te acuestes, no tendrás temor, sino que te acostarás, y tu sueño será grato."</div>
+      <div class="verse-card">📖 Salmo 127:2 — "Porque a su amado dará Dios el sueño."</div>
+    </div>
+
+    <p>Era medianoche en Jerusalén, y Asaf no podía dormir.</p>
+    <p>No era cualquier hombre el que yacía despierto en esa oscuridad. Era el músico principal de David, el director del coro del templo, uno de los hombres elegidos específicamente para guiar a todo Israel en la adoración. Si alguien debería haber sabido cómo encontrar paz en Dios, era él. Había compuesto salmos. Había estado en la presencia de Dios muchas veces. Conocía las palabras de memoria.</p>
+    <p>Y sin embargo, ahí estaba. Con los ojos abiertos. La mente llena de ruido. El cuerpo agotado pero incapaz de ceder al sueño.</p>
+    <p>Lo escribió él mismo con una honestidad que siglos después todavía duele en el pecho cuando la lees de madrugada: "En el día de mi angustia busqué al Señor; alzaba a él mis manos de noche sin cesar; mi alma rehusaba consolarse." Y luego, unas líneas más adelante, algo que cualquiera que sufrió insomnio reconoce al instante:</p>
+    <blockquote class="bible-quote">"Alzaba a él mis manos de noche sin cesar; mi alma rehusaba consolarse... No me dejabas pegar los ojos; estaba yo tan agitado que no podía hablar." — Salmo 77:2, 4</blockquote>
+    <p>Si Asaf viviera hoy, lo reconoceríamos fácilmente. Es esa persona que se mete en la cama a las once y a las dos de la mañana sigue mirando el techo. Que apaga el teléfono porque sabe que no debería mirarlo pero lo agarra igual. Que intenta respirar despacio, que se dice que tiene que dormir porque mañana hay cosas, y ese mismo pensamiento hace todo peor. Que siente que la mente es una pantalla que no se puede apagar y que en la madrugada amplifica todo lo que de día era manejable: las preocupaciones, las deudas, las conversaciones que salieron mal, el futuro que no termina de despejarse.</p>
+    <p>La oración para cuando no podés dormir empieza exactamente acá, en este lugar donde estaba Asaf: en la madrugada, con las manos extendidas hacia Dios y el alma negada a consolarse sola. Y lo que él descubrió esa noche cambió para siempre cómo entendemos la relación entre el descanso y la confianza en Dios.</p>
+
+    <h2>El insomnio no es falta de fe</h2>
+    <p>Existe una idea que circula en algunos ambientes de fe que hay que desmantelar antes de seguir: que una persona con suficiente confianza en Dios debería poder dormir sin problemas. Que la noche inquieta es señal de preocupación excesiva, y la preocupación excesiva es señal de poca fe. Que si entregás todo de verdad, la mente se apaga sola cuando la cabeza toca la almohada.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>Asaf era el músico del templo, no un creyente tibio. David, que escribió el Salmo 22, describía noches enteras clamando a Dios sin respuesta visible. Habacuc esperó angustiado en su atalaya. Jeremías lloró noches enteras sobre las ruinas de Jerusalén. El insomnio de estos hombres no era consecuencia de poca fe. Era la señal de que tomaban la vida espiritual tan en serio que las preguntas sin respuesta no los dejaban en paz.</p>
+    <p>Qué dice la Biblia sobre el insomnio no es que los que confían duermen y los que dudan quedan despiertos. Es que la noche, con todo su silencio y su capacidad de amplificar lo que de día era manejable, puede convertirse en el espacio donde la relación con Dios se profundiza de maneras que la luz del día no siempre permite. El problema no es que la mente piense de noche. El problema es en qué elige detenerse.</p>
+
+    <h2>Qué dice la Biblia sobre el insomnio y el descanso</h2>
+    <p>El descanso en la Biblia no es una recompensa que se gana. Es un regalo que se recibe.</p>
+    <blockquote class="bible-quote">"En paz me acostaré y asimismo dormiré; porque solo tú, Jehová, me haces vivir confiado." — Salmo 4:8</blockquote>
+    <p>David escribió este versículo en un momento de amenaza externa concreta. Había personas persiguiéndolo, hablando mal de él, conspirando contra su reinado. Y sin embargo, la paz para acostarse y dormir no vino de que los problemas se resolvieran. Vino de un acto deliberado de confianza: "solo tú me haces vivir confiado." No mis estrategias. No mis planes. No la resolución de los problemas. Solo Dios.</p>
+    <p>Esa confianza es el corazón de lo que los versículos bíblicos para dormir en paz quieren comunicar. No es una técnica de relajación disfrazada de espiritualidad. Es la convicción de que alguien más competente que yo está velando mientras duermo, y que puedo soltar el control por unas horas sin que el mundo se deshaga.</p>
+    <blockquote class="bible-quote">"Cuando te acuestes, no tendrás temor, sino que te acostarás, y tu sueño será grato." — Proverbios 3:24</blockquote>
+    <p>Este versículo aparece en el contexto de quien lleva la sabiduría de Dios cerca del corazón, de quien confía en una orientación que viene de arriba. El sueño grato no es la ausencia de problemas sino la presencia de una confianza que calma. No es que la vida se simplificó. Es que el corazón encontró dónde descansar dentro de la complejidad.</p>
+    <p>Y luego está este versículo extraordinario que parece demasiado sencillo para ser tan profundo:</p>
+    <blockquote class="bible-quote">"En vano os levantáis de madrugada, y tarde os acostáis... pues que a su amado dará Dios el sueño." — Salmo 127:2</blockquote>
+    <p>Dios da el sueño como regalo a quien ama. No como premio por haber solucionado todo. No como recompensa por haber terminado todas las tareas pendientes. Como regalo. La persona que intenta controlar todo, que se queda despierta revisando mentalmente cada escenario posible, que no puede soltar porque siente que si suelta algo va a romperse, está haciendo exactamente lo que este versículo describe: madrugar en vano, acostarse tarde en vano. El descanso y la confianza en Dios no son dos cosas separadas. Son la misma cosa vista desde ángulos distintos.</p>
+
+    <h2>Lo que Asaf descubrió en su noche sin dormir</h2>
+    <p>Volvamos al Salmo 77. Asaf describe con una precisión que se siente contemporánea lo que la mente hace en la oscuridad cuando el sueño no llega. No intentó distraerse. No contó ovejas. Fue directo al dolor y lo expuso con toda su fuerza: "¿Ha olvidado Dios el tener misericordia? ¿Ha encerrado con ira sus piedades?" No era indiferencia espiritual ni falta de fe. Era la pregunta más honesta de quien esperaba más de Dios y no lo estaba viendo en ese momento.</p>
+    <p>Y entonces sucede el giro más importante de todo el salmo. No porque las circunstancias cambiaran. No porque llegara una revelación sobrenatural. Sino porque Asaf tomó una decisión deliberada sobre qué iba a hacer con su mente en esa noche sin dormir:</p>
+    <blockquote class="bible-quote">"Me acordaré de las obras de JAH; sí, haré yo memoria de tus maravillas antiguas. Meditaré en todas tus obras, y hablaré de tus hechos." — Salmo 77:11-12</blockquote>
+    <p>No esperó sentirse bien para recordar. Eligió recordar como acto de la voluntad antes de que el sentimiento llegara. Redirigió los pensamientos que giraban sobre sus problemas hacia lo que sabía que era verdad sobre Dios: que había actuado antes, que había sido fiel antes, que esa fidelidad tenía un registro histórico al que podía apelar incluso cuando la noche lo contradecía todo.</p>
+    <p>Esa es la práctica central de la oración antes de dormir que transforma la madrugada: no intentar silenciar la mente por fuerza de voluntad sino darle algo mejor a dónde ir. No la supresión de los pensamientos sino su redirección hacia algo más firme que ellos. Asaf no salió de esa noche con todas las respuestas. Salió con algo más valioso: la certeza de que el Dios que había sido fiel antes seguía siendo el mismo.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide con la Biblia)</h2>
+    <p>La investigación sobre el insomnio de las últimas décadas es contundente: el principal enemigo del sueño no es el ruido externo ni la cafeína ni la pantalla del teléfono, aunque todo eso contribuye. Es la activación cognitiva: la mente que no puede soltar el modo de resolución de problemas aunque el cuerpo ya no necesite estar alerta. La rumia, ese loop interno de pensamientos que se repiten sin llegar a ningún lado, es el mecanismo central del insomnio crónico.</p>
+    <p>Lo que los investigadores encontraron es que intentar forzar el sueño lo aleja. La presión de "tengo que dormir" activa el mismo sistema de alerta que genera el insomnio. Lo que funciona, en cambio, es la reducción de esa activación: permitir que la mente encuentre algo en qué descansar en lugar de algo que resolver.</p>
+    <p>En términos neurológicos, lo que describe el Salmo 77 es exactamente eso: Asaf deja de girar sobre el problema y redirige hacia la memoria de la fidelidad de Dios. La corteza prefrontal, que regula la respuesta al estrés, se activa cuando pensamos en algo estable y confiable en lugar de en algo amenazante. La oración para cuando no podés dormir no es un placebo espiritual. Es una práctica que hace exactamente lo que el cerebro necesita: encontrar un punto de anclaje fuera del problema.</p>
+    <p>Además, la certeza de no estar solo en la noche, de que hay una presencia que vela mientras dormimos, reduce de manera medible la respuesta de amenaza del sistema nervioso autónomo. Dios diseñó el sueño. Y diseñó también el camino de regreso a él cuando la mente se niega a encontrarlo sola.</p>
+
+    <h2>Una oración para cuando no podés dormir</h2>
+    <p>Si esta noche la mente no para, si los pensamientos se acumulan y el sueño no llega, si hay algo que no podés soltar aunque lo intentes, esta oración es para vos. No tiene que hacerse en silencio ni en voz alta. No importa el horario. Solo tiene que ser honesta.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      es de madrugada y no puedo dormir.<br/>
+      Mi mente está llena de cosas que no termino de resolver,<br/>
+      de preguntas sin respuesta, de conversaciones que siguen en loop,<br/>
+      de miedos que de día puedo controlar pero que ahora pesan más.<br/><br/>
+      No sé cómo apagar esto.<br/>
+      He intentado y no puedo.<br/>
+      Por eso vengo a Vos, como Asaf con las manos extendidas en la oscuridad,<br/>
+      sin tener nada mejor para ofrecerte que este cansancio.<br/><br/>
+      Tu Palabra dice que le das el sueño a tu amado.<br/>
+      No como recompensa por haberlo resuelto todo.<br/>
+      Como regalo.<br/>
+      Hoy necesito ese regalo.<br/><br/>
+      Ayudame a soltar lo que estoy agarrando.<br/>
+      Tomá Vos lo que yo no puedo cargar toda la noche:<br/>
+      las preocupaciones, las deudas, las decisiones que no tomé,<br/>
+      las personas por las que tengo miedo.<br/>
+      Las pongo acá, en Tus manos, porque las mías no alcanzan.<br/><br/>
+      Recordame esta noche lo que Asaf eligió recordar:<br/>
+      que Vos fuiste fiel antes.<br/>
+      Que hay un historial que no borra una noche difícil.<br/>
+      Que mañana Tus misericordias son nuevas aunque yo hoy no las sienta.<br/><br/>
+      Dame descanso y confianza en Vos.<br/>
+      No el sueño que me fuerzo a tener.<br/>
+      El que solo Vos podés dar.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Versículos bíblicos para dormir en paz: pasos concretos</h2>
+    <p>La historia de Asaf también nos da un mapa práctico. No solo versículos bíblicos para dormir en paz que se quedan en palabras, sino acciones concretas para las noches en que la mente no para:</p>
+    <p><strong>1. Nombrá los pensamientos en lugar de pelear contra ellos.</strong> Asaf no intentó ignorar lo que tenía en la mente. Lo escribió, lo expuso, lo llevó a Dios tal como era. Nombrarlo, sea en oración o en un papel, saca los pensamientos del loop interno y los coloca en un espacio donde pueden existir sin amplificarse. La oración para cuando no podés dormir es, antes que nada, un acto de nombrar.</p>
+    <p><strong>2. Redirigí deliberadamente hacia la fidelidad pasada.</strong> El giro del Salmo 77 no fue emocional sino volitivo: Asaf eligió recordar. Si estás despierto y la mente gira, interrumpí el loop con una pregunta concreta: ¿cuándo fue la última vez que Dios fue fiel en mi vida? No lo que esperás que haga. Lo que ya hizo. El descanso y la confianza en Dios se construyen sobre evidencia real, no sobre sentimientos que hay que fabricar.</p>
+    <p><strong>3. Usá los Salmos como oración antes de dormir.</strong> El Salmo 4, el 23, el 91. No como ejercicio intelectual sino como ancla. El cerebro necesita algo en qué descansar, no algo que resolver. Los Salmos fueron escritos precisamente para eso: palabras que el corazón puede sostener cuando la mente ya no puede procesar más. Son los versículos bíblicos para dormir en paz en el sentido más práctico del término.</p>
+    <p><strong>4. Entregá lo que no podés resolver esta noche.</strong> La mayor parte de lo que nos mantiene despiertos no tiene solución a las tres de la mañana. El problema real, la conversación pendiente, la decisión que hay que tomar, seguirá ahí mañana. Hay un acto concreto de fe que consiste en decirle a Dios: "Guardá esto Vos hasta que yo tenga mejores herramientas para mirarlo." Esa entrega es el corazón de la oración antes de dormir que realmente descansa.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Asaf no terminó el Salmo 77 con respuestas. Terminó con memoria. Con la decisión de recordar quién era Dios históricamente en lugar de esperar sentirlo emocionalmente en ese instante. Y esa decisión fue suficiente para que el salmo terminara, no en la desesperación con que empezó, sino en la certeza de que Dios había abierto camino donde no había camino, guiado a su pueblo como pastor, conducido a su rebaño de la mano.</p>
+    <p>La noche en que no podés dormir no es una señal de que Dios se fue. Puede ser la sala donde más claramente escuchás Su voz cuando todo lo demás por fin se quieta.</p>
+    <p>Si estás buscando versículos bíblicos para dormir en paz que hablen directo al corazón, si necesitás una oración para cuando no podés dormir que puedas hacer tuya en la madrugada, si querés entender qué dice la Biblia sobre el insomnio y encontrar descanso y confianza en Dios, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
