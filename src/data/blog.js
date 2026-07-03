@@ -1115,6 +1115,102 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para tener fuerzas que hablen directo al corazón, si necesitás una oración para pedir fortaleza que puedas hacer tuya hoy, si querés entender qué dice la Biblia sobre la fortaleza y aprender cómo pedirle fuerza a Dios en los momentos de fortaleza espiritual en momentos difíciles, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "versiculos-biblicos-sobre-el-amor-de-dios",
+    title: "Versículos bíblicos sobre el amor de Dios: qué dice la Biblia",
+    date: "21 de junio, 2026",
+    excerpt: "Zaqueo era el hombre más odiado de Jericó. Se trepó a una higuera para ver a Jesús sin ser visto. Descubrí qué dice la Biblia sobre el amor de Dios y por qué el amor incondicional de Dios te busca exactamente donde estás.",
+    metaDescription: "Descubrí qué dicen los versículos bíblicos sobre el amor de Dios. La historia de Zaqueo, el hombre que se escondió en un árbol y fue encontrado por Jesús. El amor incondicional de Dios y una oración para recibirlo.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Juan 3:16 — "De tal manera amó Dios al mundo, que ha dado a su Hijo unigénito."</div>
+      <div class="verse-card">📖 Romanos 8:38-39 — "Nada podrá separarnos del amor de Dios que es en Cristo Jesús."</div>
+      <div class="verse-card">📖 1 Juan 4:10 — "En esto consiste el amor: no en que nosotros hayamos amado a Dios, sino en que él nos amó."</div>
+    </div>
+
+    <p>Era mediodía en Jericó, y Zaqueo llevaba media hora trepado en una higuera.</p>
+    <p>No era la imagen más digna para el jefe de los recaudadores de impuestos de la ciudad. Era un hombre rico, con poder suficiente como para hacer lo que quisiera. Y sin embargo ahí estaba, subido a un árbol como un niño, intentando ver por encima de una multitud que no le iba a abrir paso de ninguna manera. Lo odiaban demasiado.</p>
+    <p>Zaqueo lo sabía. Lo había sabido durante años. Había elegido trabajar para los romanos, cobrarles impuestos a sus propios conciudadanos, quedarse con un porcentaje extra porque podía hacerlo y nadie lo iba a detener. Era traición económica y social, y en Jericó ese tipo de cosas no se olvidaban.</p>
+    <p>Pero había algo en Jesús que lo había inquietado lo suficiente como para escalar ese árbol. Quería verlo. Sin saber bien por qué.</p>
+    <p>Entonces Jesús pasó por debajo de la higuera e hizo algo que nadie esperaba: se detuvo, levantó la vista, y lo miró directamente a los ojos. Y dijo su nombre.</p>
+    <p>"Zaqueo, bajá rápido. Hoy tengo que quedarme en tu casa."</p>
+    <p>Si Zaqueo viviera hoy, lo reconoceríamos fácilmente. Es la persona que lleva años convencida de que hay demasiadas cosas en su historia para que Dios la mire de frente. Que el amor de Dios es para los que lo merecen, para los que crecieron en la fe, para los que no hicieron lo que ella hizo. Que si Dios supiera todo, miraría para otro lado. Que "Dios me ama" es una frase que funciona para otros pero que para ella tiene asterisco.</p>
+    <p>Zaqueo trepó ese árbol pensando que sería invisible. Que podría ver sin ser visto. Y Jesús lo llamó por nombre desde abajo.</p>
+    <p>Eso es el amor incondicional de Dios.</p>
+
+    <h2>El amor de Dios no tiene condiciones</h2>
+    <p>Uno de los malentendidos más profundos sobre la fe cristiana es la idea de que el amor de Dios es proporcional al mérito propio. Que hay que ganárselo, que se puede perder, que tiene un límite que no debés cruzar.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>El versículo más conocido de toda la Escritura lo dice con una claridad que no deja espacio para matices:</p>
+    <blockquote class="bible-quote">"Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna." — Juan 3:16</blockquote>
+    <p>El mundo. No los perfectos. No los que ya creían. El mundo. Zaqueo incluido. Vos incluido.</p>
+    <p>Y si quedara alguna duda sobre los límites del amor de Dios en la Biblia, Pablo los clarifica con una de las afirmaciones más radicales de todo el Nuevo Testamento:</p>
+    <blockquote class="bible-quote">"Estoy convencido de que ni la muerte ni la vida, ni los ángeles ni los demonios, ni lo presente ni lo por venir, ni los poderes, ni lo alto ni lo profundo, ni ninguna otra cosa creada nos podrá separar del amor de Dios que es en Cristo Jesús Señor nuestro." — Romanos 8:38-39</blockquote>
+    <p>Pablo escribió eso desde la cárcel. Sin saber si iba a sobrevivir. Y lo escribió convencido. El amor de Dios no se interrumpe cuando la vida se complica. No se suspende cuando cometemos errores. No se negocia.</p>
+
+    <h2>Lo que pasó debajo de esa higuera</h2>
+    <p>Volvamos a Jericó.</p>
+    <p>Zaqueo bajó del árbol apurado, dice Lucas, con alegría. Algo cambió antes de que la comida estuviera servida, antes de que hubiera conversación teológica, antes de que Zaqueo prometiera nada. Lo que cambió fue que alguien lo miró y dijo su nombre.</p>
+    <p>El amor incondicional de Dios opera así muchas veces. No espera que la persona se arregle primero. No manda instrucciones de reparación previas a la visita. Jesús fue a la casa de Zaqueo tal como estaba. Y la transformación llegó como consecuencia de ese encuentro, no como requisito previo.</p>
+    <p>La multitud murmuró, claro. "Ha ido a hospedarse con un hombre pecador." Siempre hay una multitud que decide quién merece el amor de Dios y quién no. Jesús no les hizo caso.</p>
+    <p>Zaqueo, parado frente a su visita, anunció que devolvería cuatro veces lo que había robado y que daría la mitad de sus bienes a los pobres. No porque Jesús se lo pidiera. Porque el amor incondicional de Dios tiene ese efecto: no paraliza de culpa sino que libera para la generosidad.</p>
+
+    <h2>Qué dice la Biblia sobre el amor de Dios</h2>
+    <p>Los versículos bíblicos sobre el amor de Dios no son pocos. La Biblia vuelve a este tema una y otra vez como si supiera que lo vamos a olvidar constantemente.</p>
+    <p>Juan lo pone de esta manera en su primera carta:</p>
+    <blockquote class="bible-quote">"En esto consiste el amor: no en que nosotros hayamos amado a Dios, sino en que él nos amó a nosotros y envió a su Hijo como expiación por nuestros pecados." — 1 Juan 4:10</blockquote>
+    <p>El origen del amor no está de nuestro lado. No empezó cuando nos portamos bien. No empezó cuando decidimos creer. El amor de Dios en la Biblia siempre va primero. Nosotros respondemos a algo que ya existía.</p>
+    <p>Y en el Salmo 136, esa verdad se repite en cada versículo como un refrán que el pueblo debía aprender de memoria: "porque para siempre es su misericordia." Veintisiete veces seguidas. Como si Dios supiera que la mente humana necesita escucharlo muchas veces antes de poder creerlo de verdad.</p>
+    <blockquote class="bible-quote">"Con amor eterno te he amado; por tanto, te prolongué mi misericordia." — Jeremías 31:3</blockquote>
+    <p>Qué dice la Biblia sobre el amor de Dios, en síntesis, es esto: que es primero, que es incondicional, que no tiene fondo y que no tiene techo. No hay versículo que lo condicione al mérito. No hay texto que lo ponga en duda. El amor de Dios en la Biblia es el punto de partida, no la recompensa final.</p>
+
+    <h2>Lo que la ciencia dice (y por qué coincide)</h2>
+    <p>Los estudios sobre apego en psicología documentaron algo que la Biblia enseña desde hace siglos: los seres humanos necesitan saber que son amados de manera incondicional para poder funcionar con plenitud. Cuando una persona crece con amor condicionado, el cerebro desarrolla patrones de ansiedad, autoexigencia y miedo al rechazo que son muy difíciles de revertir.</p>
+    <p>Pero los mismos estudios documentan lo contrario: cuando alguien experimenta un amor que no depende del rendimiento, que no se va cuando llega el fracaso, que no tiene condiciones ocultas, la regulación emocional mejora profundamente. La persona puede arriesgarse, equivocarse, crecer. El miedo al rechazo pierde su fuerza porque ya no define el valor propio.</p>
+    <p>El amor incondicional de Dios no es solo teología. Es exactamente lo que el cerebro humano necesita para sanar. Zaqueo lo experimentó debajo de esa higuera sin saber de neurociencia. Lo que sí supo es que alguien lo miró y no lo encontró deficiente.</p>
+
+    <h2>Una oración para sentir el amor de Dios</h2>
+    <p>Si hoy te cuesta creer que Dios me ama, si llevás años convencido de que hay algo en tu historia que te excluye del amor de Dios, si los versículos bíblicos sobre el amor de Dios suenan hermosos para otros pero no terminás de recibirlos para vos mismo, esta oración es para ese lugar exacto.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hay una parte de mí que todavía no cree del todo<br/>
+      que me amás como dice Tu Palabra.<br/>
+      Que el amor de Dios es para los que lo merecen,<br/>
+      y que yo no termino de entrar en esa categoría.<br/><br/>
+      Hoy vengo como Zaqueo.<br/>
+      Trepado a algo, tratando de verte desde lejos,<br/>
+      creyendo que desde ahí no me vas a notar.<br/>
+      Pero Tu Palabra dice que sabés mi nombre.<br/>
+      Que el amor incondicional de Dios no pide mérito previo.<br/>
+      Que no hay nada en mí ni fuera de mí<br/>
+      que pueda separarme de ese amor.<br/><br/>
+      Necesito que esa verdad baje del árbol y entre a mi casa.<br/>
+      Que no se quede en lo intelectual.<br/>
+      Que la sienta.<br/><br/>
+      Decime mi nombre hoy, Señor.<br/>
+      No el nombre de quien quisiera ser.<br/>
+      El mío. Con todo lo que eso incluye.<br/>
+      Y dejame recibirte tal como estoy.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo recibir el amor de Dios: pasos concretos</h2>
+    <p>La historia de Zaqueo no es solo inspiración. Es también un mapa práctico para recibir el amor de Dios en la Biblia de manera concreta:</p>
+    <p><strong>1. Buscarlo aunque te sientas indigno.</strong> Zaqueo no esperó sentirse merecedor. Trepó el árbol tal como estaba. La búsqueda es suficiente punto de partida. "Dios me ama" no es una conclusión que se alcanza cuando uno está listo; es la premisa desde la que se puede empezar a moverse.</p>
+    <p><strong>2. Dejarte ver.</strong> Zaqueo fue encontrado en su lugar más expuesto, trepado en un árbol en medio de la ciudad. Esconderse detrás de lo que hiciste no te protege; te aleja del encuentro que lo cambia todo. El amor incondicional de Dios no requiere que te presentes limpio.</p>
+    <p><strong>3. Recibir la visita antes de prometerte cambiar.</strong> Zaqueo recibió a Jesús antes de anunciar que devolvería lo robado. El cambio llegó después del encuentro. El amor de Dios no espera que estés mejor. Llega cuando todavía estás como estás.</p>
+    <p><strong>4. Dejar que el amor produzca el cambio.</strong> Lo que transformó a Zaqueo no fue la presión exterior ni la culpa acumulada. Fue ser amado cuando no lo esperaba. El amor de Dios en la Biblia siempre transforma desde adentro hacia afuera, nunca al revés.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Jesús cerró ese día con una frase que define todo el sentido de su venida:</p>
+    <blockquote class="bible-quote">"El Hijo del Hombre vino a buscar y a salvar lo que se había perdido." — Lucas 19:10</blockquote>
+    <p>No vino a buscar a los que ya estaban bien. No vino a los que ya se habían arreglado. Vino a buscar. A los que están trepados en árboles creyendo que desde arriba podrán ver sin ser vistos.</p>
+    <p>El amor incondicional de Dios no es el destino de los que llegaron. Es el punto de partida de los que todavía no saben si merecen bajar.</p>
+    <p>Bajá.</p>
+    <p>Si estás buscando versículos bíblicos sobre el amor de Dios que hablen directo al corazón, si querés entender qué dice la Biblia sobre el amor de Dios y cómo recibir el amor incondicional de Dios en tu propia historia, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
