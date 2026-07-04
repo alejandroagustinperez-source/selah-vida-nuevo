@@ -1211,6 +1211,83 @@ const articles = [
     <p>Si estás buscando versículos bíblicos sobre el amor de Dios que hablen directo al corazón, si querés entender qué dice la Biblia sobre el amor de Dios y cómo recibir el amor incondicional de Dios en tu propia historia, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "oracion-para-encontrar-la-paz-interior",
+    title: "Oración para encontrar la paz interior: qué dice la Biblia sobre la paz",
+    date: "22 de junio, 2026",
+    excerpt: "Elías acababa de ganar la batalla espiritual más grande de su vida y horas después quería morir. Descubrí qué dice la Biblia sobre la paz y cómo Dios se le apareció no en el viento ni en el terremoto, sino en un silencio delicado.",
+    metaDescription: "Descubrí qué dice la Biblia sobre la paz a través de la historia de Elías en el monte Horeb. Versículos bíblicos para la paz interior, cómo encontrar paz en Dios y una oración para calmar la mente cuando todo parece demasiado.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Filipenses 4:7 — "Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones."</div>
+      <div class="verse-card">📖 Juan 14:27 — "La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da."</div>
+      <div class="verse-card">📖 Isaías 26:3 — "Tú guardarás en completa paz a aquel cuyo pensamiento en ti persevera."</div>
+    </div>
+
+    <p>Elías estaba sentado debajo de un enebro, en medio del desierto, pidiéndole a Dios que lo dejara morir.</p>
+    <p>Un día antes había hecho descender fuego del cielo delante de todo Israel, había vencido sin ayuda de nadie a cuatrocientos cincuenta profetas de Baal, y había orado hasta que la lluvia volvió después de tres años de sequía. Era, en ese momento, el hombre más poderoso espiritualmente de todo el reino. Y sin embargo, veinticuatro horas después, corría por su vida hacia el desierto, agotado, solo, y absolutamente destrozado por dentro.</p>
+    <p>La reina Jezabel había mandado un mensaje: para esta hora mañana, vas a estar muerto. Y Elías, que no le había tenido miedo al fuego del cielo ni a cuatrocientos profetas enemigos, sintió un terror que le apagó de golpe toda la victoria del día anterior. Corrió un día entero por el desierto, se sentó bajo un enebro y dijo, con las palabras exactas que registra el texto: "Basta ya, Jehová, quítame la vida." Su mente no paraba de repetir la amenaza, la huida, el fracaso que sentía a pesar de la victoria reciente.</p>
+    <p>Si Elías viviera hoy, lo reconoceríamos enseguida. Es esa persona que por fuera parece que tiene todo resuelto, y que por dentro se apagó de golpe sin que nadie entienda del todo por qué. Es quien busca cómo encontrar paz en Dios después de un golpe que lo dejó sin aire, alguien que necesita versículos bíblicos para la paz interior porque la mente no deja de darle vueltas a lo mismo.</p>
+
+    <h2>La paz interior no es ausencia de problemas</h2>
+    <p>Antes de seguir, hace falta desarmar un malentendido que lastima a muchas personas de fe: la idea de que tener paz interior significa que los problemas desaparecieron. Que si de verdad confiás en Dios, no deberías estar agotado, ni asustado, ni con la mente hecha un nudo. Eso no es lo que dice la Biblia sobre la paz.</p>
+    <p>Elías, el profeta que acababa de protagonizar uno de los milagros más grandes del Antiguo Testamento, quería morir un día después. David escribió salmos enteros desde el fondo de la angustia. Jesús mismo, en Getsemaní, dijo que su alma estaba "muy triste, hasta la muerte". La paz interior que ofrece la Biblia no es la eliminación del problema, sino una presencia que sostiene en medio de él. Qué dice la Biblia sobre la paz, en el fondo, es esto: que no depende de que las circunstancias se acomoden primero.</p>
+
+    <h2>Juan 14:27: la paz que Jesús promete no es la del mundo</h2>
+    <blockquote class="bible-quote">"La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo." — Juan 14:27</blockquote>
+    <p>Jesús dijo estas palabras la misma noche en que sabía que iba a ser traicionado, arrestado y ejecutado. No las dijo en un momento de tranquilidad, sino horas antes de la peor noche de su vida terrenal.</p>
+    <p>Y hace una distinción que cambia todo: hay una paz que da el mundo, y hay una paz que da él. La paz del mundo depende de que todo esté en orden y se rompe apenas cambia algo. La paz que Jesús ofrece no depende de nada de eso. Se sostiene incluso cuando todo lo demás tiembla.</p>
+    <blockquote class="bible-quote">"Y la paz de Dios, que sobrepasa todo entendimiento, guardará vuestros corazones y vuestros pensamientos en Cristo Jesús." — Filipenses 4:7</blockquote>
+    <p>Esa frase, "paz que sobrepasa todo entendimiento", no describe una paz que tiene lógica. Describe una paz que llega igual, sin que las circunstancias la justifiquen. Una paz que no se puede explicar del todo, pero que se puede recibir.</p>
+
+    <h2>Lo que Elías descubrió en la cueva del monte Horeb</h2>
+    <p>Volvamos al desierto. Un ángel despertó a Elías dos veces para que comiera, porque el camino que le esperaba era demasiado largo para hacerlo con el cuerpo vacío. Con esa fuerza, Elías caminó cuarenta días y cuarenta noches hasta el monte Horeb, y se metió en una cueva.</p>
+    <p>Ahí, Dios le hizo una pregunta que parece simple pero no lo es: "¿Qué haces aquí, Elías?" Y el profeta respondió con todo lo que llevaba adentro: que había trabajado con celo por Dios, que Israel había abandonado el pacto, que él era el único que quedaba fiel, y que ahora buscaban matarlo también a él. Todo el peso, dicho en voz alta.</p>
+    <p>Entonces Dios le dijo que saliera y se parara en el monte, porque iba a pasar delante de él. Vino un viento grande y fuerte que rompía las montañas y quebraba las peñas: Jehová no estaba en el viento. Después vino un terremoto, y tampoco ahí estaba Dios. Después, fuego. Y otra vez: Dios no estaba en el fuego.</p>
+    <p>Y después del fuego, dice el texto, vino "un silbo apacible y delicado". Un susurro suave, un silencio con forma de voz. Ahí, en ese sonido casi imperceptible, Elías cubrió su rostro con su manto, porque supo que Dios estaba presente.</p>
+    <p>Esa es, quizás, una de las revelaciones más importantes de toda la Biblia sobre la paz: Dios no siempre se manifiesta en lo espectacular. La paz interior aparece después, en el silencio, cuando dejamos de esperar que la respuesta llegue con ruido.</p>
+
+    <h2>Qué dice la ciencia sobre la calma (y por qué coincide con la Biblia)</h2>
+    <p>La neurociencia moderna documentó algo parecido a lo que Elías vivió en esa cueva: el sistema nervioso no se regula en medio del ruido, se regula en la quietud. Cuando una persona reduce el estímulo externo, el cuerpo activa el sistema parasimpático, el que permite descansar y pensar con claridad otra vez. Buscar silencio para orar no es solamente una disciplina espiritual: es lo que el cuerpo necesita para salir del estado de alarma. Cómo encontrar paz en Dios empieza, muchas veces, apagando el ruido de afuera.</p>
+
+    <h2>Una oración para encontrar la paz interior</h2>
+    <p>Si hoy tu mente no para, si por fuera parece que todo está bien pero por dentro estás agotado como Elías bajo el enebro, esta oración es para vos. No hace falta que sea perfecta. Solo hace falta que sea sincera.</p>
+
+    <div class="prayer-block">
+      Señor,<br/><br/>
+      hoy mi mente es un desierto ruidoso.<br/>
+      Hay vientos que rompen cosas por dentro,<br/>
+      terremotos de preocupación,<br/>
+      un fuego de pensamientos que no se apaga.<br/><br/>
+      Y no te encuentro en nada de eso.<br/>
+      Como Elías, busco respuestas en lo grande y lo estruendoso,<br/>
+      y sigo sin sentir paz.<br/><br/>
+      Ayudame a quedarme quieto el tiempo suficiente<br/>
+      para escuchar tu silbo apacible y delicado.<br/>
+      Para reconocerte no en el ruido,<br/>
+      sino en el silencio que viene después.<br/><br/>
+      Tu Palabra dice que tu paz sobrepasa todo entendimiento.<br/>
+      Que no se parece a la paz que da el mundo.<br/>
+      Que guarda el corazón y los pensamientos<br/>
+      aunque las circunstancias no cambien todavía.<br/><br/>
+      Dame esa paz hoy.<br/>
+      No la que depende de que todo se resuelva.<br/>
+      La otra. La tuya.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>Cómo encontrar paz en Dios: pasos concretos</h2>
+    <p>La historia de Elías en el Horeb es también un mapa concreto para encontrar paz interior en medio de la propia tormenta:</p>
+    <p><strong>1. Decí en voz alta todo lo que estás cargando.</strong> Elías no le ocultó nada a Dios: ni el miedo, ni el cansancio, ni las ganas de rendirse. La oración para encontrar la paz interior empieza siendo honesta, no prolija.</p>
+    <p><strong>2. Cuidá el cuerpo antes de exigirle al espíritu.</strong> El ángel le dio de comer y dormir a Elías antes de mandarlo a caminar. A veces la paz interior empieza con descanso, no con más fuerza de voluntad.</p>
+    <p><strong>3. Buscá el silencio en vez de más ruido.</strong> Dios no estaba en el viento, ni en el terremoto, ni en el fuego. Apagá un estímulo más y hacé lugar para el silbo apacible y delicado.</p>
+    <p><strong>4. Esperá la paz que sobrepasa todo entendimiento.</strong> Isaías lo dice con claridad: "Tú guardarás en completa paz a aquel cuyo pensamiento en ti persevera." La paz llega cuando el pensamiento se sostiene en Dios, no cuando el problema desaparece.</p>
+
+    <h2>Un último pensamiento</h2>
+    <p>Después del silbo apacible, Dios le repitió la misma pregunta a Elías: "¿Qué haces aquí?" Elías repitió la misma respuesta, palabra por palabra, pero algo había cambiado. Esta vez, Dios le dio instrucciones concretas, un propósito, la certeza de que no estaba tan solo como creía. La tormenta de afuera seguía ahí, Jezabel seguía queriendo matarlo, pero algo por dentro se había reordenado. Eso es lo que dice la Biblia sobre la paz: no siempre llega resolviendo el problema, sino reordenando lo que pasa por dentro mientras el problema todavía está ahí. Vos también podés encontrar ese silencio.</p>
+    <p>Si estás buscando versículos bíblicos para la paz interior que hablen directo a tu corazón, si querés entender qué dice la Biblia sobre la paz y aprender cómo encontrar paz en Dios incluso en medio de la tormenta, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
