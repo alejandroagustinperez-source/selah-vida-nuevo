@@ -128,7 +128,7 @@ export default function KidsStory() {
 
   if (loading) {
     return (
-      <section className="min-h-screen pt-28 pb-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+      <section className="min-h-screen overflow-x-hidden px-6" style={{ backgroundColor: '#FAF7F2', paddingTop: 'calc(7rem + env(safe-area-inset-top, 0px))', paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
         <div className="max-w-3xl mx-auto flex justify-center py-20">
           <div className="animate-pulse text-sm" style={{ color: '#C9922A' }}>Cargando historia…</div>
         </div>
@@ -141,11 +141,11 @@ export default function KidsStory() {
   const currentNode = story.nodes.find((n) => n.id === currentNodeId);
 
   return (
-    <section className="min-h-screen pt-28 pb-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+    <section className="min-h-screen overflow-x-hidden px-6" style={{ backgroundColor: '#FAF7F2', paddingTop: 'calc(7rem + env(safe-area-inset-top, 0px))', paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
       <div className="max-w-[620px] mx-auto">
         {/* Breadcrumb */}
         <div className="mb-8">
-          <Link to="/ninos" className="text-[10px] tracking-[0.2em] uppercase font-semibold transition-opacity hover:opacity-70" style={{ color: '#C9922A' }}>
+          <Link to="/ninos" className="inline-block py-2 text-[10px] tracking-[0.2em] uppercase font-semibold transition-opacity hover:opacity-70" style={{ color: '#C9922A', minHeight: '44px' }}>
             ← Volver a historias
           </Link>
         </div>
@@ -156,7 +156,9 @@ export default function KidsStory() {
             <div className="mb-8">
               {story.cover_image_url ? (
                 <div className="inline-block p-2" style={{ backgroundColor: '#FAF7F2', border: '1px solid #C9922A', borderRadius: '12px' }}>
-                  <img src={story.cover_image_url} alt={story.title} className="w-full max-w-sm mx-auto" style={{ borderRadius: '8px', maxHeight: '280px', objectFit: 'cover' }} />
+                  <div className="max-w-sm mx-auto" style={{ borderRadius: '8px', overflow: 'hidden', aspectRatio: '16 / 9' }}>
+                    <img src={story.cover_image_url} alt={story.title} loading="lazy" className="w-full h-full" style={{ objectFit: 'cover' }} />
+                  </div>
                 </div>
               ) : (
                 <div className="w-24 h-24 mx-auto flex items-center justify-center" style={{ backgroundColor: '#0F3D3D', borderRadius: '50%' }}>
@@ -260,18 +262,21 @@ export default function KidsStory() {
             {/* Framed image */}
             {currentNode.image && (
               <div className="mb-8" style={{ backgroundColor: '#FAF7F2', border: '1px solid #C9922A', borderRadius: '12px', padding: '6px' }}>
-                <img
-                  src={currentNode.image}
-                  alt=""
-                  className="w-full"
-                  style={{ borderRadius: '8px', maxHeight: '320px', objectFit: 'cover' }}
-                />
+                <div style={{ borderRadius: '8px', overflow: 'hidden', aspectRatio: '16 / 9' }}>
+                  <img
+                    src={currentNode.image}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
               </div>
             )}
 
             {/* Text in Lora */}
             <div className="mb-8 px-2">
-              <p className="text-base leading-relaxed" style={{ color: '#3D3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.7' }}>
+              <p className="leading-relaxed" style={{ color: '#3D3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.7', fontSize: 'clamp(14px, 4vw, 16px)' }}>
                 {currentNode.text}
               </p>
             </div>
@@ -347,7 +352,7 @@ export default function KidsStory() {
                           >
                             {choice.letter}
                           </span>
-                          <span className="text-sm leading-relaxed" style={{ color: '#0F3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.6' }}>
+                          <span className="text-sm leading-relaxed" style={{ color: '#0F3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.6', fontSize: 'clamp(13px, 3.8vw, 14px)' }}>
                             {choice.text}
                           </span>
                         </div>

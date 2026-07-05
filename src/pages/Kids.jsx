@@ -26,14 +26,14 @@ export default function Kids() {
   };
 
   return (
-    <section className="min-h-screen pt-28 pb-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
+    <section className="min-h-screen overflow-x-hidden px-6" style={{ backgroundColor: '#FAF7F2', paddingTop: 'calc(7rem + env(safe-area-inset-top, 0px))', paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs tracking-[0.2em] font-semibold mb-3" style={{ color: '#C9922A' }}>SELAH VIDA</p>
-          <h1 className="font-serif text-3xl md:text-4xl font-bold" style={{ color: '#0F3D3D' }}>
+          <h1 className="font-serif font-bold" style={{ color: '#0F3D3D', fontSize: 'clamp(26px, 7vw, 36px)' }}>
             Selah Kids
           </h1>
-          <p className="mt-3 text-sm md:text-base italic" style={{ color: 'rgba(15,61,61,0.65)', fontFamily: "'Lora', Georgia, serif" }}>
+          <p className="mt-3 italic" style={{ color: 'rgba(15,61,61,0.65)', fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(13px, 4vw, 16px)' }}>
             Aventuras bíblicas interactivas para chicos de 6 a 9 años
           </p>
           <div className="flex items-center justify-center gap-3 mt-6">
@@ -69,13 +69,15 @@ function StoryCard({ story, totalPages }) {
         backgroundColor: '#FFFFFF',
         border: '1px solid #E8DFC8',
         borderRadius: '12px',
+        minHeight: '44px',
       }}
     >
-      <div className="relative" style={{ height: '150px', overflow: 'hidden' }}>
+      <div className="relative" style={{ aspectRatio: '16 / 9', overflow: 'hidden' }}>
         {story.cover_image_url ? (
           <img
             src={story.cover_image_url}
             alt={story.title}
+            loading="lazy"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (

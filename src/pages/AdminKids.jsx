@@ -140,14 +140,16 @@ export default function AdminKids() {
               <label className="block text-xs text-gray-400 mb-1">Título</label>
               <input
                 type="text" name="title" required value={form.title} onChange={handleChange}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+                style={{ fontSize: '16px' }}
               />
             </div>
             <div>
               <label className="block text-xs text-gray-400 mb-1">Slug</label>
               <input
                 type="text" name="slug" required value={form.slug} onChange={handleChange}
-                className="w-full px-3 py-2 rounded-lg text-sm bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+                className="w-full px-3 py-2 rounded-lg bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+                style={{ fontSize: '16px' }}
               />
             </div>
           </div>
@@ -156,7 +158,8 @@ export default function AdminKids() {
             <label className="block text-xs text-gray-400 mb-1">URL de portada</label>
             <input
               type="text" name="cover_image_url" value={form.cover_image_url} onChange={handleChange}
-              className="w-full px-3 py-2 rounded-lg text-sm bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+              className="w-full px-3 py-2 rounded-lg bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors"
+              style={{ fontSize: '16px' }}
             />
           </div>
 
@@ -172,7 +175,8 @@ export default function AdminKids() {
             <label className="block text-xs text-gray-400 mb-1">Nodes (JSON)</label>
             <textarea
               name="nodes" required value={form.nodes} onChange={handleChange} rows={12}
-              className="w-full px-3 py-2 rounded-lg text-xs font-mono bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors resize-y"
+              className="w-full px-3 py-2 rounded-lg font-mono bg-[#0d1b2a] border border-[#1e2d4a] text-white outline-none focus:border-gold transition-colors resize-y"
+              style={{ fontSize: '16px' }}
             />
           </div>
 
