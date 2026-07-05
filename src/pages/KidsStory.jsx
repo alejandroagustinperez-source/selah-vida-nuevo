@@ -142,7 +142,7 @@ export default function KidsStory() {
 
   return (
     <section className="min-h-screen pt-28 pb-20 px-6" style={{ backgroundColor: '#FAF7F2' }}>
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-[620px] mx-auto">
         {/* Breadcrumb */}
         <div className="mb-8">
           <Link to="/ninos" className="text-[10px] tracking-[0.2em] uppercase font-semibold transition-opacity hover:opacity-70" style={{ color: '#C9922A' }}>
@@ -236,21 +236,30 @@ export default function KidsStory() {
         {/* Node screen */}
         {currentNode && !completed && (
           <div>
-            {/* Chapter eyebrow */}
-            <div className="text-center mb-6">
-              <p className="text-[10px] tracking-[0.2em] font-semibold uppercase" style={{ color: '#C9922A' }}>
-                Capítulo {currentNode.chapter}{currentNode.title ? ` · ${currentNode.title}` : ''}
-              </p>
-              <div className="flex items-center justify-center gap-3 mt-3">
-                <div className="h-px flex-1 max-w-[40px]" style={{ backgroundColor: '#C9922A' }} />
-                <span className="text-xs select-none" style={{ color: '#C9922A' }}>◇</span>
-                <div className="h-px flex-1 max-w-[40px]" style={{ backgroundColor: '#C9922A' }} />
+            {/* Progress bar */}
+            {currentIndex > 0 && totalPages > 0 && (
+              <div className="mb-5">
+                <div style={{ height: '3px', backgroundColor: '#EFE7D3', borderRadius: '2px', overflow: 'hidden' }}>
+                  <div style={{ height: '100%', width: `${(currentIndex / totalPages) * 100}%`, backgroundColor: '#C9922A', borderRadius: '2px', transition: 'width 0.3s ease' }} />
+                </div>
               </div>
+            )}
+
+            {/* Chapter + page (same line) */}
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-[11px] tracking-[0.2em] font-bold uppercase" style={{ color: '#C9922A' }}>
+                {currentNode.chapter}
+              </p>
+              {currentIndex > 0 && totalPages > 0 && (
+                <p className="text-[11px] italic" style={{ color: '#8FAEA9', fontFamily: "'Lora', Georgia, serif" }}>
+                  Página {currentIndex} de {totalPages}
+                </p>
+              )}
             </div>
 
             {/* Framed image */}
             {currentNode.image && (
-              <div className="mb-8 p-2" style={{ backgroundColor: '#FAF7F2', border: '1px solid #C9922A', borderRadius: '12px' }}>
+              <div className="mb-8" style={{ backgroundColor: '#FAF7F2', border: '1px solid #C9922A', borderRadius: '12px', padding: '6px' }}>
                 <img
                   src={currentNode.image}
                   alt=""
@@ -270,35 +279,82 @@ export default function KidsStory() {
             {/* Choices */}
             {currentNode.choices && currentNode.choices.length > 0 && (
               <div className="mb-12">
-                <p className="text-[10px] tracking-[0.2em] font-semibold uppercase mb-5 text-center" style={{ color: '#C9922A' }}>
-                  ¿Qué hacés?
-                </p>
-                {currentNode.choices.map((choice, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleChoice(choice.goto)}
-                    className="w-full text-left py-5 transition-all hover:opacity-70"
-                    style={{ borderBottom: idx < currentNode.choices.length - 1 ? '1px solid #E8DFC8' : 'none' }}
-                  >
-                    <div className="flex items-start gap-3 px-2">
-                      <span className="font-serif font-bold text-lg leading-none shrink-0" style={{ color: '#8B1A1A' }}>
-                        {choice.letter}
-                      </span>
-                      <span className="text-sm leading-relaxed" style={{ color: '#0F3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.6' }}>
-                        {choice.text}
-                      </span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            )}
+                {/* "¿Qué hacés?" separator */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#E8DFC8' }} />
+                  <span className="text-[11px] tracking-[0.2em] font-bold uppercase shrink-0" style={{ color: '#8B1A1A' }}>
+                    ¿Qué hacés?
+                  </span>
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#E8DFC8' }} />
+                </div>
 
-            {/* Progress indicator */}
-            {currentIndex > 0 && totalPages > 0 && (
-              <div className="text-center pb-6">
-                <p className="text-[11px] italic" style={{ color: 'rgba(15,61,61,0.4)', fontFamily: "'Lora', Georgia, serif" }}>
-                  Página {currentIndex} de {totalPages}
-                </p>
+                <div className="flex flex-col gap-3">
+                  {currentNode.choices.map((choice, idx) => {
+                    const isContinue = currentNode.choices.length === 1 && !choice.letter;
+                    return isContinue ? (
+                      <button
+                        key={idx}
+                        onClick={() => handleChoice(choice.goto)}
+                        className="w-full text-center px-8 py-4 text-xs tracking-[0.2em] font-semibold uppercase"
+                        style={{
+                          backgroundColor: '#0F3D3D',
+                          color: '#FAF7F2',
+                          borderRadius: '10px',
+                          cursor: 'pointer',
+                          transition: '0.15s',
+                        }}
+                        onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; }}
+                        onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.98)'; }}
+                        onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                      >
+                        {choice.text}
+                      </button>
+                    ) : (
+                      <button
+                        key={idx}
+                        onClick={() => handleChoice(choice.goto)}
+                        className="w-full text-left"
+                        style={{
+                          backgroundColor: '#FDFBF7',
+                          border: '1px solid #E8DFC8',
+                          borderRadius: '10px',
+                          padding: '14px 18px',
+                          cursor: 'pointer',
+                          transition: '0.15s',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#F5EEDD';
+                          e.currentTarget.style.borderColor = '#C9922A';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#FDFBF7';
+                          e.currentTarget.style.borderColor = '#E8DFC8';
+                        }}
+                        onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.98)'; }}
+                        onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                      >
+                        <div className="flex items-start gap-3">
+                          <span
+                            className="inline-flex items-center justify-center shrink-0 font-serif font-bold text-sm"
+                            style={{
+                              backgroundColor: '#8B1A1A',
+                              color: '#FFFFFF',
+                              width: '28px',
+                              height: '28px',
+                              borderRadius: '50%',
+                            }}
+                          >
+                            {choice.letter}
+                          </span>
+                          <span className="text-sm leading-relaxed" style={{ color: '#0F3D3D', fontFamily: "'Lora', Georgia, serif", lineHeight: '1.6' }}>
+                            {choice.text}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
