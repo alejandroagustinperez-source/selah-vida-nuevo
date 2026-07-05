@@ -8,12 +8,13 @@ export default function Navbar() {
   const location = useLocation();
 
   const isHome = location.pathname === '/';
-  const showFullNav = isHome || location.pathname.startsWith('/blog') || location.pathname === '/contacto' || location.pathname === '/login' || location.pathname === '/register';
+  const showFullNav = isHome || location.pathname.startsWith('/blog') || location.pathname === '/contacto' || location.pathname === '/login' || location.pathname === '/register' || location.pathname.startsWith('/ninos');
 
   const homeLinks = [
     { href: isHome ? '#problema' : '/#problema', label: 'Problema' },
     { href: isHome ? '#solucion' : '/#solucion', label: 'Solución' },
     { href: isHome ? '#testimonios' : '/#testimonios', label: 'Testimonios' },
+
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
     { href: isHome ? '#precios' : '/#precios', label: 'Precios' },

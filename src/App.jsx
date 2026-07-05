@@ -29,6 +29,9 @@ import Terminos from './pages/Terminos';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
+import Kids from './pages/Kids';
+import KidsStory from './pages/KidsStory';
+import AdminKids from './pages/AdminKids';
 import AuthCallback from './pages/AuthCallback';
 import ManuscriptBorders from './components/ManuscriptBorders';
 import RafaelWidget from './components/RafaelWidget';
@@ -102,6 +105,9 @@ export default function App() {
           <Route path="/canvas" element={<ProtectedLayout><Canvas /></ProtectedLayout>} />
           <Route path="/prayer" element={<ProtectedLayout><Prayer /></ProtectedLayout>} />
           <Route path="/admin" element={<ProtectedLayout><Admin /></ProtectedLayout>} />
+          <Route path="/admin/ninos" element={<ProtectedLayout><AdminKids /></ProtectedLayout>} />
+          <Route path="/ninos" element={<><Navbar /><Kids /><Divider /><Footer /></>} />
+          <Route path="/ninos/:slug" element={<><Navbar /><KidsStory /><Footer /></>} />
           <Route path="/privacy" element={<><Navbar /><Privacy /></>} />
           <Route path="/terms" element={<><Navbar /><Terms /></>} />
           <Route path="/terminos" element={<><Navbar /><Terminos /></>} />

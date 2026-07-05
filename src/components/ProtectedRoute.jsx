@@ -1,10 +1,17 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+
+const DEV_BYPASS_ROUTES = ['/ninos', '/admin/ninos'];
 
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
+  const location = useLocation();
 
-  if (loading) {
+  const isDev = import.meta.env.DEV;
+  const isKidsOrAdminNinos = DEV_BYPASS_ROUTES.includes(location.pathname) || location.pathname.startsWith('/ninos/');
+  const skipAuth = isDev && isKidsOrAdminNinos;
+
+  if (loading && !skipAuth) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-cream">
         <div className="text-center">
@@ -15,7 +22,7 @@ export default function ProtectedRoute({ children }) {
     );
   }
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!skipAuth && !user) return <Navigate to="/login" replace />;
 
   return children;
 }
