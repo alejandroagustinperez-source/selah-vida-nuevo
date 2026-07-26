@@ -1395,6 +1395,103 @@ const articles = [
     <p>Si estás buscando versículos bíblicos para la paz interior que hablen directo a tu corazón, si querés entender qué dice la Biblia sobre la paz y aprender cómo encontrar paz en Dios incluso en medio de la tormenta, <a href="/register">Selah Vida fue creado para acompañarte</a>.</p>
     `,
   },
+  {
+    slug: "oracion-para-cuando-te-sentis-abandonado-por-dios",
+    title: "Oración para cuando te sentís abandonado por Dios",
+    date: "24 de junio, 2026",
+    excerpt: "Job perdió todo de un día para el otro: su familia, su salud, su dinero. Y en medio de todo eso, sintió que Dios lo había abandonado. Descubrí qué dice la Biblia sobre el abandono y una oración para cuando sentís que Dios no está.",
+    metaDescription: "Descubrí qué dice la Biblia sobre el abandono de Dios. La historia de Job, el hombre que perdió todo y sintió que Dios se había ido, y una oración para cuando te sentís abandonado por Dios.",
+    content: `
+    <div class="key-verses">
+      <div class="verse-card">📖 Job 1:21 — " desnudo salí del vientre de mi madre, y desnudo volveré allá. Jehová dio, y Jehová quitó; sea el nombre de Jehová bendito."</div>
+      <div class="verse-card">📖 Hebreos 13:5 — "No te desampararé, ni te dejaré."</div>
+      <div class="verse-card">📖 Salmo 34:18 — "Jehová está cerca de los quebrantados de corazón."</div>
+    </div>
+
+    <p>Era una tarde cualquiera cuando todo se derrumbó.</p>
+    <p>Job estaba sentado en la entrada de su casa, probablemente tomando mate o mirando el horizonte, cuando el primero de una serie de mensajeros llegó corriendo. "Los saqueos se llevaron todo tu ganado." Antes de que pudiera procesar lo que escuchaba, llegaba el segundo. "Un rayo cayó sobre la casa de tus hijos. No quedó nadie." En cuestión de minutos, Job pasó de ser el hombre más rico de la región a no tener nada. Ni siquiera tenía la salud para llorar, porque不久 después, su cuerpo se cubrió de llagas que le arrancaban gritos de dolor cada vez que respiraba.</p>
+    <p>Su esposa le dijo: "Renuncíá a Dios y morí." Sus amigos se sentaron a su lado durante siete días sin decir nada. Cuando finalmente hablaron, cada uno le explicó por qué se lo merecía. Porque eso hacemos, ¿no? Cuando alguien sufre, buscamos una razón. Algo que justifique el dolor. Algo que nos dé la ilusión de control.</p>
+    <p>Pero Job no aceptó esas explicaciones. Y lo que hizo después es una de las cosas más radicales que registran las Escrituras: le habló a Dios sin filtros, sin censura, sin miedo. Le dijo todo lo que sentía. Y lo que sentía, en esencia, era una sola cosa: "Dios, ¿dónde estás?"</p>
+    <p>Si alguna vez te sentiste abandonado por Dios, si alguna vez tuviste la sensación de que rezaste y nadie escuchó, de que pediste ayuda y el cielo se quedó en silencio, de que todo se cayó a pedazos y Dios no hizo nada para evitarlo, entonces la historia de Job es también tu historia.</p>
+
+    <h2>◆ El abandono de Dios se siente real</h2>
+    <p>Antes de seguir, necesitamos ser honestos con algo: el sentimiento de abandono es real. No importa cuántos versículos memorices, no importa cuántas personas te digan "Dios nunca te abandona". Cuando estás en el medio del dolor, cuando la factura llegó y no sabés cómo pagarla, cuando el diagnóstico no era el que esperabas, cuando la persona que amás se fue, la sensación de que Dios no está puede ser aplastante.</p>
+    <p>Job lo sabía mejor que nadie. Y no lo escondió.</p>
+    <blockquote class="bible-quote">"Porqué que la luz que se me daba fue apagada, y la oscuridad que me rodeaba; la angustia me envuelve como ropa, y como agua me cubre el polvo del suelo; tu aliento corta mis oraciones, y tus tormentos me persiguen." — Job 3:23-25 (paráfrasis adaptada)</blockquote>
+    <p>Job no pecó al decir eso. No estaba siendo desobediente. Estaba siendo humano. Y Dios no lo castigó por su honestidad. De hecho, el libro de Job nos muestra algo sorprendente: Dios permitió que Job cuestionara. Le dio permiso para gritar, para llorar, para preguntar "por qué".</p>
+    <p>Porque la oración para cuando te sentís abandonado por Dios no empieza con un himno. Empieza con un grito.</p>
+
+    <h2>◆ Qué dice la Biblia sobre el abandono</h2>
+    <p>Uno de los malentendidos más dolorosos del cristianismo es la idea de que sentirse abandonado por Dios es pecado. Que es falta de fe. Que si tuvieras fe de verdad, no lo sentirías así.</p>
+    <p>Eso no es lo que dice la Biblia.</p>
+    <p>David, el hombre según el corazón de Dios, escribió en el Salmo 22:</p>
+    <blockquote class="bible-quote">"Dios mío, Dios mío, ¿por qué me has desamparado? ¿Por qué estás tan lejos de mi clamor, de mis palabras de angustia? Dios mío, clamo de día, y no me respondes; de noche, y no hay silencio para mí." — Salmo 22:1-2</blockquote>
+    <p>Estas mismas palabras las pronunció Jesús desde la cruz. El Hijo de Dios experimentó el abandono en carne propia. No fue una figura retórica. Fue la experiencia más cruda de lo que significa sentirse solo en el silencio de Dios.</p>
+    <p>Jeremías, el profeta llorón, le dijo directamente a Dios: "Me engañaste, y fui engañado." (Jeremías 20:7). No lo fulminó un rayo. Dios lo escuchó.</p>
+    <p>Elías, después de un milagro espectacular, huyó al desierto y le pidió que lo dejara morir. Y Dios le mandó comida y sueño antes de hablarle.</p>
+    <p>Dios nunca te abandona, pero eso no significa que nunca vas a sentir que lo hace. Hay una diferencia enorme entre la realidad de Dios y la percepción del dolor. Y la Biblia no ignora esa diferencia. La abraza.</p>
+
+    <h2>◆ Lo que Job descubrió en el silencio</h2>
+    <p>Job habló durante treinta y siete capítulos. Gritó, lloró, cuestionó, se defendió. Y Dios no respondió durante todo ese tiempo. Treinta y siete capítulos de silencio.</p>
+    <p>Si alguna vez esperaste una respuesta de Dios y no vino, sabés lo que Job vivió. Cada día que pasa sin una señal, sin un sueño, sin una palabra clara, se siente como un abandono más profundo. La mente empieza a construir historias: "No soy digno", "No oré lo suficiente", "Tal vez Dios se cansó de mí".</p>
+    <p>Pero el silencio de Dios no es su ausencia. Es algo que la Biblia repite una y otra vez: Dios es silencioso porque está trabajando, no porque se fue.</p>
+    <p>Finalmente, en el capítulo 38, Dios habló. Pero no le dio a Job las respuestas que pedía. Le hizo preguntas. Le mostró la inmensidad de la creación. Le recordó que hay cosas que el oído humano no puede escuchar, que la mente no puede procesar, pero que existen y tienen su lugar.</p>
+    <blockquote class="bible-quote">"¿Dónde estabas cuando yo fundaba la tierra? ¿Quién determinó sus medidas, si lo sabes? ¿Quién tendió sobre ella la cuerda?" — Job 38:4-5</blockquote>
+    <p>No fue una reprensión. Fue una invitación a ver más grande. A entender que el silencio de Dios no es indiferencia. Es un espacio donde la fe se fortalece, no donde se destruye. Fe en momentos de silencio de Dios es quizás la forma más pura de fe que existe.</p>
+
+    <h2>◆ La oración para cuando sentís que Dios se fue</h2>
+    <p>Si hoy estás en ese lugar, si sentís que Dios no está, si pediste ayuda y el cielo se quedó mudo, esta oración es para vos. No es una fórmula. No es un ritual. Es lo que tenés cuando no tenés otra cosa que poner en palabras.</p>
+
+    <div class="prayer-block">
+      Dios,<br/><br/>
+      hoy vengo sin palabras bonitas.<br/>
+      Vengo con el corazón roto,<br/>
+      con la certeza de que algo se rompió<br/>
+      y no sé cómo repararlo.<br/><br/>
+      Te pedí ayuda y no escuché respuesta.<br/>
+      Te pedí una señal y no vi nada.<br/>
+      Y ahora estoy acá,<br/>
+      sintiéndome más solo que nunca,<br/>
+      cuestionando si realmente estás ahí.<br/><br/>
+      Tu Palabra dice que no me desamparás,<br/>
+      que nunca me vas a dejar solo,<br/>
+      que estás cerca de los quebrantados de corazón.<br/>
+      Hoy necesito creer eso aunque no lo sienta.<br/>
+      Porque la fe no siempre se siente.<br/>
+      A veces se elige.<br/><br/>
+      Dame la fuerza para quedarme acá,<br/>
+      en este silencio, en esta duda,<br/>
+      sin huir de Vos aunque sienta que Vos te fuiste.<br/>
+      Dame la fe para creer que estás trabajando<br/>
+      aunque no pueda verlo ahora mismo.<br/><br/>
+      Yo confío en Vos. Aunque todo me diga que no.<br/>
+      Confío igual.<br/><br/>
+      Amén.
+    </div>
+
+    <h2>◆ Versículos bíblicos para sentirse solo y abandonado</h2>
+    <p>En los momentos de mayor oscuridad, la Biblia nos da versículos que se sostienen como un ancla cuando todo lo demás se va:</p>
+    <p><strong>Salmo 34:18</strong> — "Jehová está cerca de los quebrantados de corazón, y salva a los de espíritu abatido." No está cerca de los perfectos. Está cerca de los rotos. Si estás roto ahora mismo, estás más cerca de Dios de lo que creés.</p>
+    <p><strong>Isaías 43:2</strong> — "Si fueres por las aguas, yo estaré contigo; y si por los ríos, no te anegarán." No dice que las aguas no vengan. Dice que Él estará ahí mientras cruzás.</p>
+    <p><strong>2 Corintios 4:8-9</strong> — "Estamos atribulados en todo, pero no angustiados; en dudas, pero no desesperados; perseguidos, pero no desamparados." Pablo lo vivió. Y lo escribió como testigo, no como teoría.</p>
+    <p><strong>Deuteronomio 31:6</strong> — "No temas, ni te desanimes; porque Jehová tu Dios irá contigo, no te dejará, ni te desamparará." Esta es una promesa, no una opinión.</p>
+    <p>Estos versículos bíblicos para sentirse solo y abandonado no son pegatinas para poner en un espejo. Son palabras que la gente que ha estado en el abismo usó para no hundirse del todo.</p>
+
+    <h2>◆ Fe en momentos de silencio de Dios</h2>
+    <p>Lo más difícil de sentirse abandonado por Dios no es el dolor. Es el silencio. Es pedir y no recibir. Es orar y sentir que las palabras se quedan pegadas al techo. Es esperar una señal y ver solo techo.</p>
+    <p>Pero la Biblia tiene una palabra para eso: fe.</p>
+    <p>No la fe que se siente. No la fe que se ve. Sino la fe que se elige. La que dice "confío en Vos aunque no entienda" aunque todo dentro tuyo quiera huir.</p>
+    <blockquote class="bible-quote">"Sin fe es impossibile agradar a Dios; porque es necesario que el que se acerca a Dios crea que Él existe, y que es galardonador de los que le buscan." — Hebreos 11:6</blockquote>
+    <p>Job no entendió lo que le pasó. Nunca lo explicaron del todo. Pero al final del libro, después de que Dios le habló, Job dijo algo que cambia todo: "Yo te había oído de oídas, pero ahora mis te ven por mis ojos." (Job 42:5).</p>
+    <p>No dijo "ahora entiendo todo". Dijo "ahora te conozco de otra manera". El silencio de Dios no fue el fin de su fe. Fue el principio de una fe más profunda, más real, menos dependiente de respuestas y más anclada en la persona.</p>
+
+    <h2>◆ Un último pensamiento</h2>
+    <p>Si estás en ese lugar donde Dios parece lejano, donde la oración se siente vacía, donde el silencio es ensordecedor: no estás solo, aunque se sienta así.</p>
+    <p>Job estuvo ahí. David estuvo ahí. Jesús estuvo ahí. Y todos encontraron algo en ese silencio que no encontraron en el ruido.</p>
+    <p>No te pido que no dudes. Doubt es parte de la fe. Te pido que no te vayas. Quédate en el silencio. Es ahí, en ese espacio incómodo, donde Dios a veces hace su mejor obra.</p>
+    <p>Si estás buscando oración para cuando te sentís abandonado por Dios, versículos bíblicos para sentirte acompañado en la oscuridad, o un espacio para entender qué dice la Biblia sobre el abandono, <a href="/register">Selah Vida fue creado para acompañarte en ese camino</a>.</p>
+    `,
+  },
 ];
 
 export default articles;
