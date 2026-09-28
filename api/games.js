@@ -9,7 +9,7 @@ const supabase = createClient(
 );
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const MODEL = 'llama-3.1-8b-instant';
+const MODEL = 'openai/gpt-oss-20b';
 
 function buildPrompt(type, params = {}) {
   switch (type) {
@@ -57,6 +57,10 @@ async function callGroq(prompt) {
         { role: 'user', content: prompt },
       ],
       temperature: 0.7,
+      max_tokens: 1024,
+      reasoning_effort: 'low',
+      reasoning_format: 'hidden',
+      response_format: { type: 'json_object' },
     }),
   });
 
