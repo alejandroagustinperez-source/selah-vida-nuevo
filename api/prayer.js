@@ -82,13 +82,17 @@ REGLAS:
 
     if (message) {
       messages.push({ role: 'user', content: message });
+    } else if (mappedHistory.length === 0) {
+      messages.push({ role: 'user', content: 'Comencemos la oración.' });
     }
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.1-8b-instant',
+      model: 'openai/gpt-oss-20b',
       messages,
       temperature: 0.7,
-      max_tokens: 500,
+      max_tokens: 1500,
+      reasoning_effort: 'low',
+      reasoning_format: 'hidden',
     });
 
     const response = completion.choices?.[0]?.message?.content || '';
