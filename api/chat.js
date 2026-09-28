@@ -141,7 +141,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Configuración de IA incompleta' });
     }
 
-    const MODEL_NAME = 'llama-3.3-70b-versatile';
+    const MODEL_NAME = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 
     const mappedHistory = (history || []).slice(-20).map((msg) => ({
       role: msg.role === 'model' ? 'assistant' : msg.role,
@@ -164,7 +164,9 @@ export default async function handler(req, res) {
         model: MODEL_NAME,
         messages,
         temperature: 0.7,
-        max_tokens: 1024,
+        max_tokens: 2048,
+        reasoning_effort: 'low',
+        reasoning_format: 'hidden',
       });
     } catch (groqErr) {
       const status = groqErr.status || groqErr.code || 'unknown';
