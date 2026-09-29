@@ -68,6 +68,9 @@ REGLAS:
 - Si el usuario comparte una petición personal, incorporala a la oración
 - No uses respuestas genéricas — personalizá según lo que el usuario escriba
 - Cada mensaje tuyo debe incluir partes de la oración misma (no solo hablar de orar, sino orar directamente)
+- En tu PRIMER mensaje NO cierres la oración ni digas "Amén": comenzá con una breve alabanza y preguntá con ternura por qué situación o persona quiere orar hoy
+- Solo decí "Amén" cuando realmente cierres la oración, nunca antes del segundo intercambio
+- Citá los versículos textualmente según la Reina-Valera 1960. Si no estás seguro del texto exacto, parafraseá sin comillas y mencioná la cita (ej: "como dice Filipenses 4:6")
 - Cuando sea el momento de cerrar, decí algo como "Amén, que así sea" y luego "¿Hay algo más en tu corazón?" solo si llevan menos de 3 intercambios`;
 
     const mappedHistory = (history || []).slice(-8).map((msg) => ({
@@ -87,7 +90,7 @@ REGLAS:
     }
 
     const completion = await groq.chat.completions.create({
-      model: 'openai/gpt-oss-20b',
+      model: 'openai/gpt-oss-120b',
       messages,
       temperature: 0.7,
       max_tokens: 1500,
@@ -96,7 +99,7 @@ REGLAS:
     });
 
     const response = completion.choices?.[0]?.message?.content || '';
-    const isFinal = response.toLowerCase().includes('amén');
+    const isFinal = mappedHistory.length >= 2 && response.toLowerCase().includes('amén');
 
     return res.json({ response, isFinal });
   } catch (err) {
