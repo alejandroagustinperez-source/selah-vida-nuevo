@@ -8,12 +8,10 @@ import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
 import Verse from './components/Verse';
-import Testimonials from './components/Testimonials';
-import VideoSection from './components/VideoSection';
+import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import FinalCta from './components/FinalCta';
 import Footer from './components/Footer';
-import RevealOnScroll from './components/RevealOnScroll';
 import Divider from './components/Divider';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -33,7 +31,6 @@ import Kids from './pages/Kids';
 import KidsStory from './pages/KidsStory';
 import AdminKids from './pages/AdminKids';
 import AuthCallback from './pages/AuthCallback';
-import ManuscriptBorders from './components/ManuscriptBorders';
 import RafaelWidget from './components/RafaelWidget';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -44,40 +41,26 @@ function HomePage() {
       sessionStorage.removeItem('scrollTo');
       setTimeout(() => {
         const el = document.getElementById(target);
-        if (el) {
-          const wrapper = el.closest('[class*="opacity-0"]');
-          if (wrapper) {
-            wrapper.classList.add('opacity-100', 'translate-y-0');
-            wrapper.classList.remove('opacity-0', 'translate-y-8');
-          }
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 500);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
     }
   }, []);
 
   return (
-    <ManuscriptBorders>
+    <div className="font-body bg-sv-cream text-sv-ink">
       <Navbar />
-      <Divider thin />
-      <Hero />
-      <Divider />
-      <RevealOnScroll><Problem /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><Solution /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><Verse /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><Testimonials /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><VideoSection /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><Pricing /></RevealOnScroll>
-      <Divider />
-      <RevealOnScroll><FinalCta /></RevealOnScroll>
+      <main>
+        <Hero />
+        <Problem />
+        <HowItWorks />
+        <Solution />
+        <Verse />
+        <Pricing />
+        <FinalCta />
+      </main>
       <Footer />
       <RafaelWidget />
-    </ManuscriptBorders>
+    </div>
   );
 }
 

@@ -1,46 +1,33 @@
-import { Brain, Flame, Home, Compass, Hand } from 'lucide-react';
+const items = [
+  'El estrés y la ansiedad te agobian día tras día.',
+  'Tu vida espiritual se siente fría o estancada.',
+  'No encuentras un lugar seguro para desahogarte.',
+  'Necesitas dirección, pero no sabes a quién acudir.',
+  'La oración se ha vuelto difícil y sientes que no avanzas.',
+];
 
 export default function Problem() {
-  const items = [
-    { icon: Brain, text: 'El estrés y la ansiedad te agobian día tras día', iconColor: '#8B2020' },
-    { icon: Flame, text: 'Tu vida espiritual se siente fría o estancada', iconColor: '#999999' },
-    { icon: Home, text: 'No encuentras un lugar seguro para desahogarte', iconColor: '#8B2020' },
-    { icon: Compass, text: 'Necesitas dirección, pero no sabes a quién acudir', iconColor: '#8B2020' },
-    { icon: Hand, text: 'La oración se ha vuelto difícil y sientes que no avanzas', iconColor: '#8B2020' },
-  ];
-
   return (
-    <section id="problema" className="py-4 md:py-8 px-6" style={{ backgroundColor: '#FAF7F2' }}>
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-6">
-          <span className="font-serif font-bold text-4xl md:text-5xl" style={{ color: '#8B1A1A' }}>II</span>
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0F3D3D' }}>
+    <section id="problema" className="bg-sv-cream py-20 md:py-28 px-6">
+      <div className="max-w-6xl mx-auto md:px-6 flex flex-wrap gap-12 md:gap-14 items-start">
+        <div className="flex-[1_1_320px] min-w-0 flex flex-col gap-4">
+          <h2 className="font-display font-semibold text-sv-teal leading-tight" style={{ fontSize: 'clamp(2rem, 3.6vw, 2.75rem)' }}>
             Sabemos lo que duele
           </h2>
+          <p className="text-sv-muted text-[17px] leading-relaxed max-w-[26em]">
+            Muchas personas cargan esto en silencio, sin un lugar donde decirlo en voz alta. No estás solo.
+          </p>
         </div>
-
-        <div className="max-w-[600px] mx-auto">
-          {items.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div key={idx}>
-                <div className="flex items-start gap-4" style={{ padding: '10px 0' }}>
-                  <Icon size={20} className="shrink-0 mt-0.5" style={{ color: item.iconColor }} strokeWidth={1.5} />
-                  <p className="italic leading-relaxed" style={{ color: '#0F3D3D', fontSize: '1.1rem' }}>
-                    {item.text}
-                  </p>
-                </div>
-                {idx < items.length - 1 && (
-                  <div className="w-full h-px" style={{ backgroundColor: '#E0D5C5' }} />
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <p className="text-center font-semibold italic mt-[60px]" style={{ color: '#C9922A', fontSize: '1.3rem' }}>
-          — No estás solo
-        </p>
+        <ul className="flex-[1.4_1_460px] min-w-0 border-b border-sv-line">
+          {items.map((text) => (
+            <li
+              key={text}
+              className="py-5 border-t border-sv-line font-display text-xl md:text-[23px] leading-snug text-sv-ink"
+            >
+              {text}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
