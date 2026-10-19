@@ -1,165 +1,82 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const tips = [
-  'Hablá con Rafael sobre lo que sentís, sin filtros. Está disponible las 24 horas. 🕊',
-  'Explorá los Juegos Bíblicos para aprender la Palabra de forma divertida. 📖',
-  'La Oración Guiada te acompaña en 7 caminos distintos de conexión con Dios. 🙏',
-  'Con la cuenta Premium accedés a música de alabanza y conversaciones ilimitadas. ✨',
+  'Habla con Rafael sobre lo que sientes, sin filtros. Está disponible las 24 horas.',
+  'Explora los juegos bíblicos para aprender la Palabra de forma divertida.',
+  'La oración guiada te acompaña en siete caminos distintos para conectar con Dios.',
+  'Con Premium tienes conversaciones sin límite y música de alabanza.',
 ];
 
 export default function RafaelWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentTip, setCurrentTip] = useState(0);
-  const hasAutoOpened = useRef(false);
 
-  useEffect(() => {
-    if (!hasAutoOpened.current) {
-      hasAutoOpened.current = true;
-      const timer = setTimeout(() => setIsOpen(true), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  function prevTip() {
-    setCurrentTip(prev => (prev === 0 ? tips.length - 1 : prev - 1));
-  }
-
-  function nextTip() {
-    setCurrentTip(prev => (prev === tips.length - 1 ? 0 : prev + 1));
-  }
+  const prevTip = () => setCurrentTip((p) => (p === 0 ? tips.length - 1 : p - 1));
+  const nextTip = () => setCurrentTip((p) => (p === tips.length - 1 ? 0 : p + 1));
 
   return (
-    <>
-      <style>{`
-        @keyframes widget-pulse {
-          0% { transform: scale(1); opacity: 0.6; }
-          50% { transform: scale(1.12); opacity: 0.25; }
-          100% { transform: scale(1); opacity: 0.6; }
-        }
-        @keyframes widget-fade-up {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .widget-pulse {
-          animation: widget-pulse 2.5s ease-in-out infinite;
-        }
-        .widget-card-enter {
-          animation: widget-fade-up 200ms ease forwards;
-        }
-      `}</style>
-
+    <div className="font-body">
       {isOpen && (
         <div
-          className="widget-card-enter"
-          style={{
-            position: 'fixed',
-            bottom: '100px',
-            right: '24px',
-            width: '300px',
-            zIndex: 50,
-            backgroundColor: '#FAF7F2',
-            border: '1px solid #C9922A',
-            borderRadius: '10px',
-            boxShadow: '0 8px 32px rgba(15,61,61,0.15)',
-          }}
+          role="dialog"
+          aria-label="Rafael, tu guía espiritual"
+          className="fixed bottom-[104px] right-4 md:right-6 w-[300px] max-w-[calc(100vw-32px)] z-50 bg-sv-cream border border-sv-line rounded-2xl shadow-[0_12px_32px_rgba(15,61,61,0.18)]"
         >
           <button
             onClick={() => setIsOpen(false)}
-            style={{
-              position: 'absolute', top: '8px', right: '10px',
-              background: 'none', border: 'none', cursor: 'pointer',
-              color: '#0F3D3D', fontSize: '18px', lineHeight: '1',
-              padding: '4px',
-            }}
+            aria-label="Cerrar"
+            className="absolute top-2 right-2 w-10 h-10 flex items-center justify-center text-sv-teal hover:opacity-70"
           >
-            ×
+            <X size={18} />
           </button>
 
-          <div style={{ padding: '16px 16px 12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <img
-              src="/rafael-avatar.png"
-              alt="Rafael"
-              style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }}
-            />
-            <div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: '#0F3D3D', fontSize: '15px' }}>
-                Rafael
-              </div>
-              <div style={{ color: '#C9922A', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Tu guía espiritual
-              </div>
+          <div className="flex items-center gap-3 px-4 pt-4 pb-3">
+            <img src="/rafael-avatar.png" alt="" className="w-10 h-10 rounded-full object-cover" />
+            <div className="flex flex-col">
+              <span className="font-display font-semibold text-sv-teal">Rafael</span>
+              <span className="text-[13px] text-sv-muted">Tu guía espiritual</span>
             </div>
           </div>
 
-          <div style={{ height: '1px', backgroundColor: '#C9922A', margin: '0 16px' }} />
-
-          <div style={{ padding: '14px 16px 8px', fontSize: '13px', color: '#0F3D3D', lineHeight: '1.5', minHeight: '72px' }}>
+          <p className="mx-4 pt-3 border-t border-sv-line text-[15px] leading-relaxed text-sv-ink min-h-[76px]" aria-live="polite">
             {tips[currentTip]}
-          </div>
+          </p>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', padding: '0 16px 12px' }}>
-            <button onClick={prevTip} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C9922A', fontSize: '16px', padding: '2px 6px' }}>
-              ←
+          <div className="flex items-center justify-center gap-2 px-4 pb-2">
+            <button onClick={prevTip} aria-label="Consejo anterior" className="w-10 h-10 flex items-center justify-center text-sv-gold-text">
+              <ChevronLeft size={18} />
             </button>
-            <div style={{ display: 'flex', gap: '5px' }}>
+            <div className="flex gap-1.5" aria-hidden="true">
               {tips.map((_, i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: '6px', height: '6px', borderRadius: '50%',
-                    backgroundColor: i === currentTip ? '#C9922A' : 'rgba(201,146,42,0.3)',
-                    transition: 'background-color 150ms',
-                  }}
-                />
+                <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === currentTip ? 'bg-sv-gold' : 'bg-sv-gold/30'}`} />
               ))}
             </div>
-            <button onClick={nextTip} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C9922A', fontSize: '16px', padding: '2px 6px' }}>
-              →
+            <button onClick={nextTip} aria-label="Consejo siguiente" className="w-10 h-10 flex items-center justify-center text-sv-gold-text">
+              <ChevronRight size={18} />
             </button>
           </div>
 
-          <div style={{ padding: '0 16px 16px' }}>
-            <a
-              href="/register"
-              style={{
-                display: 'block', width: '100%', textAlign: 'center',
-                fontFamily: "'Playfair Display', serif", fontSize: '14px',
-                backgroundColor: '#0F3D3D', color: '#FAF7F2',
-                padding: '10px', borderRadius: '6px', textDecoration: 'none',
-                transition: 'background-color 200ms',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#C9922A'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0F3D3D'}
+          <div className="px-4 pb-4">
+            <Link
+              to="/register"
+              className="flex items-center justify-center min-h-[44px] rounded-full bg-sv-teal text-sv-cream font-semibold hover:bg-sv-night transition-colors"
             >
-              ¡Comenzar gratis!
-            </a>
+              Hablar con Rafael gratis
+            </Link>
           </div>
         </div>
       )}
 
       <button
-        onClick={() => setIsOpen(prev => !prev)}
-        style={{
-          position: 'fixed', bottom: '24px', right: '24px', zIndex: 50,
-          width: '64px', height: '64px', borderRadius: '50%',
-          border: '2px solid #C9922A', padding: 0, cursor: 'pointer',
-          background: 'none', outline: 'none',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-        }}
+        onClick={() => setIsOpen((p) => !p)}
+        aria-label={isOpen ? 'Cerrar el mensaje de Rafael' : 'Abrir el mensaje de Rafael'}
+        aria-expanded={isOpen}
+        className="fixed bottom-6 right-4 md:right-6 z-50 w-16 h-16 rounded-full border-2 border-sv-gold-light p-0 overflow-hidden shadow-[0_10px_24px_rgba(5,25,25,0.3)]"
       >
-        <div
-          className="widget-pulse"
-          style={{
-            position: 'absolute', inset: '-6px', borderRadius: '50%',
-            border: '2px solid #C9922A', pointerEvents: 'none',
-          }}
-        />
-        <img
-          src="/rafael-avatar.png"
-          alt="Rafael"
-          style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
-        />
+        <img src="/rafael-avatar.png" alt="" className="w-full h-full object-cover" />
       </button>
-    </>
+    </div>
   );
 }

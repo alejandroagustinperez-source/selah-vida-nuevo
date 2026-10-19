@@ -2,19 +2,17 @@ import { Link } from 'react-router-dom';
 
 export default function FinalCta() {
   return (
-    <section className="py-6 md:py-10 px-6 text-center" style={{ backgroundColor: '#0F3D3D' }}>
-      <div className="max-w-2xl mx-auto">
-        <h2 className="font-serif text-2xl md:text-3xl font-bold mb-4" style={{ color: '#FAF7F2' }}>
-          Empezá hoy — Tu alma lo necesita
+    <section className="bg-sv-night text-sv-cream py-20 md:py-28 px-6">
+      <div className="max-w-[760px] mx-auto flex flex-col items-center gap-6 text-center">
+        <h2 className="font-display font-semibold leading-tight" style={{ fontSize: 'clamp(2.125rem, 4.2vw, 3.25rem)' }}>
+          Tómate una pausa hoy.
         </h2>
-        <p className="text-sm md:text-base mb-8 leading-relaxed" style={{ color: 'rgba(250,247,242,0.8)' }}>
-          No esperes a que el peso sea demasiado. Dios te espera con brazos abiertos.
-        </p>
+        <p className="text-lg md:text-[19px] text-sv-mist">Rafael está disponible ahora para escucharte.</p>
         <Link
           to="/register"
-          className="inline-block border-2 border-[#C9922A] text-[#C9922A] px-10 py-3.5 rounded-full text-xs tracking-[0.15em] font-semibold uppercase hover:bg-[#C9922A] hover:text-white transition-all"
+          className="inline-flex items-center min-h-[56px] px-8 rounded-full bg-sv-gold hover:bg-sv-gold-hover text-sv-night font-semibold text-lg transition-colors"
         >
-          Quiero empezar gratis
+          Hablar con Rafael gratis
         </Link>
       </div>
     </section>

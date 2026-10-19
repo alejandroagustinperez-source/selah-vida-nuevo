@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
   const location = useLocation();
 
   const isHome = location.pathname === '/';
   const showFullNav = isHome || location.pathname.startsWith('/blog') || location.pathname === '/contacto' || location.pathname === '/login' || location.pathname === '/register' || location.pathname.startsWith('/ninos');
 
   const homeLinks = [
-    { href: isHome ? '#problema' : '/#problema', label: 'Problema' },
-    { href: isHome ? '#solucion' : '/#solucion', label: 'Solución' },
-    { href: isHome ? '#testimonios' : '/#testimonios', label: 'Testimonios' },
-
+    { href: isHome ? '#como-funciona' : '/#como-funciona', label: 'Cómo funciona' },
+    { href: isHome ? '#funciones' : '/#funciones', label: 'Funciones' },
+    { href: isHome ? '#precios' : '/#precios', label: 'Precios' },
     { href: '/blog', label: 'Blog' },
     { href: '/contacto', label: 'Contacto' },
-    { href: isHome ? '#precios' : '/#precios', label: 'Precios' },
   ];
+
+  const navLinks = showFullNav ? homeLinks : [];
 
   const close = () => setOpen(false);
 
@@ -27,18 +25,11 @@ export default function Navbar() {
       e.preventDefault();
       const el = document.querySelector(href);
       if (el) {
-        const wrapper = el.closest('[class*="opacity-0"]');
-        if (wrapper) {
-          wrapper.classList.add('opacity-100', 'translate-y-0');
-          wrapper.classList.remove('opacity-0', 'translate-y-8');
-        }
-        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        const y = el.getBoundingClientRect().top + window.scrollY - 72;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
-      close();
-    } else {
-      close();
     }
+    close();
   };
 
   const handleNavClick = (href) => {
@@ -48,131 +39,72 @@ export default function Navbar() {
     close();
   };
 
-  const navLinks = showFullNav
-    ? homeLinks
-    : [];
+  const linkClass = 'text-[15px] text-sv-mist hover:text-white transition-colors py-2';
+
+  const renderLink = (l, className) =>
+    l.href.startsWith('/') ? (
+      <Link key={l.href} to={l.href} onClick={() => handleNavClick(l.href)} className={className}>
+        {l.label}
+      </Link>
+    ) : (
+      <a key={l.href} href={l.href} onClick={(e) => handleAnchorClick(e, l.href)} className={className}>
+        {l.label}
+      </a>
+    );
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white" style={{ borderBottom: '1px solid rgba(201,146,42,0.2)' }}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          <img src="/logo.png" alt="Selah Vida" className="w-[30px] h-[30px] object-contain" />
-          <span className="font-serif text-lg font-bold" style={{ color: '#0F3D3D' }}>Selah Vida</span>
+    <nav aria-label="Principal" className="fixed top-0 left-0 right-0 z-50 bg-sv-teal font-body border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-[72px]">
+        <Link to="/" className="flex items-center gap-2.5 shrink-0" onClick={close}>
+          <img src="/logo.png" alt="" className="w-8 h-8 object-contain" />
+          <span className="font-display text-[22px] font-semibold text-sv-cream">Selah Vida</span>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-0">
-          {navLinks.map((l, i) => (
-            <span key={l.href} className="flex items-center">
-              {l.href.startsWith('/') ? (
-                <Link
-                  to={l.href}
-                  onClick={() => handleNavClick(l.href)}
-                  className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
-                  style={{ color: '#0F3D3D' }}
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  href={l.href}
-                  onClick={(e) => handleAnchorClick(e, l.href)}
-                  className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
-                  style={{ color: '#0F3D3D' }}
-                >
-                  {l.label}
-                </a>
-              )}
-              {i < navLinks.length - 1 && (
-                <span className="text-xs select-none" style={{ color: 'rgba(201,146,42,0.5)' }}>|</span>
-              )}
-            </span>
-          ))}
-          {showFullNav ? (
-            <span className="flex items-center">
-              <span className="text-xs select-none" style={{ color: 'rgba(201,146,42,0.5)' }}>|</span>
-              <Link
-                to="/login"
-                onClick={close}
-                className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
-                style={{ color: '#0F3D3D' }}
-              >
-                Iniciar sesión
-              </Link>
-            </span>
-          ) : (
-            <Link
-              to="/login"
-              onClick={close}
-              className="text-xs tracking-[0.15em] font-semibold uppercase px-3 py-2 hover:opacity-70 transition-opacity"
-              style={{ color: '#0F3D3D' }}
-            >
-              Iniciar sesión
-            </Link>
-          )}
+        {/* Escritorio */}
+        <div className="hidden md:flex items-center gap-7">
+          {navLinks.map((l) => renderLink(l, linkClass))}
+          <Link
+            to="/login"
+            onClick={close}
+            className="inline-flex items-center min-h-[44px] px-5 rounded-full border border-white/40 text-sv-cream text-[15px] hover:bg-white/10 transition-colors"
+          >
+            Iniciar sesión
+          </Link>
         </div>
 
-        {/* Hamburger */}
+        {/* Botón de menú en celular */}
         <button
-          className="flex flex-col gap-1.5 md:hidden bg-none border-none cursor-pointer p-1"
+          className="flex flex-col justify-center gap-1.5 md:hidden w-11 h-11 items-center"
           onClick={() => setOpen(!open)}
-          aria-label="Menú"
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={open}
         >
-          <span className={`block w-6 h-0.5 rounded transition-transform duration-300 ${open ? 'rotate-45 translate-y-[7px]' : ''}`} style={{ backgroundColor: '#0F3D3D' }} />
-          <span className={`block w-6 h-0.5 rounded transition-opacity duration-300 ${open ? 'opacity-0' : ''}`} style={{ backgroundColor: '#0F3D3D' }} />
-          <span className={`block w-6 h-0.5 rounded transition-transform duration-300 ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} style={{ backgroundColor: '#0F3D3D' }} />
+          <span className={`block w-6 h-0.5 rounded bg-sv-cream transition-transform duration-300 ${open ? 'rotate-45 translate-y-[7px]' : ''}`} />
+          <span className={`block w-6 h-0.5 rounded bg-sv-cream transition-opacity duration-300 ${open ? 'opacity-0' : ''}`} />
+          <span className={`block w-6 h-0.5 rounded bg-sv-cream transition-transform duration-300 ${open ? '-rotate-45 -translate-y-[7px]' : ''}`} />
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Menú en celular */}
       <div
-        className={`fixed top-0 right-0 h-screen w-72 shadow-xl flex flex-col gap-5 pt-24 px-8 transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 right-0 h-screen w-72 bg-sv-teal shadow-xl flex flex-col gap-2 pt-24 px-8 transition-transform duration-300 md:hidden ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ backgroundColor: '#FAF7F2', zIndex: 60 }}
+        style={{ zIndex: 60 }}
       >
-        {navLinks.map((l) => (
-          l.href.startsWith('/') ? (
-            <Link
-              key={l.href}
-              to={l.href}
-              onClick={() => handleNavClick(l.href)}
-              className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
-              style={{ color: '#0F3D3D' }}
-            >
-              {l.label}
-            </Link>
-          ) : (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={(e) => handleAnchorClick(e, l.href)}
-              className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
-              style={{ color: '#0F3D3D' }}
-            >
-              {l.label}
-            </a>
-          )
-        ))}
-        {showFullNav && navLinks.length > 0 && (
-          <div className="h-px w-full my-2" style={{ backgroundColor: 'rgba(201,146,42,0.2)' }} />
-        )}
+        {navLinks.map((l) => renderLink(l, 'text-lg text-sv-cream py-3'))}
+        {navLinks.length > 0 && <div className="h-px w-full my-3 bg-white/15" />}
         <Link
           to="/login"
           onClick={close}
-          className="text-sm tracking-[0.15em] font-semibold uppercase py-2"
-          style={{ color: '#0F3D3D' }}
+          className="inline-flex items-center justify-center min-h-[48px] rounded-full border border-white/40 text-sv-cream text-base"
         >
           Iniciar sesión
         </Link>
       </div>
 
       {open && (
-        <div
-          className="fixed inset-0 md:hidden"
-          style={{ backgroundColor: 'rgba(0,0,0,0.3)', zIndex: 55 }}
-          onClick={close}
-        />
+        <div className="fixed inset-0 md:hidden bg-black/40" style={{ zIndex: 55 }} onClick={close} />
       )}
     </nav>
   );
