@@ -86,7 +86,21 @@ export default function Footer() {
             </Link>
             .
           </p>
-          <p className="text-sm">&copy; {year} Selah Vida. Todos los derechos reservados.</p>
+          <div className="flex flex-wrap justify-between gap-2 text-sm">
+            <p>&copy; {year} Selah Vida. Todos los derechos reservados.</p>
+            <p>
+              Sitio hecho por{' '}
+              <a
+                href="https://ap-cm.vercel.app/"
+                target="_blank"
+                rel="noopener"
+                title="Diseño de páginas web en San Luis"
+                className="text-sv-mist underline hover:text-white"
+              >
+                AP Community Manager
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
