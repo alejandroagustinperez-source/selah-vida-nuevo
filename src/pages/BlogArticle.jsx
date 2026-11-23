@@ -205,8 +205,8 @@ export default function BlogArticle() {
           <p className="relative text-[11px] tracking-[0.3em] uppercase mb-4" style={{ color: '#E0B256' }}>✦ Acompañamiento 24/7 ✦</p>
           <p className="relative font-display text-3xl md:text-4xl font-bold mb-4" style={{ color: '#FAF7F2' }}>No tenés que atravesarlo <span className="sv-gold-text">solo</span></p>
           <p className="relative text-sm md:text-base mb-8 max-w-md mx-auto" style={{ color: 'rgba(250,247,242,.8)' }}>Hablá con Rafael, tu acompañante espiritual, y orá con él cuando lo necesites.</p>
-          <Link to="/register" className="relative inline-flex items-center gap-2 rounded-full px-9 py-4 text-sm font-semibold transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg,#C9922A,#E0B256)', color: '#0A2B2B', boxShadow: '0 14px 34px -8px rgba(201,146,42,.7)' }}>
-            Comenzá tu camino en Selah Vida <ArrowRight size={16} />
+          <Link to="/register" className="relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold whitespace-nowrap transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg,#C9922A,#E0B256)', color: '#0A2B2B', boxShadow: '0 14px 34px -8px rgba(201,146,42,.7)' }}>
+            Comenzar ahora <ArrowRight size={16} />
           </Link>
         </section>
 
